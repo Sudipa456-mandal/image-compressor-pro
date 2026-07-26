@@ -1,0 +1,860 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    background:#f4f7fb;
+    color:#222;
+}
+
+header{
+    background:#2563eb;
+    color:#fff;
+    text-align:center;
+    padding:40px 20px;
+}
+
+header h1{
+    font-size:38px;
+    margin-bottom:10px;
+}
+
+header p{
+    opacity:.9;
+}
+
+.container{
+    max-width:1100px;
+    margin:30px auto;
+    background:#fff;
+    border-radius:15px;
+    padding:25px;
+    box-shadow:0 10px 30px rgba(0,0,0,.1);
+}
+
+/* Upload Area */
+
+.drop-area{
+    border:3px dashed #2563eb;
+    border-radius:15px;
+    padding:50px 20px;
+    text-align:center;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.drop-area:hover{
+    background:#eef5ff;
+}
+
+.drop-area.dragover{
+    background:#dbeafe;
+    border-color:#1d4ed8;
+}
+
+#chooseBtn{
+    margin-top:20px;
+    background:#2563eb;
+    color:#fff;
+    border:none;
+    padding:14px 28px;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:16px;
+    transition:.3s;
+}
+
+#chooseBtn:hover{
+    background:#1d4ed8;
+}
+
+/* Controls */
+
+.controls{
+    margin-top:30px;
+}
+
+.controls label{
+    display:block;
+    margin-bottom:8px;
+    font-weight:bold;
+}
+
+#quality{
+    width:100%;
+}
+
+#qualityValue{
+    display:inline-block;
+    margin-top:10px;
+    font-weight:bold;
+    color:#2563eb;
+}
+
+#maxWidth,
+#maxHeight,
+#maxFileSize{
+
+    width:100%;
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:16px;
+}
+
+#compressBtn{
+
+    width:100%;
+    margin-top:20px;
+    padding:15px;
+    border:none;
+    background:#16a34a;
+    color:#fff;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:18px;
+    transition:.3s;
+}
+
+#compressBtn:hover{
+
+    background:#15803d;
+
+}
+
+/* Progress */
+
+.progress-container{
+
+    width:100%;
+    height:18px;
+    background:#ddd;
+    border-radius:50px;
+    overflow:hidden;
+    margin-top:30px;
+
+}
+
+.progress-bar{
+
+    width:0%;
+    height:100%;
+    background:linear-gradient(
+        90deg,
+        #22c55e,
+        #16a34a
+    );
+
+    transition:width .3s;
+}
+
+#progressText{
+
+    margin-top:12px;
+    text-align:center;
+    font-weight:bold;
+    color:#2563eb;
+
+}
+
+/* Statistics */
+
+.stats{
+
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+    margin-top:30px;
+
+}
+
+.stats div{
+
+    background:#f8fafc;
+    padding:20px;
+    border-radius:10px;
+    text-align:center;
+    font-weight:bold;
+
+}
+
+.stats span{
+
+    display:block;
+    margin-top:10px;
+    color:#2563eb;
+
+}
+
+/* Preview */
+
+.preview{
+
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+    margin-top:30px;
+
+}
+
+.preview div{
+
+    background:#fafafa;
+    padding:15px;
+    border-radius:10px;
+    text-align:center;
+
+}
+
+.preview img{
+
+    width:100%;
+    max-height:350px;
+    object-fit:contain;
+    margin-top:15px;
+
+}
+
+/* Download */
+
+#downloadBtn{
+
+    display:block;
+    margin-top:30px;
+    text-align:center;
+    background:#ef4444;
+    color:#fff;
+    padding:16px;
+    border-radius:8px;
+    text-decoration:none;
+    font-size:18px;
+    opacity:.5;
+    pointer-events:none;
+    transition:.3s;
+
+}
+
+#downloadBtn.active{
+
+    opacity:1;
+    pointer-events:auto;
+
+}
+
+#downloadBtn:hover{
+
+    background:#dc2626;
+
+}
+
+/* Responsive */
+
+@media(max-width:768px){
+
+    .preview{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .stats{
+
+        grid-template-columns:1fr;
+
+    }
+
+    header h1{
+
+        font-size:30px;
+
+    }
+
+    .drop-area{
+
+        padding:30px 15px;
+
+    }
+
+}
+.hero-content{
+    max-width:900px;
+    margin:30px auto;
+    text-align:center;
+    padding:20px;
+}
+
+.hero-content h2{
+    font-size:32px;
+    color:#2563eb;
+    margin-bottom:15px;
+}
+
+.hero-content p{
+    font-size:18px;
+    color:#555;
+    line-height:1.8;
+}
+/* FAQ Section */
+
+.faq{
+
+    max-width:1000px;
+
+    margin:50px auto;
+
+    padding:20px;
+
+}
+
+.faq h2{
+
+    text-align:center;
+
+    font-size:32px;
+
+    color:#2563eb;
+
+    margin-bottom:30px;
+
+}
+
+.faq-item{
+
+    background:#ffffff;
+
+    padding:20px;
+
+    margin-bottom:15px;
+
+    border-radius:10px;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+
+}
+
+.faq-item h3{
+
+    color:#222;
+
+    margin-bottom:10px;
+
+}
+
+.faq-item p{
+
+    color:#666;
+
+    line-height:1.7;
+
+}
+/* ==========================
+   Footer
+========================== */
+
+.footer{
+    background:#111827;
+    color:#fff;
+    padding:30px 20px;
+    margin-top:60px;
+}
+
+.footer-container{
+    max-width:1200px;
+    margin:auto;
+    text-align:center;
+}
+
+.footer-links{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:30px;
+    margin-bottom:20px;
+}
+
+.footer-links a{
+    color:#ffffff;
+    text-decoration:none;
+    font-size:16px;
+    font-weight:500;
+    transition:0.3s;
+}
+
+.footer-links a:hover{
+    color:#3b82f6;
+}
+
+.footer p{
+    color:#d1d5db;
+    font-size:15px;
+}
+
+@media(max-width:768px){
+
+.footer-links{
+
+    flex-direction:column;
+
+    gap:15px;
+
+}
+
+}
+/* ==========================
+   Navigation Bar
+========================== */
+
+.navbar{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:18px 40px;
+
+    background:#2563eb;
+
+}
+
+.logo{
+
+    color:#fff;
+
+    font-size:24px;
+
+    font-weight:bold;
+
+}
+
+.nav-links{
+
+    display:flex;
+
+    list-style:none;
+
+    gap:25px;
+
+}
+
+.nav-links a{
+
+    color:#fff;
+
+    text-decoration:none;
+
+    font-size:16px;
+
+    transition:0.3s;
+
+}
+
+.nav-links a:hover{
+
+    color:#ffd700;
+
+}
+
+@media(max-width:768px){
+
+.navbar{
+
+    flex-direction:column;
+
+    gap:15px;
+
+}
+
+.nav-links{
+
+    flex-wrap:wrap;
+
+    justify-content:center;
+
+}
+
+}
+/* ==========================
+   Features Section
+========================== */
+
+.features{
+
+    margin-top:50px;
+
+    text-align:center;
+
+}
+
+.features h2{
+
+    font-size:30px;
+
+    margin-bottom:30px;
+
+    color:#222;
+
+}
+
+.feature-box{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+    gap:20px;
+
+}
+
+.feature-card{
+
+    background:#f8fafc;
+
+    padding:25px;
+
+    border-radius:12px;
+
+    box-shadow:0 4px 10px rgba(0,0,0,.08);
+
+    font-size:18px;
+
+    font-weight:600;
+
+    transition:0.3s;
+
+}
+
+.feature-card:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:0 8px 18px rgba(0,0,0,.15);
+
+}
+
+
+
+/* ==========================
+   Supported Formats
+========================== */
+
+.formats{
+
+    margin-top:60px;
+
+    text-align:center;
+
+}
+
+.formats h2{
+
+    font-size:30px;
+
+    margin-bottom:30px;
+
+    color:#222;
+
+}
+
+.format-box{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+
+    gap:20px;
+
+}
+
+.format-card{
+
+    background:#2563eb;
+
+    color:#fff;
+
+    padding:30px;
+
+    border-radius:12px;
+
+    font-size:22px;
+
+    font-weight:bold;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.15);
+
+    transition:0.3s;
+
+}
+
+.format-card:hover{
+
+    transform:translateY(-5px);
+
+    background:#1d4ed8;
+
+}
+
+
+/* ==========================
+   How It Works
+========================== */
+
+.how-it-works{
+
+    margin-top:60px;
+
+    text-align:center;
+
+}
+
+.how-it-works h2{
+
+    font-size:32px;
+
+    margin-bottom:35px;
+
+    color:#222;
+
+}
+
+.steps{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
+    gap:25px;
+
+}
+
+.step-card{
+
+    background:#ffffff;
+
+    border-radius:15px;
+
+    padding:30px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+    transition:0.3s;
+
+}
+
+.step-card:hover{
+
+    transform:translateY(-6px);
+
+}
+
+.step-number{
+
+    width:60px;
+
+    height:60px;
+
+    background:#2563eb;
+
+    color:#fff;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    margin:auto;
+
+    font-size:24px;
+
+    font-weight:bold;
+
+}
+
+.step-card h3{
+
+    margin-top:20px;
+
+    margin-bottom:15px;
+
+    font-size:22px;
+
+}
+
+.step-card p{
+
+    color:#555;
+
+    line-height:1.6;
+
+}
+
+/* ==========================
+   Back To Top Button
+========================== */
+
+#topBtn{
+
+    display:none;
+
+    position:fixed;
+
+    bottom:30px;
+
+    right:30px;
+
+    z-index:999;
+
+    border:none;
+
+    outline:none;
+
+    background:#2563eb;
+
+    color:white;
+
+    cursor:pointer;
+
+    width:50px;
+
+    height:50px;
+
+    border-radius:50%;
+
+    font-size:24px;
+
+    transition:.3s;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.3);
+
+}
+
+#topBtn:hover{
+
+    background:#1d4ed8;
+
+    transform:scale(1.1);
+
+}
+
+/* ==========================
+   Dark Mode Button
+========================== */
+
+#themeToggle{
+
+    background:#ffffff;
+
+    color:#2563eb;
+
+    border:none;
+
+    width:45px;
+
+    height:45px;
+
+    border-radius:50%;
+
+    cursor:pointer;
+
+    font-size:22px;
+
+    transition:.3s;
+
+}
+
+#themeToggle:hover{
+
+    transform:rotate(20deg);
+
+}
+
+
+/* ==========================
+   Dark Theme
+========================== */
+
+body.dark{
+
+    background:#111827;
+
+    color:#ffffff;
+
+}
+
+body.dark header{
+
+    background:#1f2937;
+
+}
+
+body.dark .container{
+
+    background:#1f2937;
+
+}
+
+body.dark .stats div,
+body.dark .preview div,
+body.dark .feature-card,
+body.dark .step-card,
+body.dark .format-card{
+
+    background:#374151;
+
+    color:#ffffff;
+
+}
+
+body.dark .drop-area{
+
+    border-color:#60a5fa;
+
+}
+
+body.dark .controls input,
+body.dark .controls select{
+
+    background:#374151;
+
+    color:#ffffff;
+
+    border:1px solid #555;
+
+}
+
+body.dark h1,
+body.dark h2,
+body.dark h3,
+body.dark p,
+body.dark label{
+
+    color:#ffffff;
+
+}
+
+body.dark .faq{
+
+    background:#1f2937;
+
+}
+
+body.dark .faq-item{
+
+    background:#374151;
+
+    color:#ffffff;
+
+}
+
+body.dark footer{
+
+    background:#000;
+
+}

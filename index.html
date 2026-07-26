@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Image Compressor Online - Compress JPG, PNG & WEBP Images</title>
+<meta name="description" content="Compress JPG, PNG and WEBP images online for free. Reduce image size without losing quality. Fast, secure and mobile-friendly image compressor.">
+
+<meta name="keywords" content="image compressor, compress image, reduce image size, jpg compressor, png compressor, webp compressor">
+
+<meta name="author" content="Image Compressor Pro">
+
+<meta name="robots" content="index, follow">
+
+<meta name="theme-color" content="#2563eb">
+<meta property="og:title" content="Free Image Compressor Online - Compress JPG, PNG & WEBP Images">
+
+<meta property="og:description" content="Compress JPG, PNG and WEBP images online for free. Fast, secure and free image compressor.">
+
+<meta property="og:type" content="website">
+
+ <link rel="icon" type="image/png" href="favicon.png">
+<link rel="stylesheet" href="style.css">    
+</head>
+<body>
+
+<nav class="navbar">
+
+    <div class="logo">
+        📷 Image Compressor Pro
+    </div>
+
+    <ul class="nav-links">
+
+        <li><a href="index.html">Home</a></li>
+
+        <li><a href="about.html">About</a></li>
+
+        <li><a href="contact.html">Contact</a></li>
+
+        <li><a href="privacy.html">Privacy</a></li>
+
+    </ul>
+<button id="themeToggle">
+    🌙
+</button>
+
+</nav>
+
+
+<header>
+    <h1>Free Image Compressor Online</h1>
+    <p>Compress JPG, PNG & WEBP Images for free without losing quality.</p>
+</header>
+<section class="hero-content">
+
+    <h2>Compress Images Online</h2>
+
+    <p>
+        Reduce JPG, PNG and WEBP image size online without losing quality.
+        Fast, secure and free image compression tool.
+    </p>
+
+</section>
+
+<div class="container">
+
+    <!-- Upload Area -->
+    <div id="dropArea" class="drop-area">
+
+        <input type="file"
+               id="imageInput"
+               accept="image/*"
+               multiple
+               hidden>
+
+        <h2>📂 Drag & Drop Images Here</h2>
+
+        <p>or</p>
+
+        <button id="chooseBtn">
+            Choose Images
+        </button>
+
+    </div>
+
+
+    <!-- Controls -->
+    <div class="controls">
+
+        <label>Compression Quality</label>
+
+        <input type="range"
+               id="quality"
+               min="10"
+               max="100"
+               value="80">
+
+        <span id="qualityValue">80%</span>
+
+        <br><br>
+
+        <label>Max Width</label>
+
+        <input type="number"
+               id="maxWidth"
+               value="1920">
+
+        <br><br>
+
+        <label>Max Height</label>
+
+        <input type="number"
+               id="maxHeight"
+               value="1920">
+
+        <br><br>
+
+
+
+<label>Target File Size (KB)</label>
+
+<input
+    type="number"
+    id="maxFileSize"
+    value="50"
+    min="10"
+    max="5000"
+    placeholder="Enter target size in KB">
+
+
+
+
+
+
+      <br><br>
+
+        <button id="compressBtn">
+            Compress Image
+        </button>
+
+    </div>
+
+    <!-- Progress -->
+
+    <div class="progress-container">
+
+        <div class="progress-bar"
+             id="progressBar"></div>
+
+    </div>
+
+    <p id="progressText">
+        Ready
+    </p>
+
+    <!-- Statistics -->
+
+    <div class="stats">
+
+        <div>
+
+            Original Size
+
+            <span id="originalSize">
+                --
+            </span>
+
+        </div>
+
+        <div>
+
+            Compressed Size
+
+            <span id="compressedSize">
+                --
+            </span>
+
+        </div>
+
+        <div>
+
+            Saved
+
+            <span id="savedPercent">
+                --
+            </span>
+
+        </div>
+
+    </div>
+
+    <!-- Preview -->
+
+    <div class="preview">
+
+        <div>
+
+            <h3>Original</h3>
+
+            <img id="originalPreview">
+
+        </div>
+
+        <div>
+
+            <h3>Compressed</h3>
+
+            <img id="compressedPreview">
+
+        </div>
+
+    </div>
+
+    <!-- Download -->
+
+    <a id="downloadBtn"
+       download="compressed.jpg">
+
+       Download Image
+
+    </a>
+<section class="features">
+
+    <h2>Why Choose Image Compressor Pro?</h2>
+
+    <div class="feature-box">
+
+        <div class="feature-card">
+            ⚡ Fast Compression
+        </div>
+
+        <div class="feature-card">
+            🔒 Secure Processing
+        </div>
+
+        <div class="feature-card">
+            📱 Mobile Friendly
+        </div>
+
+        <div class="feature-card">
+            🖼 Supports JPG, PNG & WEBP
+        </div>
+
+    </div>
+
+</section>
+<section class="formats">
+
+    <h2>Supported Formats</h2>
+
+    <div class="format-box">
+
+        <div class="format-card">
+            🖼️ JPG
+        </div>
+
+        <div class="format-card">
+            🌄 PNG
+        </div>
+
+        <div class="format-card">
+            ⚡ WEBP
+        </div>
+
+    </div>
+
+</section>
+
+<!-- How It Works -->
+
+<section class="how-it-works">
+
+    <h2>How It Works</h2>
+
+    <div class="steps">
+
+        <div class="step-card">
+
+            <div class="step-number">1</div>
+
+            <h3>Select Image</h3>
+
+            <p>Choose or drag & drop your JPG, PNG or WEBP image.</p>
+
+        </div>
+
+        <div class="step-card">
+
+            <div class="step-number">2</div>
+
+            <h3>Compress</h3>
+
+            <p>Set image quality, width, height and target file size.</p>
+
+        </div>
+
+        <div class="step-card">
+
+            <div class="step-number">3</div>
+
+            <h3>Download</h3>
+
+            <p>Download your compressed image instantly.</p>
+
+        </div>
+
+    </div>
+
+</section>
+</div>
+
+<section class="faq">
+
+</div>
+<section class="faq">
+
+    <h2>Frequently Asked Questions</h2>
+
+    <div class="faq-item">
+        <h3>Is this Image Compressor free?</h3>
+        <p>Yes, it is completely free.</p>
+    </div>
+
+    <div class="faq-item">
+        <h3>Is my image secure?</h3>
+        <p>Yes. Images are processed in your browser and are not uploaded to any server.</p>
+    </div>
+
+    <div class="faq-item">
+        <h3>Which formats are supported?</h3>
+        <p>JPG, PNG and WEBP images are supported.</p>
+    </div>
+
+</section>
+<footer class="footer">
+
+    <div class="footer-container">
+
+        <div class="footer-links">
+
+            <a href="index.html">Home</a>
+
+            <a href="about.html">About Us</a>
+
+            <a href="privacy.html">Privacy Policy</a>
+
+            <a href="terms.html">Terms & Conditions</a>
+
+            <a href="contact.html">Contact Us</a>
+
+            <a href="disclaimer.html">Disclaimer</a>
+
+        </div>
+
+        <p>© 2026 Image Compressor Pro. All Rights Reserved.</p>
+
+    </div>
+
+</footer>
+<!-- Back To Top Button -->
+
+<button id="topBtn" title="Go to Top">
+    ↑
+</button>
+<!-- JSZip -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
+<!-- Main Script -->
+<script src="script.js"></script>
+
+</body>
+</html>
