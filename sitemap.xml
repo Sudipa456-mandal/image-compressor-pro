@@ -4,37 +4,42 @@
 
     <url>
         <loc>https://imagecompressorpro.in/</loc>
-        <lastmod>2026-07-29</lastmod>
+        <lastmod>2026-07-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
 
     <url>
         <loc>https://imagecompressorpro.in/about.html</loc>
+        <lastmod>2026-07-30</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
 
     <url>
         <loc>https://imagecompressorpro.in/contact.html</loc>
+        <lastmod>2026-07-30</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
 
     <url>
         <loc>https://imagecompressorpro.in/privacy.html</loc>
+        <lastmod>2026-07-30</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.5</priority>
     </url>
 
     <url>
         <loc>https://imagecompressorpro.in/terms.html</loc>
+        <lastmod>2026-07-30</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.5</priority>
     </url>
 
     <url>
         <loc>https://imagecompressorpro.in/disclaimer.html</loc>
+        <lastmod>2026-07-30</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.5</priority>
     </url>
