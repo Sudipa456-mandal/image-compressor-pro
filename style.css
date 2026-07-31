@@ -1036,32 +1036,3 @@ body.dark .article li{
 body.dark .article table td{
     border-color:#555;
 }
-.blog-card{
-    background:#fff;
-    border-radius:12px;
-    padding:25px;
-    box-shadow:0 8px 20px rgba(0,0,0,.08);
-    transition:.3s;
-}
-
-.blog-card:hover{
-    transform:translateY(-6px);
-}
-
-.blog-card h3{
-    color:#222;
-    font-size:22px;
-    margin-bottom:15px;
-}
-
-.blog-card p{
-    color:#666;
-    line-height:1.7;
-    margin-bottom:20px;
-}
-
-.blog-card a{
-    color:#2563eb;
-    font-weight:bold;
-    text-decoration:none;
-}
