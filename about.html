@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,17 +22,77 @@
 
 <body>
 
+<!-- ===============================
+     Navigation
+================================ -->
+
+<nav class="navbar">
+
+    <div class="logo">
+        📷 Image Compressor Pro
+    </div>
+
+    <ul class="nav-links">
+
+        <li>
+            <a href="index.html">Home</a>
+        </li>
+
+        <li>
+            <a href="compressor/">Image Compressor</a>
+        </li>
+
+        <li>
+            <a href="resume/">Resume Builder</a>
+        </li>
+
+        <li>
+            <a href="blog/">Blog</a>
+        </li>
+
+        <li>
+            <a href="about.html">About Us</a>
+        </li>
+
+        <li>
+            <a href="contact.html">Contact Us</a>
+        </li>
+
+    </ul>
+
+    <button id="themeToggle" type="button">🌙</button>
+
+</nav>
+
+
+<!-- ===============================
+     About Header
+================================ -->
+
 <header>
 
     <h1>About Us</h1>
 
-    <p>Learn more about Image Compressor Pro</p>
+    <p>
+        Learn more about Image Compressor Pro
+    </p>
 
 </header>
 
+
+<!-- ===============================
+     About Content
+================================ -->
+
 <div class="container">
 
-    <h2><span class="icon">👥</span> Who We Are</h2>
+
+    <!-- Who We Are -->
+
+    <h2>
+        <span class="icon">👥</span>
+        Who We Are
+    </h2>
 
     <p>
         Image Compressor Pro is a free online image optimization tool
@@ -41,7 +102,13 @@
 
     <br>
 
-    <h2><span class="icon">🎯</span> Our Mission</h2>
+
+    <!-- Mission -->
+
+    <h2>
+        <span class="icon">🎯</span>
+        Our Mission
+    </h2>
 
     <p>
         Our goal is to provide a fast, secure and user-friendly image
@@ -52,7 +119,13 @@
 
     <br>
 
-    <h2><span class="icon">✨</span> What We Offer</h2>
+
+    <!-- What We Offer -->
+
+    <h2>
+        <span class="icon">✨</span>
+        What We Offer
+    </h2>
 
     <ul>
 
@@ -76,9 +149,15 @@
 
     <br>
 
-    <h2><span class="icon">⭐</span> Why Choose Us?</h2>
 
-    <p> 
+    <!-- Why Choose Us -->
+
+    <h2>
+        <span class="icon">⭐</span>
+        Why Choose Us?
+    </h2>
+
+    <p>
         We believe image compression should be simple, fast and free.
         Our tool is designed for students, bloggers, designers,
         photographers and businesses who need optimized images
@@ -87,20 +166,35 @@
 
     <br>
 
+
+    <!-- Contact Box -->
+
     <div class="contact-box">
-    <h2>📧 Contact</h2>
 
-    <p>
-        Have questions or suggestions?
-        We'd love to hear from you.
-    </p>
+        <h2>
+            📧 Contact
+        </h2>
 
-    <a href="contact.html" class="contact-btn">
-        Contact Us
-    </a>
+        <p>
+            Have questions or suggestions?
+            We'd love to hear from you.
+        </p>
+
+        <a
+            href="contact.html"
+            class="contact-btn"
+        >
+            Contact Us
+        </a>
+
+    </div>
+
 </div>
 
-</div>
+
+<!-- ===============================
+     Footer
+================================ -->
 
 <footer class="footer">
 
@@ -108,26 +202,99 @@
 
         <div class="footer-links">
 
-            <a href="index.html">Home</a>
+            <a href="index.html">
+                Home
+            </a>
 
-            <a href="about.html">About Us</a>
+            <a href="compressor/">
+                Image Compressor
+            </a>
 
-            <a href="privacy.html">Privacy Policy</a>
+            <a href="resume/">
+                Resume Builder
+            </a>
 
-            <a href="terms.html">Terms & Conditions</a>
+            <a href="about.html">
+                About Us
+            </a>
 
-            <a href="contact.html">Contact Us</a>
+            <a href="contact.html">
+                Contact Us
+            </a>
 
-            <a href="disclaimer.html">Disclaimer</a>
+            <a href="privacy.html">
+                Privacy Policy
+            </a>
+
+            <a href="terms.html">
+                Terms & Conditions
+            </a>
+
+            <a href="disclaimer.html">
+                Disclaimer
+            </a>
+
+            <a href="blog/">
+                Blog
+            </a>
 
         </div>
 
-        <p>© 2026 Image Compressor Pro. All Rights Reserved.</p>
+        <p>
+            © 2026 Image Compressor Pro. All Rights Reserved.
+        </p>
 
     </div>
 
 </footer>
 
+
+<!-- ===============================
+     Dark Mode
+================================ -->
+
+<script>
+
+const themeToggle = document.getElementById("themeToggle");
+
+
+// Load saved theme
+
+if (localStorage.getItem("theme") === "dark") {
+
+    document.body.classList.add("dark");
+
+    themeToggle.textContent = "☀️";
+
+}
+
+
+// Toggle theme
+
+themeToggle.addEventListener("click", function () {
+
+    document.body.classList.toggle("dark");
+
+    if (document.body.classList.contains("dark")) {
+
+        themeToggle.textContent = "☀️";
+
+        localStorage.setItem("theme", "dark");
+
+    } else {
+
+        themeToggle.textContent = "🌙";
+
+        localStorage.setItem("theme", "light");
+
+    }
+
+});
+
+</script>
+
+
 </body>
 
 </html>
+```
