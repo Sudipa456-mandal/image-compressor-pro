@@ -1,39 +1,77 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Image Compression Guides | Image Compressor Pro</title>
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Image Compression Guides | Image Compressor Pro
+    </title>
 
     <meta
         name="description"
-        content="Learn how to compress JPG, PNG and other images online, reduce image size to 50KB or 100KB, and optimize images without unnecessary quality loss."
+        content="Learn how to compress JPG and PNG images, reduce image size to 50KB or 100KB, and optimize images for websites, applications and online forms."
     >
 
-    <meta name="robots" content="index, follow">
+    <meta
+        name="robots"
+        content="index, follow"
+    >
 
+    <!-- IMPORTANT:
+         blog/index.html is inside /blog/
+         so CSS is one level above.
+    -->
     <link rel="stylesheet" href="../style.css">
+
 </head>
 
+
 <body>
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
 
 <header class="navbar">
 
     <div class="nav-container">
 
-        <a href="../index.html" class="logo">
-            <span class="logo-icon">▧</span>
+
+        <!-- LOGO -->
+
+        <a
+            href="../index.html"
+            class="logo"
+        >
+
+            <span class="logo-icon">
+                ▧
+            </span>
 
             <span>
                 Image Compressor
                 <strong>Pro</strong>
             </span>
+
         </a>
+
+
+        <!-- NAVIGATION -->
 
         <nav class="nav-links">
 
-            <a href="../index.html">Home</a>
+            <a href="../index.html">
+                Home
+            </a>
 
             <a href="../compressor/">
                 Image Compressor
@@ -43,7 +81,12 @@
                 Resume Builder
             </a>
 
-            <a href="index.html" class="active">
+            <!-- BLOG ACTIVE -->
+
+            <a
+                href="index.html"
+                class="active"
+            >
                 Blog
             </a>
 
@@ -57,15 +100,23 @@
 
         </nav>
 
+
+        <!-- THEME BUTTON -->
+
         <button
             type="button"
             id="themeToggle"
             class="theme-toggle"
             aria-label="Toggle dark mode"
         >
+
             <span>☀</span>
             <span>◐</span>
+
         </button>
+
+
+        <!-- MOBILE MENU -->
 
         <button
             type="button"
@@ -76,128 +127,56 @@
             ☰
         </button>
 
+
     </div>
 
 </header>
 
 
+
+<!-- =====================================================
+     BLOG HERO
+===================================================== -->
+
 <main>
 
-<section class="tools-section">
 
-    <div class="section-heading">
+<section class="hero blog-hero">
 
-        <h1>Image Compression Guides</h1>
+    <div
+        class="hero-container"
+        style="
+            grid-template-columns: 1fr;
+            text-align: center;
+            min-height: 360px;
+        "
+    >
 
-        <p>
-            Helpful guides to compress, resize and optimize your images online.
-        </p>
+        <div class="hero-content">
 
-    </div>
-
-
-    <div class="tools-container">
-
-        <div class="tool-card compressor-card">
-
-            <div class="tool-icon compressor-icon">
-                ▧
+            <div
+                class="hero-badge"
+                style="margin-left:auto;margin-right:auto;"
+            >
+                ☆ &nbsp; Image Compression Guides
             </div>
 
-            <h3>
-                How to Compress JPG Images
-            </h3>
 
-            <p>
-                Learn how to reduce JPG image size while maintaining
-                good image quality.
-            </p>
+            <h1>
+                Learn to Compress
+                <br>
+                <span>Images the Right Way.</span>
+            </h1>
 
-            <a
-                href="how-to-compress-jpg-images.html"
-                class="tool-button compressor-button"
+
+            <p
+                class="hero-description"
+                style="margin-left:auto;margin-right:auto;"
             >
-                Read Guide
-                <span>→</span>
-            </a>
-
-        </div>
-
-
-        <div class="tool-card compressor-card">
-
-            <div class="tool-icon compressor-icon">
-                50K
-            </div>
-
-            <h3>
-                Compress Image to 50KB
-            </h3>
-
-            <p>
-                Learn simple ways to reduce an image to approximately
-                50KB for online forms and applications.
+                Simple guides to help you reduce image file size,
+                optimize JPG and PNG images, and prepare images
+                for websites, applications and online forms.
             </p>
-
-            <a
-                href="compress-image-to-50kb.html"
-                class="tool-button compressor-button"
-            >
-                Read Guide
-                <span>→</span>
-            </a>
-
-        </div>
-
-
-        <div class="tool-card compressor-card">
-
-            <div class="tool-icon compressor-icon">
-                100K
-            </div>
-
-            <h3>
-                Compress Image to 100KB
-            </h3>
-
-            <p>
-                Find out how to reduce image file size to around
-                100KB while keeping useful image quality.
-            </p>
-
-            <a
-                href="compress-image-to-100kb.html"
-                class="tool-button compressor-button"
-            >
-                Read Guide
-                <span>→</span>
-            </a>
-
-        </div>
-
-
-        <div class="tool-card compressor-card">
-
-            <div class="tool-icon compressor-icon">
-                PNG
-            </div>
-
-            <h3>
-                Reduce PNG Size Online
-            </h3>
-
-            <p>
-                Learn how to reduce PNG file size and optimize
-                images for websites and online use.
-            </p>
-
-            <a
-                href="reduce-png-size-online.html"
-                class="tool-button compressor-button"
-            >
-                Read Guide
-                <span>→</span>
-            </a>
 
         </div>
 
@@ -205,16 +184,256 @@
 
 </section>
 
+
+
+<!-- =====================================================
+     BLOG ARTICLES
+===================================================== -->
+
+<section class="tools-section">
+
+    <div class="section-heading">
+
+        <h2>
+            Latest Guides
+        </h2>
+
+        <p>
+            Choose a guide and learn how to optimize your images.
+        </p>
+
+    </div>
+
+
+    <div
+        class="tools-container blog-container"
+    >
+
+
+        <!-- =================================================
+             ARTICLE 1
+        ================================================== -->
+
+        <article class="tool-card compressor-card blog-card">
+
+            <div class="tool-icon compressor-icon">
+                JPG
+            </div>
+
+
+            <h3>
+                How to Compress JPG Images
+            </h3>
+
+
+            <p>
+                Learn how to reduce JPG image file size while
+                keeping the image clear and suitable for
+                websites, sharing and online applications.
+            </p>
+
+
+            <a
+                href="how-to-compress-jpg-images.html"
+                class="tool-button compressor-button"
+            >
+
+                Read Guide
+
+                <span>
+                    →
+                </span>
+
+            </a>
+
+        </article>
+
+
+
+        <!-- =================================================
+             ARTICLE 2
+        ================================================== -->
+
+        <article class="tool-card compressor-card blog-card">
+
+            <div class="tool-icon compressor-icon">
+                50K
+            </div>
+
+
+            <h3>
+                How to Compress Image to 50KB
+            </h3>
+
+
+            <p>
+                Need an image under 50KB? Learn practical
+                ways to reduce image dimensions, quality and
+                file size for online forms and applications.
+            </p>
+
+
+            <a
+                href="compress-image-to-50kb.html"
+                class="tool-button compressor-button"
+            >
+
+                Read Guide
+
+                <span>
+                    →
+                </span>
+
+            </a>
+
+        </article>
+
+
+
+        <!-- =================================================
+             ARTICLE 3
+        ================================================== -->
+
+        <article class="tool-card compressor-card blog-card">
+
+            <div class="tool-icon compressor-icon">
+                100K
+            </div>
+
+
+            <h3>
+                How to Compress Image to 100KB
+            </h3>
+
+
+            <p>
+                Learn how to reduce an image to approximately
+                100KB while maintaining useful image quality
+                for online applications and uploads.
+            </p>
+
+
+            <a
+                href="compress-image-to-100kb.html"
+                class="tool-button compressor-button"
+            >
+
+                Read Guide
+
+                <span>
+                    →
+                </span>
+
+            </a>
+
+        </article>
+
+
+
+        <!-- =================================================
+             ARTICLE 4
+        ================================================== -->
+
+        <article class="tool-card compressor-card blog-card">
+
+            <div class="tool-icon compressor-icon">
+                PNG
+            </div>
+
+
+            <h3>
+                How to Reduce PNG Size Online
+            </h3>
+
+
+            <p>
+                Discover simple ways to reduce PNG file size
+                and optimize PNG images for websites and
+                online use.
+            </p>
+
+
+            <a
+                href="reduce-png-size-online.html"
+                class="tool-button compressor-button"
+            >
+
+                Read Guide
+
+                <span>
+                    →
+                </span>
+
+            </a>
+
+        </article>
+
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     HELP SECTION
+===================================================== -->
+
+<section class="benefits-section">
+
+    <div
+        class="section-heading"
+        style="margin-bottom:0;"
+    >
+
+        <h2>
+            Need an Image Compressor?
+        </h2>
+
+        <p>
+            Compress your images directly with Image Compressor Pro.
+        </p>
+
+
+        <a
+            href="../compressor/"
+            class="tool-button compressor-button"
+            style="margin-top:18px;"
+        >
+
+            Compress Images
+
+            <span>
+                →
+            </span>
+
+        </a>
+
+    </div>
+
+</section>
+
+
 </main>
 
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
 
 <footer class="footer">
 
     <div class="footer-container">
 
+
+        <!-- BRAND -->
+
         <div class="footer-column brand-column">
 
-            <a href="../index.html" class="footer-logo">
+            <a
+                href="../index.html"
+                class="footer-logo"
+            >
 
                 <span class="footer-logo-icon">
                     ▧
@@ -226,18 +445,57 @@
 
             </a>
 
+
             <p>
                 Your all-in-one platform to compress images
                 and create professional resumes. Fast, free
                 and secure.
             </p>
 
+
+            <div class="social-links">
+
+                <a
+                    href="#"
+                    aria-label="Facebook"
+                >
+                    f
+                </a>
+
+                <a
+                    href="#"
+                    aria-label="Twitter"
+                >
+                    𝕏
+                </a>
+
+                <a
+                    href="#"
+                    aria-label="Instagram"
+                >
+                    ◎
+                </a>
+
+                <a
+                    href="#"
+                    aria-label="YouTube"
+                >
+                    ▶
+                </a>
+
+            </div>
+
         </div>
 
 
+
+        <!-- TOOLS -->
+
         <div class="footer-column">
 
-            <h3>Tools</h3>
+            <h3>
+                Tools
+            </h3>
 
             <a href="../compressor/">
                 Image Compressor
@@ -250,9 +508,14 @@
         </div>
 
 
+
+        <!-- USEFUL LINKS -->
+
         <div class="footer-column">
 
-            <h3>Useful Links</h3>
+            <h3>
+                Useful Links
+            </h3>
 
             <a href="../about.html">
                 About Us
@@ -277,29 +540,56 @@
         </div>
 
 
+
+        <!-- BLOG -->
+
         <div class="footer-column">
 
-            <h3>Blog</h3>
+            <h3>
+                Blog
+            </h3>
 
             <a href="index.html">
                 Image Compression Guides
             </a>
 
+            <a href="how-to-compress-jpg-images.html">
+                Compress JPG Images
+            </a>
+
+            <a href="compress-image-to-50kb.html">
+                Compress to 50KB
+            </a>
+
+            <a href="compress-image-to-100kb.html">
+                Compress to 100KB
+            </a>
+
         </div>
+
 
     </div>
 
 
+
+    <!-- FOOTER BOTTOM -->
+
     <div class="footer-bottom">
 
         <p>
-            © 2026 Image Compressor Pro. All rights reserved.
+            © 2026 Image Compressor Pro.
+            All rights reserved.
         </p>
 
     </div>
 
 </footer>
 
+
+
+<!-- =====================================================
+     BACK TO TOP
+===================================================== -->
 
 <button
     id="topBtn"
@@ -310,7 +600,14 @@
 </button>
 
 
+
+<!-- IMPORTANT:
+     script.js is one level above /blog/
+-->
+
 <script src="../script.js"></script>
+
 
 </body>
 </html>
+```
