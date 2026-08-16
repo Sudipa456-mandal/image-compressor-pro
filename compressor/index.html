@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Free Image Compressor Online | Compress JPG, PNG & WEBP Images</title>
+
+<meta name="description"
+content="Compress JPG, PNG and WEBP images online for free. Reduce image size without losing quality. Fast, secure, browser-based image compressor.">
+
+<meta name="keywords"
+content="image compressor, compress image, compress jpg, compress png, compress webp, reduce image size, online image compressor">
+
+<meta name="author"
+content="Image Compressor Pro">
+
+<meta name="robots"
+content="index,follow">
+
+<meta name="theme-color"
+content="#2563eb">
+
+<link rel="canonical"
+href="https://imagecompressorpro.in/">
+
+<link rel="icon"
+type="image/png"
+href="favicon.png">
+
+<!-- Open Graph -->
+
+<meta property="og:type"
+content="website">
+
+<meta property="og:title"
+content="Free Image Compressor Online">
+
+<meta property="og:description"
+content="Compress JPG, PNG and WEBP images online without losing quality.">
+
+<meta property="og:url"
+content="https://imagecompressorpro.in/">
+
+<meta property="og:image"
+content="https://imagecompressorpro.in/favicon.png">
+
+<!-- Twitter -->
+
+<meta name="twitter:card"
+content="summary_large_image">
+
+<meta name="twitter:title"
+content="Free Image Compressor Online">
+
+<meta name="twitter:description"
+content="Compress JPG, PNG & WEBP images online for free.">
+
+<meta name="twitter:image"
+content="https://imagecompressorpro.in/favicon.png">
+
+<link rel="stylesheet"
+href="style.css">
+     
+     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9088296452682235"
+     crossorigin="anonymous"></script>
+
+     
+
+</head>
+
+<body>
+
+<!-- Navigation -->
+
+<nav class="navbar">
+
+<div class="logo">
+📷 Image Compressor Pro
+</div>
+
+<ul class="nav-links">
+
+        <li>
+            <a href="index.html">
+                Home
+            </a>
+        </li>
+
+        <li>
+            <a href="compressor/">
+                Image Compressor
+            </a>
+        </li>
+
+        <li>
+            <a href="resume/">
+                Resume Builder
+            </a>
+        </li>
+
+        <li>
+            <a href="blog/">
+                Blog
+            </a>
+        </li>
+
+        <li>
+            <a href="about.html">
+                About
+            </a>
+        </li>
+
+        <li>
+            <a href="contact.html">
+                Contact
+            </a>
+        </li>
+
+    </ul>
+
+
+<button id="themeToggle">
+🌙
+</button>
+
+</nav>
+
+<!-- Header -->
+
+<header>
+
+<h1>Free Image Compressor Online</h1>
+
+<p>
+Compress JPG, PNG & WEBP Images for Free Without Losing Quality
+</p>
+
+</header>
+
+<!-- Hero -->
+
+<section class="hero-content">
+
+<h2>Compress Images Online Instantly</h2>
+
+<p>
+
+Reduce image size for websites, blogs, email, WhatsApp,
+Instagram and Facebook while maintaining excellent quality.
+
+No software installation required.
+
+</p>
+
+</section>
+
+<!-- Main Container -->
+
+<div class="container">
+
+<!-- Upload -->
+
+<div id="dropArea"
+class="drop-area">
+
+<input
+
+type="file"
+
+id="imageInput"
+
+accept="image/*"
+
+multiple
+
+hidden>
+
+<h2>📂 Drag & Drop Images Here</h2>
+
+<p>or</p>
+
+<button id="chooseBtn">
+
+Choose Images
+
+</button>
+
+</div>
+
+<!-- Controls -->
+
+<div class="controls">
+
+<label for="quality">
+
+Compression Quality
+
+</label>
+
+<input
+
+type="range"
+
+id="quality"
+
+min="10"
+
+max="100"
+
+value="80">
+
+<span id="qualityValue">
+
+80%
+
+</span>
+
+<br><br>
+
+<label for="maxWidth">
+
+Maximum Width
+
+</label>
+
+<input
+
+type="number"
+
+id="maxWidth"
+
+value="1920">
+
+<br><br>
+
+<label for="maxHeight">
+
+Maximum Height
+
+</label>
+
+<input
+
+type="number"
+
+id="maxHeight"
+
+value="1920">
+
+<br><br>
+
+<label for="maxFileSize">
+
+Target File Size (KB)
+
+</label>
+
+<input
+
+type="number"
+
+id="maxFileSize"
+
+value="50"
+
+min="10"
+
+max="5000"
+
+placeholder="Example: 50">
+
+<br><br>
+
+<button id="compressBtn">
+
+Compress Image
+
+</button>
+
+</div>
+
+<!-- Progress -->
+
+<div class="progress-container">
+
+<div
+
+class="progress-bar"
+
+id="progressBar">
+
+</div>
+
+</div>
+
+<p id="progressText">
+
+Ready
+
+</p>
+
+<!-- Statistics -->
+
+<div class="stats">
+
+<div>
+
+Original Size
+
+<span id="originalSize">
+
+--
+
+</span>
+
+</div>
+
+<div>
+
+Compressed Size
+
+<span id="compressedSize">
+
+--
+
+</span>
+
+</div>
+
+<div>
+
+Saved
+
+<span id="savedPercent">
+
+--
+
+</span>
+
+</div>
+
+</div>
+
+<!-- Preview -->
+
+<div class="preview">
+
+<div>
+
+<h3>Original Image</h3>
+
+<img id="originalPreview"
+alt="Original Image">
+
+</div>
+
+<div>
+
+<h3>Compressed Image</h3>
+
+<img id="compressedPreview"
+alt="Compressed Image">
+
+</div>
+
+</div>
+
+<!-- Download -->
+
+<a
+
+id="downloadBtn"
+
+download="compressed-image.jpg">
+
+Download Image
+
+</a>
+<!-- ==========================
+     Why Choose Us
+========================== -->
+
+<section class="features">
+
+    <h2>Why Choose Image Compressor Pro?</h2>
+
+    <div class="feature-box">
+
+        <div class="feature-card">
+            <div class="icon">⚡</div>
+            <h3>Fast Compression</h3>
+            <p>Compress images in seconds using your browser.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="icon">🔒</div>
+            <h3>100% Secure</h3>
+            <p>Your images never leave your device. Everything is processed locally.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="icon">📱</div>
+            <h3>Mobile Friendly</h3>
+            <p>Works perfectly on Android, iPhone, tablets and desktop.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="icon"> 🖼️</div>
+            <h3>Multiple Formats</h3>
+            <p>Supports JPG, PNG and WEBP image compression.</p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ==========================
+     Supported Formats
+========================== -->
+
+<section class="formats">
+
+    <h2>Supported Image Formats</h2>
+
+    <div class="format-box">
+
+        <div class="format-card">
+            JPG
+        </div>
+
+        <div class="format-card">
+            PNG
+        </div>
+
+        <div class="format-card">
+            WEBP
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ==========================
+     How It Works
+========================== -->
+
+<section class="how-it-works">
+
+    <h2>How Image Compression Works</h2>
+
+    <div class="steps">
+
+        <div class="step-card">
+
+            <div class="step-number">1</div>
+
+            <h3>Select Images</h3>
+
+            <p>
+                Click the "Choose Images" button or drag & drop one or multiple images.
+            </p>
+
+        </div>
+
+        <div class="step-card">
+
+            <div class="step-number">2</div>
+
+            <h3>Choose Settings</h3>
+
+            <p>
+                Adjust quality, dimensions and target file size according to your needs.
+            </p>
+
+        </div>
+
+        <div class="step-card">
+
+            <div class="step-number">3</div>
+
+            <h3>Compress</h3>
+
+            <p>
+                Click the Compress button and let the tool optimize your images.
+            </p>
+
+        </div>
+
+        <div class="step-card">
+
+            <div class="step-number">4</div>
+
+            <h3>Download</h3>
+
+            <p>
+                Preview the compressed image and download it instantly.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ==========================
+     FAQ
+========================== -->
+
+<section class="faq">
+
+    <h2>Frequently Asked Questions</h2>
+
+    <div class="faq-item">
+
+        <h3>Is Image Compressor Pro free?</h3>
+
+        <p>
+            Yes. Our online image compressor is completely free to use with no registration required.
+        </p>
+
+    </div>
+
+    <div class="faq-item">
+
+        <h3>Are my images uploaded to a server?</h3>
+
+        <p>
+            No. Images are compressed directly inside your browser. Your files remain private.
+        </p>
+
+    </div>
+
+    <div class="faq-item">
+
+        <h3>Which image formats are supported?</h3>
+
+        <p>
+            Currently JPG, JPEG, PNG and WEBP image formats are supported.
+        </p>
+
+    </div>
+
+    <div class="faq-item">
+
+        <h3>Will image quality decrease?</h3>
+
+        <p>
+            A small reduction may occur depending on the selected quality level, but our tool is designed to maintain excellent visual quality while reducing file size.
+        </p>
+
+    </div>
+
+    <div class="faq-item">
+
+        <h3>Can I compress multiple images?</h3>
+
+        <p>
+            Yes. You can select multiple images and compress them together.
+        </p>
+
+    </div>
+
+    <div class="faq-item">
+
+        <h3>Is there any file size limit?</h3>
+
+        <p>
+            You can compress large images, but performance depends on your device and browser memory.
+        </p>
+
+    </div>
+
+</section>
+<!-- ==========================
+     Latest Guides
+========================== -->
+
+<!-- Blog Preview -->
+<section class="blog-preview">
+
+    <h2>Latest Guides</h2>
+
+    <div class="blog-cards">
+
+        <div class="blog-card">
+            <h3>How to Compress JPG Images</h3>
+            <p>Learn how to reduce JPG image size online without losing image quality.</p>
+            <a href="how-to-compress-jpg-images.html">Read More →</a>
+        </div>
+
+        <div class="blog-card">
+            <h3>Compress Image to 50KB</h3>
+            <p>Reduce your image size to 50KB for online forms and government websites.</p>
+            <a href="compress-image-to-50kb.html">Read More →</a>
+        </div>
+
+        <div class="blog-card">
+            <h3>Compress Image to 100KB</h3>
+            <p>Compress JPG, PNG and WEBP images to exactly 100KB quickly and easily.</p>
+            <a href="compress-image-to-100kb.html">Read More →</a>
+        </div>
+
+        <div class="blog-card">
+            <h3>Reduce PNG Size Online</h3>
+            <p>Optimize PNG images while keeping transparency and high quality.</p>
+            <a href="reduce-png-size-online.html">Read More →</a>
+        </div>
+
+    </div>
+
+</section>
+<!-- ==========================
+     Footer
+========================== -->
+
+```html
+<footer class="footer">
+
+    <div class="footer-container">
+
+        <div class="footer-links">
+
+            <a href="../index.html">Home</a>
+
+            <a href="../about.html">About Us</a>
+
+            <a href="../contact.html">Contact Us</a>
+
+            <a href="../privacy.html">Privacy Policy</a>
+
+            <a href="../terms.html">Terms & Conditions</a>
+
+            <a href="../disclaimer.html">Disclaimer</a>
+
+            <a href="../blog/">Blog</a>
+
+        </div>
+
+        <p>
+            © 2026 Image Compressor Pro. All Rights Reserved.
+        </p>
+
+    </div>
+
+</footer>
+
+<!-- Back To Top -->
+
+<button id="topBtn" title="Back to Top">
+↑
+</button>
+
+<!-- JSZip -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
+<!-- Main JavaScript -->
+
+<script src="script.js"></script>
+```
+
+</body>
+</html>
