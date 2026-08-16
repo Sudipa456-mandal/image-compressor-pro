@@ -1772,3 +1772,747 @@ body.dark .social-links a {
     }
 
 }
+
+/* =========================================================
+   STATIC PAGES
+   Contact / About / Privacy / Terms / Disclaimer
+   ========================================================= */
+
+/* Common static-page body
+   This will NOT affect the main compressor/home sections */
+body:not(:has(.drop-area)):not(:has(.hero)) {
+    background: #ffffff;
+    color: #172033;
+}
+
+
+/* =========================================================
+   STATIC PAGE NAVBAR
+   ========================================================= */
+
+body:not(:has(.drop-area)):not(:has(.hero)) .navbar {
+    width: 100%;
+    min-height: 72px;
+    padding: 0 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(255, 255, 255, 0.96);
+    border-bottom: 1px solid #edf0f5;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(15px);
+}
+
+body:not(:has(.drop-area)):not(:has(.hero)) .navbar .logo {
+    font-size: 22px;
+    font-weight: 800;
+    color: #172033;
+    white-space: nowrap;
+}
+
+body:not(:has(.drop-area)):not(:has(.hero)) .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+body:not(:has(.drop-area)):not(:has(.hero)) .nav-links li {
+    list-style: none;
+}
+
+body:not(:has(.drop-area)):not(:has(.hero)) .nav-links a {
+    color: #172033;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.2s ease;
+}
+
+body:not(:has(.drop-area)):not(:has(.hero)) .nav-links a:hover {
+    color: #2563eb;
+}
+
+body:not(:has(.drop-area)):not(:has(.hero)) #themeToggle {
+    width: 48px;
+    height: 34px;
+    border: 1px solid #d9e0eb;
+    border-radius: 30px;
+    background: #ffffff;
+    cursor: pointer;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* =========================================================
+   CONTACT HERO
+   ========================================================= */
+
+.contact-hero {
+    background:
+        radial-gradient(
+            circle at 85% 20%,
+            #eaf1ff 0,
+            transparent 35%
+        ),
+        linear-gradient(
+            180deg,
+            #ffffff 0%,
+            #f7f9ff 100%
+        );
+
+    text-align: center;
+    padding: 80px 20px 70px;
+    border-bottom: 1px solid #edf0f5;
+}
+
+.contact-hero h1 {
+    margin: 0 0 12px;
+    color: #101828;
+    font-size: clamp(38px, 5vw, 58px);
+    line-height: 1.1;
+    letter-spacing: -2px;
+    font-weight: 800;
+}
+
+.contact-hero p {
+    margin: 0;
+    color: #667085;
+    font-size: 17px;
+}
+
+
+/* =========================================================
+   CONTACT CONTENT
+   ========================================================= */
+
+.contact-hero ~ .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 70px 30px 30px;
+}
+
+.contact-hero ~ .container h2 {
+    margin-bottom: 10px;
+    color: #101828;
+    font-size: 30px;
+    letter-spacing: -0.5px;
+}
+
+.contact-intro {
+    margin-bottom: 35px;
+    color: #667085;
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   CONTACT INFORMATION CARDS
+   ========================================================= */
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+}
+
+.info-card {
+    padding: 25px 22px;
+    background: #ffffff;
+    border: 1px solid #e4e9f1;
+    border-radius: 14px;
+    box-shadow: 0 8px 25px rgba(25, 43, 83, 0.05);
+    transition: 0.25s ease;
+}
+
+.info-card:hover {
+    transform: translateY(-5px);
+    border-color: #cfd9ee;
+    box-shadow: 0 15px 35px rgba(25, 43, 83, 0.09);
+}
+
+.info-card .icon {
+    width: 46px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    border-radius: 12px;
+    background: #eef3ff;
+    color: #2563eb;
+    font-size: 20px;
+}
+
+.info-card h3 {
+    margin: 0 0 7px;
+    color: #101828;
+    font-size: 16px;
+}
+
+.info-card p {
+    margin: 0;
+    color: #667085;
+    font-size: 13px;
+    line-height: 1.6;
+    word-break: break-word;
+}
+
+.info-card a {
+    color: #2563eb;
+    text-decoration: none;
+}
+
+.info-card a:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================================================
+   CONTACT FORM
+   ========================================================= */
+
+.contact-title {
+    max-width: 1100px;
+    margin: 45px auto 20px;
+    padding: 0 30px;
+    color: #101828;
+    font-size: 30px;
+}
+
+.contact-form {
+    max-width: 760px;
+    margin: 0 auto 55px;
+    padding: 35px;
+    background: #ffffff;
+    border: 1px solid #e3e8f0;
+    border-radius: 16px;
+    box-shadow: 0 12px 35px rgba(25, 43, 83, 0.07);
+}
+
+.contact-form form {
+    width: 100%;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 7px;
+    color: #344054;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 13px 15px;
+    border: 1px solid #d8dee9;
+    border-radius: 9px;
+    background: #ffffff;
+    color: #172033;
+    font-family: inherit;
+    font-size: 14px;
+    outline: none;
+    transition: 0.2s ease;
+}
+
+.form-group input {
+    height: 46px;
+}
+
+.form-group textarea {
+    min-height: 145px;
+    resize: vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #3867ff;
+    box-shadow: 0 0 0 3px rgba(56, 103, 255, 0.10);
+}
+
+.send-btn {
+    border: none;
+    padding: 13px 24px;
+    border-radius: 9px;
+    background: #3867ff;
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.send-btn:hover {
+    background: #2854df;
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   HELP BOX
+   ========================================================= */
+
+.help-box {
+    max-width: 1100px;
+    margin: 0 auto 70px;
+    padding: 30px;
+    border: 1px solid #dce5ff;
+    border-radius: 15px;
+    background:
+        linear-gradient(
+            135deg,
+            #f7f9ff,
+            #eef4ff
+        );
+}
+
+.help-box h2 {
+    margin: 0 0 10px;
+    color: #101828;
+    font-size: 25px;
+}
+
+.help-box p {
+    margin: 0;
+    color: #667085;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   STATIC PAGE CONTENT
+   About / Privacy / Terms / Disclaimer
+   ========================================================= */
+
+body:not(:has(.drop-area)):not(:has(.hero))
+    .page-container,
+body:not(:has(.drop-area)):not(:has(.hero))
+    .about-container,
+body:not(:has(.drop-area)):not(:has(.hero))
+    .privacy-container,
+body:not(:has(.drop-area)):not(:has(.hero))
+    .terms-container,
+body:not(:has(.drop-area)):not(:has(.hero))
+    .disclaimer-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 70px 30px;
+}
+
+body:not(:has(.drop-area)):not(:has(.hero))
+    .page-container h1,
+body:not(:has(.drop-area)):not(:has(.hero))
+    .about-container h1,
+body:not(:has(.drop-area)):not(:has(.hero))
+    .privacy-container h1,
+body:not(:has(.drop-area)):not(:has(.hero))
+    .terms-container h1,
+body:not(:has(.drop-area)):not(:has(.hero))
+    .disclaimer-container h1 {
+    margin-bottom: 15px;
+    color: #101828;
+    font-size: clamp(36px, 5vw, 52px);
+    line-height: 1.15;
+    letter-spacing: -1.5px;
+}
+
+body:not(:has(.drop-area)):not(:has(.hero))
+    .page-container h2,
+body:not(:has(.drop-area)):not(:has(.hero))
+    .about-container h2,
+body:not(:has(.drop-area)):not(:has(.hero))
+    .privacy-container h2,
+body:not(:has(.drop-area)):not(:has(.hero))
+    .terms-container h2,
+body:not(:has(.drop-area)):not(:has(.hero))
+    .disclaimer-container h2 {
+    margin-top: 35px;
+    margin-bottom: 12px;
+    color: #172033;
+    font-size: 25px;
+}
+
+body:not(:has(.drop-area)):not(:has(.hero))
+    .page-container p,
+body:not(:has(.drop-area)):not(:has(.hero))
+    .about-container p,
+body:not(:has(.drop-area)):not(:has(.hero))
+    .privacy-container p,
+body:not(:has(.drop-area)):not(:has(.hero))
+    .terms-container p,
+body:not(:has(.drop-area)):not(:has(.hero))
+    .disclaimer-container p {
+    margin-bottom: 15px;
+    color: #667085;
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+body:not(:has(.drop-area)):not(:has(.hero))
+    .page-container ul,
+body:not(:has(.drop-area)):not(:has(.hero))
+    .about-container ul,
+body:not(:has(.drop-area)):not(:has(.hero))
+    .privacy-container ul,
+body:not(:has(.drop-area)):not(:has(.hero))
+    .terms-container ul,
+body:not(:has(.drop-area)):not(:has(.hero))
+    .disclaimer-container ul {
+    margin: 15px 0 20px 25px;
+    color: #667085;
+}
+
+body:not(:has(.drop-area)):not(:has(.hero))
+    .page-container li,
+body:not(:has(.drop-area)):not(:has(.hero))
+    .about-container li,
+body:not(:has(.drop-area)):not(:has(.hero))
+    .privacy-container li,
+body:not(:has(.drop-area)):not(:has(.hero))
+    .terms-container li,
+body:not(:has(.drop-area)):not(:has(.hero))
+    .disclaimer-container li {
+    margin-bottom: 8px;
+    line-height: 1.7;
+}
+
+body:not(:has(.drop-area)):not(:has(.hero))
+    .page-container a,
+body:not(:has(.drop-area)):not(:has(.hero))
+    .about-container a,
+body:not(:has(.drop-area)):not(:has(.hero))
+    .privacy-container a,
+body:not(:has(.drop-area)):not(:has(.hero))
+    .terms-container a,
+body:not(:has(.drop-area)):not(:has(.hero))
+    .disclaimer-container a {
+    color: #2563eb;
+}
+
+body:not(:has(.drop-area)):not(:has(.hero))
+    .page-container strong,
+body:not(:has(.drop-area)):not(:has(.hero))
+    .about-container strong,
+body:not(:has(.drop-area)):not(:has(.hero))
+    .privacy-container strong,
+body:not(:has(.drop-area)):not(:has(.hero))
+    .terms-container strong,
+body:not(:has(.drop-area)):not(:has(.hero))
+    .disclaimer-container strong {
+    color: #172033;
+}
+
+
+/* =========================================================
+   STATIC PAGE FOOTER
+   ========================================================= */
+
+body:not(:has(.drop-area)):not(:has(.hero)) .footer {
+    background: #f7faff;
+    color: #172033;
+    border-top: 1px solid #e5ebf4;
+}
+
+body:not(:has(.drop-area)):not(:has(.hero)) .footer-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 45px 30px 25px;
+    display: block;
+}
+
+body:not(:has(.drop-area)):not(:has(.hero)) .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    margin-bottom: 25px;
+}
+
+body:not(:has(.drop-area)):not(:has(.hero)) .footer-links a {
+    color: #667085;
+    font-size: 13px;
+    text-decoration: none;
+    transition: 0.2s ease;
+}
+
+body:not(:has(.drop-area)):not(:has(.hero)) .footer-links a:hover {
+    color: #2563eb;
+}
+
+body:not(:has(.drop-area)):not(:has(.hero)) .footer-container > p {
+    padding-top: 20px;
+    border-top: 1px solid #dfe6f0;
+    text-align: center;
+    color: #7b8494;
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   BACK TO TOP
+   ========================================================= */
+
+#topBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    width: 42px;
+    height: 42px;
+    border: none;
+    border-radius: 50%;
+    background: #3867ff;
+    color: #ffffff;
+    font-size: 20px;
+    cursor: pointer;
+    display: none;
+    z-index: 999;
+    box-shadow: 0 8px 20px rgba(56, 103, 255, 0.25);
+}
+
+#topBtn:hover {
+    background: #2854df;
+}
+
+
+/* =========================================================
+   DARK MODE FOR STATIC PAGES
+   ========================================================= */
+
+body.dark:not(:has(.drop-area)):not(:has(.hero)) {
+    background: #101828;
+    color: #f8fafc;
+}
+
+body.dark:not(:has(.drop-area)):not(:has(.hero)) .navbar {
+    background: rgba(16, 24, 40, 0.96);
+    border-color: #263044;
+}
+
+body.dark:not(:has(.drop-area)):not(:has(.hero)) .navbar .logo,
+body.dark:not(:has(.drop-area)):not(:has(.hero)) .nav-links a {
+    color: #f8fafc;
+}
+
+body.dark:not(:has(.drop-area)):not(:has(.hero)) .nav-links a:hover {
+    color: #7da2ff;
+}
+
+body.dark:not(:has(.drop-area)):not(:has(.hero)) #themeToggle {
+    background: #172033;
+    border-color: #344054;
+    color: #ffffff;
+}
+
+body.dark:not(:has(.drop-area)):not(:has(.hero)) .contact-hero {
+    background:
+        radial-gradient(
+            circle at 85% 20%,
+            #1d2d52 0,
+            transparent 35%
+        ),
+        linear-gradient(
+            180deg,
+            #101828 0%,
+            #151f32 100%
+        );
+    border-color: #263044;
+}
+
+body.dark:not(:has(.drop-area)):not(:has(.hero))
+    .contact-hero h1,
+body.dark:not(:has(.drop-area)):not(:has(.hero))
+    .contact-hero p,
+body.dark:not(:has(.drop-area)):not(:has(.hero))
+    .contact-hero ~ .container h2,
+body.dark:not(:has(.drop-area)):not(:has(.hero))
+    .contact-title,
+body.dark:not(:has(.drop-area)):not(:has(.hero))
+    .help-box h2 {
+    color: #f8fafc;
+}
+
+body.dark:not(:has(.drop-area)):not(:has(.hero))
+    .contact-intro,
+body.dark:not(:has(.drop-area)):not(:has(.hero))
+    .info-card p,
+body.dark:not(:has(.drop-area)):not(:has(.hero))
+    .help-box p {
+    color: #aeb7c8;
+}
+
+body.dark:not(:has(.drop-area)):not(:has(.hero)) .info-card,
+body.dark:not(:has(.drop-area)):not(:has(.hero)) .contact-form {
+    background: #151f32;
+    border-color: #2c3a52;
+}
+
+body.dark:not(:has(.drop-area)):not(:has(.hero)) .info-card h3,
+body.dark:not(:has(.drop-area)):not(:has(.hero)) .form-group label {
+    color: #f8fafc;
+}
+
+body.dark:not(:has(.drop-area)):not(:has(.hero))
+    .form-group input,
+body.dark:not(:has(.drop-area)):not(:has(.hero))
+    .form-group textarea {
+    background: #101828;
+    border-color: #344054;
+    color: #ffffff;
+}
+
+body.dark:not(:has(.drop-area)):not(:has(.hero)) .help-box {
+    background: #17233a;
+    border-color: #2d4778;
+}
+
+body.dark:not(:has(.drop-area)):not(:has(.hero)) .footer {
+    background: #0b1220;
+    border-color: #263044;
+}
+
+body.dark:not(:has(.drop-area)):not(:has(.hero))
+    .footer-links a {
+    color: #aeb7c8;
+}
+
+body.dark:not(:has(.drop-area)):not(:has(.hero))
+    .footer-container > p {
+    border-color: #263044;
+    color: #7f8ba0;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    body:not(:has(.drop-area)):not(:has(.hero))
+        .navbar {
+        padding: 0 20px;
+    }
+
+    body:not(:has(.drop-area)):not(:has(.hero))
+        .nav-links {
+        gap: 18px;
+    }
+
+    body:not(:has(.drop-area)):not(:has(.hero))
+        .nav-links a {
+        font-size: 13px;
+    }
+
+    .contact-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+@media (max-width: 700px) {
+
+    body:not(:has(.drop-area)):not(:has(.hero))
+        .navbar {
+        flex-wrap: wrap;
+        min-height: 72px;
+        gap: 10px;
+    }
+
+    body:not(:has(.drop-area)):not(:has(.hero))
+        .navbar .nav-links {
+        display: none;
+    }
+
+    body:not(:has(.drop-area)):not(:has(.hero))
+        .navbar .logo {
+        font-size: 19px;
+    }
+
+    .contact-hero {
+        padding: 60px 20px 55px;
+    }
+
+    .contact-hero h1 {
+        font-size: 40px;
+    }
+
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-hero ~ .container {
+        padding: 55px 20px 20px;
+    }
+
+    .contact-title {
+        padding: 0 20px;
+        font-size: 27px;
+    }
+
+    .contact-form {
+        margin: 0 20px 45px;
+        padding: 25px 20px;
+    }
+
+    .help-box {
+        margin: 0 20px 50px;
+        padding: 25px 20px;
+    }
+
+    body:not(:has(.drop-area)):not(:has(.hero))
+        .page-container,
+    body:not(:has(.drop-area)):not(:has(.hero))
+        .about-container,
+    body:not(:has(.drop-area)):not(:has(.hero))
+        .privacy-container,
+    body:not(:has(.drop-area)):not(:has(.hero))
+        .terms-container,
+    body:not(:has(.drop-area)):not(:has(.hero))
+        .disclaimer-container {
+        padding: 55px 20px;
+    }
+
+    body:not(:has(.drop-area)):not(:has(.hero))
+        .footer-links {
+        flex-direction: column;
+        gap: 13px;
+    }
+
+}
+
+@media (max-width: 450px) {
+
+    .contact-hero h1 {
+        font-size: 34px;
+    }
+
+    .contact-form {
+        padding: 20px 16px;
+    }
+
+    .send-btn {
+        width: 100%;
+    }
+
+    #topBtn {
+        right: 15px;
+        bottom: 15px;
+    }
+
+}
