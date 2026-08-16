@@ -1,755 +1,515 @@
-
+```html
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>About Us - Image Compressor Pro</title>
 
     <meta name="description"
-        content="Learn about Image Compressor Pro, a simple online platform for image compression, optimization and useful digital tools.">
-
-    <meta name="keywords"
-        content="about Image Compressor Pro, image compression, image optimization, online image tools">
-
-    <meta name="robots" content="index, follow">
+        content="Learn about Image Compressor Pro, our image compression tools and resume builder designed to make everyday digital tasks simple.">
 
     <link rel="stylesheet" href="style.css">
-
 </head>
 
+<body class="static-page">
 
-<body>
+    <!-- =========================
+         NAVBAR
+    ========================== -->
 
-<!-- =====================================================
-     NAVBAR
-===================================================== -->
+    <nav class="navbar">
 
-<nav class="navbar">
+        <div class="nav-container">
 
-    <div class="nav-container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">📷</span>
+                <span>Image Compressor <strong>Pro</strong></span>
+            </a>
 
-        <!-- LOGO -->
-
-        <a href="index.html" class="logo">
-
-            <span class="logo-icon">📷</span>
-
-            <span>
-                Image Compressor <strong>Pro</strong>
-            </span>
-
-        </a>
-
-
-        <!-- NAVIGATION -->
-
-        <ul class="nav-links">
-
-            <li>
+            <div class="nav-links">
                 <a href="index.html">Home</a>
-            </li>
+                <a href="index.html#compressor">Image Compressor</a>
+                <a href="resume-builder.html">Resume Builder</a>
+                <a href="blog.html">Blog</a>
+                <a href="about.html" class="active">About Us</a>
+                <a href="contact.html">Contact Us</a>
+            </div>
 
-            <li>
+            <button
+                id="themeToggle"
+                class="theme-toggle"
+                type="button"
+                aria-label="Toggle dark mode">
+                🌙
+            </button>
+
+        </div>
+
+    </nav>
+
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <header class="about-hero">
+
+        <div class="about-hero-content">
+
+            <div class="about-hero-badge">
+                ✨ About Us
+            </div>
+
+            <h1>
+                Simple Tools for
+                <span>Everyday Digital Needs</span>
+            </h1>
+
+            <p>
+                Image Compressor Pro brings useful online tools
+                together in one simple and easy-to-use platform.
+            </p>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+
+    <main class="about-container">
+
+
+        <!-- WHO WE ARE -->
+
+        <section class="about-intro">
+
+            <div class="about-label">
+                WHO WE ARE
+            </div>
+
+            <h2>
+                Making Digital Tasks Easier
+            </h2>
+
+            <p>
+                Image Compressor Pro is an online platform created
+                to provide simple and practical tools for everyday
+                digital needs.
+            </p>
+
+            <p>
+                Our platform currently focuses on two useful areas:
+                image optimization and resume creation.
+            </p>
+
+            <p>
+                We want our tools to be easy to understand, simple
+                to use and accessible through a modern web browser.
+            </p>
+
+        </section>
+
+
+        <!-- =========================
+             OUR TOOLS
+        ========================== -->
+
+        <section class="about-offer">
+
+            <div class="about-offer-heading">
+
+                <div class="about-label">
+                    OUR TOOLS
+                </div>
+
+                <h2>
+                    What We Provide
+                </h2>
+
+                <p>
+                    Simple online tools designed around common
+                    digital tasks.
+                </p>
+
+            </div>
+
+
+            <div class="offer-grid">
+
+                <!-- IMAGE COMPRESSOR -->
+
+                <div class="offer-item">
+
+                    <div class="offer-item-icon">
+                        📷
+                    </div>
+
+                    <h3>
+                        Image Compressor
+                    </h3>
+
+                    <p>
+                        Compress images to reduce file size while
+                        keeping a useful level of image quality.
+                    </p>
+
+                </div>
+
+
+                <!-- IMAGE RESIZER -->
+
+                <div class="offer-item">
+
+                    <div class="offer-item-icon">
+                        📐
+                    </div>
+
+                    <h3>
+                        Image Resize
+                    </h3>
+
+                    <p>
+                        Resize images to the dimensions you need
+                        for websites, documents and other uses.
+                    </p>
+
+                </div>
+
+
+                <!-- RESUME BUILDER -->
+
+                <div class="offer-item">
+
+                    <div class="offer-item-icon">
+                        📄
+                    </div>
+
+                    <h3>
+                        Resume Builder
+                    </h3>
+
+                    <p>
+                        Create and customize a professional resume
+                        using our easy-to-use online resume builder.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             OUR MISSION
+        ========================== -->
+
+        <section class="about-mission">
+
+            <div>
+
+                <div class="about-mission-label">
+                    OUR MISSION
+                </div>
+
+                <h2>
+                    Simple, Useful and Accessible
+                </h2>
+
+            </div>
+
+            <div>
+
+                <p>
+                    Our mission is to make useful digital tools
+                    available without unnecessary complexity.
+                </p>
+
+                <p style="margin-top:15px;">
+                    Whether you need to optimize an image or create
+                    a professional resume, we aim to provide a
+                    straightforward experience that helps you
+                    complete the task more easily.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             WHY CHOOSE US
+        ========================== -->
+
+        <section class="about-why">
+
+            <div class="about-label">
+                WHY USE OUR TOOLS
+            </div>
+
+            <h2>
+                Built With Simplicity in Mind
+            </h2>
+
+            <p>
+                We focus on practical features and a clean
+                experience rather than unnecessary complexity.
+            </p>
+
+
+            <div class="why-list">
+
+                <div class="why-item">
+
+                    <strong>
+                        ✓ Easy to Use
+                    </strong>
+
+                    <span>
+                        Simple interfaces designed for everyday
+                        users.
+                    </span>
+
+                </div>
+
+
+                <div class="why-item">
+
+                    <strong>
+                        ⚡ Convenient
+                    </strong>
+
+                    <span>
+                        Access useful tools directly from your
+                        browser.
+                    </span>
+
+                </div>
+
+
+                <div class="why-item">
+
+                    <strong>
+                        📷 Image Tools
+                    </strong>
+
+                    <span>
+                        Compress and resize images for different
+                        digital requirements.
+                    </span>
+
+                </div>
+
+
+                <div class="why-item">
+
+                    <strong>
+                        📄 Resume Tools
+                    </strong>
+
+                    <span>
+                        Build and customize resumes without
+                        complicated software.
+                    </span>
+
+                </div>
+
+
+                <div class="why-item">
+
+                    <strong>
+                        🔒 Privacy Focused
+                    </strong>
+
+                    <span>
+                        We aim to use browser-based processing
+                        whenever supported by our tools.
+                    </span>
+
+                </div>
+
+
+                <div class="why-item">
+
+                    <strong>
+                        🌐 Accessible
+                    </strong>
+
+                    <span>
+                        Use our online tools from supported modern
+                        browsers and devices.
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             CONTACT CTA
+        ========================== -->
+
+        <section class="about-contact-box">
+
+            <h2>
+                Have a Question?
+            </h2>
+
+            <p>
+                If you have a question, suggestion or feedback
+                about Image Compressor Pro, we'd love to hear
+                from you.
+            </p>
+
+            <a href="contact.html" class="about-contact-btn">
+                Contact Us →
+            </a>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer class="footer">
+
+        <div class="footer-container">
+
+            <div class="footer-links">
+
+                <a href="index.html">Home</a>
+
                 <a href="index.html#compressor">
                     Image Compressor
                 </a>
-            </li>
 
-            <li>
                 <a href="resume-builder.html">
                     Resume Builder
                 </a>
-            </li>
 
-            <li>
-                <a href="blog.html">
-                    Blog
+                <a href="blog.html">Blog</a>
+
+                <a href="about.html">About Us</a>
+
+                <a href="contact.html">Contact Us</a>
+
+                <a href="privacy.html">
+                    Privacy Policy
                 </a>
-            </li>
 
-            <li>
-                <a href="about.html" class="active">
-                    About Us
+                <a href="terms.html">
+                    Terms &amp; Conditions
                 </a>
-            </li>
 
-            <li>
-                <a href="contact.html">
-                    Contact Us
+                <a href="disclaimer.html">
+                    Disclaimer
                 </a>
-            </li>
-
-        </ul>
-
-
-        <!-- THEME BUTTON -->
-
-        <button
-            id="themeToggle"
-            class="theme-toggle"
-            type="button"
-            aria-label="Toggle dark mode">
-
-            🌙
-
-        </button>
-
-    </div>
-
-</nav>
-
-
-<!-- =====================================================
-     ABOUT HERO
-===================================================== -->
-
-<header class="contact-hero">
-
-    <div class="about-hero-content">
-
-        <p class="about-hero-label">
-            ✨ About Image Compressor Pro
-        </p>
-
-        <h1>
-            Simple Tools for a Better
-            <br>
-            Digital Experience
-        </h1>
-
-        <p>
-            Image Compressor Pro provides simple, fast and
-            user-friendly online tools designed to make
-            everyday digital tasks easier.
-        </p>
-
-    </div>
-
-</header>
-
-
-<!-- =====================================================
-     ABOUT CONTENT
-===================================================== -->
-
-<main class="about-container">
-
-
-    <!-- =================================================
-         WHO WE ARE
-    ================================================== -->
-
-    <section class="about-section">
-
-        <div class="about-label">
-            WHO WE ARE
-        </div>
-
-        <h2>
-            Making Image Optimization Simple
-        </h2>
-
-        <p>
-            Image Compressor Pro is a free online image
-            optimization platform designed to help users
-            compress and optimize their images quickly
-            and easily.
-        </p>
-
-        <p>
-            Our platform is designed for students, bloggers,
-            designers, photographers, website owners,
-            developers and businesses who need simple
-            digital tools without complicated software.
-        </p>
-
-        <p>
-            We focus on creating tools that are easy to
-            understand, convenient to use and accessible
-            from modern web browsers.
-        </p>
-
-    </section>
-
-
-    <!-- =================================================
-         WHAT WE OFFER
-    ================================================== -->
-
-    <section class="about-section">
-
-        <div class="about-label">
-            WHAT WE OFFER
-        </div>
-
-        <h2>
-            Useful Features
-        </h2>
-
-        <p class="about-section-intro">
-            Our goal is to provide practical online tools
-            that help users complete common digital tasks
-            more easily.
-        </p>
-
-
-        <div class="about-feature-grid">
-
-
-            <!-- FEATURE 1 -->
-
-            <div class="about-feature-card">
-
-                <div class="about-feature-icon">
-                    📷
-                </div>
-
-                <h3>
-                    Image Compression
-                </h3>
-
-                <p>
-                    Compress images to reduce file size
-                    while maintaining useful image quality.
-                </p>
 
             </div>
-
-
-            <!-- FEATURE 2 -->
-
-            <div class="about-feature-card">
-
-                <div class="about-feature-icon">
-                    ⚡
-                </div>
-
-                <h3>
-                    Fast Processing
-                </h3>
-
-                <p>
-                    Simple tools designed to make image
-                    optimization quick and convenient.
-                </p>
-
-            </div>
-
-
-            <!-- FEATURE 3 -->
-
-            <div class="about-feature-card">
-
-                <div class="about-feature-icon">
-                    📐
-                </div>
-
-                <h3>
-                    Image Resize
-                </h3>
-
-                <p>
-                    Resize images according to your
-                    required width and height.
-                </p>
-
-            </div>
-
-
-            <!-- FEATURE 4 -->
-
-            <div class="about-feature-card">
-
-                <div class="about-feature-icon">
-                    📄
-                </div>
-
-                <h3>
-                    Resume Builder
-                </h3>
-
-                <p>
-                    Create professional resumes using
-                    an easy-to-use online resume builder.
-                </p>
-
-            </div>
-
-
-            <!-- FEATURE 5 -->
-
-            <div class="about-feature-card">
-
-                <div class="about-feature-icon">
-                    🔒
-                </div>
-
-                <h3>
-                    Privacy Focused
-                </h3>
-
-                <p>
-                    Image processing is designed to happen
-                    directly in your browser whenever possible.
-                </p>
-
-            </div>
-
-
-            <!-- FEATURE 6 -->
-
-            <div class="about-feature-card">
-
-                <div class="about-feature-icon">
-                    🌐
-                </div>
-
-                <h3>
-                    Easy Access
-                </h3>
-
-                <p>
-                    Access our online tools from your
-                    computer, tablet or mobile device.
-                </p>
-
-            </div>
-
-
-        </div>
-
-    </section>
-
-
-    <!-- =================================================
-         OUR MISSION
-    ================================================== -->
-
-    <section class="about-mission">
-
-        <div class="about-mission-content">
-
-            <div class="about-label">
-                OUR MISSION
-            </div>
-
-            <h2>
-                Technology That Works for Everyone
-            </h2>
 
             <p>
-                Our mission is to provide fast, simple and
-                user-friendly online tools that help people
-                optimize their digital content with less effort.
-            </p>
-
-            <p>
-                We believe useful technology should be
-                accessible without unnecessary complexity.
-                That's why we focus on clean interfaces,
-                straightforward features and a better
-                overall user experience.
+                © 2026 Image Compressor Pro. All Rights Reserved.
             </p>
 
         </div>
 
-
-        <div class="about-mission-visual">
-
-            <div class="mission-icon">
-                ⚡
-            </div>
-
-            <h3>
-                Simple. Fast. Useful.
-            </h3>
-
-            <p>
-                Tools designed around everyday needs.
-            </p>
-
-        </div>
-
-    </section>
-
-
-    <!-- =================================================
-         WHY CHOOSE US
-    ================================================== -->
-
-    <section class="about-section">
-
-        <div class="about-label">
-            WHY CHOOSE US
-        </div>
-
-        <h2>
-            Built to Keep Things Simple
-        </h2>
-
-        <p>
-            We believe online tools should be straightforward,
-            fast and accessible. That's why we focus on useful
-            features instead of unnecessary complexity.
-        </p>
-
-
-        <div class="about-benefits">
-
-
-            <!-- BENEFIT 1 -->
-
-            <div class="about-benefit">
-
-                <span aria-hidden="true">
-                    ✓
-                </span>
-
-                <div>
-
-                    <h3>
-                        Easy to Use
-                    </h3>
-
-                    <p>
-                        Designed for beginners as well as
-                        experienced users.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <!-- BENEFIT 2 -->
-
-            <div class="about-benefit">
-
-                <span aria-hidden="true">
-                    ⚡
-                </span>
-
-                <div>
-
-                    <h3>
-                        Fast Processing
-                    </h3>
-
-                    <p>
-                        Optimize your images without
-                        complicated software.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <!-- BENEFIT 3 -->
-
-            <div class="about-benefit">
-
-                <span aria-hidden="true">
-                    🔒
-                </span>
-
-                <div>
-
-                    <h3>
-                        Privacy Focused
-                    </h3>
-
-                    <p>
-                        Browser-based processing whenever
-                        possible.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <!-- BENEFIT 4 -->
-
-            <div class="about-benefit">
-
-                <span aria-hidden="true">
-                    💻
-                </span>
-
-                <div>
-
-                    <h3>
-                        Accessible Anywhere
-                    </h3>
-
-                    <p>
-                        Use our tools from supported modern
-                        browsers on different devices.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-        </div>
-
-    </section>
-
-
-    <!-- =================================================
-         CONTACT CTA
-    ================================================== -->
-
-    <section class="about-cta">
-
-        <div>
-
-            <h2>
-                Have a Question or Suggestion?
-            </h2>
-
-            <p>
-                We'd love to hear from you. If you have
-                feedback, questions or business inquiries,
-                feel free to contact us.
-            </p>
-
-        </div>
-
-
-        <a
-            href="contact.html"
-            class="about-cta-button">
-
-            Contact Us →
-
-        </a>
-
-    </section>
-
-
-</main>
-
-
-<!-- =====================================================
-     FOOTER
-===================================================== -->
-
-<footer class="footer">
-
-    <div class="footer-container">
-
-
-        <!-- BRAND -->
-
-        <div class="footer-column brand-column">
-
-            <a
-                href="index.html"
-                class="footer-logo">
-
-                <span class="footer-logo-icon">
-                    📷
-                </span>
-
-                <strong>
-                    Image Compressor Pro
-                </strong>
-
-            </a>
-
-            <p>
-                Simple online tools designed to make
-                image optimization and everyday digital
-                tasks easier.
-            </p>
-
-        </div>
-
-
-        <!-- TOOLS -->
-
-        <div class="footer-column">
-
-            <h3>
-                Tools
-            </h3>
-
-            <a href="index.html#compressor">
-                Image Compressor
-            </a>
-
-            <a href="resume-builder.html">
-                Resume Builder
-            </a>
-
-            <a href="blog.html">
-                Blog
-            </a>
-
-        </div>
-
-
-        <!-- COMPANY -->
-
-        <div class="footer-column">
-
-            <h3>
-                Company
-            </h3>
-
-            <a href="about.html">
-                About Us
-            </a>
-
-            <a href="contact.html">
-                Contact Us
-            </a>
-
-        </div>
-
-
-        <!-- LEGAL -->
-
-        <div class="footer-column">
-
-            <h3>
-                Legal
-            </h3>
-
-            <a href="privacy.html">
-                Privacy Policy
-            </a>
-
-            <a href="terms.html">
-                Terms & Conditions
-            </a>
-
-            <a href="disclaimer.html">
-                Disclaimer
-            </a>
-
-        </div>
-
-
-    </div>
-
-
-    <div class="footer-bottom">
-
-        <p>
-            © 2026 Image Compressor Pro. All Rights Reserved.
-        </p>
-
-    </div>
-
-</footer>
-
-
-<!-- =====================================================
-     BACK TO TOP
-===================================================== -->
-
-<button
-    id="topBtn"
-    type="button"
-    aria-label="Back to top">
-
-    ↑
-
-</button>
-
-
-<!-- =====================================================
-     JAVASCRIPT
-===================================================== -->
-
-<script>
-
-document.addEventListener("DOMContentLoaded", function () {
-
-    /* =================================================
-       DARK MODE
-    ================================================= */
-
-    const themeToggle =
-        document.getElementById("themeToggle");
-
-    if (themeToggle) {
+    </footer>
+
+
+    <!-- =========================
+         BACK TO TOP
+    ========================== -->
+
+    <button
+        id="topBtn"
+        type="button"
+        aria-label="Back to top"
+        style="
+            display:none;
+            position:fixed;
+            right:25px;
+            bottom:25px;
+            width:42px;
+            height:42px;
+            border:none;
+            border-radius:50%;
+            background:#1769ff;
+            color:white;
+            font-size:20px;
+            cursor:pointer;
+            z-index:9999;
+        ">
+        ↑
+    </button>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script>
+
+        /* DARK MODE */
+
+        const themeToggle =
+            document.getElementById("themeToggle");
 
         const savedTheme =
             localStorage.getItem("theme");
 
         if (savedTheme === "dark") {
-
             document.body.classList.add("dark");
-
-            themeToggle.textContent = "☀️";
-
-        } else {
-
-            themeToggle.textContent = "🌙";
-
         }
 
+        function updateThemeIcon() {
+
+            themeToggle.textContent =
+                document.body.classList.contains("dark")
+                    ? "☀️"
+                    : "🌙";
+        }
+
+        updateThemeIcon();
 
         themeToggle.addEventListener("click", function () {
 
             document.body.classList.toggle("dark");
 
-            const isDark =
-                document.body.classList.contains("dark");
+            localStorage.setItem(
+                "theme",
+                document.body.classList.contains("dark")
+                    ? "dark"
+                    : "light"
+            );
 
-
-            if (isDark) {
-
-                themeToggle.textContent = "☀️";
-
-                localStorage.setItem(
-                    "theme",
-                    "dark"
-                );
-
-            } else {
-
-                themeToggle.textContent = "🌙";
-
-                localStorage.setItem(
-                    "theme",
-                    "light"
-                );
-
-            }
+            updateThemeIcon();
 
         });
 
-    }
 
+        /* BACK TO TOP */
 
-    /* =================================================
-       BACK TO TOP
-    ================================================= */
-
-    const topBtn =
-        document.getElementById("topBtn");
-
-    if (topBtn) {
+        const topBtn =
+            document.getElementById("topBtn");
 
         window.addEventListener("scroll", function () {
 
             if (window.scrollY > 400) {
 
                 topBtn.style.display = "flex";
-
                 topBtn.style.alignItems = "center";
-
                 topBtn.style.justifyContent = "center";
 
             } else {
@@ -760,26 +520,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
         });
 
-
         topBtn.addEventListener("click", function () {
 
             window.scrollTo({
-
                 top: 0,
-
                 behavior: "smooth"
-
             });
 
         });
 
-    }
-
-});
-
-</script>
-
+    </script>
 
 </body>
 
 </html>
+```
