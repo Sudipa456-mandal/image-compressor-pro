@@ -1,342 +1,275 @@
-// ===============================
-// Image Compressor Pro
-// Part 1 - Upload, Drag & Drop, Preview
-// ===============================
+/* =========================================================
+   IMAGE COMPRESSOR PRO
+   HOME PAGE JAVASCRIPT
+========================================================= */
 
-// Upload
-const imageInput = document.getElementById("imageInput");
-const chooseBtn = document.getElementById("chooseBtn");
-const dropArea = document.getElementById("dropArea");
+document.addEventListener("DOMContentLoaded", () => {
 
-// Controls
-const quality = document.getElementById("quality");
-const qualityValue = document.getElementById("qualityValue");
 
-const maxWidth = document.getElementById("maxWidth");
-const maxHeight = document.getElementById("maxHeight");
-const maxFileSize = document.getElementById("maxFileSize");
+    /* =====================================================
+       DARK MODE
+    ===================================================== */
 
-const compressBtn = document.getElementById("compressBtn");
+    const themeToggle =
+        document.getElementById("themeToggle");
 
-// Preview
-const originalPreview = document.getElementById("originalPreview");
-const compressedPreview = document.getElementById("compressedPreview");
 
-// Statistics
-const originalSize = document.getElementById("originalSize");
-const compressedSize = document.getElementById("compressedSize");
-const savedPercent = document.getElementById("savedPercent");
+    const savedTheme =
+        localStorage.getItem("theme");
 
-// Progress
-const progressBar = document.getElementById("progressBar");
-const progressText = document.getElementById("progressText");
 
-// Download
-const downloadBtn = document.getElementById("downloadBtn");
+    if (savedTheme === "dark") {
 
-// Global Variables
-let selectedFile = null;
-
-// ===============================
-// Choose Button
-// ===============================
-
-chooseBtn.addEventListener("click", () => {
-
-    imageInput.click();
-
-});
-
-// ===============================
-// File Input
-// ===============================
-
-imageInput.addEventListener("change", (e) => {
-
-    if (e.target.files.length > 0) {
-
-        loadImage(e.target.files[0]);
+        document.body.classList.add("dark");
 
     }
 
-});
 
-// ===============================
-// Drag & Drop
-// ===============================
+    if (themeToggle) {
 
-dropArea.addEventListener("dragover", (e) => {
+        themeToggle.addEventListener(
+            "click",
+            () => {
 
-    e.preventDefault();
+                document.body.classList.toggle(
+                    "dark"
+                );
 
-    dropArea.classList.add("dragover");
 
-});
+                if (
+                    document.body.classList.contains(
+                        "dark"
+                    )
+                ) {
 
-dropArea.addEventListener("dragleave", () => {
+                    localStorage.setItem(
+                        "theme",
+                        "dark"
+                    );
 
-    dropArea.classList.remove("dragover");
+                } else {
 
-});
+                    localStorage.setItem(
+                        "theme",
+                        "light"
+                    );
 
-dropArea.addEventListener("drop", (e) => {
-
-    e.preventDefault();
-
-    dropArea.classList.remove("dragover");
-
-    if (e.dataTransfer.files.length > 0) {
-
-        loadImage(e.dataTransfer.files[0]);
-
-    }
-
-});
-
-// ===============================
-// Load Image
-// ===============================
-
-function loadImage(file){
-
-    if(!file.type.startsWith("image/")){
-
-        alert("Please choose an image.");
-
-        return;
-
-    }
-
-    selectedFile = file;
-
-    originalSize.textContent = formatSize(file.size);
-
-    compressedSize.textContent = "--";
-
-    savedPercent.textContent = "--";
-
-    downloadBtn.classList.remove("active");
-
-    progressBar.style.width = "0%";
-
-    progressText.textContent = "Ready";
-
-    const reader = new FileReader();
-
-    reader.onload = function(e){
-
-        originalPreview.src = e.target.result;
-
-        compressedPreview.src = "";
-
-    }
-
-    reader.readAsDataURL(file);
-
-}
-
-// ===============================
-// Quality Slider
-// ===============================
-
-quality.addEventListener("input", () => {
-
-    qualityValue.textContent = quality.value + "%";
-
-});
-
-// ===============================
-// Format Size
-// ===============================
-
-function formatSize(bytes){
-
-    if(bytes < 1024){
-
-        return bytes + " B";
-
-    }
-
-    if(bytes < 1024 * 1024){
-
-        return (bytes / 1024).toFixed(2) + " KB";
-
-    }
-
-    return (bytes / 1024 / 1024).toFixed(2) + " MB";
-
-}
-
-
-
-// ===============================
-// Part 2 - Compression Engine
-// ===============================
-
-compressBtn.addEventListener("click", () => {
-
-    if (!selectedFile) {
-        alert("Please choose an image first.");
-        return;
-    }
-
-    progressBar.style.width = "10%";
-    progressText.textContent = "Compressing...";
-
-    const img = new Image();
-
-    img.onload = function () {
-
-        let width = img.width;
-        let height = img.height;
-
-        // Max Width & Height
-        const maxW = parseInt(maxWidth.value);
-        const maxH = parseInt(maxHeight.value);
-
-        const ratio = Math.min(
-            maxW / width,
-            maxH / height,
-            1
-        );
-
-        width = Math.round(width * ratio);
-        height = Math.round(height * ratio);
-
-        // Canvas
-        const canvas = document.createElement("canvas");
-        canvas.width = width;
-        canvas.height = height;
-
-        const ctx = canvas.getContext("2d");
-        ctx.drawImage(img, 0, 0, width, height);
-
-        // Max File Size
-        const targetSize = parseInt(maxFileSize.value) * 1024;
-
-        let currentQuality =
-            quality.value / 100;
-
-        compressImage();
-
-        function compressImage() {
-
-            canvas.toBlob(function (blob) {
-
-                if (!blob) {
-                    alert("Compression failed.");
-                    return;
                 }
 
- 
-               progressBar.style.width = "70%";
-
-               if(blob.size > targetSize && currentQuality > 0.05){
-
-    currentQuality -= 0.05;
-
-    compressImage();
-
-    return;
-}
-                const url =
-                    URL.createObjectURL(blob);
-
-                compressedPreview.src = url;
-
-                compressedSize.textContent =
-                    formatSize(blob.size);
-
-                const saved =
-                    ((selectedFile.size - blob.size) /
-                    selectedFile.size) * 100;
-
-                savedPercent.textContent =
-                    saved.toFixed(1) + "%";
-
-                downloadBtn.href = url;
-               downloadBtn.classList.add("active");
-progressBar.style.width = "100%";
-progressText.textContent = "Completed ✅";
-
-                          },
-            "image/jpeg",
-            currentQuality);
-
-        } compressImage();
-
-
-    };
-
-    img.src = URL.createObjectURL(selectedFile);
-
-});
-
-// ===============================
-// Back To Top Button
-// ===============================
-
-const topBtn = document.getElementById("topBtn");
-
-// Show button when scrolling
-window.addEventListener("scroll", () => {
-
-    if (window.scrollY > 300) {
-
-        topBtn.style.display = "block";
-
-    } else {
-
-        topBtn.style.display = "none";
+            }
+        );
 
     }
 
-});
 
-// Scroll to top smoothly
-topBtn.addEventListener("click", () => {
 
-    window.scrollTo({
+    /* =====================================================
+       MOBILE MENU
+    ===================================================== */
 
-        top: 0,
+    const mobileMenuBtn =
+        document.getElementById(
+            "mobileMenuBtn"
+        );
 
-        behavior: "smooth"
 
-    });
+    const navLinks =
+        document.querySelector(
+            ".nav-links"
+        );
 
-});
-// ===============================
-// Dark Mode
-// ===============================
 
-const themeToggle = document.getElementById("themeToggle");
+    if (
+        mobileMenuBtn &&
+        navLinks
+    ) {
 
-// Load saved theme
-if(localStorage.getItem("theme") === "dark"){
+        mobileMenuBtn.addEventListener(
+            "click",
+            () => {
 
-    document.body.classList.add("dark");
+                navLinks.classList.toggle(
+                    "show"
+                );
 
-    themeToggle.textContent = "☀️";
+            }
+        );
 
-}
 
-themeToggle.addEventListener("click", () => {
+        navLinks
+            .querySelectorAll("a")
+            .forEach(link => {
 
-    document.body.classList.toggle("dark");
+                link.addEventListener(
+                    "click",
+                    () => {
 
-    if(document.body.classList.contains("dark")){
+                        navLinks.classList.remove(
+                            "show"
+                        );
 
-        themeToggle.textContent = "☀️";
+                    }
+                );
 
-        localStorage.setItem("theme","dark");
-
-    }else{
-
-        themeToggle.textContent = "🌙";
-
-        localStorage.setItem("theme","light");
+            });
 
     }
 
-});
 
+
+    /* =====================================================
+       BACK TO TOP
+    ===================================================== */
+
+    const topBtn =
+        document.getElementById(
+            "topBtn"
+        );
+
+
+    window.addEventListener(
+        "scroll",
+        () => {
+
+            if (!topBtn) return;
+
+
+            if (window.scrollY > 350) {
+
+                topBtn.style.display =
+                    "flex";
+
+                topBtn.style.alignItems =
+                    "center";
+
+                topBtn.style.justifyContent =
+                    "center";
+
+            } else {
+
+                topBtn.style.display =
+                    "none";
+
+            }
+
+        }
+    );
+
+
+    if (topBtn) {
+
+        topBtn.addEventListener(
+            "click",
+            () => {
+
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+
+            }
+        );
+
+    }
+
+
+
+    /* =====================================================
+       TOOL CARD ANIMATION
+    ===================================================== */
+
+    const toolCards =
+        document.querySelectorAll(
+            ".tool-card"
+        );
+
+
+    if ("IntersectionObserver" in window) {
+
+        const observer =
+            new IntersectionObserver(
+                entries => {
+
+                    entries.forEach(
+                        entry => {
+
+                            if (
+                                entry.isIntersecting
+                            ) {
+
+                                entry.target.classList.add(
+                                    "visible"
+                                );
+
+                            }
+
+                        }
+                    );
+
+                },
+                {
+                    threshold: 0.15
+                }
+            );
+
+
+        toolCards.forEach(
+            card => observer.observe(card)
+        );
+
+    }
+
+
+
+    /* =====================================================
+       SMOOTH INTERNAL LINKS
+    ===================================================== */
+
+    document
+        .querySelectorAll(
+            'a[href^="#"]'
+        )
+        .forEach(link => {
+
+            link.addEventListener(
+                "click",
+                event => {
+
+                    const targetId =
+                        link.getAttribute(
+                            "href"
+                        );
+
+
+                    if (
+                        !targetId ||
+                        targetId === "#"
+                    ) {
+
+                        return;
+
+                    }
+
+
+                    const target =
+                        document.querySelector(
+                            targetId
+                        );
+
+
+                    if (!target) return;
+
+
+                    event.preventDefault();
+
+
+                    target.scrollIntoView({
+                        behavior: "smooth"
+                    });
+
+                }
+            );
+
+        });
+
+});
