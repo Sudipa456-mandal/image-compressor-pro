@@ -1,1211 +1,2507 @@
 /* =========================================================
    IMAGE COMPRESSOR PRO
-   CLEAN + CORRECTED JAVASCRIPT
+   LIGHT PROFESSIONAL DESIGN
 ========================================================= */
 
+:root {
 
-/* =========================================================
-   ELEMENTS
-========================================================= */
+    --primary: #2563eb;
+    --primary-dark: #1d4ed8;
+    --primary-light: #eff6ff;
 
-const imageInput =
-    document.getElementById("imageInput");
+    --text-dark: #172033;
+    --text: #475569;
+    --text-light: #64748b;
 
-const chooseBtn =
-    document.getElementById("chooseBtn");
+    --background: #f8fafc;
+    --white: #ffffff;
 
-const dropArea =
-    document.getElementById("dropArea");
+    --border: #e2e8f0;
+    --border-light: #edf2f7;
 
-const fileInfo =
-    document.getElementById("fileInfo");
+    --success: #15803d;
 
-const fileName =
-    document.getElementById("fileName");
+    --radius: 12px;
 
-const fileOriginalInfo =
-    document.getElementById("fileOriginalInfo");
+    --shadow:
+        0 8px 30px rgba(15, 23, 42, 0.06);
 
-const removeFileBtn =
-    document.getElementById("removeFileBtn");
-
-const quality =
-    document.getElementById("quality");
-
-const qualityValue =
-    document.getElementById("qualityValue");
-
-const maxWidth =
-    document.getElementById("maxWidth");
-
-const maxHeight =
-    document.getElementById("maxHeight");
-
-const maxFileSize =
-    document.getElementById("maxFileSize");
-
-const outputFormat =
-    document.getElementById("outputFormat");
-
-const compressBtn =
-    document.getElementById("compressBtn");
-
-const originalPreview =
-    document.getElementById("originalPreview");
-
-const compressedPreview =
-    document.getElementById("compressedPreview");
-
-const originalSize =
-    document.getElementById("originalSize");
-
-const compressedSize =
-    document.getElementById("compressedSize");
-
-const savedPercent =
-    document.getElementById("savedPercent");
-
-const progressBar =
-    document.getElementById("progressBar");
-
-const progressText =
-    document.getElementById("progressText");
-
-const downloadBtn =
-    document.getElementById("downloadBtn");
-
-const mobileMenuBtn =
-    document.getElementById("mobileMenuBtn");
-
-const navLinks =
-    document.getElementById("navLinks");
-
-const themeToggle =
-    document.getElementById("themeToggle");
-
-const topBtn =
-    document.getElementById("topBtn");
-
-
-/* =========================================================
-   VARIABLES
-========================================================= */
-
-let selectedFile = null;
-
-let compressedBlob = null;
-
-let originalObjectUrl = null;
-
-let compressedObjectUrl = null;
-
-
-/* =========================================================
-   INITIAL STATE
-========================================================= */
-
-if (quality && qualityValue) {
-
-    qualityValue.textContent =
-        `${quality.value}%`;
-
+    --shadow-hover:
+        0 12px 35px rgba(15, 23, 42, 0.09);
 }
 
 
 /* =========================================================
-   CHOOSE IMAGE
+   RESET
 ========================================================= */
 
-chooseBtn.addEventListener(
-    "click",
-    () => {
+* {
+    box-sizing: border-box;
+}
 
-        imageInput.click();
+html {
+    scroll-behavior: smooth;
+}
 
-    }
-);
+body {
+
+    margin: 0;
+
+    background: var(--background);
+
+    color: var(--text);
+
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
+
+    line-height: 1.6;
+}
+
+button,
+input,
+select {
+    font: inherit;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+a {
+    color: inherit;
+}
 
 
 /* =========================================================
-   FILE INPUT
+   HEADER
 ========================================================= */
 
-imageInput.addEventListener(
-    "change",
-    event => {
+.site-header {
 
-        const file =
-            event.target.files[0];
+    position: sticky;
 
-        if (file) {
+    top: 0;
 
-            loadImage(file);
+    z-index: 1000;
 
-        }
+    background:
+        rgba(255, 255, 255, 0.96);
 
-    }
-);
+    border-bottom:
+        1px solid var(--border);
+
+    backdrop-filter:
+        blur(10px);
+}
+
+.navbar {
+
+    width:
+        min(1180px, calc(100% - 40px));
+
+    min-height: 68px;
+
+    margin: auto;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 25px;
+}
+
+
+/* LOGO */
+
+.logo {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    color:
+        var(--text-dark);
+
+    text-decoration: none;
+
+    font-size: 19px;
+
+    font-weight: 750;
+
+    white-space: nowrap;
+}
+
+.logo-icon {
+
+    width: 30px;
+
+    height: 30px;
+
+    display: grid;
+
+    place-items: center;
+
+    background:
+        var(--primary-light);
+
+    color:
+        var(--primary);
+
+    border-radius: 8px;
+
+    font-size: 15px;
+}
+
+
+/* NAV LINKS */
+
+.nav-links {
+
+    margin-left: auto;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 24px;
+}
+
+.nav-links a {
+
+    position: relative;
+
+    color:
+        var(--text);
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    padding:
+        24px 0;
+
+    transition:
+        color 0.2s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+
+    color:
+        var(--primary);
+}
+
+.nav-links a.active::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+
+    right: 0;
+
+    bottom: 15px;
+
+    height: 2px;
+
+    background:
+        var(--primary);
+
+    border-radius: 10px;
+}
+
+
+/* THEME */
+
+.theme-toggle {
+
+    width: 38px;
+
+    height: 38px;
+
+    border:
+        1px solid var(--border);
+
+    background:
+        var(--white);
+
+    border-radius: 9px;
+
+    cursor: pointer;
+}
+
+
+/* MOBILE MENU */
+
+.mobile-menu-btn {
+
+    display: none;
+
+    width: 40px;
+
+    height: 40px;
+
+    border:
+        1px solid var(--border);
+
+    background:
+        var(--white);
+
+    border-radius: 8px;
+
+    cursor: pointer;
+}
 
 
 /* =========================================================
-   DRAG OVER
+   HERO
 ========================================================= */
 
-dropArea.addEventListener(
-    "dragover",
-    event => {
+.hero {
 
-        event.preventDefault();
-
-        dropArea.classList.add(
-            "dragover"
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff 0%,
+            #f5f9ff 100%
         );
 
-    }
-);
+    border-bottom:
+        1px solid var(--border);
+}
 
+.hero-content {
 
-/* =========================================================
-   DRAG LEAVE
-========================================================= */
+    max-width: 900px;
 
-dropArea.addEventListener(
-    "dragleave",
-    () => {
+    margin: auto;
 
-        dropArea.classList.remove(
-            "dragover"
-        );
+    padding:
+        80px 20px 75px;
 
-    }
-);
+    text-align: center;
+}
 
+.hero-badge {
 
-/* =========================================================
-   DROP
-========================================================= */
+    display: inline-block;
 
-dropArea.addEventListener(
-    "drop",
-    event => {
+    padding:
+        7px 13px;
 
-        event.preventDefault();
+    border:
+        1px solid #bfdbfe;
 
-        dropArea.classList.remove(
-            "dragover"
-        );
+    background:
+        var(--primary-light);
 
-        const file =
-            event.dataTransfer.files[0];
+    color:
+        var(--primary);
 
-        if (file) {
+    border-radius:
+        30px;
 
-            loadImage(file);
+    font-size: 11px;
 
-        }
+    font-weight: 800;
 
-    }
-);
+    letter-spacing: 1px;
 
+    margin-bottom: 20px;
+}
 
-/* =========================================================
-   LOAD IMAGE
-========================================================= */
+.hero h1 {
 
-function loadImage(file) {
+    max-width: 850px;
 
-    const allowedTypes = [
-        "image/jpeg",
-        "image/png",
-        "image/webp"
-    ];
+    margin:
+        0 auto 20px;
 
-    if (!allowedTypes.includes(file.type)) {
+    color:
+        var(--text-dark);
 
-        alert(
-            "Please select a JPG, PNG or WEBP image."
-        );
+    font-size:
+        clamp(38px, 6vw, 58px);
 
-        return;
-    }
+    line-height:
+        1.08;
 
+    letter-spacing:
+        -1.8px;
 
-    selectedFile = file;
+    font-weight:
+        800;
+}
 
+.hero h1 span {
 
-    revokeObjectUrls();
+    color:
+        var(--primary);
+}
 
+.hero p {
 
-    originalObjectUrl =
-        URL.createObjectURL(file);
+    max-width: 720px;
 
+    margin:
+        0 auto;
 
-    originalPreview.src =
-        originalObjectUrl;
+    color:
+        var(--text-light);
 
+    font-size: 17px;
 
-    compressedPreview.removeAttribute(
-        "src"
-    );
+    line-height: 1.75;
+}
 
+.hero-points {
 
-    fileName.textContent =
-        file.name;
+    margin-top: 28px;
 
+    display: flex;
 
-    fileOriginalInfo.textContent =
-        `${formatSize(file.size)} • ${getExtension(file.type)}`;
+    justify-content: center;
 
+    flex-wrap: wrap;
 
-    fileInfo.classList.remove(
-        "hidden"
-    );
+    gap: 10px;
+}
 
+.hero-points span {
 
-    originalSize.textContent =
-        formatSize(file.size);
+    padding:
+        7px 12px;
 
+    background:
+        white;
 
-    compressedSize.textContent =
-        "--";
+    border:
+        1px solid var(--border);
 
+    border-radius:
+        30px;
 
-    savedPercent.textContent =
-        "--";
+    color:
+        var(--text);
 
+    font-size: 13px;
 
-    compressedBlob = null;
-
-
-    downloadBtn.classList.remove(
-        "active"
-    );
-
-
-    downloadBtn.removeAttribute(
-        "href"
-    );
-
-
-    progressBar.style.width =
-        "0%";
-
-
-    progressText.textContent =
-        "Ready to compress";
-
+    font-weight: 600;
 }
 
 
 /* =========================================================
-   REMOVE FILE
+   COMMON
 ========================================================= */
 
-removeFileBtn.addEventListener(
-    "click",
-    resetTool
-);
+.content-container {
 
+    width:
+        min(1080px, calc(100% - 40px));
 
-function resetTool() {
+    margin:
+        auto;
+}
 
-    selectedFile = null;
+.content-container.narrow {
 
-    compressedBlob = null;
+    max-width: 820px;
+}
 
+.section-label {
 
-    revokeObjectUrls();
+    display: block;
 
+    margin-bottom: 9px;
 
-    imageInput.value = "";
+    color:
+        var(--primary);
 
+    font-size: 11px;
 
-    originalPreview.removeAttribute(
-        "src"
-    );
+    font-weight: 800;
 
+    letter-spacing:
+        1.5px;
 
-    compressedPreview.removeAttribute(
-        "src"
-    );
+    text-transform:
+        uppercase;
+}
 
+.intro-section h2,
+.why-section h2,
+.guide-section h2,
+.content-section h2,
+.format-section h2,
+.use-section h2,
+.faq-section h2,
+.related-section h2 {
 
-    fileInfo.classList.add(
-        "hidden"
-    );
+    margin:
+        0 0 16px;
 
+    color:
+        var(--text-dark);
 
-    originalSize.textContent =
-        "--";
+    font-size:
+        clamp(28px, 4vw, 40px);
 
+    line-height:
+        1.2;
 
-    compressedSize.textContent =
-        "--";
+    letter-spacing:
+        -0.7px;
+}
 
+.intro-section p,
+.content-section > .content-container > p,
+.section-intro {
 
-    savedPercent.textContent =
-        "--";
+    max-width: 820px;
 
+    color:
+        var(--text-light);
 
-    downloadBtn.classList.remove(
-        "active"
-    );
+    font-size: 16px;
 
-
-    downloadBtn.removeAttribute(
-        "href"
-    );
-
-
-    progressBar.style.width =
-        "0%";
-
-
-    progressText.textContent =
-        "Ready to compress";
-
+    line-height: 1.8;
 }
 
 
 /* =========================================================
-   QUALITY SLIDER
+   INTRO
 ========================================================= */
 
-quality.addEventListener(
-    "input",
-    () => {
+.intro-section {
 
-        qualityValue.textContent =
-            `${quality.value}%`;
+    padding:
+        75px 0 50px;
+}
 
-    }
-);
+.intro-section .content-container {
 
+    text-align: center;
+}
 
-/* =========================================================
-   FORMAT SIZE
-========================================================= */
+.intro-section p {
 
-function formatSize(bytes) {
-
-    if (!Number.isFinite(bytes)) {
-
-        return "--";
-
-    }
-
-
-    if (bytes < 1024) {
-
-        return `${bytes} B`;
-
-    }
-
-
-    if (bytes < 1024 * 1024) {
-
-        return `${(
-            bytes / 1024
-        ).toFixed(2)} KB`;
-
-    }
-
-
-    return `${(
-        bytes /
-        1024 /
-        1024
-    ).toFixed(2)} MB`;
-
+    margin:
+        0 auto 12px;
 }
 
 
 /* =========================================================
-   FILE EXTENSION
+   COMPRESSOR
 ========================================================= */
 
-function getExtension(type) {
+.compressor-section {
 
-    switch (type) {
+    padding:
+        25px 0 75px;
+}
 
-        case "image/jpeg":
-            return "JPG";
+.compressor-card {
 
-        case "image/png":
-            return "PNG";
+    width:
+        min(1000px, calc(100% - 40px));
 
-        case "image/webp":
-            return "WEBP";
+    margin:
+        auto;
 
-        default:
-            return "IMAGE";
+    padding:
+        40px;
 
-    }
+    background:
+        var(--white);
 
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        18px;
+
+    box-shadow:
+        var(--shadow);
 }
 
 
 /* =========================================================
-   LOAD IMAGE ELEMENT
+   STEP HEADING
 ========================================================= */
 
-function loadImageElement(file) {
+.step-heading {
 
-    return new Promise(
-        (resolve, reject) => {
+    display: flex;
 
-            const url =
-                URL.createObjectURL(file);
+    align-items: flex-start;
 
-            const img =
-                new Image();
+    gap: 14px;
 
+    margin-bottom: 25px;
+}
 
-            img.onload = () => {
+.step-number {
 
-                URL.revokeObjectURL(
-                    url
-                );
+    flex:
+        0 0 38px;
 
-                resolve(img);
+    width: 38px;
 
-            };
+    height: 38px;
 
+    display: grid;
 
-            img.onerror = () => {
+    place-items: center;
 
-                URL.revokeObjectURL(
-                    url
-                );
+    background:
+        var(--primary-light);
 
-                reject(
-                    new Error(
-                        "The image could not be read."
-                    )
-                );
+    color:
+        var(--primary);
 
-            };
+    border-radius:
+        50%;
 
+    font-size: 14px;
 
-            img.src = url;
+    font-weight: 800;
+}
 
-        }
-    );
+.step-label {
 
+    margin-bottom: 3px;
+}
+
+.step-heading h2 {
+
+    margin:
+        0 0 4px;
+
+    color:
+        var(--text-dark);
+
+    font-size: 25px;
+
+    line-height: 1.25;
+}
+
+.step-heading p {
+
+    margin: 0;
+
+    color:
+        var(--text-light);
+
+    font-size: 14px;
 }
 
 
 /* =========================================================
-   CANVAS TO BLOB
+   DROP AREA
 ========================================================= */
 
-function canvasToBlob(
-    canvas,
-    type,
-    qualityValue
-) {
+.drop-area {
 
-    return new Promise(
-        resolve => {
+    min-height:
+        310px;
 
-            canvas.toBlob(
-                blob => {
+    display:
+        flex;
 
-                    resolve(blob);
+    flex-direction:
+        column;
 
-                },
-                type,
-                qualityValue
-            );
+    justify-content:
+        center;
 
-        }
-    );
+    align-items:
+        center;
 
+    padding:
+        35px 20px;
+
+    text-align:
+        center;
+
+    background:
+        #f8fbff;
+
+    border:
+        2px dashed #bfdbfe;
+
+    border-radius:
+        14px;
+
+    transition:
+        0.2s ease;
+}
+
+.drop-area:hover,
+.drop-area.dragover {
+
+    background:
+        #f1f7ff;
+
+    border-color:
+        var(--primary);
+}
+
+.upload-icon {
+
+    width:
+        58px;
+
+    height:
+        58px;
+
+    display:
+        grid;
+
+    place-items:
+        center;
+
+    margin-bottom:
+        16px;
+
+    background:
+        var(--primary-light);
+
+    color:
+        var(--primary);
+
+    border-radius:
+        14px;
+
+    font-size:
+        25px;
+
+    font-weight:
+        700;
+}
+
+.drop-area h3 {
+
+    margin:
+        0 0 6px;
+
+    color:
+        var(--text-dark);
+
+    font-size:
+        20px;
+}
+
+.drop-area p {
+
+    margin:
+        0 0 18px;
+
+    color:
+        var(--text-light);
+
+    font-size:
+        14px;
+}
+
+.drop-area small {
+
+    margin-top:
+        13px;
+
+    color:
+        var(--text-light);
+
+    font-size:
+        12px;
 }
 
 
 /* =========================================================
-   CALCULATE DIMENSIONS
+   BUTTON
 ========================================================= */
 
-function calculateDimensions(
-    width,
-    height
-) {
+.primary-btn,
+.compress-btn,
+.download-btn {
 
-    let maxW =
-        parseInt(
-            maxWidth.value,
-            10
-        );
+    border:
+        none;
 
+    background:
+        var(--primary);
 
-    let maxH =
-        parseInt(
-            maxHeight.value,
-            10
-        );
+    color:
+        white;
 
+    border-radius:
+        9px;
 
-    if (
-        !Number.isFinite(maxW) ||
-        maxW <= 0
-    ) {
+    font-weight:
+        700;
 
-        maxW = width;
+    cursor:
+        pointer;
 
-    }
+    transition:
+        0.2s ease;
+}
 
+.primary-btn {
 
-    if (
-        !Number.isFinite(maxH) ||
-        maxH <= 0
-    ) {
+    padding:
+        12px 23px;
+}
 
-        maxH = height;
+.primary-btn:hover,
+.compress-btn:hover,
+.download-btn:hover {
 
-    }
+    background:
+        var(--primary-dark);
 
+    transform:
+        translateY(-1px);
 
-    const ratio =
-        Math.min(
-            maxW / width,
-            maxH / height,
-            1
-        );
+    box-shadow:
+        0 7px 20px rgba(37, 99, 235, 0.18);
+}
 
+button:disabled {
 
-    return {
+    opacity:
+        0.65;
 
-        width:
-            Math.max(
-                1,
-                Math.round(
-                    width * ratio
-                )
-            ),
+    cursor:
+        not-allowed;
 
-        height:
-            Math.max(
-                1,
-                Math.round(
-                    height * ratio
-                )
-            )
-
-    };
-
+    transform:
+        none;
 }
 
 
 /* =========================================================
-   COMPRESS IMAGE
+   FILE INFO
 ========================================================= */
 
-compressBtn.addEventListener(
-    "click",
-    async () => {
+.file-info {
 
-        if (!selectedFile) {
+    display:
+        flex;
 
-            alert(
-                "Please choose an image first."
-            );
+    align-items:
+        center;
 
-            return;
+    gap:
+        13px;
 
-        }
+    margin-top:
+        18px;
 
+    padding:
+        15px;
 
-        try {
+    background:
+        #f8fafc;
 
-            compressBtn.disabled =
-                true;
+    border:
+        1px solid var(--border);
 
+    border-radius:
+        10px;
+}
 
-            compressBtn.textContent =
-                "Compressing...";
+.file-symbol {
 
+    width:
+        42px;
 
-            setProgress(
-                10,
-                "Reading image..."
-            );
+    height:
+        42px;
 
+    display:
+        grid;
 
-            const img =
-                await loadImageElement(
-                    selectedFile
-                );
+    place-items:
+        center;
 
+    background:
+        var(--primary-light);
 
-            setProgress(
-                25,
-                "Preparing image..."
-            );
+    color:
+        var(--primary);
 
+    border-radius:
+        8px;
 
-            const dimensions =
-                calculateDimensions(
-                    img.naturalWidth ||
-                    img.width,
+    font-size:
+        10px;
 
-                    img.naturalHeight ||
-                    img.height
-                );
+    font-weight:
+        800;
+}
 
+.file-details {
 
-            const canvas =
-                document.createElement(
-                    "canvas"
-                );
+    min-width:
+        0;
 
+    flex:
+        1;
+}
 
-            canvas.width =
-                dimensions.width;
+.file-details strong {
 
+    display:
+        block;
 
-            canvas.height =
-                dimensions.height;
+    overflow:
+        hidden;
 
+    text-overflow:
+        ellipsis;
 
-            const ctx =
-                canvas.getContext(
-                    "2d"
-                );
+    white-space:
+        nowrap;
 
+    color:
+        var(--text-dark);
 
-            if (!ctx) {
+    font-size:
+        14px;
+}
 
-                throw new Error(
-                    "Canvas is not supported by this browser."
-                );
+.file-details span {
 
-            }
+    color:
+        var(--text-light);
 
+    font-size:
+        12px;
+}
 
-            const format =
-                outputFormat.value;
+.remove-btn {
 
+    border:
+        1px solid #fecaca;
 
-            /*
-             * JPG cannot store transparency.
-             */
+    background:
+        #fff;
 
-            if (
-                format ===
-                "image/jpeg"
-            ) {
+    color:
+        #dc2626;
 
-                ctx.fillStyle =
-                    "#ffffff";
+    padding:
+        8px 12px;
 
+    border-radius:
+        7px;
 
-                ctx.fillRect(
-                    0,
-                    0,
-                    canvas.width,
-                    canvas.height
-                );
+    cursor:
+        pointer;
 
-            }
+    font-size:
+        12px;
 
+    font-weight:
+        700;
+}
 
-            ctx.drawImage(
-                img,
-                0,
-                0,
-                canvas.width,
-                canvas.height
-            );
 
+/* =========================================================
+   SETTINGS
+========================================================= */
 
-            setProgress(
-                45,
-                "Compressing image..."
-            );
+.settings-heading {
 
+    margin-top:
+        40px;
+}
 
-            let currentQuality =
-                Number(
-                    quality.value
-                ) / 100;
+.settings-card {
 
+    padding:
+        28px;
 
-            const targetKB =
-                Number(
-                    maxFileSize.value
-                );
+    background:
+        #f8fafc;
 
+    border:
+        1px solid var(--border);
 
-            const targetBytes =
-                targetKB * 1024;
+    border-radius:
+        13px;
+}
 
+.settings-grid {
 
-            let blob =
-                await canvasToBlob(
-                    canvas,
-                    format,
-                    currentQuality
-                );
+    display:
+        grid;
 
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
 
-            if (!blob) {
+    gap:
+        25px;
+}
 
-                throw new Error(
-                    "Unable to create the compressed image."
-                );
+.form-group label {
 
-            }
+    display:
+        block;
 
+    margin-bottom:
+        8px;
 
-            /*
-             * Reduce quality gradually
-             * for JPG and WEBP.
-             */
+    color:
+        var(--text-dark);
 
-            if (
-                format === "image/jpeg" ||
-                format === "image/webp"
-            ) {
+    font-size:
+        14px;
 
-                while (
-                    blob.size >
-                    targetBytes &&
-                    currentQuality >
-                    0.10
-                ) {
+    font-weight:
+        700;
+}
 
-                    currentQuality -=
-                        0.05;
+.form-group input,
+.form-group select {
 
+    width:
+        100%;
 
-                    const qualityPercent =
-                        Math.round(
-                            currentQuality *
-                            100
-                        );
+    height:
+        46px;
 
+    padding:
+        0 13px;
 
-                    setProgress(
-                        Math.min(
-                            90,
-                            45 +
-                            (
-                                (1 -
-                                currentQuality)
-                                * 45
-                            )
-                        ),
-                        `Optimizing quality: ${qualityPercent}%`
-                    );
+    background:
+        white;
 
+    border:
+        1px solid #cbd5e1;
 
-                    const newBlob =
-                        await canvasToBlob(
-                            canvas,
-                            format,
-                            currentQuality
-                        );
+    border-radius:
+        8px;
 
+    color:
+        var(--text-dark);
 
-                    if (!newBlob) {
+    outline:
+        none;
+}
 
-                        break;
+.form-group input:focus,
+.form-group select:focus {
 
-                    }
+    border-color:
+        var(--primary);
 
+    box-shadow:
+        0 0 0 3px rgba(37,99,235,0.1);
+}
 
-                    /*
-                     * Prevent accidentally
-                     * replacing a smaller
-                     * file with a larger one.
-                     */
+.form-group small {
 
-                    if (
-                        newBlob.size <
-                        blob.size
-                    ) {
+    display:
+        block;
 
-                        blob =
-                            newBlob;
+    margin-top:
+        7px;
 
-                    } else {
+    color:
+        var(--text-light);
 
-                        break;
+    font-size:
+        11px;
 
-                    }
+    line-height:
+        1.5;
+}
 
-                }
 
-            }
+/* RANGE */
 
+.range-wrapper {
 
-            compressedBlob =
-                blob;
+    display:
+        flex;
 
+    align-items:
+        center;
 
-            setProgress(
-                95,
-                "Preparing preview..."
-            );
+    gap:
+        14px;
+}
 
+.range-wrapper input {
 
-            if (compressedObjectUrl) {
+    flex:
+        1;
+}
 
-                URL.revokeObjectURL(
-                    compressedObjectUrl
-                );
+.range-wrapper strong {
 
-            }
+    min-width:
+        45px;
 
+    color:
+        var(--primary);
 
-            compressedObjectUrl =
-                URL.createObjectURL(
-                    blob
-                );
+    font-size:
+        14px;
 
+    text-align:
+        right;
+}
 
-            compressedPreview.src =
-                compressedObjectUrl;
+input[type="range"] {
 
+    height:
+        6px;
 
-            compressedSize.textContent =
-                formatSize(
-                    blob.size
-                );
+    padding:
+        0;
 
+    appearance:
+        none;
 
-            const difference =
-                selectedFile.size -
-                blob.size;
+    background:
+        #dbeafe;
 
+    border:
+        none;
 
-            const percentage =
-                (
-                    difference /
-                    selectedFile.size
-                ) * 100;
+    border-radius:
+        20px;
+}
 
+input[type="range"]::-webkit-slider-thumb {
 
-            if (
-                percentage >= 0
-            ) {
+    appearance:
+        none;
 
-                savedPercent.textContent =
-                    `${percentage.toFixed(1)}% smaller`;
+    width:
+        18px;
 
-            } else {
+    height:
+        18px;
 
-                savedPercent.textContent =
-                    `${Math.abs(
-                        percentage
-                    ).toFixed(1)}% larger`;
+    background:
+        var(--primary);
 
-            }
+    border-radius:
+        50%;
 
+    cursor:
+        pointer;
+}
 
-            const extension =
-                getDownloadExtension(
-                    format
-                );
+input[type="range"]::-moz-range-thumb {
 
+    width:
+        18px;
 
-            downloadBtn.href =
-                compressedObjectUrl;
+    height:
+        18px;
 
+    background:
+        var(--primary);
 
-            downloadBtn.download =
-                `compressed-image.${extension}`;
+    border:
+        none;
 
+    border-radius:
+        50%;
+}
 
-            downloadBtn.classList.add(
-                "active"
-            );
 
+/* UNIT */
 
-            setProgress(
-                100,
-                "Compression completed ✓"
-            );
+.unit-input {
 
-        } catch (error) {
+    position:
+        relative;
+}
 
-            console.error(error);
+.unit-input input {
 
+    padding-right:
+        48px;
+}
 
-            alert(
-                error.message ||
-                "Compression failed."
-            );
+.unit-input span {
 
+    position:
+        absolute;
 
-            setProgress(
-                0,
-                "Compression failed"
-            );
+    top:
+        50%;
 
-        } finally {
+    right:
+        13px;
 
-            compressBtn.disabled =
-                false;
+    transform:
+        translateY(-50%);
 
+    color:
+        var(--text-light);
 
-            compressBtn.textContent =
-                "Compress Image";
+    font-size:
+        12px;
 
-        }
+    font-weight:
+        700;
+}
 
-    }
-);
+
+/* COMPRESS */
+
+.compress-btn {
+
+    width:
+        100%;
+
+    height:
+        52px;
+
+    margin-top:
+        27px;
+
+    font-size:
+        15px;
+}
 
 
 /* =========================================================
    PROGRESS
 ========================================================= */
 
-function setProgress(
-    value,
-    text
-) {
+.progress-area {
 
-    progressBar.style.width =
-        `${value}%`;
+    margin:
+        28px 0 40px;
 
+    text-align:
+        center;
+}
 
-    progressText.textContent =
-        text;
+.progress-track {
 
+    width:
+        100%;
+
+    height:
+        7px;
+
+    overflow:
+        hidden;
+
+    background:
+        #e2e8f0;
+
+    border-radius:
+        20px;
+}
+
+.progress-fill {
+
+    width:
+        0%;
+
+    height:
+        100%;
+
+    background:
+        var(--primary);
+
+    border-radius:
+        inherit;
+
+    transition:
+        width 0.3s ease;
+}
+
+.progress-area p {
+
+    margin:
+        9px 0 0;
+
+    color:
+        var(--text-light);
+
+    font-size:
+        13px;
 }
 
 
 /* =========================================================
-   DOWNLOAD EXTENSION
+   RESULTS
 ========================================================= */
 
-function getDownloadExtension(
-    format
-) {
+.result-heading {
 
-    switch (format) {
+    margin-top:
+        20px;
+}
 
-        case "image/png":
-            return "png";
+.stats-grid {
 
-        case "image/webp":
-            return "webp";
+    display:
+        grid;
 
-        default:
-            return "jpg";
+    grid-template-columns:
+        repeat(3, 1fr);
 
-    }
+    gap:
+        15px;
 
+    margin-bottom:
+        25px;
+}
+
+.stat-card {
+
+    padding:
+        19px;
+
+    background:
+        white;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        11px;
+
+    text-align:
+        center;
+}
+
+.stat-card span {
+
+    display:
+        block;
+
+    margin-bottom:
+        5px;
+
+    color:
+        var(--text-light);
+
+    font-size:
+        12px;
+}
+
+.stat-card strong {
+
+    color:
+        var(--primary);
+
+    font-size:
+        20px;
 }
 
 
 /* =========================================================
-   MOBILE MENU
+   PREVIEW
 ========================================================= */
 
-mobileMenuBtn.addEventListener(
-    "click",
-    () => {
+.preview-grid {
 
-        navLinks.classList.toggle(
-            "show"
-        );
+    display:
+        grid;
 
-    }
-);
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap:
+        18px;
+}
+
+.preview-card {
+
+    overflow:
+        hidden;
+
+    background:
+        white;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        11px;
+}
+
+.preview-header {
+
+    padding:
+        12px 15px;
+
+    border-bottom:
+        1px solid var(--border);
+
+    color:
+        var(--text-dark);
+
+    font-size:
+        13px;
+
+    font-weight:
+        700;
+}
+
+.preview-area {
+
+    min-height:
+        280px;
+
+    display:
+        grid;
+
+    place-items:
+        center;
+
+    padding:
+        20px;
+
+    background:
+        #f8fafc;
+}
+
+.preview-area img {
+
+    max-width:
+        100%;
+
+    max-height:
+        360px;
+
+    object-fit:
+        contain;
+}
+
+.preview-placeholder {
+
+    color:
+        #94a3b8;
+
+    font-size:
+        13px;
+}
+
+.preview-area img[src] + .preview-placeholder {
+
+    display:
+        none;
+}
+
+
+/* DOWNLOAD */
+
+.download-btn {
+
+    display:
+        block;
+
+    width:
+        100%;
+
+    margin-top:
+        22px;
+
+    padding:
+        14px;
+
+    text-align:
+        center;
+
+    text-decoration:
+        none;
+
+    pointer-events:
+        none;
+
+    opacity:
+        0.45;
+}
+
+.download-btn.active {
+
+    pointer-events:
+        auto;
+
+    opacity:
+        1;
+}
 
 
 /* =========================================================
-   CLOSE MOBILE MENU AFTER CLICK
+   AD
 ========================================================= */
 
-navLinks.querySelectorAll("a")
-    .forEach(link => {
+.ad-section {
 
-        link.addEventListener(
-            "click",
-            () => {
+    padding:
+        15px 0 65px;
+}
 
-                navLinks.classList.remove(
-                    "show"
-                );
+.ad-box {
 
-            }
-        );
+    min-height:
+        90px;
 
-    });
+    display:
+        grid;
+
+    place-items:
+        center;
+
+    background:
+        #f1f5f9;
+
+    border:
+        1px solid var(--border);
+
+    color:
+        #94a3b8;
+
+    font-size:
+        11px;
+
+    letter-spacing:
+        0.5px;
+}
+
+
+/* =========================================================
+   WHY USE
+========================================================= */
+
+.why-section,
+.guide-section,
+.content-section,
+.format-section,
+.use-section,
+.faq-section,
+.related-section {
+
+    padding:
+        75px 0;
+}
+
+.feature-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap:
+        18px;
+
+    margin-top:
+        35px;
+}
+
+.feature-card {
+
+    padding:
+        25px;
+
+    background:
+        white;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        12px;
+
+    transition:
+        0.2s ease;
+}
+
+.feature-card:hover {
+
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        var(--shadow-hover);
+}
+
+.feature-icon {
+
+    margin-bottom:
+        15px;
+
+    color:
+        var(--primary);
+
+    font-size:
+        12px;
+
+    font-weight:
+        800;
+}
+
+.feature-card h3,
+.guide-grid h3,
+.article-block h3,
+.use-grid h3,
+.related-grid h3 {
+
+    margin:
+        0 0 8px;
+
+    color:
+        var(--text-dark);
+
+    font-size:
+        18px;
+}
+
+.feature-card p,
+.guide-grid p,
+.article-block p,
+.use-grid p,
+.related-grid p {
+
+    margin:
+        0;
+
+    color:
+        var(--text-light);
+
+    font-size:
+        14px;
+
+    line-height:
+        1.75;
+}
+
+
+/* =========================================================
+   GUIDE
+========================================================= */
+
+.guide-section {
+
+    background:
+        white;
+}
+
+.guide-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap:
+        20px;
+
+    margin-top:
+        35px;
+}
+
+.guide-grid article {
+
+    position:
+        relative;
+
+    padding:
+        25px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        12px;
+
+    background:
+        #fbfdff;
+}
+
+.guide-number {
+
+    display:
+        inline-grid;
+
+    place-items:
+        center;
+
+    width:
+        34px;
+
+    height:
+        34px;
+
+    margin-bottom:
+        15px;
+
+    background:
+        var(--primary-light);
+
+    color:
+        var(--primary);
+
+    border-radius:
+        50%;
+
+    font-weight:
+        800;
+}
+
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.content-section {
+
+    background:
+        #f8fafc;
+}
+
+.content-section > .content-container > p {
+
+    margin:
+        0 0 30px;
+}
+
+.article-block {
+
+    max-width:
+        850px;
+
+    margin:
+        0 0 30px;
+
+    padding:
+        25px;
+
+    background:
+        white;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        11px;
+}
+
+.article-block p {
+
+    margin:
+        0 0 12px;
+}
+
+.article-block p:last-child {
+
+    margin-bottom:
+        0;
+}
+
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+.format-section {
+
+    background:
+        white;
+}
+
+.table-wrapper {
+
+    overflow-x:
+        auto;
+
+    margin-top:
+        30px;
+}
+
+table {
+
+    width:
+        100%;
+
+    border-collapse:
+        collapse;
+
+    min-width:
+        650px;
+
+    background:
+        white;
+}
+
+th,
+td {
+
+    padding:
+        15px;
+
+    border:
+        1px solid var(--border);
+
+    text-align:
+        left;
+
+    font-size:
+        14px;
+}
+
+th {
+
+    background:
+        #f8fafc;
+
+    color:
+        var(--text-dark);
+
+    font-weight:
+        750;
+}
+
+td {
+
+    color:
+        var(--text-light);
+}
+
+
+/* =========================================================
+   USE CASES
+========================================================= */
+
+.use-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap:
+        18px;
+
+    margin-top:
+        30px;
+}
+
+.use-grid article {
+
+    padding:
+        25px;
+
+    background:
+        white;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        11px;
+}
+
+
+/* =========================================================
+   PRIVACY
+========================================================= */
+
+.privacy-section {
+
+    padding:
+        0 0 75px;
+}
+
+.privacy-box {
+
+    display:
+        flex;
+
+    gap:
+        20px;
+
+    padding:
+        30px;
+
+    background:
+        #f0fdf4;
+
+    border:
+        1px solid #bbf7d0;
+
+    border-radius:
+        13px;
+}
+
+.privacy-icon {
+
+    width:
+        48px;
+
+    height:
+        48px;
+
+    flex:
+        0 0 48px;
+
+    display:
+        grid;
+
+    place-items:
+        center;
+
+    background:
+        white;
+
+    border-radius:
+        10px;
+}
+
+.privacy-box h2 {
+
+    margin:
+        0 0 10px;
+
+    color:
+        var(--text-dark);
+
+    font-size:
+        25px;
+}
+
+.privacy-box p {
+
+    margin:
+        0 0 10px;
+
+    color:
+        var(--text);
+
+    font-size:
+        14px;
+}
+
+
+/* =========================================================
+   FAQ
+========================================================= */
+
+.faq-section {
+
+    background:
+        white;
+}
+
+.faq-section details {
+
+    margin-bottom:
+        10px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        9px;
+
+    background:
+        #fbfdff;
+}
+
+.faq-section summary {
+
+    padding:
+        17px 18px;
+
+    color:
+        var(--text-dark);
+
+    font-size:
+        14px;
+
+    font-weight:
+        700;
+
+    cursor:
+        pointer;
+
+    list-style:
+        none;
+}
+
+.faq-section summary::-webkit-details-marker {
+    display:
+        none;
+}
+
+.faq-section summary::after {
+
+    content:
+        "+";
+
+    float:
+        right;
+
+    color:
+        var(--primary);
+
+    font-size:
+        18px;
+}
+
+.faq-section details[open] summary::after {
+    content:
+        "−";
+}
+
+.faq-section details p {
+
+    margin:
+        0;
+
+    padding:
+        0 18px 18px;
+
+    color:
+        var(--text-light);
+
+    font-size:
+        14px;
+
+    line-height:
+        1.7;
+}
+
+
+/* =========================================================
+   RELATED
+========================================================= */
+
+.related-section {
+
+    background:
+        #f8fafc;
+}
+
+.related-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap:
+        18px;
+
+    margin-top:
+        30px;
+}
+
+.related-grid article {
+
+    padding:
+        23px;
+
+    background:
+        white;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        11px;
+}
+
+.related-grid a {
+
+    display:
+        inline-block;
+
+    margin-top:
+        15px;
+
+    color:
+        var(--primary);
+
+    text-decoration:
+        none;
+
+    font-size:
+        13px;
+
+    font-weight:
+        700;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footer {
+
+    background:
+        #172033;
+
+    color:
+        #cbd5e1;
+
+    padding:
+        60px 0 0;
+}
+
+.footer-container {
+
+    width:
+        min(1080px, calc(100% - 40px));
+
+    margin:
+        auto;
+
+    display:
+        grid;
+
+    grid-template-columns:
+        2fr 1fr 1fr 1fr;
+
+    gap:
+        45px;
+
+    padding-bottom:
+        45px;
+}
+
+.footer-logo {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        9px;
+
+    color:
+        white;
+
+    text-decoration:
+        none;
+
+    font-weight:
+        750;
+
+    font-size:
+        18px;
+}
+
+.footer-about p {
+
+    max-width:
+        350px;
+
+    color:
+        #94a3b8;
+
+    font-size:
+        13px;
+
+    line-height:
+        1.7;
+}
+
+.footer-column {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    gap:
+        9px;
+}
+
+.footer-column h3 {
+
+    margin:
+        0 0 8px;
+
+    color:
+        white;
+
+    font-size:
+        14px;
+}
+
+.footer-column a {
+
+    color:
+        #94a3b8;
+
+    text-decoration:
+        none;
+
+    font-size:
+        13px;
+}
+
+.footer-column a:hover {
+
+    color:
+        white;
+}
+
+.footer-bottom {
+
+    padding:
+        18px;
+
+    border-top:
+        1px solid rgba(255,255,255,0.08);
+
+    text-align:
+        center;
+
+    color:
+        #94a3b8;
+
+    font-size:
+        12px;
+}
 
 
 /* =========================================================
    BACK TO TOP
 ========================================================= */
 
-window.addEventListener(
-    "scroll",
-    () => {
+.top-btn {
 
-        if (
-            window.scrollY >
-            500
-        ) {
+    position:
+        fixed;
 
-            topBtn.style.display =
-                "flex";
+    right:
+        20px;
 
-        } else {
+    bottom:
+        20px;
 
-            topBtn.style.display =
-                "none";
+    width:
+        42px;
 
-        }
+    height:
+        42px;
 
-    }
-);
+    display:
+        none;
 
+    align-items:
+        center;
 
-topBtn.addEventListener(
-    "click",
-    () => {
+    justify-content:
+        center;
 
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
+    border:
+        none;
 
-    }
-);
+    border-radius:
+        9px;
+
+    background:
+        var(--primary);
+
+    color:
+        white;
+
+    cursor:
+        pointer;
+
+    font-size:
+        18px;
+
+    box-shadow:
+        var(--shadow);
+}
 
 
 /* =========================================================
-   THEME
+   HIDDEN
 ========================================================= */
 
-function applyTheme(theme) {
+.hidden {
+    display:
+        none !important;
+}
 
-    /*
-     * Light design is intentionally
-     * the default.
-     *
-     * Dark mode can be added later
-     * without changing the compressor.
-     */
 
-    if (theme === "dark") {
+/* =========================================================
+   TABLET
+========================================================= */
 
-        document.body.classList.add(
-            "dark"
-        );
+@media (max-width: 950px) {
 
-        themeToggle.textContent =
-            "☀";
+    .nav-links {
+        gap:
+            14px;
+    }
 
-    } else {
+    .feature-grid,
+    .guide-grid,
+    .related-grid {
 
-        document.body.classList.remove(
-            "dark"
-        );
-
-        themeToggle.textContent =
-            "☼";
-
+        grid-template-columns:
+            repeat(2, 1fr);
     }
 
 }
 
 
-const savedTheme =
-    localStorage.getItem(
-        "theme"
-    );
+/* =========================================================
+   MOBILE
+========================================================= */
 
+@media (max-width: 760px) {
 
-if (savedTheme) {
+    .navbar {
 
-    applyTheme(
-        savedTheme
-    );
+        width:
+            calc(100% - 28px);
+
+        min-height:
+            62px;
+
+        flex-wrap:
+            wrap;
+
+        gap:
+            10px;
+    }
+
+    .mobile-menu-btn {
+
+        display:
+            block;
+
+        margin-left:
+            auto;
+    }
+
+    .theme-toggle {
+
+        order:
+            3;
+    }
+
+    .nav-links {
+
+        display:
+            none;
+
+        width:
+            100%;
+
+        order:
+            4;
+
+        flex-direction:
+            column;
+
+        align-items:
+            flex-start;
+
+        gap:
+            0;
+
+        padding:
+            8px 0 12px;
+    }
+
+    .nav-links.show {
+        display:
+            flex;
+    }
+
+    .nav-links a {
+
+        width:
+            100%;
+
+        padding:
+            10px 0;
+
+        border-bottom:
+            1px solid var(--border-light);
+    }
+
+    .nav-links a.active::after {
+        display:
+            none;
+    }
+
+    .hero-content {
+
+        padding:
+            60px 18px;
+    }
+
+    .hero h1 {
+
+        font-size:
+            38px;
+    }
+
+    .hero p {
+
+        font-size:
+            15px;
+    }
+
+    .content-container {
+
+        width:
+            calc(100% - 30px);
+    }
+
+    .compressor-card {
+
+        width:
+            calc(100% - 24px);
+
+        padding:
+            22px 16px;
+    }
+
+    .settings-grid,
+    .preview-grid,
+    .use-grid {
+
+        grid-template-columns:
+            1fr;
+    }
+
+    .stats-grid {
+
+        grid-template-columns:
+            1fr;
+    }
+
+    .feature-grid,
+    .guide-grid,
+    .related-grid {
+
+        grid-template-columns:
+            1fr;
+    }
+
+    .footer-container {
+
+        grid-template-columns:
+            1fr 1fr;
+
+        gap:
+            30px;
+    }
+
+    .privacy-box {
+
+        flex-direction:
+            column;
+    }
 
 }
 
 
 /* =========================================================
-   THEME BUTTON
+   SMALL MOBILE
 ========================================================= */
 
-themeToggle.addEventListener(
-    "click",
-    () => {
+@media (max-width: 480px) {
 
-        /*
-         * Since this version is designed
-         * around a light professional UI,
-         * keep the button ready for a future
-         * dark theme implementation.
-         */
+    .logo {
 
-        const dark =
-            document.body.classList.contains(
-                "dark"
-            );
-
-
-        const theme =
-            dark
-                ? "light"
-                : "dark";
-
-
-        localStorage.setItem(
-            "theme",
-            theme
-        );
-
-
-        applyTheme(
-            theme
-        );
-
-    }
-);
-
-
-/* =========================================================
-   CLEAN OBJECT URLS
-========================================================= */
-
-function revokeObjectUrls() {
-
-    if (originalObjectUrl) {
-
-        URL.revokeObjectURL(
-            originalObjectUrl
-        );
-
-        originalObjectUrl =
-            null;
-
+        font-size:
+            16px;
     }
 
+    .logo-icon {
 
-    if (compressedObjectUrl) {
+        width:
+            27px;
 
-        URL.revokeObjectURL(
-            compressedObjectUrl
-        );
+        height:
+            27px;
+    }
 
-        compressedObjectUrl =
-            null;
+    .hero h1 {
 
+        font-size:
+            32px;
+
+        letter-spacing:
+            -0.8px;
+    }
+
+    .hero-points {
+
+        flex-direction:
+            column;
+
+        align-items:
+            center;
+    }
+
+    .drop-area {
+
+        min-height:
+            260px;
+
+        padding:
+            25px 12px;
+    }
+
+    .step-heading h2 {
+
+        font-size:
+            22px;
+    }
+
+    .settings-card {
+
+        padding:
+            19px 14px;
+    }
+
+    .preview-area {
+
+        min-height:
+            220px;
+    }
+
+    .footer-container {
+
+        grid-template-columns:
+            1fr;
     }
 
 }
-
-
-window.addEventListener(
-    "beforeunload",
-    revokeObjectUrls
-);
