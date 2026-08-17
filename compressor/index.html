@@ -1,21 +1,19 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Image Compressor Online - Compress JPG, PNG & WEBP</title>
+    <title>Image Compressor Online – Compress JPG, PNG & WEBP</title>
 
     <meta name="description"
-        content="Compress and resize JPG, PNG and WEBP images in your browser. Choose image quality, dimensions and an optional target file size, then preview and download the result.">
+        content="Free online image compressor for JPG, PNG and WEBP. Reduce image file size, resize dimensions, choose quality and preview the result before downloading.">
 
     <meta name="robots" content="index,follow">
 
     <meta name="author" content="Image Compressor Pro">
-
-    <meta name="theme-color" content="#2563eb">
 
     <link rel="canonical"
         href="https://imagecompressorpro.in/compressor/">
@@ -24,16 +22,17 @@
         type="image/png"
         href="../favicon.png">
 
+    <meta name="theme-color" content="#2563eb">
+
     <!-- Open Graph -->
 
-    <meta property="og:type"
-        content="website">
+    <meta property="og:type" content="website">
 
     <meta property="og:title"
-        content="Image Compressor Online - JPG, PNG & WEBP">
+        content="Image Compressor Online – JPG, PNG & WEBP">
 
     <meta property="og:description"
-        content="Compress and resize common image formats using adjustable quality, dimensions and file-size settings.">
+        content="Compress and resize images online with adjustable quality, dimensions and output format.">
 
     <meta property="og:url"
         content="https://imagecompressorpro.in/compressor/">
@@ -50,7 +49,7 @@
 
     <link rel="stylesheet" href="style.css">
 
-    <!-- WebApplication structured data -->
+    <!-- WebApplication Schema -->
 
     <script type="application/ld+json">
     {
@@ -73,30 +72,28 @@
 
 <body>
 
-<!-- =========================
+<!-- ==================================================
      NAVIGATION
-========================= -->
+================================================== -->
 
 <nav class="navbar">
 
-    <a class="logo" href="../index.html">
+    <a href="../index.html" class="logo">
         📷 Image Compressor Pro
     </a>
 
     <button
-        class="mobile-menu-btn"
         id="mobileMenuBtn"
+        class="mobile-menu-btn"
         type="button"
-        aria-label="Open navigation">
+        aria-label="Open menu">
         ☰
     </button>
 
     <ul class="nav-links" id="navLinks">
 
         <li>
-            <a href="../index.html">
-                Home
-            </a>
+            <a href="../index.html">Home</a>
         </li>
 
         <li>
@@ -129,18 +126,12 @@
             </a>
         </li>
 
-        <li>
-            <a href="../privacy.html">
-                Privacy
-            </a>
-        </li>
-
     </ul>
 
     <button
-        type="button"
         id="themeToggle"
         class="theme-toggle"
+        type="button"
         aria-label="Toggle dark mode">
         🌙
     </button>
@@ -148,32 +139,37 @@
 </nav>
 
 
-<!-- =========================
-     PAGE HEADER
-========================= -->
+<!-- ==================================================
+     HERO
+================================================== -->
 
-<header class="page-header">
+<header class="hero">
 
-    <div class="header-content">
+    <div class="hero-inner">
 
-        <span class="eyebrow">
-            IMAGE OPTIMIZATION TOOL
+        <span class="hero-badge">
+            FREE ONLINE IMAGE TOOL
         </span>
 
         <h1>
-            Image Compressor Online
+            Compress Images Online Without Installing Software
         </h1>
 
         <p>
-            Compress and resize JPG, PNG and WEBP images with controls
-            for quality, dimensions and target file size.
+            Reduce the file size of JPG, PNG and WEBP images,
+            resize oversized pictures and preview the result
+            before downloading.
         </p>
 
-        <div class="header-points">
+        <div class="hero-benefits">
 
-            <span>✓ Browser-based processing</span>
-            <span>✓ Preview before download</span>
-            <span>✓ No account required</span>
+            <span>✓ JPG / PNG / WEBP</span>
+
+            <span>✓ Adjustable quality</span>
+
+            <span>✓ Resize dimensions</span>
+
+            <span>✓ Preview result</span>
 
         </div>
 
@@ -182,35 +178,37 @@
 </header>
 
 
-<!-- =========================
-     INTRODUCTION
-========================= -->
-
 <main>
 
-<section class="intro-section">
 
-    <div class="content-width">
+<!-- ==================================================
+     INTRO
+================================================== -->
 
-        <div class="section-label">
+<section class="intro">
+
+    <div class="container">
+
+        <span class="section-label">
             IMAGE COMPRESSION
-        </div>
+        </span>
 
         <h2>
-            Reduce Image File Size With More Control
+            What Does Image Compression Do?
         </h2>
 
         <p>
-            Large images can take longer to upload, share and store.
-            This tool lets you adjust image quality and maximum dimensions
-            before creating a compressed copy.
+            Image compression reduces the amount of data needed to
+            store an image. A smaller image can be easier to upload,
+            share and store, particularly when a website or application
+            has a file-size limit.
         </p>
 
         <p>
-            You can also enter a target file size when you are preparing
-            an image for a website, application form, email or another
-            service with a file-size restriction. Because every image is
-            different, the final size can vary from the target.
+            The amount of reduction depends on the original image,
+            dimensions, format and compression settings. A photograph
+            with many details behaves differently from a simple logo
+            or screenshot.
         </p>
 
     </div>
@@ -218,34 +216,30 @@
 </section>
 
 
-<!-- =========================
+<!-- ==================================================
      TOOL
-========================= -->
+================================================== -->
 
 <section class="tool-section">
 
     <div class="tool-container">
 
-        <div class="tool-heading">
+        <div class="tool-title">
 
-            <div>
-                <span class="section-label">
-                    STEP 1
-                </span>
+            <span class="section-label">
+                STEP 1
+            </span>
 
-                <h2>
-                    Select an Image
-                </h2>
+            <h2>
+                Upload Your Image
+            </h2>
 
-                <p>
-                    Choose a JPG, PNG or WEBP image from your device.
-                </p>
-            </div>
+            <p>
+                Select a JPG, PNG or WEBP image from your device.
+            </p>
 
         </div>
 
-
-        <!-- Upload Area -->
 
         <div
             id="dropArea"
@@ -262,24 +256,22 @@
             </div>
 
             <h3>
-                Drag & Drop Your Image
+                Drag & Drop Your Image Here
             </h3>
 
             <p>
-                or choose a file from your device
+                or select an image from your device
             </p>
 
             <button
                 type="button"
                 id="chooseBtn"
                 class="primary-btn">
-
                 Choose Image
-
             </button>
 
             <small>
-                JPG, JPEG, PNG and WEBP
+                Supported: JPG, JPEG, PNG and WEBP
             </small>
 
         </div>
@@ -298,7 +290,7 @@
             <div class="file-details">
 
                 <strong id="fileName">
-                    No image selected
+                    Image
                 </strong>
 
                 <span id="fileOriginalInfo">
@@ -308,12 +300,10 @@
             </div>
 
             <button
-                type="button"
                 id="removeFileBtn"
+                type="button"
                 class="remove-btn">
-
                 Remove
-
             </button>
 
         </div>
@@ -323,26 +313,25 @@
 
         <div class="settings-card">
 
-            <div class="tool-heading">
+            <div class="tool-title">
 
-                <div>
+                <span class="section-label">
+                    STEP 2
+                </span>
 
-                    <span class="section-label">
-                        STEP 2
-                    </span>
+                <h2>
+                    Choose Compression Settings
+                </h2>
 
-                    <h2>
-                        Compression Settings
-                    </h2>
-
-                </div>
+                <p>
+                    Adjust the settings according to your purpose.
+                </p>
 
             </div>
 
 
             <div class="settings-grid">
 
-                <!-- Quality -->
 
                 <div class="setting">
 
@@ -366,14 +355,13 @@
                     </div>
 
                     <small>
-                        Higher values generally preserve more visual detail
-                        but may create a larger file.
+                        Lower quality can produce a smaller file,
+                        while higher quality generally preserves
+                        more visual detail.
                     </small>
 
                 </div>
 
-
-                <!-- Width -->
 
                 <div class="setting">
 
@@ -388,13 +376,12 @@
                         min="1">
 
                     <small>
-                        The image will be reduced if it is wider than this value.
+                        Images wider than this value are resized
+                        while maintaining their aspect ratio.
                     </small>
 
                 </div>
 
-
-                <!-- Height -->
 
                 <div class="setting">
 
@@ -409,13 +396,12 @@
                         min="1">
 
                     <small>
-                        The image will be reduced if it is taller than this value.
+                        Images taller than this value are resized
+                        while maintaining their aspect ratio.
                     </small>
 
                 </div>
 
-
-                <!-- Target -->
 
                 <div class="setting">
 
@@ -423,7 +409,7 @@
                         Target File Size
                     </label>
 
-                    <div class="input-with-unit">
+                    <div class="unit-input">
 
                         <input
                             type="number"
@@ -437,13 +423,12 @@
                     </div>
 
                     <small>
-                        This is a target rather than a guaranteed exact size.
+                        This is an approximate target. The final size
+                        depends on the image and output format.
                     </small>
 
                 </div>
 
-
-                <!-- Format -->
 
                 <div class="setting">
 
@@ -468,8 +453,8 @@
                     </select>
 
                     <small>
-                        JPG and WEBP usually provide better size reduction
-                        for photographs.
+                        JPG and WEBP can be useful when reducing
+                        photograph file sizes.
                     </small>
 
                 </div>
@@ -478,9 +463,9 @@
 
 
             <button
-                type="button"
                 id="compressBtn"
-                class="compress-btn">
+                class="compress-btn"
+                type="button">
 
                 Compress Image
 
@@ -509,20 +494,21 @@
         </div>
 
 
-        <!-- RESULTS -->
+        <!-- RESULT -->
 
-        <div class="result-heading">
+        <div class="result-section">
 
             <span class="section-label">
                 STEP 3
             </span>
 
             <h2>
-                Compare Your Result
+                Review Your Compressed Image
             </h2>
 
             <p>
-                Check the file size and preview before downloading.
+                Compare the original and compressed versions
+                before downloading.
             </p>
 
         </div>
@@ -542,6 +528,7 @@
 
             </div>
 
+
             <div class="stat-card">
 
                 <span>
@@ -553,6 +540,7 @@
                 </strong>
 
             </div>
+
 
             <div class="stat-card">
 
@@ -569,14 +557,12 @@
         </div>
 
 
-        <!-- PREVIEW -->
-
         <div class="preview">
 
             <div class="preview-card">
 
                 <div class="preview-title">
-                    Original
+                    Original Image
                 </div>
 
                 <div class="preview-image">
@@ -593,7 +579,7 @@
             <div class="preview-card">
 
                 <div class="preview-title">
-                    Compressed
+                    Compressed Image
                 </div>
 
                 <div class="preview-image">
@@ -623,101 +609,19 @@
 </section>
 
 
-<!-- =========================
-     WHY THIS TOOL
-========================= -->
+<!-- ==================================================
+     ADVERTISEMENT SPACE
+================================================== -->
 
-<section class="information-section">
+<section class="ad-section">
 
-    <div class="content-width">
+    <div class="container">
 
-        <span class="section-label">
-            ABOUT THE TOOL
-        </span>
+        <div class="ad-placeholder">
 
-        <h2>
-            What Image Compressor Pro Does
-        </h2>
-
-        <p>
-            Image Compressor Pro is designed for people who need a smaller
-            image file without installing desktop software. The tool uses
-            your browser to load the selected image, resize it when needed,
-            and create a new compressed image based on your selected settings.
-        </p>
-
-        <div class="info-grid">
-
-            <article class="info-card">
-
-                <div class="info-icon">
-                    ⚙️
-                </div>
-
-                <h3>
-                    Adjustable Quality
-                </h3>
-
-                <p>
-                    Change the quality level to find a balance between
-                    visual appearance and file size.
-                </p>
-
-            </article>
-
-
-            <article class="info-card">
-
-                <div class="info-icon">
-                    📐
-                </div>
-
-                <h3>
-                    Image Resizing
-                </h3>
-
-                <p>
-                    Set maximum width and height to reduce oversized
-                    images before compression.
-                </p>
-
-            </article>
-
-
-            <article class="info-card">
-
-                <div class="info-icon">
-                    🎯
-                </div>
-
-                <h3>
-                    Target Size
-                </h3>
-
-                <p>
-                    Set a target in KB when an upload service has a
-                    file-size requirement.
-                </p>
-
-            </article>
-
-
-            <article class="info-card">
-
-                <div class="info-icon">
-                    👁️
-                </div>
-
-                <h3>
-                    Preview Before Download
-                </h3>
-
-                <p>
-                    Compare the original and compressed images before
-                    saving the result.
-                </p>
-
-            </article>
+            <span>
+                Advertisement
+            </span>
 
         </div>
 
@@ -726,13 +630,208 @@
 </section>
 
 
-<!-- =========================
+<!-- ==================================================
+     DETAILED CONTENT
+================================================== -->
+
+<section class="content-section">
+
+    <div class="container">
+
+        <span class="section-label">
+            COMPLETE GUIDE
+        </span>
+
+        <h2>
+            How to Choose the Right Image Compression Settings
+        </h2>
+
+        <p>
+            The best compression settings depend on what you intend
+            to do with the image. There is no universal quality value
+            that produces the best result for every image.
+        </p>
+
+
+        <div class="content-block">
+
+            <h3>
+                If you are compressing a photograph
+            </h3>
+
+            <p>
+                Photographs usually contain many colours and fine
+                details. JPG or WEBP can be useful choices when the
+                main objective is reducing file size while keeping
+                the image visually acceptable.
+            </p>
+
+            <p>
+                Start with a relatively high quality value and compare
+                the preview. If the file is still too large, gradually
+                reduce the quality or dimensions.
+            </p>
+
+        </div>
+
+
+        <div class="content-block">
+
+            <h3>
+                If you are compressing a screenshot
+            </h3>
+
+            <p>
+                Screenshots often contain text, interface elements
+                and sharp edges. Excessive lossy compression can make
+                small text or high-contrast edges appear less clear.
+            </p>
+
+            <p>
+                For these images, preserving dimensions and using a
+                suitable format can be more important than achieving
+                the smallest possible file.
+            </p>
+
+        </div>
+
+
+        <div class="content-block">
+
+            <h3>
+                If you need an image below a specific file size
+            </h3>
+
+            <p>
+                Some application forms and websites specify limits
+                such as 50KB, 100KB or 200KB. Enter the desired size
+                as a target and check the resulting file after
+                compression.
+            </p>
+
+            <p>
+                A target size cannot always be reached without changing
+                dimensions or reducing visual quality because the final
+                encoded size depends on the contents of the image.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ==================================================
+     FORMAT GUIDE
+================================================== -->
+
+<section class="format-section">
+
+    <div class="container">
+
+        <span class="section-label">
+            FORMAT GUIDE
+        </span>
+
+        <h2>
+            JPG vs PNG vs WEBP
+        </h2>
+
+        <div class="format-table-wrapper">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Format
+                        </th>
+
+                        <th>
+                            Good For
+                        </th>
+
+                        <th>
+                            Main Consideration
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+
+                        <td>
+                            JPG
+                        </td>
+
+                        <td>
+                            Photographs
+                        </td>
+
+                        <td>
+                            Lossy compression can reduce file size,
+                            but excessive compression can reduce detail.
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            PNG
+                        </td>
+
+                        <td>
+                            Graphics, screenshots and transparency
+                        </td>
+
+                        <td>
+                            Can produce larger files for photographs.
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            WEBP
+                        </td>
+
+                        <td>
+                            Many modern web images
+                        </td>
+
+                        <td>
+                            Browser and application support should be
+                            considered before choosing it.
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ==================================================
      HOW IT WORKS
-========================= -->
+================================================== -->
 
 <section class="how-section">
 
-    <div class="content-width">
+    <div class="container">
 
         <span class="section-label">
             HOW IT WORKS
@@ -744,73 +843,64 @@
 
         <div class="steps">
 
-            <article class="step">
+            <article>
 
-                <span class="step-number">
-                    1
-                </span>
+                <span>1</span>
 
                 <h3>
-                    Select
+                    Select an image
                 </h3>
 
                 <p>
-                    Select a supported image from your device or drag it
-                    into the upload area.
+                    Upload a supported JPG, PNG or WEBP image.
                 </p>
 
             </article>
 
 
-            <article class="step">
+            <article>
 
-                <span class="step-number">
-                    2
-                </span>
+                <span>2</span>
 
                 <h3>
-                    Configure
+                    Set your preferences
                 </h3>
 
                 <p>
-                    Choose quality, maximum dimensions, output format
-                    and an optional target file size.
+                    Choose quality, dimensions, format and an
+                    approximate target size.
                 </p>
 
             </article>
 
 
-            <article class="step">
+            <article>
 
-                <span class="step-number">
-                    3
-                </span>
+                <span>3</span>
 
                 <h3>
                     Compress
                 </h3>
 
                 <p>
-                    Start the tool and allow your browser to create
-                    the compressed image.
+                    The browser creates a new image using the
+                    selected settings.
                 </p>
 
             </article>
 
 
-            <article class="step">
+            <article>
 
-                <span class="step-number">
-                    4
-                </span>
+                <span>4</span>
 
                 <h3>
-                    Review & Download
+                    Compare and download
                 </h3>
 
                 <p>
-                    Compare the result and download the compressed
-                    version if it meets your requirements.
+                    Review the file size and visual result before
+                    downloading the compressed image.
                 </p>
 
             </article>
@@ -822,61 +912,75 @@
 </section>
 
 
-<!-- =========================
-     FORMATS
-========================= -->
+<!-- ==================================================
+     PRACTICAL USE CASES
+================================================== -->
 
-<section class="formats-section">
+<section class="use-section">
 
-    <div class="content-width">
+    <div class="container">
 
         <span class="section-label">
-            SUPPORTED FORMATS
+            COMMON USE CASES
         </span>
 
         <h2>
-            JPG, PNG and WEBP
+            When Image Compression Can Be Useful
         </h2>
 
-        <div class="format-grid">
+        <div class="use-grid">
 
-            <article class="format-card">
+            <article>
 
                 <h3>
-                    JPG / JPEG
+                    Website images
                 </h3>
 
                 <p>
-                    A common choice for photographs and images where
-                    smaller file sizes are important.
+                    Smaller image files can reduce the amount of data
+                    visitors need to download.
                 </p>
 
             </article>
 
 
-            <article class="format-card">
+            <article>
 
                 <h3>
-                    PNG
+                    Online application forms
                 </h3>
 
                 <p>
-                    Useful for screenshots, graphics and images where
-                    lossless image storage or transparency is important.
+                    Compress an image when an application form limits
+                    the maximum upload size.
                 </p>
 
             </article>
 
 
-            <article class="format-card">
+            <article>
 
                 <h3>
-                    WEBP
+                    Email attachments
                 </h3>
 
                 <p>
-                    A modern web image format that can provide efficient
-                    file sizes while maintaining useful image quality.
+                    Reducing image dimensions and file size can make
+                    large attachments easier to share.
+                </p>
+
+            </article>
+
+
+            <article>
+
+                <h3>
+                    Social media uploads
+                </h3>
+
+                <p>
+                    Resizing very large images can make them easier
+                    to upload and store.
                 </p>
 
             </article>
@@ -888,96 +992,46 @@
 </section>
 
 
-<!-- =========================
-     PRACTICAL GUIDE
-========================= -->
-
-<section class="guide-section">
-
-    <div class="content-width narrow">
-
-        <span class="section-label">
-            PRACTICAL GUIDE
-        </span>
-
-        <h2>
-            Choosing the Right Compression Settings
-        </h2>
-
-        <p>
-            There is no single quality setting that is ideal for every
-            image. A photograph, logo, screenshot and illustration contain
-            different types of visual information.
-        </p>
-
-        <h3>
-            For photographs
-        </h3>
-
-        <p>
-            JPG or WEBP can often produce a much smaller file than an
-            uncompressed original. Start with a moderate-to-high quality
-            setting and compare the preview before downloading.
-        </p>
-
-        <h3>
-            For screenshots and graphics
-        </h3>
-
-        <p>
-            PNG may be preferable when sharp text, simple graphics or
-            transparency are important. Converting such an image to JPG
-            may introduce visible artifacts around text and edges.
-        </p>
-
-        <h3>
-            When a website specifies a maximum file size
-        </h3>
-
-        <p>
-            Enter the required size as a target and then inspect the
-            resulting file. Compression cannot guarantee one exact file
-            size for every image because image dimensions, detail and
-            format all affect the final result.
-        </p>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
+<!-- ==================================================
      PRIVACY / PROCESSING
-========================= -->
+================================================== -->
 
-<section class="privacy-info">
+<section class="processing-section">
 
-    <div class="content-width">
+    <div class="container">
 
-        <div class="privacy-box">
+        <div class="processing-box">
 
-            <div class="privacy-icon">
+            <div class="processing-icon">
                 🔒
             </div>
 
             <div>
 
+                <span class="section-label">
+                    IMAGE PROCESSING
+                </span>
+
                 <h2>
-                    How Image Processing Works
+                    How the Compressor Processes Your Image
                 </h2>
 
                 <p>
-                    The current compressor implementation uses browser
-                    APIs such as FileReader, Image and Canvas to create
-                    the compressed image. It does not require a server-side
-                    image-processing service for the compression operation.
+                    This compressor uses browser technologies such as
+                    JavaScript, Image and Canvas APIs to create the
+                    compressed image.
                 </p>
 
                 <p>
-                    Your browser and device handle the image processing.
-                    As with any browser-based application, performance can
-                    depend on the image size, available memory and browser
-                    capabilities.
+                    The compression operation itself is performed by
+                    the browser rather than requiring a server-side
+                    image-processing API.
+                </p>
+
+                <p>
+                    Processing performance can vary depending on the
+                    image dimensions, file size, available device memory
+                    and browser.
                 </p>
 
             </div>
@@ -989,32 +1043,97 @@
 </section>
 
 
-<!-- =========================
+<!-- ==================================================
      LIMITATIONS
-========================= -->
+================================================== -->
 
-<section class="faq-section">
+<section class="limitations">
 
-    <div class="content-width narrow">
+    <div class="container">
 
         <span class="section-label">
-            IMPORTANT INFORMATION
+            IMPORTANT
         </span>
 
         <h2>
             Things to Know Before Compressing
         </h2>
 
+        <div class="limitation-grid">
+
+            <article>
+
+                <h3>
+                    Compression is not always lossless
+                </h3>
+
+                <p>
+                    Depending on the format and quality setting,
+                    compression can remove some visual information.
+                </p>
+
+            </article>
+
+
+            <article>
+
+                <h3>
+                    Target size is approximate
+                </h3>
+
+                <p>
+                    A target such as 100KB is a goal rather than a
+                    guarantee because image content affects encoding.
+                </p>
+
+            </article>
+
+
+            <article>
+
+                <h3>
+                    Smaller is not always better
+                </h3>
+
+                <p>
+                    Extremely aggressive compression can make text,
+                    edges and details visibly worse.
+                </p>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ==================================================
+     FAQ
+================================================== -->
+
+<section class="faq-section">
+
+    <div class="container narrow">
+
+        <span class="section-label">
+            FAQ
+        </span>
+
+        <h2>
+            Frequently Asked Questions
+        </h2>
+
+
         <details open>
 
             <summary>
-                Will compression always make the file smaller?
+                What image formats are supported?
             </summary>
 
             <p>
-                No. The result depends on the original image, dimensions,
-                format and selected settings. Some already-optimized
-                images may not become significantly smaller.
+                The tool accepts JPG, JPEG, PNG and WEBP images.
             </p>
 
         </details>
@@ -1023,13 +1142,14 @@
         <details>
 
             <summary>
-                Can the target size be guaranteed exactly?
+                Can I compress an image to exactly 50KB?
             </summary>
 
             <p>
-                No. The target size is an approximate goal. The final
-                file size depends on image content, dimensions, output
-                format and browser encoding.
+                The tool uses the requested value as a target.
+                The final file may be above or below the target
+                because encoded size depends on image content,
+                dimensions and format.
             </p>
 
         </details>
@@ -1038,13 +1158,13 @@
         <details>
 
             <summary>
-                Does compression reduce image quality?
+                Does resizing reduce image quality?
             </summary>
 
             <p>
-                Lossy formats and lower quality settings can reduce
-                visual detail. Always use the preview to decide whether
-                the result is suitable for your purpose.
+                Reducing dimensions removes pixels from the image.
+                Whether the change is noticeable depends on the
+                original dimensions and how the image is used.
             </p>
 
         </details>
@@ -1053,14 +1173,29 @@
         <details>
 
             <summary>
-                Which format should I choose?
+                Which format is best for photographs?
             </summary>
 
             <p>
-                JPG is commonly useful for photographs. PNG can be useful
-                for graphics and transparency. WEBP can be a good option
-                for many web images. The best choice depends on the
-                characteristics of your image.
+                JPG and WEBP are commonly useful for photographs
+                because they can provide substantial size reduction.
+                The appropriate choice depends on the destination
+                and required compatibility.
+            </p>
+
+        </details>
+
+
+        <details>
+
+            <summary>
+                Why is my compressed file sometimes larger?
+            </summary>
+
+            <p>
+                If the original image is already highly optimized,
+                converting it or re-encoding it can sometimes create
+                a file that is similar in size or even larger.
             </p>
 
         </details>
@@ -1070,37 +1205,38 @@
 </section>
 
 
-<!-- =========================
-     RELATED GUIDES
-========================= -->
+<!-- ==================================================
+     RELATED CONTENT
+================================================== -->
 
-<section class="guides-section">
+<section class="related-section">
 
-    <div class="content-width">
+    <div class="container">
 
         <span class="section-label">
-            LEARN MORE
+            RELATED GUIDES
         </span>
 
         <h2>
-            Image Compression Guides
+            Learn More About Image Compression
         </h2>
 
         <p>
-            Explore practical guides for common image-compression tasks.
+            Read detailed guides for specific image-compression
+            situations.
         </p>
 
-        <div class="guide-grid">
+        <div class="related-grid">
 
-            <article class="guide-card">
+            <article>
 
                 <h3>
                     How to Compress JPG Images
                 </h3>
 
                 <p>
-                    Understand JPG compression and practical ways to
-                    reduce photograph file size.
+                    Learn how JPG compression works and how to choose
+                    practical quality settings.
                 </p>
 
                 <a href="../blog/how-to-compress-jpg-images.html">
@@ -1110,15 +1246,15 @@
             </article>
 
 
-            <article class="guide-card">
+            <article>
 
                 <h3>
                     Compress Image to 50KB
                 </h3>
 
                 <p>
-                    Learn how to approach image-size requirements around
-                    50KB without assuming an exact result.
+                    Understand the practical steps involved when an
+                    application requires a small image file.
                 </p>
 
                 <a href="../blog/compress-image-to-50kb.html">
@@ -1128,15 +1264,15 @@
             </article>
 
 
-            <article class="guide-card">
+            <article>
 
                 <h3>
                     Compress Image to 100KB
                 </h3>
 
                 <p>
-                    Learn how dimensions, quality and image format affect
-                    a 100KB target.
+                    Learn how quality, dimensions and format affect
+                    a 100KB image target.
                 </p>
 
                 <a href="../blog/compress-image-to-100kb.html">
@@ -1146,15 +1282,15 @@
             </article>
 
 
-            <article class="guide-card">
+            <article>
 
                 <h3>
                     Reduce PNG Size Online
                 </h3>
 
                 <p>
-                    Learn about PNG characteristics, transparency and
-                    different approaches to reducing file size.
+                    Understand PNG characteristics and ways to reduce
+                    the size of PNG graphics.
                 </p>
 
                 <a href="../blog/reduce-png-size-online.html">
@@ -1172,90 +1308,87 @@
 </main>
 
 
-<!-- =========================
+<!-- ==================================================
      FOOTER
-========================= -->
+================================================== -->
 
 <footer class="footer">
 
     <div class="footer-container">
 
-        <div class="footer-brand">
+        <div>
 
-            <a href="../index.html">
+            <a href="../index.html" class="footer-logo">
                 📷 Image Compressor Pro
             </a>
 
             <p>
-                A browser-based image compression and resizing utility.
+                A browser-based image compression and resizing utility
+                for common image formats.
             </p>
 
         </div>
 
 
-        <div class="footer-links">
+        <div class="footer-column">
 
-            <div>
+            <h3>
+                Website
+            </h3>
 
-                <h3>
-                    Site
-                </h3>
+            <a href="../index.html">
+                Home
+            </a>
 
-                <a href="../index.html">
-                    Home
-                </a>
+            <a href="../about.html">
+                About
+            </a>
 
-                <a href="../about.html">
-                    About
-                </a>
+            <a href="../contact.html">
+                Contact
+            </a>
 
-                <a href="../contact.html">
-                    Contact
-                </a>
-
-            </div>
+        </div>
 
 
-            <div>
+        <div class="footer-column">
 
-                <h3>
-                    Information
-                </h3>
+            <h3>
+                Legal
+            </h3>
 
-                <a href="../privacy.html">
-                    Privacy Policy
-                </a>
+            <a href="../privacy.html">
+                Privacy Policy
+            </a>
 
-                <a href="../terms.html">
-                    Terms & Conditions
-                </a>
+            <a href="../terms.html">
+                Terms & Conditions
+            </a>
 
-                <a href="../disclaimer.html">
-                    Disclaimer
-                </a>
+            <a href="../disclaimer.html">
+                Disclaimer
+            </a>
 
-            </div>
+        </div>
 
 
-            <div>
+        <div class="footer-column">
 
-                <h3>
-                    Resources
-                </h3>
+            <h3>
+                Tools
+            </h3>
 
-                <a href="../blog/">
-                    Blog
-                </a>
+            <a href="index.html">
+                Image Compressor
+            </a>
 
-                <a href="index.html">
-                    Image Compressor
-                </a>
+            <a href="../resume/">
+                Resume Builder
+            </a>
 
-                <a href="../resume/">
-                    Resume Builder
-                </a>
-
-            </div>
+            <a href="../blog/">
+                Blog
+            </a>
 
         </div>
 
@@ -1264,9 +1397,7 @@
 
     <div class="footer-bottom">
 
-        <p>
-            © 2026 Image Compressor Pro. All Rights Reserved.
-        </p>
+        © 2026 Image Compressor Pro. All Rights Reserved.
 
     </div>
 
@@ -1277,9 +1408,7 @@
     id="topBtn"
     type="button"
     aria-label="Back to top">
-
     ↑
-
 </button>
 
 
@@ -1287,4 +1416,3 @@
 
 </body>
 </html>
-
