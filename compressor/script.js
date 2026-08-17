@@ -1,12 +1,12 @@
 /* =========================================================
    IMAGE COMPRESSOR PRO
-   Clean + Reliable Image Compression
+   CLEAN + CORRECTED JAVASCRIPT
 ========================================================= */
 
 
-/* =========================================================
+/* =========================
    ELEMENTS
-========================================================= */
+========================= */
 
 const imageInput =
     document.getElementById("imageInput");
@@ -74,15 +74,6 @@ const progressText =
 const downloadBtn =
     document.getElementById("downloadBtn");
 
-const resultContent =
-    document.getElementById("resultContent");
-
-const emptyResult =
-    document.getElementById("emptyResult");
-
-const themeToggle =
-    document.getElementById("themeToggle");
-
 const mobileMenuBtn =
     document.getElementById("mobileMenuBtn");
 
@@ -93,9 +84,9 @@ const topBtn =
     document.getElementById("topBtn");
 
 
-/* =========================================================
-   STATE
-========================================================= */
+/* =========================
+   VARIABLES
+========================= */
 
 let selectedFile = null;
 
@@ -110,85 +101,70 @@ let compressedObjectUrl = null;
    FILE SELECTION
 ========================================================= */
 
-chooseBtn.addEventListener(
-    "click",
-    () => {
+chooseBtn.addEventListener("click", () => {
 
-        imageInput.click();
+    imageInput.click();
 
-    }
-);
+});
 
 
-imageInput.addEventListener(
-    "change",
-    event => {
+imageInput.addEventListener("change", event => {
 
-        const file =
-            event.target.files[0];
+    const file =
+        event.target.files[0];
 
-        if (file) {
+    if (file) {
 
-            loadSelectedImage(file);
-
-        }
+        loadImage(file);
 
     }
-);
+
+});
 
 
 /* =========================================================
    DRAG & DROP
 ========================================================= */
 
-dropArea.addEventListener(
-    "dragover",
-    event => {
+dropArea.addEventListener("dragover", event => {
 
-        event.preventDefault();
+    event.preventDefault();
 
-        dropArea.classList.add("dragover");
+    dropArea.classList.add("dragover");
 
-    }
-);
+});
 
 
-dropArea.addEventListener(
-    "dragleave",
-    () => {
+dropArea.addEventListener("dragleave", () => {
 
-        dropArea.classList.remove("dragover");
+    dropArea.classList.remove("dragover");
 
-    }
-);
+});
 
 
-dropArea.addEventListener(
-    "drop",
-    event => {
+dropArea.addEventListener("drop", event => {
 
-        event.preventDefault();
+    event.preventDefault();
 
-        dropArea.classList.remove("dragover");
+    dropArea.classList.remove("dragover");
 
-        const file =
-            event.dataTransfer.files[0];
+    const file =
+        event.dataTransfer.files[0];
 
-        if (file) {
+    if (file) {
 
-            loadSelectedImage(file);
-
-        }
+        loadImage(file);
 
     }
-);
+
+});
 
 
 /* =========================================================
-   LOAD SELECTED IMAGE
+   LOAD IMAGE
 ========================================================= */
 
-function loadSelectedImage(file) {
+function loadImage(file) {
 
     const allowedTypes = [
         "image/jpeg",
@@ -204,23 +180,14 @@ function loadSelectedImage(file) {
         );
 
         return;
-    }
 
-
-    if (file.size === 0) {
-
-        alert(
-            "The selected image is empty or invalid."
-        );
-
-        return;
     }
 
 
     selectedFile = file;
 
 
-    clearObjectUrls();
+    revokeObjectUrls();
 
 
     originalObjectUrl =
@@ -231,9 +198,7 @@ function loadSelectedImage(file) {
         originalObjectUrl;
 
 
-    compressedPreview.removeAttribute(
-        "src"
-    );
+    compressedPreview.removeAttribute("src");
 
 
     fileName.textContent =
@@ -244,9 +209,7 @@ function loadSelectedImage(file) {
         `${formatSize(file.size)} • ${getExtension(file.type)}`;
 
 
-    fileInfo.classList.remove(
-        "hidden"
-    );
+    fileInfo.classList.remove("hidden");
 
 
     originalSize.textContent =
@@ -264,24 +227,10 @@ function loadSelectedImage(file) {
     compressedBlob = null;
 
 
-    resultContent.classList.add(
-        "hidden"
-    );
+    downloadBtn.classList.remove("active");
 
 
-    emptyResult.classList.remove(
-        "hidden"
-    );
-
-
-    downloadBtn.classList.remove(
-        "active"
-    );
-
-
-    downloadBtn.removeAttribute(
-        "href"
-    );
+    downloadBtn.removeAttribute("href");
 
 
     progressBar.style.width =
@@ -290,6 +239,12 @@ function loadSelectedImage(file) {
 
     progressText.textContent =
         "Ready to compress";
+
+
+    /* Reset preview placeholder */
+
+    updatePreviewPlaceholders();
+
 }
 
 
@@ -310,25 +265,18 @@ function resetTool() {
     compressedBlob = null;
 
 
-    clearObjectUrls();
+    revokeObjectUrls();
 
 
     imageInput.value = "";
 
 
-    originalPreview.removeAttribute(
-        "src"
-    );
+    originalPreview.removeAttribute("src");
+
+    compressedPreview.removeAttribute("src");
 
 
-    compressedPreview.removeAttribute(
-        "src"
-    );
-
-
-    fileInfo.classList.add(
-        "hidden"
-    );
+    fileInfo.classList.add("hidden");
 
 
     originalSize.textContent =
@@ -343,24 +291,9 @@ function resetTool() {
         "--";
 
 
-    resultContent.classList.add(
-        "hidden"
-    );
+    downloadBtn.classList.remove("active");
 
-
-    emptyResult.classList.remove(
-        "hidden"
-    );
-
-
-    downloadBtn.classList.remove(
-        "active"
-    );
-
-
-    downloadBtn.removeAttribute(
-        "href"
-    );
+    downloadBtn.removeAttribute("href");
 
 
     progressBar.style.width =
@@ -370,26 +303,26 @@ function resetTool() {
     progressText.textContent =
         "Ready";
 
+
+    updatePreviewPlaceholders();
+
 }
 
 
 /* =========================================================
-   QUALITY SLIDER
+   QUALITY
 ========================================================= */
 
-quality.addEventListener(
-    "input",
-    () => {
+quality.addEventListener("input", () => {
 
-        qualityValue.textContent =
-            `${quality.value}%`;
+    qualityValue.textContent =
+        `${quality.value}%`;
 
-    }
-);
+});
 
 
 /* =========================================================
-   FILE SIZE FORMATTER
+   FORMAT SIZE
 ========================================================= */
 
 function formatSize(bytes) {
@@ -417,23 +350,11 @@ function formatSize(bytes) {
     }
 
 
-    if (bytes < 1024 * 1024 * 1024) {
-
-        return `${(
-            bytes /
-            1024 /
-            1024
-        ).toFixed(2)} MB`;
-
-    }
-
-
     return `${(
         bytes /
         1024 /
-        1024 /
         1024
-    ).toFixed(2)} GB`;
+    ).toFixed(2)} MB`;
 
 }
 
@@ -474,6 +395,7 @@ function loadImageElement(file) {
 
             const url =
                 URL.createObjectURL(file);
+
 
             const img =
                 new Image();
@@ -519,27 +441,21 @@ function canvasToBlob(
     qualityValue
 ) {
 
-    return new Promise(
-        resolve => {
+    return new Promise(resolve => {
 
-            canvas.toBlob(
-                blob => {
+        canvas.toBlob(
+            blob => resolve(blob),
+            type,
+            qualityValue
+        );
 
-                    resolve(blob);
-
-                },
-                type,
-                qualityValue
-            );
-
-        }
-    );
+    });
 
 }
 
 
 /* =========================================================
-   DIMENSIONS
+   CALCULATE DIMENSIONS
 ========================================================= */
 
 function calculateDimensions(
@@ -593,106 +509,15 @@ function calculateDimensions(
 
         width: Math.max(
             1,
-            Math.round(
-                width * ratio
-            )
+            Math.round(width * ratio)
         ),
 
         height: Math.max(
             1,
-            Math.round(
-                height * ratio
-            )
+            Math.round(height * ratio)
         )
 
     };
-
-}
-
-
-/* =========================================================
-   CREATE CANVAS
-========================================================= */
-
-function createCanvas(
-    img,
-    dimensions,
-    format
-) {
-
-    const canvas =
-        document.createElement(
-            "canvas"
-        );
-
-
-    canvas.width =
-        dimensions.width;
-
-
-    canvas.height =
-        dimensions.height;
-
-
-    const ctx =
-        canvas.getContext(
-            "2d",
-            {
-                alpha: true
-            }
-        );
-
-
-    if (!ctx) {
-
-        throw new Error(
-            "Canvas is not supported by this browser."
-        );
-
-    }
-
-
-    /*
-     * JPG does not support transparency.
-     * Use a white background.
-     */
-
-    if (
-        format === "image/jpeg"
-    ) {
-
-        ctx.fillStyle =
-            "#ffffff";
-
-
-        ctx.fillRect(
-            0,
-            0,
-            canvas.width,
-            canvas.height
-        );
-
-    }
-
-
-    ctx.imageSmoothingEnabled =
-        true;
-
-
-    ctx.imageSmoothingQuality =
-        "high";
-
-
-    ctx.drawImage(
-        img,
-        0,
-        0,
-        canvas.width,
-        canvas.height
-    );
-
-
-    return canvas;
 
 }
 
@@ -716,21 +541,20 @@ async function compressImage() {
         );
 
         return;
+
     }
 
 
     try {
 
-        compressBtn.disabled =
-            true;
-
+        compressBtn.disabled = true;
 
         compressBtn.textContent =
             "Compressing...";
 
 
         setProgress(
-            5,
+            10,
             "Reading image..."
         );
 
@@ -742,42 +566,85 @@ async function compressImage() {
 
 
         setProgress(
-            20,
+            25,
             "Preparing image..."
         );
 
 
-        const width =
-            img.naturalWidth ||
-            img.width;
-
-
-        const height =
-            img.naturalHeight ||
-            img.height;
-
-
         const dimensions =
             calculateDimensions(
-                width,
-                height
+                img.naturalWidth ||
+                img.width,
+
+                img.naturalHeight ||
+                img.height
             );
+
+
+        const canvas =
+            document.createElement(
+                "canvas"
+            );
+
+
+        canvas.width =
+            dimensions.width;
+
+
+        canvas.height =
+            dimensions.height;
+
+
+        const ctx =
+            canvas.getContext(
+                "2d"
+            );
+
+
+        if (!ctx) {
+
+            throw new Error(
+                "Canvas is not supported by this browser."
+            );
+
+        }
 
 
         const format =
             outputFormat.value;
 
 
-        const canvas =
-            createCanvas(
-                img,
-                dimensions,
-                format
+        /* JPG background */
+
+        if (
+            format === "image/jpeg"
+        ) {
+
+            ctx.fillStyle =
+                "#ffffff";
+
+
+            ctx.fillRect(
+                0,
+                0,
+                canvas.width,
+                canvas.height
             );
+
+        }
+
+
+        ctx.drawImage(
+            img,
+            0,
+            0,
+            canvas.width,
+            canvas.height
+        );
 
 
         setProgress(
-            35,
+            45,
             "Compressing image..."
         );
 
@@ -816,71 +683,41 @@ async function compressImage() {
 
 
         /*
-         * JPG and WEBP support quality control.
-         *
-         * Try multiple quality levels rather than
-         * changing the user's dimensions immediately.
+         * PNG does not support
+         * normal quality reduction
+         * through canvas.toBlob().
          */
 
         if (
-            (
-                format === "image/jpeg" ||
-                format === "image/webp"
-            ) &&
-            blob.size > targetBytes
+            format === "image/jpeg" ||
+            format === "image/webp"
         ) {
 
-            const qualitySteps = [
-                0.75,
-                0.70,
-                0.65,
-                0.60,
-                0.55,
-                0.50,
-                0.45,
-                0.40,
-                0.35,
-                0.30,
-                0.25,
-                0.20,
-                0.15,
-                0.10
-            ];
+            let attempts = 0;
 
 
-            for (
-                const nextQuality
-                of qualitySteps
+            while (
+                blob.size > targetBytes &&
+                currentQuality > 0.10 &&
+                attempts < 18
             ) {
 
-                if (
-                    nextQuality >=
-                    currentQuality
-                ) {
-
-                    continue;
-
-                }
+                attempts++;
 
 
-                currentQuality =
-                    nextQuality;
+                currentQuality -= 0.05;
 
 
                 setProgress(
                     Math.min(
                         90,
-                        40 +
-                        (
-                            (
-                                1 -
-                                currentQuality
-                            ) * 50
-                        )
+                        50 + attempts * 2
                     ),
-                    `Optimizing image: ${Math.round(
-                        currentQuality * 100
-                    )}% quality`
+                    `Optimizing quality: ${
+                        Math.round(
+                            currentQuality * 100
+                        )
+                    }%`
                 );
 
 
@@ -899,31 +736,11 @@ async function compressImage() {
                 }
 
 
-                blob =
-                    newBlob;
-
-
-                if (
-                    blob.size <=
-                    targetBytes
-                ) {
-
-                    break;
-
-                }
+                blob = newBlob;
 
             }
 
         }
-
-
-        /*
-         * PNG does not have normal lossy quality control
-         * through canvas.toBlob().
-         *
-         * Therefore we do not pretend that the target size
-         * can always be reached for PNG.
-         */
 
 
         compressedBlob =
@@ -931,7 +748,7 @@ async function compressImage() {
 
 
         setProgress(
-            94,
+            95,
             "Preparing preview..."
         );
 
@@ -955,12 +772,6 @@ async function compressImage() {
             compressedObjectUrl;
 
 
-        originalSize.textContent =
-            formatSize(
-                selectedFile.size
-            );
-
-
         compressedSize.textContent =
             formatSize(
                 blob.size
@@ -979,26 +790,17 @@ async function compressImage() {
             ) * 100;
 
 
-        if (
-            percentage > 0
-        ) {
+        if (percentage >= 0) {
 
             savedPercent.textContent =
                 `${percentage.toFixed(1)}% smaller`;
 
-        } else if (
-            percentage < 0
-        ) {
+        } else {
 
             savedPercent.textContent =
                 `${Math.abs(
                     percentage
                 ).toFixed(1)}% larger`;
-
-        } else {
-
-            savedPercent.textContent =
-                "No change";
 
         }
 
@@ -1009,32 +811,16 @@ async function compressImage() {
             );
 
 
-        const originalName =
-            getBaseFileName(
-                selectedFile.name
-            );
-
-
         downloadBtn.href =
             compressedObjectUrl;
 
 
         downloadBtn.download =
-            `${originalName}-compressed.${extension}`;
+            `compressed-image.${extension}`;
 
 
         downloadBtn.classList.add(
             "active"
-        );
-
-
-        emptyResult.classList.add(
-            "hidden"
-        );
-
-
-        resultContent.classList.remove(
-            "hidden"
         );
 
 
@@ -1044,17 +830,19 @@ async function compressImage() {
         );
 
 
-    } catch (error) {
+        updatePreviewPlaceholders();
 
-        console.error(
-            "Compression error:",
-            error
-        );
+    }
+
+
+    catch (error) {
+
+        console.error(error);
 
 
         alert(
             error.message ||
-            "Compression failed. Please try another image."
+            "Compression failed."
         );
 
 
@@ -1063,7 +851,10 @@ async function compressImage() {
             "Compression failed"
         );
 
-    } finally {
+    }
+
+
+    finally {
 
         compressBtn.disabled =
             false;
@@ -1086,18 +877,8 @@ function setProgress(
     text
 ) {
 
-    const safeValue =
-        Math.max(
-            0,
-            Math.min(
-                100,
-                value
-            )
-        );
-
-
     progressBar.style.width =
-        `${safeValue}%`;
+        `${value}%`;
 
 
     progressText.textContent =
@@ -1131,208 +912,55 @@ function getDownloadExtension(
 
 
 /* =========================================================
-   BASE FILE NAME
+   PREVIEW PLACEHOLDERS
 ========================================================= */
 
-function getBaseFileName(
-    name
-) {
+function updatePreviewPlaceholders() {
 
-    return name
-        .replace(
-            /\.[^/.]+$/,
-            ""
-        )
-        .replace(
-            /[^a-zA-Z0-9-_]/g,
-            "-"
-        )
-        .replace(
-            /-+/g,
-            "-"
-        )
-        .replace(
-            /^-|-$/g,
-            ""
-        ) || "image";
-
-}
-
-
-/* =========================================================
-   DARK MODE
-========================================================= */
-
-function applyTheme(
-    theme
-) {
-
-    if (
-        theme === "dark"
-    ) {
-
-        document.body.classList.add(
-            "dark"
+    const previewCards =
+        document.querySelectorAll(
+            ".preview-image"
         );
 
 
-        themeToggle.textContent =
-            "☀️";
+    previewCards.forEach(card => {
+
+        const img =
+            card.querySelector("img");
 
 
-        themeToggle.setAttribute(
-            "aria-label",
-            "Switch to light mode"
-        );
-
-    } else {
-
-        document.body.classList.remove(
-            "dark"
-        );
-
-
-        themeToggle.textContent =
-            "🌙";
-
-
-        themeToggle.setAttribute(
-            "aria-label",
-            "Switch to dark mode"
-        );
-
-    }
-
-}
-
-
-const savedTheme =
-    localStorage.getItem(
-        "theme"
-    );
-
-
-if (savedTheme) {
-
-    applyTheme(
-        savedTheme
-    );
-
-} else {
-
-    /*
-     * Respect the visitor's system preference
-     * on the first visit.
-     */
-
-    const prefersDark =
-        window.matchMedia &&
-        window.matchMedia(
-            "(prefers-color-scheme: dark)"
-        ).matches;
-
-
-    applyTheme(
-        prefersDark
-            ? "dark"
-            : "light"
-    );
-
-}
-
-
-themeToggle.addEventListener(
-    "click",
-    () => {
-
-        const isDark =
-            document.body.classList.contains(
-                "dark"
+        const placeholder =
+            card.querySelector(
+                ".empty-preview"
             );
 
 
-        const newTheme =
-            isDark
-                ? "light"
-                : "dark";
+        if (
+            img &&
+            img.getAttribute("src")
+        ) {
 
+            if (placeholder) {
 
-        localStorage.setItem(
-            "theme",
-            newTheme
-        );
+                placeholder.style.display =
+                    "none";
 
+            }
 
-        applyTheme(
-            newTheme
-        );
+        } else {
 
-    }
-);
+            if (placeholder) {
 
+                placeholder.style.display =
+                    "block";
 
-/* =========================================================
-   MOBILE MENU
-========================================================= */
-
-mobileMenuBtn.addEventListener(
-    "click",
-    () => {
-
-        const isOpen =
-            navLinks.classList.toggle(
-                "show"
-            );
-
-
-        mobileMenuBtn.setAttribute(
-            "aria-expanded",
-            String(isOpen)
-        );
-
-
-        document.body.classList.toggle(
-            "menu-open",
-            isOpen
-        );
-
-    }
-);
-
-
-/* =========================================================
-   CLOSE MOBILE MENU WHEN LINK IS CLICKED
-========================================================= */
-
-navLinks
-    .querySelectorAll("a")
-    .forEach(
-        link => {
-
-            link.addEventListener(
-                "click",
-                () => {
-
-                    navLinks.classList.remove(
-                        "show"
-                    );
-
-
-                    mobileMenuBtn.setAttribute(
-                        "aria-expanded",
-                        "false"
-                    );
-
-
-                    document.body.classList.remove(
-                        "menu-open"
-                    );
-
-                }
-            );
+            }
 
         }
-    );
+
+    });
+
+}
 
 
 /* =========================================================
@@ -1366,11 +994,8 @@ topBtn.addEventListener(
     () => {
 
         window.scrollTo({
-
             top: 0,
-
             behavior: "smooth"
-
         });
 
     }
@@ -1378,37 +1003,88 @@ topBtn.addEventListener(
 
 
 /* =========================================================
+   MOBILE MENU
+========================================================= */
+
+mobileMenuBtn.addEventListener(
+    "click",
+    () => {
+
+        const isOpen =
+            navLinks.classList.toggle(
+                "show"
+            );
+
+
+        mobileMenuBtn.setAttribute(
+            "aria-expanded",
+            isOpen
+        );
+
+
+        mobileMenuBtn.setAttribute(
+            "aria-label",
+            isOpen
+                ? "Close navigation"
+                : "Open navigation"
+        );
+
+    }
+);
+
+
+/* =========================================================
+   CLOSE MOBILE MENU
+========================================================= */
+
+document.querySelectorAll(
+    ".nav-links a"
+).forEach(link => {
+
+    link.addEventListener(
+        "click",
+        () => {
+
+            navLinks.classList.remove(
+                "show"
+            );
+
+
+            mobileMenuBtn.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+
+        }
+    );
+
+});
+
+
+/* =========================================================
    CLEAN OBJECT URLS
 ========================================================= */
 
-function clearObjectUrls() {
+function revokeObjectUrls() {
 
-    if (
-        originalObjectUrl
-    ) {
+    if (originalObjectUrl) {
 
         URL.revokeObjectURL(
             originalObjectUrl
         );
 
-
-        originalObjectUrl =
-            null;
+        originalObjectUrl = null;
 
     }
 
 
-    if (
-        compressedObjectUrl
-    ) {
+    if (compressedObjectUrl) {
 
         URL.revokeObjectURL(
             compressedObjectUrl
         );
 
-
-        compressedObjectUrl =
-            null;
+        compressedObjectUrl = null;
 
     }
 
@@ -1417,20 +1093,12 @@ function clearObjectUrls() {
 
 window.addEventListener(
     "beforeunload",
-    clearObjectUrls
+    revokeObjectUrls
 );
 
 
 /* =========================================================
-   INITIAL STATE
+   INITIALIZE
 ========================================================= */
 
-qualityValue.textContent =
-    `${quality.value}%`;
-
-progressBar.style.width =
-    "0%";
-
-downloadBtn.classList.remove(
-    "active"
-);
+updatePreviewPlaceholders();
