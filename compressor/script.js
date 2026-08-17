@@ -1,318 +1,179 @@
-```javascript
-/* =========================================
+/* =====================================================
    IMAGE COMPRESSOR PRO
-   Browser-Based Image Compression
-========================================= */
+===================================================== */
 
+const imageInput = document.getElementById("imageInput");
+const chooseBtn = document.getElementById("chooseBtn");
+const dropArea = document.getElementById("dropArea");
 
-/* =========================================
-   ELEMENTS
-========================================= */
+const fileInfo = document.getElementById("fileInfo");
+const fileName = document.getElementById("fileName");
+const fileOriginalInfo = document.getElementById("fileOriginalInfo");
+const removeFileBtn = document.getElementById("removeFileBtn");
 
-const imageInput =
-    document.getElementById("imageInput");
+const quality = document.getElementById("quality");
+const qualityValue = document.getElementById("qualityValue");
 
-const chooseBtn =
-    document.getElementById("chooseBtn");
+const maxWidth = document.getElementById("maxWidth");
+const maxHeight = document.getElementById("maxHeight");
+const maxFileSize = document.getElementById("maxFileSize");
+const outputFormat = document.getElementById("outputFormat");
 
-const dropArea =
-    document.getElementById("dropArea");
+const compressBtn = document.getElementById("compressBtn");
 
-const fileInfo =
-    document.getElementById("fileInfo");
+const originalPreview = document.getElementById("originalPreview");
+const compressedPreview = document.getElementById("compressedPreview");
 
-const fileName =
-    document.getElementById("fileName");
+const originalSize = document.getElementById("originalSize");
+const compressedSize = document.getElementById("compressedSize");
+const savedPercent = document.getElementById("savedPercent");
 
-const fileOriginalInfo =
-    document.getElementById("fileOriginalInfo");
+const progressBar = document.getElementById("progressBar");
+const progressText = document.getElementById("progressText");
 
-const removeFileBtn =
-    document.getElementById("removeFileBtn");
+const downloadBtn = document.getElementById("downloadBtn");
 
-const quality =
-    document.getElementById("quality");
+const themeToggle = document.getElementById("themeToggle");
+const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+const navLinks = document.getElementById("navLinks");
 
-const qualityValue =
-    document.getElementById("qualityValue");
+const topBtn = document.getElementById("topBtn");
 
-const maxWidth =
-    document.getElementById("maxWidth");
-
-const maxHeight =
-    document.getElementById("maxHeight");
-
-const maxFileSize =
-    document.getElementById("maxFileSize");
-
-const outputFormat =
-    document.getElementById("outputFormat");
-
-const compressBtn =
-    document.getElementById("compressBtn");
-
-const originalPreview =
-    document.getElementById("originalPreview");
-
-const compressedPreview =
-    document.getElementById("compressedPreview");
-
-const originalSize =
-    document.getElementById("originalSize");
-
-const compressedSize =
-    document.getElementById("compressedSize");
-
-const savedPercent =
-    document.getElementById("savedPercent");
-
-const progressBar =
-    document.getElementById("progressBar");
-
-const progressText =
-    document.getElementById("progressText");
-
-const downloadBtn =
-    document.getElementById("downloadBtn");
-
-const topBtn =
-    document.getElementById("topBtn");
-
-const themeToggle =
-    document.getElementById("themeToggle");
-
-const mobileMenuBtn =
-    document.getElementById("mobileMenuBtn");
-
-const navLinks =
-    document.getElementById("navLinks");
-
-
-/* =========================================
-   GLOBAL STATE
-========================================= */
 
 let selectedFile = null;
-
 let compressedBlob = null;
 
+let originalObjectUrl = null;
 let compressedObjectUrl = null;
 
-let originalObjectUrl = null;
 
-
-/* =========================================
+/* =====================================================
    FILE SELECTION
-========================================= */
+===================================================== */
 
-chooseBtn.addEventListener(
-    "click",
-    () => {
+chooseBtn.addEventListener("click", () => {
+    imageInput.click();
+});
 
-        imageInput.click();
 
+imageInput.addEventListener("change", event => {
+
+    const file = event.target.files[0];
+
+    if (file) {
+        loadImage(file);
     }
-);
+
+});
 
 
-/* =========================================
-   FILE INPUT
-========================================= */
+/* =====================================================
+   DRAG AND DROP
+===================================================== */
 
-imageInput.addEventListener(
-    "change",
-    event => {
+dropArea.addEventListener("dragover", event => {
 
-        const file =
-            event.target.files[0];
+    event.preventDefault();
 
-        if (file) {
+    dropArea.classList.add("dragover");
 
-            loadImage(file);
+});
 
-        }
 
+dropArea.addEventListener("dragleave", () => {
+
+    dropArea.classList.remove("dragover");
+
+});
+
+
+dropArea.addEventListener("drop", event => {
+
+    event.preventDefault();
+
+    dropArea.classList.remove("dragover");
+
+    const file = event.dataTransfer.files[0];
+
+    if (file) {
+        loadImage(file);
     }
-);
+
+});
 
 
-/* =========================================
-   DRAG & DROP
-========================================= */
-
-dropArea.addEventListener(
-    "dragover",
-    event => {
-
-        event.preventDefault();
-
-        dropArea.classList.add(
-            "dragover"
-        );
-
-    }
-);
-
-
-dropArea.addEventListener(
-    "dragleave",
-    () => {
-
-        dropArea.classList.remove(
-            "dragover"
-        );
-
-    }
-);
-
-
-dropArea.addEventListener(
-    "drop",
-    event => {
-
-        event.preventDefault();
-
-        dropArea.classList.remove(
-            "dragover"
-        );
-
-        const file =
-            event.dataTransfer.files[0];
-
-        if (file) {
-
-            loadImage(file);
-
-        }
-
-    }
-);
-
-
-/* =========================================
-   LOAD IMAGE
-========================================= */
+/* =====================================================
+   LOAD FILE
+===================================================== */
 
 function loadImage(file) {
 
-    if (
-        ![
-            "image/jpeg",
-            "image/png",
-            "image/webp"
-        ].includes(file.type)
-    ) {
+    const allowedTypes = [
+        "image/jpeg",
+        "image/png",
+        "image/webp"
+    ];
+
+    if (!allowedTypes.includes(file.type)) {
 
         alert(
             "Please select a JPG, PNG or WEBP image."
         );
 
         return;
-
     }
 
 
     selectedFile = file;
 
 
-    /* Clean previous URLs */
-
-    if (originalObjectUrl) {
-
-        URL.revokeObjectURL(
-            originalObjectUrl
-        );
-
-    }
-
-    if (compressedObjectUrl) {
-
-        URL.revokeObjectURL(
-            compressedObjectUrl
-        );
-
-        compressedObjectUrl = null;
-
-    }
+    revokeUrls();
 
 
-    /* Create original preview */
+    originalObjectUrl = URL.createObjectURL(file);
 
-    originalObjectUrl =
-        URL.createObjectURL(file);
-
-    originalPreview.src =
-        originalObjectUrl;
+    originalPreview.src = originalObjectUrl;
 
 
-    compressedPreview.removeAttribute(
-        "src"
-    );
+    compressedPreview.removeAttribute("src");
 
 
-    /* File information */
-
-    fileName.textContent =
-        file.name;
+    fileName.textContent = file.name;
 
     fileOriginalInfo.textContent =
-        `${formatSize(file.size)} • ${file.type.split("/")[1].toUpperCase()}`;
+        `${formatSize(file.size)} • ${getExtension(file.type)}`;
 
 
-    fileInfo.classList.remove(
-        "hidden"
-    );
+    fileInfo.classList.remove("hidden");
 
-
-    /* Statistics */
 
     originalSize.textContent =
         formatSize(file.size);
 
-    compressedSize.textContent =
-        "--";
-
-    savedPercent.textContent =
-        "--";
+    compressedSize.textContent = "--";
+    savedPercent.textContent = "--";
 
 
-    /* Download */
+    downloadBtn.classList.remove("active");
 
-    downloadBtn.classList.remove(
-        "active"
-    );
-
-    downloadBtn.removeAttribute(
-        "href"
-    );
-
-
-    /* Progress */
-
-    progressBar.style.width =
-        "0%";
-
-    progressText.textContent =
-        "Ready to compress";
+    downloadBtn.removeAttribute("href");
 
 
     compressedBlob = null;
 
+
+    progressBar.style.width = "0%";
+
+    progressText.textContent =
+        "Ready to compress";
 }
 
 
-/* =========================================
-   REMOVE IMAGE
-========================================= */
+/* =====================================================
+   REMOVE FILE
+===================================================== */
 
-removeFileBtn.addEventListener(
-    "click",
-    () => {
-
-        resetTool();
-
-    }
-);
+removeFileBtn.addEventListener("click", resetTool);
 
 
 function resetTool() {
@@ -321,284 +182,195 @@ function resetTool() {
 
     compressedBlob = null;
 
-
-    if (originalObjectUrl) {
-
-        URL.revokeObjectURL(
-            originalObjectUrl
-        );
-
-        originalObjectUrl = null;
-
-    }
-
-
-    if (compressedObjectUrl) {
-
-        URL.revokeObjectURL(
-            compressedObjectUrl
-        );
-
-        compressedObjectUrl = null;
-
-    }
-
+    revokeUrls();
 
     imageInput.value = "";
 
+    originalPreview.removeAttribute("src");
 
-    originalPreview.removeAttribute(
-        "src"
-    );
+    compressedPreview.removeAttribute("src");
 
-    compressedPreview.removeAttribute(
-        "src"
-    );
+    fileInfo.classList.add("hidden");
 
+    originalSize.textContent = "--";
 
-    fileInfo.classList.add(
-        "hidden"
-    );
+    compressedSize.textContent = "--";
 
+    savedPercent.textContent = "--";
 
-    originalSize.textContent =
-        "--";
+    downloadBtn.classList.remove("active");
 
-    compressedSize.textContent =
-        "--";
+    downloadBtn.removeAttribute("href");
 
-    savedPercent.textContent =
-        "--";
+    progressBar.style.width = "0%";
 
-
-    downloadBtn.classList.remove(
-        "active"
-    );
-
-    downloadBtn.removeAttribute(
-        "href"
-    );
-
-
-    progressBar.style.width =
-        "0%";
-
-    progressText.textContent =
-        "Ready";
-
+    progressText.textContent = "Ready";
 }
 
 
-/* =========================================
-   QUALITY SLIDER
-========================================= */
+/* =====================================================
+   QUALITY
+===================================================== */
 
-quality.addEventListener(
-    "input",
-    () => {
+quality.addEventListener("input", () => {
 
-        qualityValue.textContent =
-            `${quality.value}%`;
+    qualityValue.textContent =
+        `${quality.value}%`;
 
-    }
-);
+});
 
 
-/* =========================================
-   FORMAT SIZE
-========================================= */
+/* =====================================================
+   FILE SIZE
+===================================================== */
 
 function formatSize(bytes) {
 
     if (!Number.isFinite(bytes)) {
-
         return "--";
-
     }
-
 
     if (bytes < 1024) {
-
         return `${bytes} B`;
-
     }
-
 
     if (bytes < 1024 * 1024) {
 
-        return `${(
-            bytes / 1024
-        ).toFixed(2)} KB`;
-
+        return `${(bytes / 1024).toFixed(2)} KB`;
     }
-
 
     return `${(
         bytes /
         1024 /
         1024
     ).toFixed(2)} MB`;
-
 }
 
 
-/* =========================================
-   LOAD IMAGE ELEMENT
-========================================= */
+/* =====================================================
+   EXTENSION
+===================================================== */
 
-function loadImageElement(
-    file
-) {
+function getExtension(type) {
 
-    return new Promise(
-        (resolve, reject) => {
+    if (type === "image/jpeg") {
+        return "JPG";
+    }
 
-            const url =
-                URL.createObjectURL(file);
+    if (type === "image/png") {
+        return "PNG";
+    }
 
-            const img =
-                new Image();
+    if (type === "image/webp") {
+        return "WEBP";
+    }
 
-
-            img.onload = () => {
-
-                URL.revokeObjectURL(
-                    url
-                );
-
-                resolve(img);
-
-            };
-
-
-            img.onerror = () => {
-
-                URL.revokeObjectURL(
-                    url
-                );
-
-                reject(
-                    new Error(
-                        "Unable to read image."
-                    )
-                );
-
-            };
-
-
-            img.src = url;
-
-        }
-    );
-
+    return "IMAGE";
 }
 
 
-/* =========================================
-   CANVAS BLOB
-========================================= */
+/* =====================================================
+   LOAD IMAGE
+===================================================== */
 
-function canvasToBlob(
-    canvas,
-    type,
-    qualityValue
-) {
+function loadImageElement(file) {
 
-    return new Promise(
-        resolve => {
+    return new Promise((resolve, reject) => {
 
-            canvas.toBlob(
-                blob => {
+        const url = URL.createObjectURL(file);
 
-                    resolve(blob);
+        const img = new Image();
 
-                },
-                type,
-                qualityValue
+        img.onload = () => {
+
+            URL.revokeObjectURL(url);
+
+            resolve(img);
+        };
+
+
+        img.onerror = () => {
+
+            URL.revokeObjectURL(url);
+
+            reject(
+                new Error(
+                    "The image could not be read."
+                )
             );
+        };
 
-        }
-    );
 
+        img.src = url;
+
+    });
 }
 
 
-/* =========================================
-   CALCULATE DIMENSIONS
-========================================= */
+/* =====================================================
+   CANVAS TO BLOB
+===================================================== */
 
-function calculateDimensions(
-    imageWidth,
-    imageHeight
-) {
+function canvasToBlob(canvas, type, qualityValue) {
 
-    let width =
-        parseInt(
-            maxWidth.value,
-            10
+    return new Promise(resolve => {
+
+        canvas.toBlob(
+            blob => resolve(blob),
+            type,
+            qualityValue
         );
 
-    let height =
-        parseInt(
-            maxHeight.value,
-            10
-        );
+    });
+}
 
 
-    if (
-        !Number.isFinite(width) ||
-        width <= 0
-    ) {
+/* =====================================================
+   DIMENSIONS
+===================================================== */
 
-        width = imageWidth;
+function calculateDimensions(width, height) {
 
+    let maxW = parseInt(maxWidth.value, 10);
+    let maxH = parseInt(maxHeight.value, 10);
+
+
+    if (!Number.isFinite(maxW) || maxW <= 0) {
+        maxW = width;
     }
 
 
-    if (
-        !Number.isFinite(height) ||
-        height <= 0
-    ) {
-
-        height = imageHeight;
-
+    if (!Number.isFinite(maxH) || maxH <= 0) {
+        maxH = height;
     }
 
 
-    const ratio =
-        Math.min(
-            width / imageWidth,
-            height / imageHeight,
-            1
-        );
+    const ratio = Math.min(
+        maxW / width,
+        maxH / height,
+        1
+    );
 
 
     return {
 
-        width:
-            Math.max(
-                1,
-                Math.round(
-                    imageWidth * ratio
-                )
-            ),
+        width: Math.max(
+            1,
+            Math.round(width * ratio)
+        ),
 
-        height:
-            Math.max(
-                1,
-                Math.round(
-                    imageHeight * ratio
-                )
-            )
+        height: Math.max(
+            1,
+            Math.round(height * ratio)
+        )
 
     };
-
 }
 
 
-/* =========================================
-   COMPRESS BUTTON
-========================================= */
+/* =====================================================
+   COMPRESS
+===================================================== */
 
 compressBtn.addEventListener(
     "click",
@@ -611,24 +383,21 @@ compressBtn.addEventListener(
             );
 
             return;
-
         }
 
 
         try {
 
-            compressBtn.disabled =
-                true;
+            compressBtn.disabled = true;
 
             compressBtn.textContent =
                 "Compressing...";
 
 
-            progressBar.style.width =
-                "10%";
-
-            progressText.textContent =
-                "Reading image...";
+            setProgress(
+                10,
+                "Reading image..."
+            );
 
 
             const img =
@@ -637,27 +406,21 @@ compressBtn.addEventListener(
                 );
 
 
-            progressBar.style.width =
-                "25%";
-
-            progressText.textContent =
-                "Preparing image...";
+            setProgress(
+                25,
+                "Preparing image..."
+            );
 
 
             const dimensions =
                 calculateDimensions(
-                    img.naturalWidth ||
-                    img.width,
-
-                    img.naturalHeight ||
-                    img.height
+                    img.naturalWidth || img.width,
+                    img.naturalHeight || img.height
                 );
 
 
             const canvas =
-                document.createElement(
-                    "canvas"
-                );
+                document.createElement("canvas");
 
 
             canvas.width =
@@ -668,12 +431,7 @@ compressBtn.addEventListener(
 
 
             const ctx =
-                canvas.getContext(
-                    "2d",
-                    {
-                        alpha: true
-                    }
-                );
+                canvas.getContext("2d");
 
 
             if (!ctx) {
@@ -681,26 +439,18 @@ compressBtn.addEventListener(
                 throw new Error(
                     "Canvas is not supported by this browser."
                 );
-
             }
 
 
-            /*
-             * White background for JPG.
-             * JPG does not support transparency.
-             */
-
-            const selectedFormat =
+            const format =
                 outputFormat.value;
 
 
-            if (
-                selectedFormat ===
-                "image/jpeg"
-            ) {
+            /* JPG does not support transparency */
 
-                ctx.fillStyle =
-                    "#ffffff";
+            if (format === "image/jpeg") {
+
+                ctx.fillStyle = "#ffffff";
 
                 ctx.fillRect(
                     0,
@@ -708,7 +458,6 @@ compressBtn.addEventListener(
                     canvas.width,
                     canvas.height
                 );
-
             }
 
 
@@ -721,23 +470,18 @@ compressBtn.addEventListener(
             );
 
 
-            progressBar.style.width =
-                "45%";
-
-            progressText.textContent =
-                "Compressing image...";
+            setProgress(
+                45,
+                "Compressing image..."
+            );
 
 
             let currentQuality =
-                Number(
-                    quality.value
-                ) / 100;
+                Number(quality.value) / 100;
 
 
             const targetKB =
-                Number(
-                    maxFileSize.value
-                );
+                Number(maxFileSize.value);
 
 
             const targetBytes =
@@ -747,7 +491,7 @@ compressBtn.addEventListener(
             let blob =
                 await canvasToBlob(
                     canvas,
-                    selectedFormat,
+                    format,
                     currentQuality
                 );
 
@@ -755,85 +499,72 @@ compressBtn.addEventListener(
             if (!blob) {
 
                 throw new Error(
-                    "The browser could not create the compressed image."
+                    "Unable to create the compressed image."
                 );
-
             }
 
 
             /*
-             * For JPG and WEBP, try progressively
-             * lower quality until the target is
-             * reached or the minimum quality is met.
+             * Try reducing quality gradually.
+             *
+             * This is an approximate target.
              */
 
             if (
-                selectedFormat ===
-                    "image/jpeg" ||
-                selectedFormat ===
-                    "image/webp"
+                format === "image/jpeg" ||
+                format === "image/webp"
             ) {
 
                 while (
-                    blob.size >
-                        targetBytes &&
-                    currentQuality >
-                        0.10
+                    blob.size > targetBytes &&
+                    currentQuality > 0.10
                 ) {
 
-                    currentQuality -=
-                        0.05;
+                    currentQuality -= 0.05;
 
 
-                    progressBar.style.width =
-                        `${Math.min(
+                    setProgress(
+                        Math.min(
                             90,
                             45 +
                             (
-                                (1 -
-                                    currentQuality) *
-                                45
+                                (1 - currentQuality)
+                                * 45
                             )
-                        )}%`;
-
-
-                    progressText.textContent =
-                        `Optimizing quality: ${Math.round(
-                            currentQuality * 100
-                        )}%`;
+                        ),
+                        `Optimizing quality: ${
+                            Math.round(
+                                currentQuality * 100
+                            )
+                        }%`
+                    );
 
 
                     const newBlob =
                         await canvasToBlob(
                             canvas,
-                            selectedFormat,
+                            format,
                             currentQuality
                         );
 
 
                     if (!newBlob) {
-
                         break;
-
                     }
 
 
                     blob = newBlob;
-
                 }
-
             }
 
 
-            compressedBlob =
-                blob;
+            compressedBlob = blob;
 
 
-            progressBar.style.width =
-                "95%";
-
-            progressText.textContent =
-                "Preparing preview...";
+            setProgress(
+                95,
+                "Preparing preview..."
+            );
 
 
             if (compressedObjectUrl) {
@@ -841,14 +572,11 @@ compressBtn.addEventListener(
                 URL.revokeObjectURL(
                     compressedObjectUrl
                 );
-
             }
 
 
             compressedObjectUrl =
-                URL.createObjectURL(
-                    blob
-                );
+                URL.createObjectURL(blob);
 
 
             compressedPreview.src =
@@ -859,13 +587,8 @@ compressBtn.addEventListener(
                 formatSize(blob.size);
 
 
-            /*
-             * Calculate percentage change.
-             */
-
             const difference =
-                selectedFile.size -
-                blob.size;
+                selectedFile.size - blob.size;
 
 
             const percentage =
@@ -886,38 +609,11 @@ compressBtn.addEventListener(
                     `${Math.abs(
                         percentage
                     ).toFixed(1)}% larger`;
-
             }
 
 
-            /*
-             * Download extension
-             */
-
-            let extension =
-                "jpg";
-
-
-            if (
-                selectedFormat ===
-                "image/webp"
-            ) {
-
-                extension =
-                    "webp";
-
-            }
-
-
-            if (
-                selectedFormat ===
-                "image/png"
-            ) {
-
-                extension =
-                    "png";
-
-            }
+            const extension =
+                getDownloadExtension(format);
 
 
             downloadBtn.href =
@@ -933,11 +629,10 @@ compressBtn.addEventListener(
             );
 
 
-            progressBar.style.width =
-                "100%";
-
-            progressText.textContent =
-                "Compression completed ✓";
+            setProgress(
+                100,
+                "Compression completed ✓"
+            );
 
 
         } catch (error) {
@@ -946,192 +641,180 @@ compressBtn.addEventListener(
 
             alert(
                 error.message ||
-                "Compression failed. Please try another image."
+                "Compression failed."
             );
 
 
-            progressBar.style.width =
-                "0%";
+            setProgress(
+                0,
+                "Compression failed"
+            );
 
-            progressText.textContent =
-                "Compression failed";
 
         } finally {
 
-            compressBtn.disabled =
-                false;
+            compressBtn.disabled = false;
 
             compressBtn.textContent =
                 "Compress Image";
-
         }
 
     }
 );
 
 
-/* =========================================
+/* =====================================================
+   PROGRESS
+===================================================== */
+
+function setProgress(value, text) {
+
+    progressBar.style.width =
+        `${value}%`;
+
+    progressText.textContent =
+        text;
+}
+
+
+/* =====================================================
+   DOWNLOAD EXTENSION
+===================================================== */
+
+function getDownloadExtension(format) {
+
+    if (format === "image/png") {
+        return "png";
+    }
+
+    if (format === "image/webp") {
+        return "webp";
+    }
+
+    return "jpg";
+}
+
+
+/* =====================================================
    BACK TO TOP
-========================================= */
+===================================================== */
 
-window.addEventListener(
-    "scroll",
-    () => {
+window.addEventListener("scroll", () => {
 
-        if (
-            window.scrollY >
-            500
-        ) {
+    if (window.scrollY > 500) {
 
-            topBtn.style.display =
-                "block";
-
-        } else {
-
-            topBtn.style.display =
-                "none";
-
-        }
-
-    }
-);
-
-
-topBtn.addEventListener(
-    "click",
-    () => {
-
-        window.scrollTo({
-
-            top: 0,
-
-            behavior: "smooth"
-
-        });
-
-    }
-);
-
-
-/* =========================================
-   DARK MODE
-========================================= */
-
-function applyTheme(
-    theme
-) {
-
-    if (
-        theme === "dark"
-    ) {
-
-        document.body.classList.add(
-            "dark"
-        );
-
-        themeToggle.textContent =
-            "☀️";
+        topBtn.style.display = "flex";
 
     } else {
 
-        document.body.classList.remove(
-            "dark"
-        );
-
-        themeToggle.textContent =
-            "🌙";
-
+        topBtn.style.display = "none";
     }
 
+});
+
+
+topBtn.addEventListener("click", () => {
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+});
+
+
+/* =====================================================
+   MOBILE MENU
+===================================================== */
+
+mobileMenuBtn.addEventListener("click", () => {
+
+    navLinks.classList.toggle("show");
+
+});
+
+
+/* =====================================================
+   DARK MODE
+===================================================== */
+
+function applyTheme(theme) {
+
+    if (theme === "dark") {
+
+        document.body.classList.add("dark");
+
+        themeToggle.textContent = "☀️";
+
+    } else {
+
+        document.body.classList.remove("dark");
+
+        themeToggle.textContent = "🌙";
+    }
 }
 
 
 const savedTheme =
-    localStorage.getItem(
-        "theme"
-    );
+    localStorage.getItem("theme");
 
 
 if (savedTheme) {
 
-    applyTheme(
-        savedTheme
-    );
+    applyTheme(savedTheme);
 
 }
 
 
-themeToggle.addEventListener(
-    "click",
-    () => {
+themeToggle.addEventListener("click", () => {
 
-        const isDark =
-            document.body.classList.contains(
-                "dark"
-            );
+    const dark =
+        document.body.classList.contains("dark");
 
 
-        const newTheme =
-            isDark
-                ? "light"
-                : "dark";
+    const theme =
+        dark ? "light" : "dark";
 
 
-        localStorage.setItem(
-            "theme",
-            newTheme
-        );
+    localStorage.setItem(
+        "theme",
+        theme
+    );
 
 
-        applyTheme(
-            newTheme
-        );
+    applyTheme(theme);
 
-    }
-);
+});
 
 
-/* =========================================
-   MOBILE NAVIGATION
-========================================= */
-
-mobileMenuBtn.addEventListener(
-    "click",
-    () => {
-
-        navLinks.classList.toggle(
-            "show"
-        );
-
-    }
-);
-
-
-/* =========================================
+/* =====================================================
    CLEAN OBJECT URLS
-========================================= */
+===================================================== */
+
+function revokeUrls() {
+
+    if (originalObjectUrl) {
+
+        URL.revokeObjectURL(
+            originalObjectUrl
+        );
+
+        originalObjectUrl = null;
+    }
+
+
+    if (compressedObjectUrl) {
+
+        URL.revokeObjectURL(
+            compressedObjectUrl
+        );
+
+        compressedObjectUrl = null;
+    }
+}
+
 
 window.addEventListener(
     "beforeunload",
-    () => {
-
-        if (originalObjectUrl) {
-
-            URL.revokeObjectURL(
-                originalObjectUrl
-            );
-
-        }
-
-
-        if (compressedObjectUrl) {
-
-            URL.revokeObjectURL(
-                compressedObjectUrl
-            );
-
-        }
-
-    }
+    revokeUrls
 );
-```
