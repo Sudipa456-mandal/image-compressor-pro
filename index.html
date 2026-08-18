@@ -9,7 +9,7 @@
 
     <meta
         name="description"
-        content="Image Compressor Pro offers free online image compression and resume building tools. Compress JPG, PNG and WEBP images quickly while creating professional resumes online."
+        content="Image Compressor Pro provides free online tools to compress JPG, PNG and WEBP images and create professional resumes online."
     >
 
     <meta
@@ -23,7 +23,7 @@
     >
 
     <title>
-        Image Compressor Pro - Free Image Compressor & Resume Builder
+        Image Compressor Pro | Free Image Compressor & Resume Builder
     </title>
 
     <link rel="stylesheet" href="style.css">
@@ -35,7 +35,7 @@
 
 
 <!-- =========================================================
-     NAVIGATION
+     HEADER / NAVIGATION
 ========================================================= -->
 
 <header class="navbar">
@@ -59,9 +59,13 @@
         </a>
 
 
-        <!-- DESKTOP NAVIGATION -->
+        <!-- MAIN NAVIGATION -->
 
-        <nav class="nav-links" id="navLinks">
+        <nav
+            class="nav-links"
+            id="navLinks"
+            aria-label="Main navigation"
+        >
 
             <a
                 href="index.html"
@@ -93,7 +97,7 @@
         </nav>
 
 
-        <!-- THEME BUTTON -->
+        <!-- THEME TOGGLE -->
 
         <button
             type="button"
@@ -102,13 +106,8 @@
             aria-label="Toggle dark mode"
         >
 
-            <span class="theme-sun">
-                ☀
-            </span>
-
-            <span class="theme-moon">
-                ◐
-            </span>
+            <span>☀</span>
+            <span>◐</span>
 
         </button>
 
@@ -136,7 +135,7 @@
 
 
 <!-- =========================================================
-     HERO SECTION
+     HERO
 ========================================================= -->
 
 <section class="hero">
@@ -144,35 +143,34 @@
     <div class="hero-container">
 
 
-        <!-- LEFT -->
-
         <div class="hero-content">
 
 
-            <div class="hero-badge">
-                <span>✦</span>
-                Free Online Tools
-            </div>
+            <span class="hero-badge">
+                ✦ Free Online Tools
+            </span>
 
 
             <h1>
 
-                Compress Images.
+                Simple tools for
                 <br>
 
-                <span>Create Better Resumes.</span>
+                <span>your everyday needs.</span>
 
             </h1>
 
 
             <p class="hero-description">
 
-                Simple online tools to reduce image file sizes
-                and create professional resumes. Fast, easy
-                and designed for everyone.
+                Compress your images, reduce file sizes and
+                create professional resumes with simple,
+                fast and easy-to-use online tools.
 
             </p>
 
+
+            <!-- MAIN ACTIONS -->
 
             <div class="hero-actions">
 
@@ -180,8 +178,11 @@
                     href="compressor/"
                     class="primary-button"
                 >
-                    Compress an Image
+
+                    Image Compressor
+
                     <span>→</span>
+
                 </a>
 
 
@@ -189,12 +190,17 @@
                     href="resume/"
                     class="secondary-button"
                 >
-                    Create a Resume
+
+                    Resume Builder
+
                     <span>→</span>
+
                 </a>
 
             </div>
 
+
+            <!-- TRUST -->
 
             <div class="hero-trust">
 
@@ -205,9 +211,7 @@
                         ✓
                     </span>
 
-                    <span>
-                        Free to use
-                    </span>
+                    Free to use
 
                 </div>
 
@@ -218,9 +222,7 @@
                         ✓
                     </span>
 
-                    <span>
-                        No registration
-                    </span>
+                    No unnecessary signup
 
                 </div>
 
@@ -231,9 +233,7 @@
                         ✓
                     </span>
 
-                    <span>
-                        Easy to use
-                    </span>
+                    Mobile friendly
 
                 </div>
 
@@ -245,7 +245,7 @@
 
 
 
-        <!-- RIGHT VISUAL -->
+        <!-- HERO VISUAL -->
 
         <div class="hero-visual">
 
@@ -279,14 +279,13 @@
                     </div>
 
                     <span class="window-title">
-                        Image Compressor
+                        Image Compressor Pro
                     </span>
 
                 </div>
 
 
                 <div class="image-preview">
-
 
                     <div class="preview-sun"></div>
 
@@ -295,7 +294,6 @@
                     <div class="preview-mountain mountain-two"></div>
 
                     <div class="preview-ground"></div>
-
 
                 </div>
 
@@ -354,9 +352,7 @@
 
             </div>
 
-
         </div>
-
 
     </div>
 
@@ -365,7 +361,7 @@
 
 
 <!-- =========================================================
-     QUICK STATS
+     QUICK TOOL BAR
 ========================================================= -->
 
 <section class="stats-section">
@@ -373,55 +369,67 @@
     <div class="stats-container">
 
 
-        <div class="stat">
+        <a
+            href="compressor/"
+            class="stat"
+        >
 
             <strong>
                 JPG
             </strong>
 
             <span>
-                Supported
+                Compress Images
             </span>
 
-        </div>
+        </a>
 
 
         <div class="stat-divider"></div>
 
 
-        <div class="stat">
+        <a
+            href="compressor/"
+            class="stat"
+        >
 
             <strong>
                 PNG
             </strong>
 
             <span>
-                Supported
+                Compress Images
             </span>
 
-        </div>
+        </a>
 
 
         <div class="stat-divider"></div>
 
 
-        <div class="stat">
+        <a
+            href="compressor/"
+            class="stat"
+        >
 
             <strong>
                 WEBP
             </strong>
 
             <span>
-                Supported
+                Compress Images
             </span>
 
-        </div>
+        </a>
 
 
         <div class="stat-divider"></div>
 
 
-        <div class="stat">
+        <a
+            href="resume/"
+            class="stat"
+        >
 
             <strong>
                 PDF
@@ -431,7 +439,7 @@
                 Resume Export
             </span>
 
-        </div>
+        </a>
 
 
     </div>
@@ -441,7 +449,7 @@
 
 
 <!-- =========================================================
-     TOOLS SECTION
+     OUR TOOLS
 ========================================================= -->
 
 <section class="tools-section">
@@ -453,11 +461,11 @@
         </span>
 
         <h2>
-            Everything you need, in one place
+            Choose the tool you need
         </h2>
 
         <p>
-            Choose a tool and get started in just a few clicks.
+            Two useful tools, available directly from the homepage.
         </p>
 
     </div>
@@ -466,7 +474,9 @@
     <div class="tools-container">
 
 
-        <!-- IMAGE COMPRESSOR -->
+        <!-- =================================================
+             IMAGE COMPRESSOR - TOOL 01
+        ================================================== -->
 
         <article class="tool-card compressor-card">
 
@@ -491,10 +501,9 @@
 
             <p>
 
-                Reduce JPG, PNG and WEBP image sizes
-                while keeping your images looking clear.
-                Perfect for websites, social media,
-                email and online forms.
+                Reduce JPG, PNG and WEBP image file sizes
+                while keeping your images clear and useful
+                for websites, social media, email and forms.
 
             </p>
 
@@ -503,7 +512,7 @@
 
                 <li>
                     <span>✓</span>
-                    Reduce file size
+                    Reduce image file size
                 </li>
 
                 <li>
@@ -513,7 +522,7 @@
 
                 <li>
                     <span>✓</span>
-                    Download compressed images
+                    Download compressed image
                 </li>
 
             </ul>
@@ -524,7 +533,7 @@
                 class="card-button blue-button"
             >
 
-                Compress Images
+                Open Image Compressor
 
                 <span>→</span>
 
@@ -535,7 +544,9 @@
 
 
 
-        <!-- RESUME BUILDER -->
+        <!-- =================================================
+             RESUME BUILDER - TOOL 02
+        ================================================== -->
 
         <article class="tool-card resume-card">
 
@@ -560,10 +571,9 @@
 
             <p>
 
-                Create a professional resume with
-                a clean layout and easy-to-use sections.
-                Add your education, experience, skills
-                and personal information.
+                Build a professional resume by adding
+                your personal information, education,
+                experience, skills and other details.
 
             </p>
 
@@ -572,12 +582,12 @@
 
                 <li>
                     <span>✓</span>
-                    Professional templates
+                    Professional resume layouts
                 </li>
 
                 <li>
                     <span>✓</span>
-                    Add education & experience
+                    Add education and experience
                 </li>
 
                 <li>
@@ -593,7 +603,7 @@
                 class="card-button green-button"
             >
 
-                Create Resume
+                Open Resume Builder
 
                 <span>→</span>
 
@@ -622,11 +632,11 @@
         </span>
 
         <h2>
-            Simple tools. Simple process.
+            Start in three simple steps
         </h2>
 
         <p>
-            No complicated setup. Just choose what you need.
+            Choose a tool, complete your task and get your result.
         </p>
 
     </div>
@@ -646,8 +656,8 @@
             </h3>
 
             <p>
-                Select image compression or resume building
-                from our tools.
+                Select Image Compressor or Resume Builder
+                from the homepage.
             </p>
 
         </div>
@@ -663,12 +673,12 @@
             </div>
 
             <h3>
-                Add Your Information
+                Add Your Details
             </h3>
 
             <p>
-                Upload an image or enter the information
-                you need for your resume.
+                Upload your image or enter the information
+                required for your resume.
             </p>
 
         </div>
@@ -702,7 +712,7 @@
 
 
 <!-- =========================================================
-     BENEFITS
+     WHY CHOOSE US
 ========================================================= -->
 
 <section class="benefits-section">
@@ -710,11 +720,11 @@
     <div class="section-heading">
 
         <span class="section-label">
-            WHY USE OUR TOOLS
+            WHY IMAGE COMPRESSOR PRO
         </span>
 
         <h2>
-            Built to make everyday tasks easier
+            Designed to keep things simple
         </h2>
 
     </div>
@@ -734,8 +744,8 @@
             </h3>
 
             <p>
-                Get your work done quickly with
-                simple online tools.
+                Complete common online tasks without
+                unnecessary steps.
             </p>
 
         </div>
@@ -748,12 +758,12 @@
             </div>
 
             <h3>
-                Easy
+                Easy to Use
             </h3>
 
             <p>
-                Clean interfaces designed for
-                beginners and everyday users.
+                Clear controls and simple interfaces
+                for everyday users.
             </p>
 
         </div>
@@ -770,8 +780,8 @@
             </h3>
 
             <p>
-                We aim to keep your experience
-                simple and privacy-conscious.
+                We aim to provide a simple and
+                privacy-conscious experience.
             </p>
 
         </div>
@@ -788,7 +798,7 @@
             </h3>
 
             <p>
-                Use our tools comfortably on
+                Use the website comfortably on
                 desktop, tablet or mobile.
             </p>
 
@@ -802,7 +812,7 @@
 
 
 <!-- =========================================================
-     INFORMATION SECTION
+     ABOUT
 ========================================================= -->
 
 <section class="information-section">
@@ -816,24 +826,27 @@
                 ABOUT IMAGE COMPRESSOR PRO
             </span>
 
+
             <h2>
-                Useful online tools without unnecessary complexity
+                Practical online tools for everyday digital tasks
             </h2>
+
 
             <p>
 
-                Image Compressor Pro is designed to provide
-                practical browser-based tools for everyday
-                digital tasks.
+                Image Compressor Pro is built around simple
+                browser-based tools that help users complete
+                common digital tasks more easily.
 
             </p>
 
+
             <p>
 
-                Whether you need to reduce the size of an image
-                before uploading it to a website or create a
-                professional resume, our tools are designed
-                to make the process easier.
+                From reducing image file sizes to creating
+                professional resumes, our goal is to provide
+                useful tools with clear instructions and
+                simple interfaces.
 
             </p>
 
@@ -844,7 +857,10 @@
             >
 
                 Learn more about us
-                <span>→</span>
+
+                <span>
+                    →
+                </span>
 
             </a>
 
@@ -860,15 +876,15 @@
 
 
             <h3>
-                Designed for everyday users
+                Everything starts from the homepage
             </h3>
 
 
             <p>
 
-                Simple instructions, clear controls and
-                responsive pages help you complete common
-                online tasks without unnecessary steps.
+                You can access the Image Compressor and
+                Resume Builder directly from the navigation,
+                hero section and tools section.
 
             </p>
 
@@ -899,7 +915,7 @@
         </h2>
 
         <p>
-            Some common questions about our tools.
+            Quick answers about our online tools.
         </p>
 
     </div>
@@ -911,15 +927,19 @@
         <details class="faq-item">
 
             <summary>
-                What is an image compressor?
+
+                What can I do with Image Compressor Pro?
+
                 <span>+</span>
+
             </summary>
 
             <p>
 
-                An image compressor reduces the file size
-                of an image so it can be easier to upload,
-                share or use on a website.
+                You can use the Image Compressor to reduce
+                the size of supported image files and use
+                the Resume Builder to create a professional
+                resume online.
 
             </p>
 
@@ -929,14 +949,18 @@
         <details class="faq-item">
 
             <summary>
+
                 Which image formats are supported?
+
                 <span>+</span>
+
             </summary>
 
             <p>
 
-                Our image compressor is designed to support
-                commonly used formats such as JPG, PNG and WEBP.
+                The Image Compressor is designed to support
+                commonly used formats including JPG, PNG
+                and WEBP.
 
             </p>
 
@@ -946,15 +970,19 @@
         <details class="faq-item">
 
             <summary>
+
                 Can I create a resume online?
+
                 <span>+</span>
+
             </summary>
 
             <p>
 
-                Yes. You can open the Resume Builder,
-                add your personal details, education,
-                experience and skills, and create your resume.
+                Yes. Open the Resume Builder from the
+                navigation or homepage and enter your
+                personal details, education, experience
+                and skills.
 
             </p>
 
@@ -964,15 +992,17 @@
         <details class="faq-item">
 
             <summary>
-                Do I need an account?
+
+                How do I access the Image Compressor?
+
                 <span>+</span>
+
             </summary>
 
             <p>
 
-                The homepage and available tools are designed
-                to be simple to access without unnecessary
-                registration steps.
+                Click Image Compressor in the main navigation,
+                hero section or Tools section of the homepage.
 
             </p>
 
@@ -986,7 +1016,7 @@
 
 
 <!-- =========================================================
-     CTA
+     FINAL CTA
 ========================================================= -->
 
 <section class="final-cta">
@@ -994,35 +1024,46 @@
     <div class="final-cta-container">
 
         <span class="cta-small">
-            READY TO GET STARTED?
+            GET STARTED
         </span>
 
+
         <h2>
-            Choose a tool and get started today.
+            Choose a tool and get started.
         </h2>
 
+
         <p>
-            Compress an image or build your professional resume.
+            Compress an image or create your professional resume.
         </p>
 
 
         <div class="cta-buttons">
 
+
             <a
                 href="compressor/"
                 class="primary-button"
             >
-                Compress Images
+
+                Image Compressor
+
                 <span>→</span>
+
             </a>
+
 
             <a
                 href="resume/"
                 class="cta-outline-button"
             >
-                Build Resume
+
+                Resume Builder
+
                 <span>→</span>
+
             </a>
+
 
         </div>
 
@@ -1044,6 +1085,8 @@
 
     <div class="footer-container">
 
+
+        <!-- BRAND -->
 
         <div class="footer-brand">
 
@@ -1074,15 +1117,19 @@
 
 
 
+        <!-- TOOLS -->
+
         <div class="footer-column">
 
             <h3>
                 Tools
             </h3>
 
+
             <a href="compressor/">
                 Image Compressor
             </a>
+
 
             <a href="resume/">
                 Resume Builder
@@ -1092,19 +1139,24 @@
 
 
 
+        <!-- COMPANY -->
+
         <div class="footer-column">
 
             <h3>
                 Company
             </h3>
 
+
             <a href="about.html">
                 About Us
             </a>
 
+
             <a href="contact.html">
                 Contact Us
             </a>
+
 
             <a href="blog/">
                 Blog
@@ -1114,19 +1166,24 @@
 
 
 
+        <!-- LEGAL -->
+
         <div class="footer-column">
 
             <h3>
                 Legal
             </h3>
 
+
             <a href="privacy.html">
                 Privacy Policy
             </a>
 
+
             <a href="terms.html">
                 Terms of Use
             </a>
+
 
             <a href="disclaimer.html">
                 Disclaimer
@@ -1151,9 +1208,7 @@
 
 
 
-<!-- =========================================================
-     BACK TO TOP
-========================================================= -->
+<!-- BACK TO TOP -->
 
 <button
     type="button"
