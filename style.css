@@ -1,7 +1,6 @@
 /* =========================================================
    IMAGE COMPRESSOR PRO
    MAIN HOME PAGE
-   LIGHT PROFESSIONAL DESIGN
 ========================================================= */
 
 
@@ -39,8 +38,9 @@ body {
     line-height: 1.6;
 
     transition:
-        background 0.3s ease,
-        color 0.3s ease;
+        background .3s ease,
+        color .3s ease;
+
 }
 
 
@@ -61,6 +61,7 @@ img {
 }
 
 
+
 /* =========================================================
    NAVBAR
 ========================================================= */
@@ -76,7 +77,7 @@ img {
     width: 100%;
 
     background:
-        rgba(255,255,255,0.94);
+        rgba(255,255,255,.96);
 
     border-bottom:
         1px solid #edf1f6;
@@ -89,10 +90,8 @@ img {
 
 .nav-container {
 
-    width: min(
-        1180px,
-        calc(100% - 40px)
-    );
+    width:
+        min(1180px, calc(100% - 40px));
 
     min-height: 76px;
 
@@ -105,6 +104,7 @@ img {
     gap: 25px;
 
 }
+
 
 
 /* =========================================================
@@ -167,8 +167,9 @@ img {
 }
 
 
+
 /* =========================================================
-   NAV LINKS
+   NAVIGATION
 ========================================================= */
 
 .nav-links {
@@ -231,8 +232,9 @@ img {
 }
 
 
+
 /* =========================================================
-   THEME BUTTON
+   THEME
 ========================================================= */
 
 .theme-toggle {
@@ -260,10 +262,6 @@ img {
 
     font-size: 15px;
 
-    transition:
-        background .2s ease,
-        border-color .2s ease;
-
 }
 
 
@@ -271,13 +269,12 @@ img {
 
     background: #f0f5fb;
 
-    border-color: #d5e0ec;
-
 }
 
 
+
 /* =========================================================
-   MOBILE MENU
+   MOBILE BUTTON
 ========================================================= */
 
 .mobile-menu-btn {
@@ -295,6 +292,7 @@ img {
     cursor: pointer;
 
 }
+
 
 
 /* =========================================================
@@ -371,10 +369,8 @@ img {
 
     z-index: 2;
 
-    width: min(
-        1120px,
-        calc(100% - 40px)
-    );
+    width:
+        min(1120px, calc(100% - 40px));
 
     min-height: 515px;
 
@@ -395,14 +391,13 @@ img {
 }
 
 
+
 /* =========================================================
    HERO CONTENT
 ========================================================= */
 
 .hero-content {
-
     max-width: 570px;
-
 }
 
 
@@ -435,11 +430,6 @@ img {
 }
 
 
-.hero-badge span {
-    color: #77a9e9;
-}
-
-
 .hero h1 {
 
     margin-bottom: 20px;
@@ -459,9 +449,7 @@ img {
 
 
 .hero h1 span {
-
     color: #609ce9;
-
 }
 
 
@@ -480,8 +468,9 @@ img {
 }
 
 
+
 /* =========================================================
-   HERO BUTTONS
+   BUTTONS
 ========================================================= */
 
 .hero-actions {
@@ -522,8 +511,7 @@ img {
 
     transition:
         transform .2s ease,
-        box-shadow .2s ease,
-        background .2s ease;
+        box-shadow .2s ease;
 
 }
 
@@ -578,13 +566,12 @@ img {
     border-color:
         #c9d9ea;
 
-    background: #fbfdff;
-
 }
 
 
+
 /* =========================================================
-   HERO TRUST
+   TRUST
 ========================================================= */
 
 .hero-trust {
@@ -642,6 +629,7 @@ img {
 }
 
 
+
 /* =========================================================
    HERO VISUAL
 ========================================================= */
@@ -685,8 +673,9 @@ img {
 }
 
 
+
 /* =========================================================
-   WINDOW HEADER
+   WINDOW
 ========================================================= */
 
 .window-header {
@@ -743,8 +732,9 @@ img {
 }
 
 
+
 /* =========================================================
-   IMAGE PREVIEW
+   PREVIEW
 ========================================================= */
 
 .image-preview {
@@ -851,6 +841,7 @@ img {
 }
 
 
+
 /* =========================================================
    FILE INFORMATION
 ========================================================= */
@@ -897,10 +888,9 @@ img {
 
 
 .file-information .compressed-size {
-
     color: #6caf81;
-
 }
+
 
 
 /* =========================================================
@@ -971,10 +961,6 @@ img {
 }
 
 
-/* =========================================================
-   SAVED LABEL
-========================================================= */
-
 .saved-label {
 
     width: max-content;
@@ -998,8 +984,9 @@ img {
 }
 
 
+
 /* =========================================================
-   FLOATING FORMAT LABELS
+   FLOATING FORMAT CARDS
 ========================================================= */
 
 .floating-card {
@@ -1016,7 +1003,8 @@ img {
 
     border-radius: 7px;
 
-    background: rgba(255,255,255,.96);
+    background:
+        rgba(255,255,255,.96);
 
     color: #6b7c91;
 
@@ -1067,6 +1055,7 @@ img {
 }
 
 
+
 /* =========================================================
    STATS
 ========================================================= */
@@ -1083,10 +1072,8 @@ img {
 
 .stats-container {
 
-    width: min(
-        900px,
-        calc(100% - 40px)
-    );
+    width:
+        min(900px, calc(100% - 40px));
 
     min-height: 85px;
 
@@ -1113,6 +1100,14 @@ img {
 
     gap: 1px;
 
+    transition:
+        transform .2s ease;
+
+}
+
+
+.stat:hover {
+    transform: translateY(-2px);
 }
 
 
@@ -1145,8 +1140,9 @@ img {
 }
 
 
+
 /* =========================================================
-   GENERAL SECTION
+   SECTION HEADING
 ========================================================= */
 
 .section-heading {
@@ -1189,8 +1185,6 @@ img {
 
     line-height: 1.25;
 
-    letter-spacing: -.5px;
-
 }
 
 
@@ -1203,8 +1197,9 @@ img {
 }
 
 
+
 /* =========================================================
-   TOOLS SECTION
+   TOOLS
 ========================================================= */
 
 .tools-section {
@@ -1220,10 +1215,8 @@ img {
 
 .tools-container {
 
-    width: min(
-        900px,
-        calc(100% - 20px)
-    );
+    width:
+        min(900px, calc(100% - 20px));
 
     margin: auto;
 
@@ -1236,10 +1229,6 @@ img {
 
 }
 
-
-/* =========================================================
-   TOOL CARD
-========================================================= */
 
 .tool-card {
 
@@ -1309,10 +1298,6 @@ img {
 }
 
 
-/* =========================================================
-   TOOL CARD TOP
-========================================================= */
-
 .tool-card-top {
 
     display: flex;
@@ -1376,10 +1361,6 @@ img {
 }
 
 
-/* =========================================================
-   TOOL CARD TEXT
-========================================================= */
-
 .tool-card h3 {
 
     margin-bottom: 10px;
@@ -1405,10 +1386,6 @@ img {
 
 }
 
-
-/* =========================================================
-   TOOL FEATURES
-========================================================= */
 
 .tool-features {
 
@@ -1444,10 +1421,6 @@ img {
 
 }
 
-
-/* =========================================================
-   CARD BUTTON
-========================================================= */
 
 .card-button {
 
@@ -1502,6 +1475,7 @@ img {
 }
 
 
+
 /* =========================================================
    HOW IT WORKS
 ========================================================= */
@@ -1518,10 +1492,8 @@ img {
 
 .steps-container {
 
-    width: min(
-        920px,
-        calc(100% - 20px)
-    );
+    width:
+        min(920px, calc(100% - 20px));
 
     margin: auto;
 
@@ -1627,6 +1599,7 @@ img {
 }
 
 
+
 /* =========================================================
    BENEFITS
 ========================================================= */
@@ -1647,10 +1620,8 @@ img {
 
 .benefits-container {
 
-    width: min(
-        950px,
-        calc(100% - 20px)
-    );
+    width:
+        min(950px, calc(100% - 20px));
 
     margin: auto;
 
@@ -1748,6 +1719,7 @@ img {
 }
 
 
+
 /* =========================================================
    INFORMATION
 ========================================================= */
@@ -1764,10 +1736,8 @@ img {
 
 .information-container {
 
-    width: min(
-        950px,
-        calc(100% - 20px)
-    );
+    width:
+        min(950px, calc(100% - 20px));
 
     margin: auto;
 
@@ -1829,13 +1799,6 @@ img {
     font-size: 13px;
 
     font-weight: 700;
-
-}
-
-
-.text-link:hover {
-
-    color: #4d87c7;
 
 }
 
@@ -1922,6 +1885,7 @@ img {
 }
 
 
+
 /* =========================================================
    FAQ
 ========================================================= */
@@ -1942,10 +1906,8 @@ img {
 
 .faq-container {
 
-    width: min(
-        760px,
-        calc(100% - 20px)
-    );
+    width:
+        min(760px, calc(100% - 20px));
 
     margin: auto;
 
@@ -2024,11 +1986,6 @@ img {
 
     font-size: 20px;
 
-    font-weight: 400;
-
-    transition:
-        transform .2s ease;
-
 }
 
 
@@ -2052,6 +2009,7 @@ img {
     line-height: 1.8;
 
 }
+
 
 
 /* =========================================================
@@ -2159,9 +2117,8 @@ img {
     transform:
         translateY(-2px);
 
-    background: #fbfdff;
-
 }
+
 
 
 /* =========================================================
@@ -2183,20 +2140,15 @@ img {
 
 .footer-container {
 
-    width: min(
-        1050px,
-        calc(100% - 20px)
-    );
+    width:
+        min(1050px, calc(100% - 20px));
 
     margin: auto;
 
     display: grid;
 
     grid-template-columns:
-        1.7fr
-        .8fr
-        .8fr
-        .8fr;
+        1.7fr .8fr .8fr .8fr;
 
     gap: 45px;
 
@@ -2204,9 +2156,7 @@ img {
 
 
 .footer-brand {
-
     max-width: 310px;
-
 }
 
 
@@ -2289,9 +2239,6 @@ img {
 
     font-size: 11px;
 
-    transition:
-        color .2s ease;
-
 }
 
 
@@ -2304,10 +2251,8 @@ img {
 
 .footer-bottom {
 
-    width: min(
-        1050px,
-        calc(100% - 20px)
-    );
+    width:
+        min(1050px, calc(100% - 20px));
 
     margin:
         35px auto 0;
@@ -2330,6 +2275,7 @@ img {
     font-size: 10px;
 
 }
+
 
 
 /* =========================================================
@@ -2399,6 +2345,7 @@ img {
 }
 
 
+
 /* =========================================================
    DARK MODE
 ========================================================= */
@@ -2415,7 +2362,7 @@ body.dark {
 body.dark .navbar {
 
     background:
-        rgba(16,25,35,.95);
+        rgba(16,25,35,.96);
 
     border-color: #263442;
 
@@ -2456,9 +2403,7 @@ body.dark .theme-toggle {
 
 
 body.dark .mobile-menu-btn {
-
     color: #d6e0ec;
-
 }
 
 
@@ -2477,16 +2422,12 @@ body.dark .hero {
 
 
 body.dark .hero h1 {
-
     color: #edf3f9;
-
 }
 
 
 body.dark .hero-description {
-
     color: #adbac9;
-
 }
 
 
@@ -2513,9 +2454,7 @@ body.dark .secondary-button {
 
 
 body.dark .trust-item {
-
     color: #aebaca;
-
 }
 
 
@@ -2538,9 +2477,7 @@ body.dark .window-header {
 
 
 body.dark .window-title {
-
     color: #9eacbb;
-
 }
 
 
@@ -2554,16 +2491,12 @@ body.dark .stats-section {
 
 
 body.dark .stat strong {
-
     color: #b6c5d5;
-
 }
 
 
 body.dark .stat span {
-
     color: #8392a2;
-
 }
 
 
@@ -2576,16 +2509,12 @@ body.dark .information-section {
 
 
 body.dark .section-heading h2 {
-
     color: #e3ebf4;
-
 }
 
 
 body.dark .section-heading p {
-
     color: #9daaba;
-
 }
 
 
@@ -2661,16 +2590,12 @@ body.dark .how-section {
 
 
 body.dark .step h3 {
-
     color: #dce6ef;
-
 }
 
 
 body.dark .step p {
-
     color: #9ba9b9;
-
 }
 
 
@@ -2684,9 +2609,7 @@ body.dark .step-number {
 
 
 body.dark .step-line {
-
     background: #304150;
-
 }
 
 
@@ -2726,16 +2649,12 @@ body.dark .information-box p {
 
 
 body.dark .faq-item summary {
-
     color: #d1dce7;
-
 }
 
 
 body.dark .faq-item p {
-
     color: #9caaba;
-
 }
 
 
@@ -2754,16 +2673,12 @@ body.dark .final-cta {
 
 
 body.dark .final-cta h2 {
-
     color: #e4ecf5;
-
 }
 
 
 body.dark .final-cta p {
-
     color: #9eacba;
-
 }
 
 
@@ -2788,39 +2703,30 @@ body.dark .footer {
 
 
 body.dark .footer-logo {
-
     color: #d8e2ec;
-
 }
 
 
 body.dark .footer-brand p,
 body.dark .footer-column a {
-
     color: #8998a8;
-
 }
 
 
 body.dark .footer-column h3 {
-
     color: #c1ceda;
-
 }
 
 
 body.dark .footer-bottom {
-
     border-color: #293845;
-
 }
 
 
 body.dark .footer-bottom p {
-
     color: #7f8e9d;
-
 }
+
 
 
 /* =========================================================
@@ -2830,44 +2736,32 @@ body.dark .footer-bottom p {
 @media (max-width: 950px) {
 
     .nav-links {
-
         gap: 17px;
-
     }
 
 
     .nav-links a {
-
         font-size: 12px;
-
     }
 
 
     .hero-container {
-
         gap: 30px;
-
     }
 
 
     .hero h1 {
-
         font-size: 43px;
-
     }
 
 
     .compression-window {
-
         width: 350px;
-
     }
 
 
     .image-preview {
-
         width: 255px;
-
     }
 
 
@@ -2889,16 +2783,15 @@ body.dark .footer-bottom p {
 }
 
 
+
 /* =========================================================
-   MOBILE NAV
+   MOBILE
 ========================================================= */
 
 @media (max-width: 780px) {
 
     .nav-container {
-
         min-height: 68px;
-
     }
 
 
@@ -2938,9 +2831,7 @@ body.dark .footer-bottom p {
 
 
     .nav-links.show {
-
         display: flex;
-
     }
 
 
@@ -2956,16 +2847,12 @@ body.dark .footer-bottom p {
 
 
     .nav-links a.active::after {
-
         display: none;
-
     }
 
 
     .mobile-menu-btn {
-
         display: block;
-
     }
 
 
@@ -2979,9 +2866,7 @@ body.dark .footer-bottom p {
 
 
     body.dark .nav-links a {
-
         border-color: #273746;
-
     }
 
 
@@ -3009,6 +2894,7 @@ body.dark .footer-bottom p {
     .hero-description {
 
         margin-left: auto;
+
         margin-right: auto;
 
     }
@@ -3050,9 +2936,7 @@ body.dark .footer-bottom p {
 
 
     .step-line {
-
         display: none;
-
     }
 
 
@@ -3065,6 +2949,7 @@ body.dark .footer-bottom p {
     }
 
 }
+
 
 
 /* =========================================================
@@ -3082,9 +2967,7 @@ body.dark .footer-bottom p {
 
 
     .logo {
-
         font-size: 13px;
-
     }
 
 
@@ -3131,9 +3014,7 @@ body.dark .footer-bottom p {
 
 
     .hero-description {
-
         font-size: 14px;
-
     }
 
 
@@ -3177,30 +3058,22 @@ body.dark .footer-bottom p {
 
 
     .compression-window {
-
         width: 350px;
-
     }
 
 
     .floating-jpg {
-
         left: 0;
-
     }
 
 
     .floating-png {
-
         right: 0;
-
     }
 
 
     .floating-webp {
-
         right: 25px;
-
     }
 
 
@@ -3215,16 +3088,12 @@ body.dark .footer-bottom p {
 
 
     .stat strong {
-
         font-size: 11px;
-
     }
 
 
     .stat span {
-
         font-size: 8px;
-
     }
 
 
@@ -3251,16 +3120,12 @@ body.dark .footer-bottom p {
 
 
     .tool-card > p {
-
         min-height: auto;
-
     }
 
 
     .benefits-container {
-
         grid-template-columns: 1fr;
-
     }
 
 
@@ -3275,20 +3140,16 @@ body.dark .footer-bottom p {
 
 
     .footer-brand {
-
-        grid-column:
-            1 / -1;
-
+        grid-column: 1 / -1;
     }
 
 
     .footer-bottom {
-
         width: 100%;
-
     }
 
 }
+
 
 
 /* =========================================================
@@ -3309,9 +3170,7 @@ body.dark .footer-bottom p {
 
 
     .hero h1 {
-
         font-size: 31px;
-
     }
 
 
@@ -3330,9 +3189,7 @@ body.dark .footer-bottom p {
 
 
     .footer-container {
-
         grid-template-columns: 1fr;
-
     }
 
 }
