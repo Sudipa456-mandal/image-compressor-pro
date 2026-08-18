@@ -1,21 +1,20 @@
 /* =========================================================
    IMAGE COMPRESSOR PRO
-   HOME PAGE JAVASCRIPT
+   MAIN HOME PAGE JAVASCRIPT
 ========================================================= */
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =====================================================
-       DARK MODE
+       DARK / LIGHT MODE
     ===================================================== */
 
     const themeToggle =
         document.getElementById("themeToggle");
 
-
     const savedTheme =
-        localStorage.getItem("theme");
+        localStorage.getItem("icp-theme");
 
 
     if (savedTheme === "dark") {
@@ -27,37 +26,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (themeToggle) {
 
-        themeToggle.addEventListener(
-            "click",
-            () => {
+        themeToggle.addEventListener("click", function () {
 
-                document.body.classList.toggle(
-                    "dark"
-                );
+            document.body.classList.toggle("dark");
 
 
-                if (
-                    document.body.classList.contains(
-                        "dark"
-                    )
-                ) {
+            const isDark =
+                document.body.classList.contains("dark");
 
-                    localStorage.setItem(
-                        "theme",
-                        "dark"
-                    );
 
-                } else {
+            localStorage.setItem(
+                "icp-theme",
+                isDark ? "dark" : "light"
+            );
 
-                    localStorage.setItem(
-                        "theme",
-                        "light"
-                    );
-
-                }
-
-            }
-        );
+        });
 
     }
 
@@ -68,29 +51,30 @@ document.addEventListener("DOMContentLoaded", () => {
     ===================================================== */
 
     const mobileMenuBtn =
-        document.getElementById(
-            "mobileMenuBtn"
-        );
-
+        document.getElementById("mobileMenuBtn");
 
     const navLinks =
-        document.querySelector(
-            ".nav-links"
-        );
+        document.getElementById("navLinks");
 
 
-    if (
-        mobileMenuBtn &&
-        navLinks
-    ) {
+    if (mobileMenuBtn && navLinks) {
 
         mobileMenuBtn.addEventListener(
             "click",
-            () => {
+            function () {
 
-                navLinks.classList.toggle(
-                    "show"
+                const isOpen =
+                    navLinks.classList.toggle("show");
+
+
+                mobileMenuBtn.setAttribute(
+                    "aria-expanded",
+                    isOpen ? "true" : "false"
                 );
+
+
+                mobileMenuBtn.textContent =
+                    isOpen ? "✕" : "☰";
 
             }
         );
@@ -98,15 +82,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
         navLinks
             .querySelectorAll("a")
-            .forEach(link => {
+            .forEach(function (link) {
 
                 link.addEventListener(
                     "click",
-                    () => {
+                    function () {
 
-                        navLinks.classList.remove(
-                            "show"
+                        navLinks.classList.remove("show");
+
+                        mobileMenuBtn.setAttribute(
+                            "aria-expanded",
+                            "false"
                         );
+
+                        mobileMenuBtn.textContent = "☰";
 
                     }
                 );
@@ -122,45 +111,44 @@ document.addEventListener("DOMContentLoaded", () => {
     ===================================================== */
 
     const topBtn =
-        document.getElementById(
-            "topBtn"
-        );
+        document.getElementById("topBtn");
+
+
+    function updateTopButton() {
+
+        if (!topBtn) {
+            return;
+        }
+
+
+        if (window.scrollY > 400) {
+
+            topBtn.classList.add("visible");
+
+        } else {
+
+            topBtn.classList.remove("visible");
+
+        }
+
+    }
 
 
     window.addEventListener(
         "scroll",
-        () => {
-
-            if (!topBtn) return;
-
-
-            if (window.scrollY > 350) {
-
-                topBtn.style.display =
-                    "flex";
-
-                topBtn.style.alignItems =
-                    "center";
-
-                topBtn.style.justifyContent =
-                    "center";
-
-            } else {
-
-                topBtn.style.display =
-                    "none";
-
-            }
-
-        }
+        updateTopButton,
+        { passive: true }
     );
+
+
+    updateTopButton();
 
 
     if (topBtn) {
 
         topBtn.addEventListener(
             "click",
-            () => {
+            function () {
 
                 window.scrollTo({
                     top: 0,
@@ -175,12 +163,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       TOOL CARD ANIMATION
+       SCROLL ANIMATION
     ===================================================== */
 
-    const toolCards =
+    const animatedElements =
         document.querySelectorAll(
-            ".tool-card"
+            ".tool-card, .step, .benefit-card, .faq-item, .information-box"
         );
 
 
@@ -188,88 +176,151 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const observer =
             new IntersectionObserver(
-                entries => {
+                function (entries) {
 
-                    entries.forEach(
-                        entry => {
+                    entries.forEach(function (entry) {
 
-                            if (
-                                entry.isIntersecting
-                            ) {
+                        if (entry.isIntersecting) {
 
-                                entry.target.classList.add(
-                                    "visible"
-                                );
+                            entry.target.classList.add(
+                                "is-visible"
+                            );
 
-                            }
+                            observer.unobserve(
+                                entry.target
+                            );
 
                         }
-                    );
+
+                    });
 
                 },
                 {
-                    threshold: 0.15
+                    threshold: 0.12
                 }
             );
 
 
-        toolCards.forEach(
-            card => observer.observe(card)
-        );
+        animatedElements.forEach(function (element) {
+
+            observer.observe(element);
+
+        });
+
+    } else {
+
+        animatedElements.forEach(function (element) {
+
+            element.classList.add("is-visible");
+
+        });
 
     }
 
 
 
     /* =====================================================
-       SMOOTH INTERNAL LINKS
+       FAQ
+       Only one FAQ remains open at a time
     ===================================================== */
 
-    document
-        .querySelectorAll(
-            'a[href^="#"]'
-        )
-        .forEach(link => {
+    const faqItems =
+        document.querySelectorAll(".faq-item");
 
-            link.addEventListener(
-                "click",
-                event => {
 
-                    const targetId =
-                        link.getAttribute(
-                            "href"
+    faqItems.forEach(function (item) {
+
+        item.addEventListener(
+            "toggle",
+            function () {
+
+                if (!item.open) {
+                    return;
+                }
+
+
+                faqItems.forEach(function (otherItem) {
+
+                    if (otherItem !== item) {
+
+                        otherItem.removeAttribute(
+                            "open"
                         );
-
-
-                    if (
-                        !targetId ||
-                        targetId === "#"
-                    ) {
-
-                        return;
 
                     }
 
+                });
 
-                    const target =
-                        document.querySelector(
-                            targetId
-                        );
+            }
+        );
+
+    });
 
 
-                    if (!target) return;
 
+    /* =====================================================
+       CLOSE MOBILE MENU WHEN CLICKING OUTSIDE
+    ===================================================== */
+
+    document.addEventListener(
+        "click",
+        function (event) {
+
+            if (
+                !navLinks ||
+                !mobileMenuBtn
+            ) {
+                return;
+            }
+
+
+            const clickedInsideMenu =
+                navLinks.contains(event.target);
+
+
+            const clickedButton =
+                mobileMenuBtn.contains(event.target);
+
+
+            if (
+                !clickedInsideMenu &&
+                !clickedButton
+            ) {
+
+                navLinks.classList.remove("show");
+
+                mobileMenuBtn.setAttribute(
+                    "aria-expanded",
+                    "false"
+                );
+
+                mobileMenuBtn.textContent = "☰";
+
+            }
+
+        }
+    );
+
+
+
+    /* =====================================================
+       PREVENT EMPTY # LINKS
+    ===================================================== */
+
+    document
+        .querySelectorAll('a[href="#"]')
+        .forEach(function (link) {
+
+            link.addEventListener(
+                "click",
+                function (event) {
 
                     event.preventDefault();
-
-
-                    target.scrollIntoView({
-                        behavior: "smooth"
-                    });
 
                 }
             );
 
         });
+
 
 });
