@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <meta
         name="description"
-        content="Image Compressor Pro - Compress images and create professional resumes online. Free, fast and secure."
+        content="Image Compressor Pro offers free online image compression and resume building tools. Compress JPG, PNG and WEBP images quickly while creating professional resumes online."
     >
 
     <meta
@@ -18,26 +17,41 @@
         content="index, follow"
     >
 
-    <title>Image Compressor Pro - Free Online Image Compressor & Resume Builder</title>
+    <meta
+        name="theme-color"
+        content="#f7faff"
+    >
+
+    <title>
+        Image Compressor Pro - Free Image Compressor & Resume Builder
+    </title>
 
     <link rel="stylesheet" href="style.css">
+
 </head>
+
 
 <body>
 
-<!-- =====================================================
-     NAVBAR
-===================================================== -->
+
+<!-- =========================================================
+     NAVIGATION
+========================================================= -->
 
 <header class="navbar">
 
     <div class="nav-container">
 
+
+        <!-- LOGO -->
+
         <a href="index.html" class="logo">
 
-            <span class="logo-icon">▧</span>
+            <span class="logo-icon">
+                ⇩
+            </span>
 
-            <span>
+            <span class="logo-text">
                 Image Compressor
                 <strong>Pro</strong>
             </span>
@@ -45,7 +59,9 @@
         </a>
 
 
-        <nav class="nav-links">
+        <!-- DESKTOP NAVIGATION -->
+
+        <nav class="nav-links" id="navLinks">
 
             <a
                 href="index.html"
@@ -77,170 +93,371 @@
         </nav>
 
 
+        <!-- THEME BUTTON -->
+
         <button
             type="button"
-            id="themeToggle"
             class="theme-toggle"
+            id="themeToggle"
             aria-label="Toggle dark mode"
         >
-            <span>☀</span>
-            <span>◐</span>
+
+            <span class="theme-sun">
+                ☀
+            </span>
+
+            <span class="theme-moon">
+                ◐
+            </span>
+
         </button>
 
 
+        <!-- MOBILE MENU -->
+
         <button
             type="button"
-            id="mobileMenuBtn"
             class="mobile-menu-btn"
-            aria-label="Open menu"
+            id="mobileMenuBtn"
+            aria-label="Open navigation menu"
+            aria-expanded="false"
         >
             ☰
         </button>
+
 
     </div>
 
 </header>
 
 
-<!-- =====================================================
-     HERO
-===================================================== -->
 
 <main>
+
+
+<!-- =========================================================
+     HERO SECTION
+========================================================= -->
 
 <section class="hero">
 
     <div class="hero-container">
 
+
+        <!-- LEFT -->
+
         <div class="hero-content">
 
+
             <div class="hero-badge">
-                ☆ &nbsp; Free Online Tools
+                <span>✦</span>
+                Free Online Tools
             </div>
 
 
             <h1>
-                Simple Tools.
+
+                Compress Images.
                 <br>
-                <span>Powerful Results.</span>
+
+                <span>Create Better Resumes.</span>
+
             </h1>
 
 
             <p class="hero-description">
-                Compress your images or create a professional
-                resume in minutes. 100% free, fast and secure.
+
+                Simple online tools to reduce image file sizes
+                and create professional resumes. Fast, easy
+                and designed for everyone.
+
             </p>
 
 
-            <div class="hero-features">
+            <div class="hero-actions">
 
-                <div class="hero-feature">
-                    <span class="feature-check">✓</span>
-                    <span>100% Free</span>
-                </div>
+                <a
+                    href="compressor/"
+                    class="primary-button"
+                >
+                    Compress an Image
+                    <span>→</span>
+                </a>
 
-                <div class="hero-feature">
-                    <span class="feature-shield">♢</span>
-                    <span>No Sign Up</span>
-                </div>
 
-                <div class="hero-feature">
-                    <span class="feature-lock">▣</span>
-                    <span>Secure &amp; Private</span>
-                </div>
+                <a
+                    href="resume/"
+                    class="secondary-button"
+                >
+                    Create a Resume
+                    <span>→</span>
+                </a>
 
             </div>
+
+
+            <div class="hero-trust">
+
+
+                <div class="trust-item">
+
+                    <span class="trust-icon">
+                        ✓
+                    </span>
+
+                    <span>
+                        Free to use
+                    </span>
+
+                </div>
+
+
+                <div class="trust-item">
+
+                    <span class="trust-icon">
+                        ✓
+                    </span>
+
+                    <span>
+                        No registration
+                    </span>
+
+                </div>
+
+
+                <div class="trust-item">
+
+                    <span class="trust-icon">
+                        ✓
+                    </span>
+
+                    <span>
+                        Easy to use
+                    </span>
+
+                </div>
+
+
+            </div>
+
 
         </div>
 
 
-        <!-- HERO VISUAL -->
+
+        <!-- RIGHT VISUAL -->
 
         <div class="hero-visual">
 
-            <div class="visual-decoration decoration-one"></div>
-            <div class="visual-decoration decoration-two"></div>
 
-
-            <div class="image-window">
-
-                <div class="window-top">
-
-                    <span></span>
-                    <span></span>
-                    <span></span>
-
-                </div>
-
-
-                <div class="image-placeholder">
-
-                    <div class="sun"></div>
-
-                    <div class="mountain mountain-back"></div>
-
-                    <div class="mountain mountain-front"></div>
-
-                </div>
-
-
-                <div class="compression-info">
-
-                    <span>
-                        Original 2.4 MB
-                    </span>
-
-                    <span>
-                        Compressed 245 KB
-                    </span>
-
-                </div>
-
-
-                <div class="compression-slider">
-
-                    <div class="slider-line"></div>
-
-                    <div class="slider-circle"></div>
-
-                </div>
-
-            </div>
-
-
-            <div class="format-tag jpg">
+            <div class="floating-card floating-jpg">
                 JPG
             </div>
 
-            <div class="format-tag png">
+
+            <div class="floating-card floating-png">
                 PNG
             </div>
 
-            <div class="format-tag webp">
+
+            <div class="floating-card floating-webp">
                 WEBP
             </div>
 
+
+            <div class="compression-window">
+
+
+                <div class="window-header">
+
+                    <div class="window-dots">
+
+                        <span></span>
+                        <span></span>
+                        <span></span>
+
+                    </div>
+
+                    <span class="window-title">
+                        Image Compressor
+                    </span>
+
+                </div>
+
+
+                <div class="image-preview">
+
+
+                    <div class="preview-sun"></div>
+
+                    <div class="preview-mountain mountain-one"></div>
+
+                    <div class="preview-mountain mountain-two"></div>
+
+                    <div class="preview-ground"></div>
+
+
+                </div>
+
+
+                <div class="file-information">
+
+
+                    <div>
+
+                        <span>
+                            Original
+                        </span>
+
+                        <strong>
+                            2.4 MB
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Compressed
+                        </span>
+
+                        <strong class="compressed-size">
+                            245 KB
+                        </strong>
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="compression-progress">
+
+                    <div class="progress-track">
+
+                        <div class="progress-fill"></div>
+
+                        <span class="progress-dot"></span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="saved-label">
+
+                    ✓ 90% smaller
+
+                </div>
+
+
+            </div>
+
+
         </div>
+
 
     </div>
 
 </section>
 
 
-<!-- =====================================================
+
+<!-- =========================================================
+     QUICK STATS
+========================================================= -->
+
+<section class="stats-section">
+
+    <div class="stats-container">
+
+
+        <div class="stat">
+
+            <strong>
+                JPG
+            </strong>
+
+            <span>
+                Supported
+            </span>
+
+        </div>
+
+
+        <div class="stat-divider"></div>
+
+
+        <div class="stat">
+
+            <strong>
+                PNG
+            </strong>
+
+            <span>
+                Supported
+            </span>
+
+        </div>
+
+
+        <div class="stat-divider"></div>
+
+
+        <div class="stat">
+
+            <strong>
+                WEBP
+            </strong>
+
+            <span>
+                Supported
+            </span>
+
+        </div>
+
+
+        <div class="stat-divider"></div>
+
+
+        <div class="stat">
+
+            <strong>
+                PDF
+            </strong>
+
+            <span>
+                Resume Export
+            </span>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
      TOOLS SECTION
-===================================================== -->
+========================================================= -->
 
 <section class="tools-section">
 
     <div class="section-heading">
 
+        <span class="section-label">
+            OUR TOOLS
+        </span>
+
         <h2>
-            What do you want to do?
+            Everything you need, in one place
         </h2>
 
         <p>
-            Choose the tool you need and get started instantly.
+            Choose a tool and get started in just a few clicks.
         </p>
 
     </div>
@@ -249,222 +466,586 @@
     <div class="tools-container">
 
 
-        <!-- IMAGE COMPRESSOR CARD -->
+        <!-- IMAGE COMPRESSOR -->
 
-        <div class="tool-card compressor-card">
-
-            <div class="tool-decoration cloud-decoration">
-                ☁
-            </div>
+        <article class="tool-card compressor-card">
 
 
-            <div class="tool-icon compressor-icon">
-                ▧
-            </div>
+            <div class="tool-card-top">
 
+                <div class="tool-icon blue-icon">
+                    ⇩
+                </div>
 
-            <div class="dot-decoration">
-                · · ·
+                <span class="tool-number">
+                    01
+                </span>
+
             </div>
 
 
             <h3>
-                Compress Images
+                Image Compressor
             </h3>
 
 
             <p>
-                Reduce image file size without losing
-                quality. Supports JPG, PNG, WEBP
-                and more.
+
+                Reduce JPG, PNG and WEBP image sizes
+                while keeping your images looking clear.
+                Perfect for websites, social media,
+                email and online forms.
+
             </p>
+
+
+            <ul class="tool-features">
+
+                <li>
+                    <span>✓</span>
+                    Reduce file size
+                </li>
+
+                <li>
+                    <span>✓</span>
+                    Adjust compression
+                </li>
+
+                <li>
+                    <span>✓</span>
+                    Download compressed images
+                </li>
+
+            </ul>
 
 
             <a
                 href="compressor/"
-                class="tool-button compressor-button"
+                class="card-button blue-button"
+            >
+
+                Compress Images
+
+                <span>→</span>
+
+            </a>
+
+
+        </article>
+
+
+
+        <!-- RESUME BUILDER -->
+
+        <article class="tool-card resume-card">
+
+
+            <div class="tool-card-top">
+
+                <div class="tool-icon green-icon">
+                    ▤
+                </div>
+
+                <span class="tool-number">
+                    02
+                </span>
+
+            </div>
+
+
+            <h3>
+                Resume Builder
+            </h3>
+
+
+            <p>
+
+                Create a professional resume with
+                a clean layout and easy-to-use sections.
+                Add your education, experience, skills
+                and personal information.
+
+            </p>
+
+
+            <ul class="tool-features">
+
+                <li>
+                    <span>✓</span>
+                    Professional templates
+                </li>
+
+                <li>
+                    <span>✓</span>
+                    Add education & experience
+                </li>
+
+                <li>
+                    <span>✓</span>
+                    Download your resume
+                </li>
+
+            </ul>
+
+
+            <a
+                href="resume/"
+                class="card-button green-button"
+            >
+
+                Create Resume
+
+                <span>→</span>
+
+            </a>
+
+
+        </article>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     HOW IT WORKS
+========================================================= -->
+
+<section class="how-section">
+
+    <div class="section-heading">
+
+        <span class="section-label">
+            HOW IT WORKS
+        </span>
+
+        <h2>
+            Simple tools. Simple process.
+        </h2>
+
+        <p>
+            No complicated setup. Just choose what you need.
+        </p>
+
+    </div>
+
+
+    <div class="steps-container">
+
+
+        <div class="step">
+
+            <div class="step-number">
+                1
+            </div>
+
+            <h3>
+                Choose a Tool
+            </h3>
+
+            <p>
+                Select image compression or resume building
+                from our tools.
+            </p>
+
+        </div>
+
+
+        <div class="step-line"></div>
+
+
+        <div class="step">
+
+            <div class="step-number">
+                2
+            </div>
+
+            <h3>
+                Add Your Information
+            </h3>
+
+            <p>
+                Upload an image or enter the information
+                you need for your resume.
+            </p>
+
+        </div>
+
+
+        <div class="step-line"></div>
+
+
+        <div class="step">
+
+            <div class="step-number">
+                3
+            </div>
+
+            <h3>
+                Get Your Result
+            </h3>
+
+            <p>
+                Download your compressed image or
+                completed resume.
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     BENEFITS
+========================================================= -->
+
+<section class="benefits-section">
+
+    <div class="section-heading">
+
+        <span class="section-label">
+            WHY USE OUR TOOLS
+        </span>
+
+        <h2>
+            Built to make everyday tasks easier
+        </h2>
+
+    </div>
+
+
+    <div class="benefits-container">
+
+
+        <div class="benefit-card">
+
+            <div class="benefit-icon">
+                ⚡
+            </div>
+
+            <h3>
+                Fast
+            </h3>
+
+            <p>
+                Get your work done quickly with
+                simple online tools.
+            </p>
+
+        </div>
+
+
+        <div class="benefit-card">
+
+            <div class="benefit-icon">
+                ✓
+            </div>
+
+            <h3>
+                Easy
+            </h3>
+
+            <p>
+                Clean interfaces designed for
+                beginners and everyday users.
+            </p>
+
+        </div>
+
+
+        <div class="benefit-card">
+
+            <div class="benefit-icon">
+                🔒
+            </div>
+
+            <h3>
+                Privacy Focused
+            </h3>
+
+            <p>
+                We aim to keep your experience
+                simple and privacy-conscious.
+            </p>
+
+        </div>
+
+
+        <div class="benefit-card">
+
+            <div class="benefit-icon">
+                📱
+            </div>
+
+            <h3>
+                Mobile Friendly
+            </h3>
+
+            <p>
+                Use our tools comfortably on
+                desktop, tablet or mobile.
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     INFORMATION SECTION
+========================================================= -->
+
+<section class="information-section">
+
+    <div class="information-container">
+
+
+        <div class="information-content">
+
+            <span class="section-label">
+                ABOUT IMAGE COMPRESSOR PRO
+            </span>
+
+            <h2>
+                Useful online tools without unnecessary complexity
+            </h2>
+
+            <p>
+
+                Image Compressor Pro is designed to provide
+                practical browser-based tools for everyday
+                digital tasks.
+
+            </p>
+
+            <p>
+
+                Whether you need to reduce the size of an image
+                before uploading it to a website or create a
+                professional resume, our tools are designed
+                to make the process easier.
+
+            </p>
+
+
+            <a
+                href="about.html"
+                class="text-link"
+            >
+
+                Learn more about us
+                <span>→</span>
+
+            </a>
+
+        </div>
+
+
+        <div class="information-box">
+
+
+            <div class="info-box-icon">
+                ✦
+            </div>
+
+
+            <h3>
+                Designed for everyday users
+            </h3>
+
+
+            <p>
+
+                Simple instructions, clear controls and
+                responsive pages help you complete common
+                online tasks without unnecessary steps.
+
+            </p>
+
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     FAQ
+========================================================= -->
+
+<section class="faq-section">
+
+    <div class="section-heading">
+
+        <span class="section-label">
+            FAQ
+        </span>
+
+        <h2>
+            Frequently asked questions
+        </h2>
+
+        <p>
+            Some common questions about our tools.
+        </p>
+
+    </div>
+
+
+    <div class="faq-container">
+
+
+        <details class="faq-item">
+
+            <summary>
+                What is an image compressor?
+                <span>+</span>
+            </summary>
+
+            <p>
+
+                An image compressor reduces the file size
+                of an image so it can be easier to upload,
+                share or use on a website.
+
+            </p>
+
+        </details>
+
+
+        <details class="faq-item">
+
+            <summary>
+                Which image formats are supported?
+                <span>+</span>
+            </summary>
+
+            <p>
+
+                Our image compressor is designed to support
+                commonly used formats such as JPG, PNG and WEBP.
+
+            </p>
+
+        </details>
+
+
+        <details class="faq-item">
+
+            <summary>
+                Can I create a resume online?
+                <span>+</span>
+            </summary>
+
+            <p>
+
+                Yes. You can open the Resume Builder,
+                add your personal details, education,
+                experience and skills, and create your resume.
+
+            </p>
+
+        </details>
+
+
+        <details class="faq-item">
+
+            <summary>
+                Do I need an account?
+                <span>+</span>
+            </summary>
+
+            <p>
+
+                The homepage and available tools are designed
+                to be simple to access without unnecessary
+                registration steps.
+
+            </p>
+
+        </details>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     CTA
+========================================================= -->
+
+<section class="final-cta">
+
+    <div class="final-cta-container">
+
+        <span class="cta-small">
+            READY TO GET STARTED?
+        </span>
+
+        <h2>
+            Choose a tool and get started today.
+        </h2>
+
+        <p>
+            Compress an image or build your professional resume.
+        </p>
+
+
+        <div class="cta-buttons">
+
+            <a
+                href="compressor/"
+                class="primary-button"
             >
                 Compress Images
                 <span>→</span>
             </a>
 
-
-            <div class="plant-decoration">
-                🌿
-            </div>
-
-        </div>
-
-
-        <!-- RESUME CARD -->
-
-        <div class="tool-card resume-card">
-
-            <div class="tool-decoration resume-decoration">
-                ▱
-            </div>
-
-
-            <div class="tool-icon resume-icon">
-                ▤
-            </div>
-
-
-            <div class="resume-paper-decoration">
-                ▤
-            </div>
-
-
-            <h3>
-                Create Resume
-            </h3>
-
-
-            <p>
-                Build a professional resume with
-                beautiful templates. Download
-                as PDF and get hired.
-            </p>
-
-
             <a
                 href="resume/"
-                class="tool-button resume-button"
+                class="cta-outline-button"
             >
-                Create Resume
+                Build Resume
                 <span>→</span>
             </a>
 
-
-            <div class="plant-decoration resume-plant">
-                🌿
-            </div>
-
         </div>
 
     </div>
 
 </section>
 
-
-<!-- =====================================================
-     BENEFITS
-===================================================== -->
-
-<section class="benefits-section">
-
-    <div class="benefits-container">
-
-
-        <div class="benefit-item">
-
-            <div class="benefit-icon blue">
-                ⚡
-            </div>
-
-            <div>
-                <h3>
-                    Fast &amp; Efficient
-                </h3>
-
-                <p>
-                    Get your work done in
-                    seconds with our
-                    powerful tools.
-                </p>
-            </div>
-
-        </div>
-
-
-        <div class="benefit-divider"></div>
-
-
-        <div class="benefit-item">
-
-            <div class="benefit-icon green">
-                ✓
-            </div>
-
-            <div>
-                <h3>
-                    Secure &amp; Private
-                </h3>
-
-                <p>
-                    Your files are safe with us.
-                    We never store or share
-                    your data.
-                </p>
-            </div>
-
-        </div>
-
-
-        <div class="benefit-divider"></div>
-
-
-        <div class="benefit-item">
-
-            <div class="benefit-icon purple">
-                ▯
-            </div>
-
-            <div>
-                <h3>
-                    Mobile Friendly
-                </h3>
-
-                <p>
-                    Works perfectly on all
-                    devices – desktop,
-                    tablet and mobile.
-                </p>
-            </div>
-
-        </div>
-
-
-        <div class="benefit-divider"></div>
-
-
-        <div class="benefit-item">
-
-            <div class="benefit-icon orange">
-                ☺
-            </div>
-
-            <div>
-                <h3>
-                    Easy to Use
-                </h3>
-
-                <p>
-                    Simple and clean
-                    interface for the best
-                    user experience.
-                </p>
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
 
 </main>
 
 
-<!-- =====================================================
+
+<!-- =========================================================
      FOOTER
-===================================================== -->
+========================================================= -->
 
 <footer class="footer">
+
 
     <div class="footer-container">
 
 
-        <div class="footer-column brand-column">
+        <div class="footer-brand">
 
             <a
                 href="index.html"
@@ -472,7 +1053,7 @@
             >
 
                 <span class="footer-logo-icon">
-                    ▧
+                    ⇩
                 </span>
 
                 <strong>
@@ -483,33 +1064,14 @@
 
 
             <p>
-                Your all-in-one platform to compress
-                images and create professional
-                resumes. Fast, free and secure.
+
+                Simple online tools for image compression
+                and professional resume creation.
+
             </p>
 
-
-            <div class="social-links">
-
-                <a href="#" aria-label="Facebook">
-                    f
-                </a>
-
-                <a href="#" aria-label="Twitter">
-                    𝕏
-                </a>
-
-                <a href="#" aria-label="Instagram">
-                    ◎
-                </a>
-
-                <a href="#" aria-label="YouTube">
-                    ▶
-                </a>
-
-            </div>
-
         </div>
+
 
 
         <div class="footer-column">
@@ -529,10 +1091,11 @@
         </div>
 
 
+
         <div class="footer-column">
 
             <h3>
-                Useful Links
+                Company
             </h3>
 
             <a href="about.html">
@@ -542,6 +1105,20 @@
             <a href="contact.html">
                 Contact Us
             </a>
+
+            <a href="blog/">
+                Blog
+            </a>
+
+        </div>
+
+
+
+        <div class="footer-column">
+
+            <h3>
+                Legal
+            </h3>
 
             <a href="privacy.html">
                 Privacy Policy
@@ -558,46 +1135,28 @@
         </div>
 
 
-        <div class="footer-column">
-
-            <h3>
-                Blog
-            </h3>
-
-            <a href="blog/">
-                Image Compression Guide
-            </a>
-
-            <a href="blog/">
-                Resume Writing Tips
-            </a>
-
-            <a href="blog/">
-                Interview Tips &amp; Tricks
-            </a>
-
-        </div>
-
     </div>
 
 
     <div class="footer-bottom">
 
         <p>
-            © 2026 Image Compressor Pro.
-            All rights reserved.
+            © 2026 Image Compressor Pro. All rights reserved.
         </p>
 
     </div>
 
+
 </footer>
 
 
-<!-- =====================================================
+
+<!-- =========================================================
      BACK TO TOP
-===================================================== -->
+========================================================= -->
 
 <button
+    type="button"
     id="topBtn"
     class="top-btn"
     aria-label="Back to top"
@@ -606,7 +1165,9 @@
 </button>
 
 
+
 <script src="script.js"></script>
 
 </body>
+
 </html>
