@@ -1,6 +1,6 @@
 /* =========================================================
    IMAGE COMPRESSOR PRO
-   REAL IMAGE COMPRESSION
+   IMAGE COMPRESSOR PAGE JAVASCRIPT
 ========================================================= */
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -19,126 +19,80 @@ document.addEventListener("DOMContentLoaded", function () {
     const workspace =
         document.getElementById("workspace");
 
-    const controlsCard =
-        document.getElementById("controlsCard");
+    const imagePreview =
+        document.getElementById("imagePreview");
 
-    const resultCard =
-        document.getElementById("resultCard");
+    const previewPlaceholder =
+        document.getElementById("previewPlaceholder");
 
-    const compressedPlaceholder =
-        document.getElementById(
-            "compressedPlaceholder"
-        );
-
-    const originalPreview =
-        document.getElementById(
-            "originalPreview"
-        );
-
-    const compressedPreview =
-        document.getElementById(
-            "compressedPreview"
-        );
+    const fileName =
+        document.getElementById("fileName");
 
     const originalSize =
-        document.getElementById(
-            "originalSize"
-        );
+        document.getElementById("originalSize");
 
-    const compressedSize =
-        document.getElementById(
-            "compressedSize"
-        );
+    const imageDimensions =
+        document.getElementById("imageDimensions");
 
-    const originalDimensions =
-        document.getElementById(
-            "originalDimensions"
-        );
+    const formatBadge =
+        document.getElementById("formatBadge");
 
-    const compressedDimensions =
-        document.getElementById(
-            "compressedDimensions"
-        );
-
-    const originalFormat =
-        document.getElementById(
-            "originalFormat"
-        );
-
-    const compressedFormat =
-        document.getElementById(
-            "compressedFormat"
-        );
-
-    const qualityRange =
-        document.getElementById(
-            "qualityRange"
-        );
+    const qualitySlider =
+        document.getElementById("qualitySlider");
 
     const qualityValue =
-        document.getElementById(
-            "qualityValue"
-        );
-
-    const formatSelect =
-        document.getElementById(
-            "formatSelect"
-        );
+        document.getElementById("qualityValue");
 
     const compressButton =
-        document.getElementById(
-            "compressButton"
-        );
+        document.getElementById("compressButton");
 
     const downloadButton =
-        document.getElementById(
-            "downloadButton"
-        );
+        document.getElementById("downloadButton");
 
     const resetButton =
-        document.getElementById(
-            "resetButton"
-        );
+        document.getElementById("resetButton");
 
-    const newImageButton =
-        document.getElementById(
-            "newImageButton"
-        );
+    const successCard =
+        document.getElementById("successCard");
 
-    const loading =
-        document.getElementById(
-            "loading"
-        );
+    const successText =
+        document.getElementById("successText");
+
+    const successDownload =
+        document.getElementById("successDownload");
 
     const errorMessage =
-        document.getElementById(
-            "errorMessage"
-        );
+        document.getElementById("errorMessage");
 
-    const savedText =
-        document.getElementById(
-            "savedText"
-        );
+    const resultOriginal =
+        document.getElementById("resultOriginal");
 
-    const themeToggle =
-        document.getElementById(
-            "themeToggle"
-        );
+    const resultCompressed =
+        document.getElementById("resultCompressed");
 
-    const mobileMenuBtn =
-        document.getElementById(
-            "mobileMenuBtn"
-        );
+    const savingPercent =
+        document.getElementById("savingPercent");
 
-    const navLinks =
-        document.getElementById(
-            "navLinks"
-        );
+    const progressArea =
+        document.getElementById("progressArea");
+
+    const progressFill =
+        document.getElementById("progressFill");
+
+    const progressPercent =
+        document.getElementById("progressPercent");
 
     const topBtn =
-        document.getElementById(
-            "topBtn"
-        );
+        document.getElementById("topBtn");
+
+    const themeToggle =
+        document.getElementById("themeToggle");
+
+    const mobileMenuBtn =
+        document.getElementById("mobileMenuBtn");
+
+    const navLinks =
+        document.getElementById("navLinks");
 
 
     /* =====================================================
@@ -147,69 +101,1206 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let selectedFile = null;
 
-    let originalImage = null;
+    let selectedFormat = "original";
 
     let compressedBlob = null;
 
-    let compressedUrl = null;
+    let compressedFileName = "";
 
-    let originalUrl = null;
+    let previewURL = null;
 
+    let compressedURL = null;
 
-    const MAX_FILE_SIZE =
-        20 * 1024 * 1024;
 
 
     /* =====================================================
-       FORMAT HELPERS
+       THEME
+    ===================================================== */
+
+    const savedTheme =
+        localStorage.getItem("icp-theme");
+
+
+    if (savedTheme === "dark") {
+
+        document.body.classList.add("dark");
+
+    }
+
+
+    if (themeToggle) {
+
+        themeToggle.addEventListener(
+            "click",
+            function () {
+
+                document.body.classList.toggle("dark");
+
+                const isDark =
+                    document.body.classList.contains("dark");
+
+                localStorage.setItem(
+                    "icp-theme",
+                    isDark ? "dark" : "light"
+                );
+
+            }
+        );
+
+    }
+
+
+
+    /* =====================================================
+       MOBILE MENU
+    ===================================================== */
+
+    if (mobileMenuBtn && navLinks) {
+
+        mobileMenuBtn.addEventListener(
+            "click",
+            function () {
+
+                const isOpen =
+                    navLinks.classList.toggle("show");
+
+                mobileMenuBtn.setAttribute(
+                    "aria-expanded",
+                    isOpen ? "true" : "false"
+                );
+
+                mobileMenuBtn.textContent =
+                    isOpen ? "✕" : "☰";
+
+            }
+        );
+
+
+        navLinks
+            .querySelectorAll("a")
+            .forEach(function (link) {
+
+                link.addEventListener(
+                    "click",
+                    function () {
+
+                        navLinks.classList.remove("show");
+
+                        mobileMenuBtn.setAttribute(
+                            "aria-expanded",
+                            "false"
+                        );
+
+                        mobileMenuBtn.textContent = "☰";
+
+                    }
+                );
+
+            });
+
+    }
+
+
+
+    /* =====================================================
+       FILE INPUT
+    ===================================================== */
+
+    if (fileInput) {
+
+        fileInput.addEventListener(
+            "change",
+            function (event) {
+
+                const files =
+                    event.target.files;
+
+                if (!files || !files.length) {
+                    return;
+                }
+
+                handleFile(files[0]);
+
+            }
+        );
+
+    }
+
+
+
+    /* =====================================================
+       DRAG & DROP
+    ===================================================== */
+
+    if (uploadCard) {
+
+        [
+            "dragenter",
+            "dragover"
+        ].forEach(function (eventName) {
+
+            uploadCard.addEventListener(
+                eventName,
+                function (event) {
+
+                    event.preventDefault();
+
+                    event.stopPropagation();
+
+                    uploadCard.classList.add(
+                        "drag-over"
+                    );
+
+                }
+            );
+
+        });
+
+
+        [
+            "dragleave",
+            "drop"
+        ].forEach(function (eventName) {
+
+            uploadCard.addEventListener(
+                eventName,
+                function (event) {
+
+                    event.preventDefault();
+
+                    event.stopPropagation();
+
+                    uploadCard.classList.remove(
+                        "drag-over"
+                    );
+
+                }
+            );
+
+        });
+
+
+        uploadCard.addEventListener(
+            "drop",
+            function (event) {
+
+                const files =
+                    event.dataTransfer.files;
+
+                if (!files || !files.length) {
+                    return;
+                }
+
+                handleFile(files[0]);
+
+            }
+        );
+
+    }
+
+
+
+    /* =====================================================
+       HANDLE FILE
+    ===================================================== */
+
+    function handleFile(file) {
+
+        clearError();
+
+        resetCompressionResult();
+
+        if (!file.type.startsWith("image/")) {
+
+            showError(
+                "Please select a JPG, PNG or WEBP image."
+            );
+
+            return;
+
+        }
+
+
+        const allowedTypes = [
+            "image/jpeg",
+            "image/png",
+            "image/webp"
+        ];
+
+
+        if (!allowedTypes.includes(file.type)) {
+
+            showError(
+                "This image format is not supported. Please use JPG, PNG or WEBP."
+            );
+
+            return;
+
+        }
+
+
+        const maxSize =
+            20 * 1024 * 1024;
+
+
+        if (file.size > maxSize) {
+
+            showError(
+                "The image is larger than 20 MB. Please choose a smaller image."
+            );
+
+            return;
+
+        }
+
+
+        selectedFile = file;
+
+
+        fileName.textContent =
+            file.name;
+
+
+        originalSize.textContent =
+            formatBytes(file.size);
+
+
+        resultOriginal.textContent =
+            formatBytes(file.size);
+
+
+        formatBadge.textContent =
+            getFormatName(file.type);
+
+
+        previewImage(file);
+
+        readImageDimensions(file);
+
+
+        workspace.classList.add("show");
+
+        successCard.classList.remove("show");
+
+
+        workspace.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+
+    }
+
+
+
+    /* =====================================================
+       PREVIEW IMAGE
+    ===================================================== */
+
+    function previewImage(file) {
+
+        if (previewURL) {
+
+            URL.revokeObjectURL(previewURL);
+
+        }
+
+
+        previewURL =
+            URL.createObjectURL(file);
+
+
+        imagePreview.src =
+            previewURL;
+
+
+        imagePreview.style.display =
+            "block";
+
+
+        previewPlaceholder.style.display =
+            "none";
+
+    }
+
+
+
+    /* =====================================================
+       IMAGE DIMENSIONS
+    ===================================================== */
+
+    function readImageDimensions(file) {
+
+        const img =
+            new Image();
+
+
+        const url =
+            URL.createObjectURL(file);
+
+
+        img.onload =
+            function () {
+
+                imageDimensions.textContent =
+                    img.naturalWidth +
+                    " × " +
+                    img.naturalHeight +
+                    " px";
+
+                URL.revokeObjectURL(url);
+
+            };
+
+
+        img.onerror =
+            function () {
+
+                imageDimensions.textContent =
+                    "—";
+
+                URL.revokeObjectURL(url);
+
+            };
+
+
+        img.src = url;
+
+    }
+
+
+
+    /* =====================================================
+       FORMAT BUTTONS
+    ===================================================== */
+
+    const formatButtons =
+        document.querySelectorAll(
+            ".format-option"
+        );
+
+
+    formatButtons.forEach(function (button) {
+
+        button.addEventListener(
+            "click",
+            function () {
+
+                formatButtons.forEach(
+                    function (item) {
+
+                        item.classList.remove(
+                            "active"
+                        );
+
+                    }
+                );
+
+
+                button.classList.add("active");
+
+
+                selectedFormat =
+                    button.dataset.format;
+
+
+                if (selectedFile) {
+
+                    if (
+                        selectedFormat ===
+                        "original"
+                    ) {
+
+                        formatBadge.textContent =
+                            getFormatName(
+                                selectedFile.type
+                            );
+
+                    } else {
+
+                        formatBadge.textContent =
+                            getFormatName(
+                                selectedFormat
+                            );
+
+                    }
+
+                }
+
+
+                resetCompressionResult();
+
+            }
+        );
+
+    });
+
+
+
+    /* =====================================================
+       QUALITY SLIDER
+    ===================================================== */
+
+    if (qualitySlider) {
+
+        qualitySlider.addEventListener(
+            "input",
+            function () {
+
+                qualityValue.textContent =
+                    qualitySlider.value + "%";
+
+
+                resetCompressionResult();
+
+            }
+        );
+
+    }
+
+
+
+    /* =====================================================
+       COMPRESS
+    ===================================================== */
+
+    if (compressButton) {
+
+        compressButton.addEventListener(
+            "click",
+            function () {
+
+                if (!selectedFile) {
+
+                    showError(
+                        "Please upload an image first."
+                    );
+
+                    return;
+
+                }
+
+
+                compressImage();
+
+            }
+        );
+
+    }
+
+
+
+    /* =====================================================
+       COMPRESS IMAGE
+    ===================================================== */
+
+    function compressImage() {
+
+        clearError();
+
+
+        compressButton.disabled =
+            true;
+
+
+        downloadButton.disabled =
+            true;
+
+
+        successCard.classList.remove(
+            "show"
+        );
+
+
+        progressArea.classList.add(
+            "show"
+        );
+
+
+        setProgress(0);
+
+
+        const reader =
+            new FileReader();
+
+
+        reader.onload =
+            function (event) {
+
+                const img =
+                    new Image();
+
+
+                img.onload =
+                    function () {
+
+                        setProgress(30);
+
+
+                        const canvas =
+                            document.createElement(
+                                "canvas"
+                            );
+
+
+                        canvas.width =
+                            img.naturalWidth;
+
+
+                        canvas.height =
+                            img.naturalHeight;
+
+
+                        const ctx =
+                            canvas.getContext(
+                                "2d",
+                                {
+                                    alpha: true
+                                }
+                            );
+
+
+                        ctx.drawImage(
+                            img,
+                            0,
+                            0
+                        );
+
+
+                        setProgress(55);
+
+
+                        const outputType =
+                            getOutputType();
+
+
+                        const quality =
+                            Number(
+                                qualitySlider.value
+                            ) / 100;
+
+
+                        canvas.toBlob(
+                            function (blob) {
+
+                                if (!blob) {
+
+                                    finishWithError(
+                                        "The image could not be compressed. Please try another image."
+                                    );
+
+                                    return;
+
+                                }
+
+
+                                setProgress(85);
+
+
+                                compressedBlob =
+                                    blob;
+
+
+                                compressedFileName =
+                                    createFileName(
+                                        selectedFile.name,
+                                        outputType
+                                    );
+
+
+                                resultCompressed.textContent =
+                                    formatBytes(
+                                        blob.size
+                                    );
+
+
+                                const savings =
+                                    calculateSavings(
+                                        selectedFile.size,
+                                        blob.size
+                                    );
+
+
+                                savingPercent.textContent =
+                                    savings;
+
+
+                                if (compressedURL) {
+
+                                    URL.revokeObjectURL(
+                                        compressedURL
+                                    );
+
+                                }
+
+
+                                compressedURL =
+                                    URL.createObjectURL(
+                                        blob
+                                    );
+
+
+                                setProgress(100);
+
+
+                                setTimeout(
+                                    function () {
+
+                                        progressArea.classList.remove(
+                                            "show"
+                                        );
+
+                                        compressButton.disabled =
+                                            false;
+
+                                        downloadButton.disabled =
+                                            false;
+
+                                        successCard.classList.add(
+                                            "show"
+                                        );
+
+
+                                        successText.textContent =
+                                            "Your image was reduced by " +
+                                            savings +
+                                            ".";
+
+                                    },
+                                    350
+                                );
+
+                            },
+                            outputType,
+                            quality
+                        );
+
+                    };
+
+
+                img.onerror =
+                    function () {
+
+                        finishWithError(
+                            "The image could not be processed."
+                        );
+
+                    };
+
+
+                img.src =
+                    event.target.result;
+
+            };
+
+
+        reader.onerror =
+            function () {
+
+                finishWithError(
+                    "The file could not be read."
+                );
+
+            };
+
+
+        reader.readAsDataURL(
+            selectedFile
+        );
+
+    }
+
+
+
+    /* =====================================================
+       OUTPUT FORMAT
+    ===================================================== */
+
+    function getOutputType() {
+
+        if (
+            selectedFormat ===
+            "image/jpeg"
+        ) {
+
+            return "image/jpeg";
+
+        }
+
+
+        if (
+            selectedFormat ===
+            "image/png"
+        ) {
+
+            return "image/png";
+
+        }
+
+
+        if (
+            selectedFormat ===
+            "image/webp"
+        ) {
+
+            return "image/webp";
+
+        }
+
+
+        /*
+         * Original format
+         */
+
+        return selectedFile.type;
+
+    }
+
+
+
+    /* =====================================================
+       CREATE FILE NAME
+    ===================================================== */
+
+    function createFileName(
+        originalName,
+        outputType
+    ) {
+
+        const lastDot =
+            originalName.lastIndexOf(".");
+
+
+        let baseName =
+            lastDot > 0
+                ? originalName.substring(
+                    0,
+                    lastDot
+                )
+                : originalName;
+
+
+        let extension =
+            "jpg";
+
+
+        if (
+            outputType ===
+            "image/png"
+        ) {
+
+            extension = "png";
+
+        } else if (
+            outputType ===
+            "image/webp"
+        ) {
+
+            extension = "webp";
+
+        }
+
+
+        return (
+            baseName +
+            "-compressed." +
+            extension
+        );
+
+    }
+
+
+
+    /* =====================================================
+       DOWNLOAD
+    ===================================================== */
+
+    if (downloadButton) {
+
+        downloadButton.addEventListener(
+            "click",
+            downloadCompressedImage
+        );
+
+    }
+
+
+    if (successDownload) {
+
+        successDownload.addEventListener(
+            "click",
+            downloadCompressedImage
+        );
+
+    }
+
+
+    function downloadCompressedImage() {
+
+        if (!compressedBlob) {
+
+            return;
+
+        }
+
+
+        const url =
+            URL.createObjectURL(
+                compressedBlob
+            );
+
+
+        const link =
+            document.createElement("a");
+
+
+        link.href = url;
+
+        link.download =
+            compressedFileName ||
+            "compressed-image";
+
+
+        document.body.appendChild(link);
+
+        link.click();
+
+        link.remove();
+
+
+        setTimeout(
+            function () {
+
+                URL.revokeObjectURL(url);
+
+            },
+            1000
+        );
+
+    }
+
+
+
+    /* =====================================================
+       RESET
+    ===================================================== */
+
+    if (resetButton) {
+
+        resetButton.addEventListener(
+            "click",
+            resetCompressor
+        );
+
+    }
+
+
+    function resetCompressor() {
+
+        selectedFile = null;
+
+        compressedBlob = null;
+
+        compressedFileName = "";
+
+
+        if (previewURL) {
+
+            URL.revokeObjectURL(
+                previewURL
+            );
+
+            previewURL = null;
+
+        }
+
+
+        if (compressedURL) {
+
+            URL.revokeObjectURL(
+                compressedURL
+            );
+
+            compressedURL = null;
+
+        }
+
+
+        if (fileInput) {
+
+            fileInput.value = "";
+
+        }
+
+
+        imagePreview.src = "";
+
+        imagePreview.style.display =
+            "none";
+
+
+        previewPlaceholder.style.display =
+            "flex";
+
+
+        fileName.textContent =
+            "—";
+
+
+        originalSize.textContent =
+            "—";
+
+
+        imageDimensions.textContent =
+            "—";
+
+
+        resultOriginal.textContent =
+            "—";
+
+
+        resultCompressed.textContent =
+            "—";
+
+
+        savingPercent.textContent =
+            "—";
+
+
+        formatBadge.textContent =
+            "JPG";
+
+
+        selectedFormat =
+            "original";
+
+
+        formatButtons.forEach(
+            function (button) {
+
+                button.classList.remove(
+                    "active"
+                );
+
+            }
+        );
+
+
+        const originalButton =
+            document.querySelector(
+                '[data-format="original"]'
+            );
+
+
+        if (originalButton) {
+
+            originalButton.classList.add(
+                "active"
+            );
+
+        }
+
+
+        qualitySlider.value =
+            80;
+
+
+        qualityValue.textContent =
+            "80%";
+
+
+        workspace.classList.remove(
+            "show"
+        );
+
+
+        successCard.classList.remove(
+            "show"
+        );
+
+
+        progressArea.classList.remove(
+            "show"
+        );
+
+
+        downloadButton.disabled =
+            true;
+
+
+        compressButton.disabled =
+            false;
+
+
+        clearError();
+
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    }
+
+
+
+    /* =====================================================
+       RESET ONLY COMPRESSION RESULT
+    ===================================================== */
+
+    function resetCompressionResult() {
+
+        compressedBlob = null;
+
+        compressedFileName = "";
+
+
+        if (compressedURL) {
+
+            URL.revokeObjectURL(
+                compressedURL
+            );
+
+            compressedURL = null;
+
+        }
+
+
+        resultCompressed.textContent =
+            "—";
+
+
+        savingPercent.textContent =
+            "—";
+
+
+        successCard.classList.remove(
+            "show"
+        );
+
+
+        downloadButton.disabled =
+            true;
+
+
+        progressArea.classList.remove(
+            "show"
+        );
+
+    }
+
+
+
+    /* =====================================================
+       ERROR
+    ===================================================== */
+
+    function showError(message) {
+
+        errorMessage.textContent =
+            message;
+
+        errorMessage.classList.add(
+            "show"
+        );
+
+    }
+
+
+    function clearError() {
+
+        errorMessage.textContent =
+            "";
+
+        errorMessage.classList.remove(
+            "show"
+        );
+
+    }
+
+
+    function finishWithError(message) {
+
+        progressArea.classList.remove(
+            "show"
+        );
+
+        compressButton.disabled =
+            false;
+
+        downloadButton.disabled =
+            true;
+
+        showError(message);
+
+    }
+
+
+
+    /* =====================================================
+       PROGRESS
+    ===================================================== */
+
+    function setProgress(value) {
+
+        const safeValue =
+            Math.max(
+                0,
+                Math.min(
+                    100,
+                    value
+                )
+            );
+
+
+        progressFill.style.width =
+            safeValue + "%";
+
+
+        progressPercent.textContent =
+            Math.round(
+                safeValue
+            ) + "%";
+
+    }
+
+
+
+    /* =====================================================
+       FORMAT NAME
     ===================================================== */
 
     function getFormatName(type) {
 
-        if (type === "image/jpeg") {
-            return "JPG";
-        }
+        switch (type) {
 
-        if (type === "image/png") {
-            return "PNG";
-        }
+            case "image/jpeg":
+                return "JPG";
 
-        if (type === "image/webp") {
-            return "WEBP";
-        }
+            case "image/png":
+                return "PNG";
 
-        return "IMAGE";
+            case "image/webp":
+                return "WEBP";
+
+            default:
+                return "IMAGE";
+
+        }
 
     }
 
-
-    function getExtension(type) {
-
-        if (type === "image/jpeg") {
-            return "jpg";
-        }
-
-        if (type === "image/png") {
-            return "png";
-        }
-
-        if (type === "image/webp") {
-            return "webp";
-        }
-
-        return "jpg";
-
-    }
 
 
     /* =====================================================
-       FILE SIZE FORMAT
+       FILE SIZE
     ===================================================== */
 
     function formatBytes(bytes) {
 
-        if (!bytes || bytes === 0) {
-            return "0 Bytes";
+        if (!bytes || bytes <= 0) {
+
+            return "0 KB";
+
         }
 
 
@@ -236,1184 +1327,70 @@ document.addEventListener("DOMContentLoaded", function () {
             );
 
 
+        if (index === 0) {
+
+            return (
+                Math.round(value) +
+                " " +
+                units[index]
+            );
+
+        }
+
+
         return (
             value.toFixed(
-                index === 0 ? 0 : 2
-            )
-            +
-            " "
-            +
+                value >= 10 ? 1 : 2
+            ) +
+            " " +
             units[index]
         );
 
     }
 
 
-    /* =====================================================
-       SHOW ERROR
-    ===================================================== */
-
-    function showError(message) {
-
-        errorMessage.textContent =
-            message;
-
-        errorMessage.classList.add(
-            "show"
-        );
-
-    }
-
-
-    function hideError() {
-
-        errorMessage.textContent = "";
-
-        errorMessage.classList.remove(
-            "show"
-        );
-
-    }
-
 
     /* =====================================================
-       VALIDATE FILE
+       SAVINGS
     ===================================================== */
 
-    function validateFile(file) {
-
-        if (!file) {
-            return false;
-        }
-
-
-        const allowedTypes = [
-            "image/jpeg",
-            "image/png",
-            "image/webp"
-        ];
-
-
-        if (
-            !allowedTypes.includes(
-                file.type
-            )
-        ) {
-
-            showError(
-                "Please select a JPG, PNG or WEBP image."
-            );
-
-            return false;
-
-        }
-
-
-        if (
-            file.size >
-            MAX_FILE_SIZE
-        ) {
-
-            showError(
-                "The selected image is larger than 20 MB. Please choose a smaller image."
-            );
-
-            return false;
-
-        }
-
-
-        hideError();
-
-        return true;
-
-    }
-
-
-    /* =====================================================
-       HANDLE FILE
-    ===================================================== */
-
-    function handleFile(file) {
-
-        if (!validateFile(file)) {
-            return;
-        }
-
-
-        selectedFile = file;
-
-
-        /*
-         * Clear previous compression
-         */
-
-        compressedBlob = null;
-
-
-        if (compressedUrl) {
-
-            URL.revokeObjectURL(
-                compressedUrl
-            );
-
-            compressedUrl = null;
-
-        }
-
-
-        if (originalUrl) {
-
-            URL.revokeObjectURL(
-                originalUrl
-            );
-
-        }
-
-
-        originalUrl =
-            URL.createObjectURL(
-                file
-            );
-
-
-        originalPreview.src =
-            originalUrl;
-
-
-        originalPreview.alt =
-            file.name;
-
-
-        originalSize.textContent =
-            formatBytes(
-                file.size
-            );
-
-
-        originalFormat.textContent =
-            getFormatName(
-                file.type
-            );
-
-
-        /*
-         * Load image
-         */
-
-        const image =
-            new Image();
-
-
-        image.onload =
-            function () {
-
-                originalImage =
-                    image;
-
-
-                originalDimensions.textContent =
-                    image.naturalWidth
-                    +
-                    " × "
-                    +
-                    image.naturalHeight
-                    +
-                    " px";
-
-
-                compressedDimensions.textContent =
-                    image.naturalWidth
-                    +
-                    " × "
-                    +
-                    image.naturalHeight
-                    +
-                    " px";
-
-
-                /*
-                 * Show compressor
-                 */
-
-                uploadCard.style.display =
-                    "none";
-
-
-                workspace.classList.add(
-                    "show"
-                );
-
-
-                controlsCard.classList.add(
-                    "show"
-                );
-
-
-                resultCard.classList.remove(
-                    "show"
-                );
-
-
-                newImageButton.classList.remove(
-                    "show"
-                );
-
-
-                compressedPreview.removeAttribute(
-                    "src"
-                );
-
-
-                compressedPreview.style.display =
-                    "none";
-
-
-                compressedPlaceholder.style.display =
-                    "block";
-
-
-                compressedSize.textContent =
-                    "—";
-
-
-                compressedFormat.textContent =
-                    "—";
-
-
-                /*
-                 * Scroll to workspace
-                 */
-
-                workspace.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start"
-                });
-
-            };
-
-
-        image.onerror =
-            function () {
-
-                showError(
-                    "The image could not be loaded. Please try another image."
-                );
-
-            };
-
-
-        image.src =
-            originalUrl;
-
-    }
-
-
-    /* =====================================================
-       FILE INPUT
-    ===================================================== */
-
-    fileInput.addEventListener(
-        "change",
-        function () {
-
-            const file =
-                fileInput.files[0];
-
-
-            handleFile(file);
-
-        }
-    );
-
-
-    /* =====================================================
-       DRAG & DROP
-    ===================================================== */
-
-    [
-        "dragenter",
-        "dragover"
-    ].forEach(function (eventName) {
-
-        uploadCard.addEventListener(
-            eventName,
-            function (event) {
-
-                event.preventDefault();
-
-                event.stopPropagation();
-
-                uploadCard.classList.add(
-                    "dragover"
-                );
-
-            }
-        );
-
-    });
-
-
-    [
-        "dragleave",
-        "drop"
-    ].forEach(function (eventName) {
-
-        uploadCard.addEventListener(
-            eventName,
-            function (event) {
-
-                event.preventDefault();
-
-                event.stopPropagation();
-
-                uploadCard.classList.remove(
-                    "dragover"
-                );
-
-            }
-        );
-
-    });
-
-
-    uploadCard.addEventListener(
-        "drop",
-        function (event) {
-
-            const files =
-                event.dataTransfer.files;
-
-
-            if (
-                files &&
-                files.length > 0
-            ) {
-
-                handleFile(
-                    files[0]
-                );
-
-            }
-
-        }
-    );
-
-
-    /*
-     * Allow clicking upload card
-     */
-
-    uploadCard.addEventListener(
-        "click",
-        function (event) {
-
-            /*
-             * Don't trigger twice when
-             * clicking the label.
-             */
-
-            if (
-                event.target.closest(
-                    ".choose-button"
-                )
-            ) {
-                return;
-            }
-
-
-            fileInput.click();
-
-        }
-    );
-
-
-    /* =====================================================
-       QUALITY SLIDER
-    ===================================================== */
-
-    qualityRange.addEventListener(
-        "input",
-        function () {
-
-            qualityValue.textContent =
-                qualityRange.value
-                +
-                "%";
-
-        }
-    );
-
-
-    /* =====================================================
-       GET OUTPUT TYPE
-    ===================================================== */
-
-    function getOutputType() {
-
-        const selectedFormat =
-            formatSelect.value;
-
-
-        if (
-            selectedFormat ===
-            "original"
-        ) {
-
-            return selectedFile.type;
-
-        }
-
-
-        return selectedFormat;
-
-    }
-
-
-    /* =====================================================
-       CANVAS COMPRESSION
-    ===================================================== */
-
-    function compressImage() {
-
-        if (
-            !selectedFile ||
-            !originalImage
-        ) {
-
-            showError(
-                "Please select an image first."
-            );
-
-            return;
-
-        }
-
-
-        hideError();
-
-
-        /*
-         * Start loading
-         */
-
-        loading.classList.add(
-            "show"
-        );
-
-
-        compressButton.disabled =
-            true;
-
-
-        resultCard.classList.remove(
-            "show"
-        );
-
-
-        /*
-         * Small timeout lets the
-         * browser update loading UI.
-         */
-
-        setTimeout(function () {
-
-            try {
-
-                const canvas =
-                    document.createElement(
-                        "canvas"
-                    );
-
-
-                const ctx =
-                    canvas.getContext(
-                        "2d"
-                    );
-
-
-                const width =
-                    originalImage.naturalWidth;
-
-
-                const height =
-                    originalImage.naturalHeight;
-
-
-                canvas.width =
-                    width;
-
-
-                canvas.height =
-                    height;
-
-
-                /*
-                 * Improve image rendering
-                 */
-
-                ctx.imageSmoothingEnabled =
-                    true;
-
-                ctx.imageSmoothingQuality =
-                    "high";
-
-
-                /*
-                 * White background is needed
-                 * when converting transparent
-                 * PNG to JPG.
-                 */
-
-                const outputType =
-                    getOutputType();
-
-
-                if (
-                    outputType ===
-                    "image/jpeg"
-                ) {
-
-                    ctx.fillStyle =
-                        "#ffffff";
-
-                    ctx.fillRect(
-                        0,
-                        0,
-                        width,
-                        height
-                    );
-
-                }
-
-
-                ctx.drawImage(
-                    originalImage,
-                    0,
-                    0,
-                    width,
-                    height
-                );
-
-
-                const quality =
-                    Number(
-                        qualityRange.value
-                    ) / 100;
-
-
-                /*
-                 * Convert canvas to Blob
-                 */
-
-                canvas.toBlob(
-                    function (blob) {
-
-                        if (!blob) {
-
-                            showError(
-                                "Compression failed. Please try another image."
-                            );
-
-                            loading.classList.remove(
-                                "show"
-                            );
-
-                            compressButton.disabled =
-                                false;
-
-                            return;
-
-                        }
-
-
-                        /*
-                         * Remove old URL
-                         */
-
-                        if (
-                            compressedUrl
-                        ) {
-
-                            URL.revokeObjectURL(
-                                compressedUrl
-                            );
-
-                        }
-
-
-                        compressedBlob =
-                            blob;
-
-
-                        compressedUrl =
-                            URL.createObjectURL(
-                                blob
-                            );
-
-
-                        /*
-                         * Display compressed image
-                         */
-
-                        compressedPreview.src =
-                            compressedUrl;
-
-
-                        compressedPreview.style.display =
-                            "block";
-
-
-                        compressedPlaceholder.style.display =
-                            "none";
-
-
-                        /*
-                         * Information
-                         */
-
-                        compressedSize.textContent =
-                            formatBytes(
-                                blob.size
-                            );
-
-
-                        compressedDimensions.textContent =
-                            width
-                            +
-                            " × "
-                            +
-                            height
-                            +
-                            " px";
-
-
-                        compressedFormat.textContent =
-                            getFormatName(
-                                outputType
-                            );
-
-
-                        /*
-                         * Calculate saving
-                         */
-
-                        const originalBytes =
-                            selectedFile.size;
-
-
-                        const compressedBytes =
-                            blob.size;
-
-
-                        let savedPercent =
-                            0;
-
-
-                        if (
-                            originalBytes >
-                            0
-                        ) {
-
-                            savedPercent =
-                                (
-                                    (
-                                        originalBytes
-                                        -
-                                        compressedBytes
-                                    )
-                                    /
-                                    originalBytes
-                                )
-                                *
-                                100;
-
-                        }
-
-
-                        /*
-                         * If the result is
-                         * larger than original,
-                         * tell user honestly.
-                         */
-
-                        if (
-                            savedPercent > 0
-                        ) {
-
-                            savedText.textContent =
-                                "Your image is "
-                                +
-                                savedPercent.toFixed(1)
-                                +
-                                "% smaller. "
-                                +
-                                formatBytes(
-                                    originalBytes
-                                )
-                                +
-                                " → "
-                                +
-                                formatBytes(
-                                    compressedBytes
-                                );
-
-                        } else {
-
-                            savedText.textContent =
-                                "The compressed file is "
-                                +
-                                Math.abs(
-                                    savedPercent
-                                ).toFixed(1)
-                                +
-                                "% larger than the original. "
-                                +
-                                "Try lowering the quality or changing the format.";
-
-                        }
-
-
-                        /*
-                         * Finish loading
-                         */
-
-                        loading.classList.remove(
-                            "show"
-                        );
-
-
-                        compressButton.disabled =
-                            false;
-
-
-                        /*
-                         * Show result
-                         */
-
-                        resultCard.classList.add(
-                            "show"
-                        );
-
-
-                        newImageButton.classList.add(
-                            "show"
-                        );
-
-
-                        resultCard.scrollIntoView({
-                            behavior: "smooth",
-                            block: "center"
-                        });
-
-
-                    },
-                    outputType,
-                    quality
-                );
-
-
-            } catch (error) {
-
-                console.error(
-                    error
-                );
-
-
-                showError(
-                    "Something went wrong while compressing the image."
-                );
-
-
-                loading.classList.remove(
-                    "show"
-                );
-
-
-                compressButton.disabled =
-                    false;
-
-            }
-
-        }, 80);
-
-    }
-
-
-    /* =====================================================
-       COMPRESS BUTTON
-    ===================================================== */
-
-    compressButton.addEventListener(
-        "click",
-        compressImage
-    );
-
-
-    /* =====================================================
-       DOWNLOAD
-    ===================================================== */
-
-    downloadButton.addEventListener(
-        "click",
-        function () {
-
-            if (!compressedBlob) {
-
-                showError(
-                    "Please compress the image first."
-                );
-
-                return;
-
-            }
-
-
-            const outputType =
-                getOutputType();
-
-
-            const extension =
-                getExtension(
-                    outputType
-                );
-
-
-            const originalName =
-                selectedFile.name
-                .replace(
-                    /\.[^/.]+$/,
-                    ""
-                );
-
-
-            const fileName =
-                originalName
-                +
-                "-compressed."
-                +
-                extension;
-
-
-            const link =
-                document.createElement(
-                    "a"
-                );
-
-
-            link.href =
-                compressedUrl;
-
-
-            link.download =
-                fileName;
-
-
-            document.body.appendChild(
-                link
-            );
-
-
-            link.click();
-
-
-            link.remove();
-
-        }
-    );
-
-
-    /* =====================================================
-       RESET
-    ===================================================== */
-
-    function resetCompressor() {
-
-        selectedFile = null;
-
-        originalImage = null;
-
-        compressedBlob = null;
-
-
-        if (originalUrl) {
-
-            URL.revokeObjectURL(
-                originalUrl
-            );
-
-            originalUrl = null;
-
-        }
-
-
-        if (compressedUrl) {
-
-            URL.revokeObjectURL(
-                compressedUrl
-            );
-
-            compressedUrl = null;
-
-        }
-
-
-        fileInput.value = "";
-
-
-        originalPreview.removeAttribute(
-            "src"
-        );
-
-
-        compressedPreview.removeAttribute(
-            "src"
-        );
-
-
-        compressedPreview.style.display =
-            "none";
-
-
-        compressedPlaceholder.style.display =
-            "block";
-
-
-        originalSize.textContent =
-            "—";
-
-
-        compressedSize.textContent =
-            "—";
-
-
-        originalDimensions.textContent =
-            "—";
-
-
-        compressedDimensions.textContent =
-            "—";
-
-
-        originalFormat.textContent =
-            "—";
-
-
-        compressedFormat.textContent =
-            "—";
-
-
-        qualityRange.value =
-            80;
-
-
-        qualityValue.textContent =
-            "80%";
-
-
-        formatSelect.value =
-            "original";
-
-
-        workspace.classList.remove(
-            "show"
-        );
-
-
-        controlsCard.classList.remove(
-            "show"
-        );
-
-
-        resultCard.classList.remove(
-            "show"
-        );
-
-
-        newImageButton.classList.remove(
-            "show"
-        );
-
-
-        uploadCard.style.display =
-            "";
-
-
-        loading.classList.remove(
-            "show"
-        );
-
-
-        compressButton.disabled =
-            false;
-
-
-        hideError();
-
-
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
-
-    }
-
-
-    resetButton.addEventListener(
-        "click",
-        resetCompressor
-    );
-
-
-    newImageButton.addEventListener(
-        "click",
-        resetCompressor
-    );
-
-
-    /* =====================================================
-       DARK MODE
-    ===================================================== */
-
-    const savedTheme =
-        localStorage.getItem(
-            "icp-theme"
-        );
-
-
-    if (
-        savedTheme ===
-        "dark"
+    function calculateSavings(
+        original,
+        compressed
     ) {
 
-        document.body.classList.add(
-            "dark"
+        if (
+            original <= 0
+        ) {
+
+            return "0%";
+
+        }
+
+
+        const percentage =
+            (
+                (original - compressed) /
+                original
+            ) * 100;
+
+
+        if (percentage <= 0) {
+
+            return "0%";
+
+        }
+
+
+        return (
+            Math.round(
+                percentage
+            ) +
+            "%"
         );
 
     }
 
-
-    themeToggle.addEventListener(
-        "click",
-        function () {
-
-            document.body.classList.toggle(
-                "dark"
-            );
-
-
-            const isDark =
-                document.body.classList.contains(
-                    "dark"
-                );
-
-
-            localStorage.setItem(
-                "icp-theme",
-                isDark
-                    ? "dark"
-                    : "light"
-            );
-
-        }
-    );
-
-
-    /* =====================================================
-       MOBILE MENU
-    ===================================================== */
-
-    mobileMenuBtn.addEventListener(
-        "click",
-        function () {
-
-            const isOpen =
-                navLinks.classList.toggle(
-                    "show"
-                );
-
-
-            mobileMenuBtn.setAttribute(
-                "aria-expanded",
-                isOpen
-                    ? "true"
-                    : "false"
-            );
-
-
-            mobileMenuBtn.textContent =
-                isOpen
-                    ? "✕"
-                    : "☰";
-
-        }
-    );
-
-
-    navLinks
-        .querySelectorAll("a")
-        .forEach(function (link) {
-
-            link.addEventListener(
-                "click",
-                function () {
-
-                    navLinks.classList.remove(
-                        "show"
-                    );
-
-
-                    mobileMenuBtn.setAttribute(
-                        "aria-expanded",
-                        "false"
-                    );
-
-
-                    mobileMenuBtn.textContent =
-                        "☰";
-
-                }
-            );
-
-        });
-
-
-    /* =====================================================
-       CLOSE MENU OUTSIDE
-    ===================================================== */
-
-    document.addEventListener(
-        "click",
-        function (event) {
-
-            if (
-                !navLinks.contains(
-                    event.target
-                )
-                &&
-                !mobileMenuBtn.contains(
-                    event.target
-                )
-            ) {
-
-                navLinks.classList.remove(
-                    "show"
-                );
-
-
-                mobileMenuBtn.setAttribute(
-                    "aria-expanded",
-                    "false"
-                );
-
-
-                mobileMenuBtn.textContent =
-                    "☰";
-
-            }
-
-        }
-    );
 
 
     /* =====================================================
@@ -1422,10 +1399,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function updateTopButton() {
 
-        if (
-            window.scrollY >
-            400
-        ) {
+        if (!topBtn) {
+            return;
+        }
+
+
+        if (window.scrollY > 400) {
 
             topBtn.classList.add(
                 "visible"
@@ -1451,20 +1430,53 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
 
-    topBtn.addEventListener(
-        "click",
+    updateTopButton();
+
+
+    if (topBtn) {
+
+        topBtn.addEventListener(
+            "click",
+            function () {
+
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+
+            }
+        );
+
+    }
+
+
+
+    /* =====================================================
+       CLEANUP
+    ===================================================== */
+
+    window.addEventListener(
+        "beforeunload",
         function () {
 
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
+            if (previewURL) {
+
+                URL.revokeObjectURL(
+                    previewURL
+                );
+
+            }
+
+
+            if (compressedURL) {
+
+                URL.revokeObjectURL(
+                    compressedURL
+                );
+
+            }
 
         }
     );
-
-
-    updateTopButton();
-
 
 });
