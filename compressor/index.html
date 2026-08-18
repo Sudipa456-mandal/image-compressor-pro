@@ -12,7 +12,7 @@
 
     <meta
         name="description"
-        content="Free online image compressor. Compress JPG, PNG and WEBP images quickly while maintaining good image quality."
+        content="Free online image compressor. Compress JPG, PNG and WEBP images, reduce file size and download optimized images easily."
     >
 
     <meta
@@ -26,13 +26,8 @@
     >
 
     <title>
-        Image Compressor - Free Online Image Compression | Image Compressor Pro
+        Image Compressor - Free Online Image Compressor | Image Compressor Pro
     </title>
-
-    <!-- IMPORTANT:
-         This page is inside /compressor/
-         Therefore CSS path must be compressor/style.css
-    -->
 
     <link
         rel="stylesheet"
@@ -80,9 +75,7 @@
             id="navLinks"
         >
 
-            <a
-                href="../index.html"
-            >
+            <a href="../index.html">
                 Home
             </a>
 
@@ -93,27 +86,19 @@
                 Image Compressor
             </a>
 
-            <a
-                href="../resume/"
-            >
+            <a href="../resume/">
                 Resume Builder
             </a>
 
-            <a
-                href="../blog/"
-            >
+            <a href="../blog/">
                 Blog
             </a>
 
-            <a
-                href="../about.html"
-            >
+            <a href="../about.html">
                 About
             </a>
 
-            <a
-                href="../contact.html"
-            >
+            <a href="../contact.html">
                 Contact
             </a>
 
@@ -163,71 +148,60 @@
 
 
 <!-- =========================================================
-     HERO
+     PAGE HERO
 ========================================================= -->
 
-<section class="compressor-hero">
+<section class="page-hero">
 
-    <div class="hero-container">
-
-
-        <div class="hero-content">
-
-            <span class="hero-label">
-                FREE ONLINE IMAGE TOOL
-            </span>
+    <div class="page-hero-container">
 
 
-            <h1>
-                Compress Images
-                <span>Quickly & Easily</span>
-            </h1>
+        <div class="hero-badge">
 
+            <span>✦</span>
 
-            <p>
-                Reduce image file size without unnecessary
-                complexity. Upload your JPG, PNG or WEBP
-                image and download the compressed version.
-            </p>
-
-
-            <div class="hero-points">
-
-                <span>
-                    ✓ JPG
-                </span>
-
-                <span>
-                    ✓ PNG
-                </span>
-
-                <span>
-                    ✓ WEBP
-                </span>
-
-                <span>
-                    ✓ Free to use
-                </span>
-
-            </div>
+            FREE ONLINE TOOL
 
         </div>
 
 
-        <div class="hero-mini-card">
+        <h1>
 
-            <div class="mini-icon">
-                ⇩
-            </div>
+            Compress Your Images
 
-            <strong>
-                Smart Compression
-            </strong>
+            <span>
+                Easily & Quickly
+            </span>
 
-            <p>
-                Choose your quality level and control
-                the final image size.
-            </p>
+        </h1>
+
+
+        <p>
+
+            Reduce image file size without complicated software.
+            Upload your JPG, PNG or WEBP image and optimize it
+            directly in your browser.
+
+        </p>
+
+
+        <div class="hero-features">
+
+            <span>
+                ✓ JPG
+            </span>
+
+            <span>
+                ✓ PNG
+            </span>
+
+            <span>
+                ✓ WEBP
+            </span>
+
+            <span>
+                ✓ No registration
+            </span>
 
         </div>
 
@@ -239,15 +213,17 @@
 
 
 <!-- =========================================================
-     COMPRESSOR TOOL
+     COMPRESSOR SECTION
 ========================================================= -->
 
 <section class="compressor-section">
 
-    <div class="compressor-wrapper">
+    <div class="compressor-container">
 
 
-        <!-- UPLOAD AREA -->
+        <!-- =================================================
+             UPLOAD AREA
+        ================================================== -->
 
         <div
             class="upload-card"
@@ -255,27 +231,32 @@
         >
 
 
-            <div class="upload-icon">
+            <div
+                class="upload-icon"
+                id="uploadIcon"
+            >
                 ⇧
             </div>
 
 
             <h2>
-                Upload your image
+                Upload an Image
             </h2>
 
 
             <p>
-                Drag & drop your image here or choose a file
-                from your device.
+                Drag & drop your image here
+                or choose a file from your device.
             </p>
 
 
             <label
                 for="fileInput"
-                class="upload-button"
+                class="browse-button"
             >
+
                 Choose Image
+
             </label>
 
 
@@ -287,14 +268,22 @@
             >
 
 
-            <div class="supported-formats">
+            <div class="upload-info">
 
-                JPG
-                <span>•</span>
-                PNG
-                <span>•</span>
-                WEBP
+                JPG, PNG or WEBP
 
+                <span>•</span>
+
+                Maximum 20 MB
+
+            </div>
+
+
+            <div
+                class="drag-message"
+                id="dragMessage"
+            >
+                Drop image here
             </div>
 
 
@@ -302,7 +291,21 @@
 
 
 
-        <!-- WORKSPACE -->
+        <!-- =================================================
+             ERROR MESSAGE
+        ================================================== -->
+
+        <div
+            class="error-message"
+            id="errorMessage"
+            role="alert"
+        ></div>
+
+
+
+        <!-- =================================================
+             WORKSPACE
+        ================================================== -->
 
         <div
             class="workspace"
@@ -310,45 +313,67 @@
         >
 
 
-            <!-- IMAGE PREVIEW -->
+            <!-- LEFT PREVIEW -->
 
-            <div class="preview-panel">
-
-
-                <div class="panel-title">
-
-                    <strong>
-                        Image Preview
-                    </strong>
-
-                    <button
-                        type="button"
-                        id="removeImage"
-                        class="remove-button"
-                    >
-                        Remove
-                    </button>
-
-                </div>
+            <div class="preview-card">
 
 
-                <div class="preview-box">
-
-                    <img
-                        id="previewImage"
-                        src=""
-                        alt="Selected image preview"
-                    >
-
-                </div>
-
-
-                <div class="image-info">
+                <div class="card-header">
 
                     <div>
 
+                        <span class="card-label">
+                            ORIGINAL IMAGE
+                        </span>
+
+                        <h2>
+                            Preview
+                        </h2>
+
+                    </div>
+
+
+                    <span
+                        class="format-badge"
+                        id="formatBadge"
+                    >
+                        JPG
+                    </span>
+
+                </div>
+
+
+                <div class="image-preview-box">
+
+                    <img
+                        id="imagePreview"
+                        src=""
+                        alt="Uploaded image preview"
+                    >
+
+                    <div
+                        class="preview-placeholder"
+                        id="previewPlaceholder"
+                    >
+
                         <span>
-                            File
+                            ◇
+                        </span>
+
+                        Image preview
+
+                    </div>
+
+                </div>
+
+
+                <div class="image-meta">
+
+
+                    <div class="meta-item">
+
+                        <span>
+                            File name
                         </span>
 
                         <strong id="fileName">
@@ -358,10 +383,10 @@
                     </div>
 
 
-                    <div>
+                    <div class="meta-item">
 
                         <span>
-                            Original Size
+                            Original size
                         </span>
 
                         <strong id="originalSize">
@@ -370,6 +395,20 @@
 
                     </div>
 
+
+                    <div class="meta-item">
+
+                        <span>
+                            Dimensions
+                        </span>
+
+                        <strong id="imageDimensions">
+                            —
+                        </strong>
+
+                    </div>
+
+
                 </div>
 
 
@@ -377,28 +416,87 @@
 
 
 
-            <!-- SETTINGS -->
+            <!-- RIGHT SETTINGS -->
 
-            <div class="settings-panel">
+            <div class="settings-card">
 
 
-                <div class="panel-title">
+                <div class="card-header">
 
-                    <strong>
-                        Compression Settings
-                    </strong>
+                    <div>
+
+                        <span class="card-label">
+                            COMPRESSION SETTINGS
+                        </span>
+
+                        <h2>
+                            Optimize Image
+                        </h2>
+
+                    </div>
 
                 </div>
+
+
+
+                <!-- FORMAT -->
+
+                <div class="setting-group">
+
+                    <label>
+                        Output Format
+                    </label>
+
+
+                    <div class="format-options">
+
+                        <button
+                            type="button"
+                            class="format-option active"
+                            data-format="original"
+                        >
+                            Original
+                        </button>
+
+                        <button
+                            type="button"
+                            class="format-option"
+                            data-format="image/jpeg"
+                        >
+                            JPG
+                        </button>
+
+                        <button
+                            type="button"
+                            class="format-option"
+                            data-format="image/png"
+                        >
+                            PNG
+                        </button>
+
+                        <button
+                            type="button"
+                            class="format-option"
+                            data-format="image/webp"
+                        >
+                            WEBP
+                        </button>
+
+                    </div>
+
+                </div>
+
 
 
                 <!-- QUALITY -->
 
                 <div class="setting-group">
 
-                    <div class="setting-heading">
 
-                        <label for="qualityRange">
-                            Image Quality
+                    <div class="setting-label-row">
+
+                        <label for="qualitySlider">
+                            Compression Quality
                         </label>
 
                         <strong id="qualityValue">
@@ -410,7 +508,7 @@
 
                     <input
                         type="range"
-                        id="qualityRange"
+                        id="qualitySlider"
                         min="10"
                         max="100"
                         value="80"
@@ -429,123 +527,190 @@
 
                     </div>
 
-                </div>
-
-
-
-                <!-- FORMAT -->
-
-                <div class="setting-group">
-
-                    <label for="formatSelect">
-                        Output Format
-                    </label>
-
-
-                    <select id="formatSelect">
-
-                        <option value="original">
-                            Original Format
-                        </option>
-
-                        <option value="image/jpeg">
-                            JPG
-                        </option>
-
-                        <option value="image/png">
-                            PNG
-                        </option>
-
-                        <option value="image/webp">
-                            WEBP
-                        </option>
-
-                    </select>
 
                 </div>
 
-
-
-                <!-- COMPRESS BUTTON -->
-
-                <button
-                    type="button"
-                    id="compressButton"
-                    class="compress-button"
-                >
-
-                    Compress Image
-
-                    <span>
-                        →
-                    </span>
-
-                </button>
 
 
                 <!-- RESULT -->
 
-                <div
-                    class="result-box"
-                    id="resultBox"
-                >
-
-                    <div class="result-icon">
-                        ✓
-                    </div>
+                <div class="result-box">
 
 
-                    <div class="result-content">
+                    <div class="result-row">
 
                         <span>
-                            Compressed Size
+                            Original
                         </span>
 
-                        <strong id="compressedSize">
+                        <strong id="resultOriginal">
                             —
                         </strong>
 
                     </div>
 
 
-                    <div
-                        class="saved-percentage"
-                        id="savedPercentage"
-                    >
-                        —
+                    <div class="result-row">
+
+                        <span>
+                            Compressed
+                        </span>
+
+                        <strong
+                            id="resultCompressed"
+                            class="result-green"
+                        >
+                            —
+                        </strong>
+
+                    </div>
+
+
+                    <div class="result-divider"></div>
+
+
+                    <div class="result-saving">
+
+                        <span>
+                            Estimated savings
+                        </span>
+
+                        <strong id="savingPercent">
+                            —
+                        </strong>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- PROGRESS -->
+
+                <div
+                    class="progress-area"
+                    id="progressArea"
+                >
+
+                    <div class="progress-header">
+
+                        <span>
+                            Compressing image...
+                        </span>
+
+                        <span id="progressPercent">
+                            0%
+                        </span>
+
+                    </div>
+
+
+                    <div class="progress-track">
+
+                        <div
+                            class="progress-fill"
+                            id="progressFill"
+                        ></div>
+
                     </div>
 
                 </div>
 
 
-                <!-- TWO DOWNLOAD BUTTONS -->
 
-                <div
-                    class="download-buttons"
-                    id="downloadButtons"
-                >
+                <!-- ACTIONS -->
+
+                <div class="action-buttons">
+
 
                     <button
                         type="button"
-                        id="downloadImageButton"
-                        class="download-button primary-download"
+                        class="compress-button"
+                        id="compressButton"
                     >
+
+                        <span>
+                            ⇩
+                        </span>
+
+                        Compress Image
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="download-button"
+                        id="downloadButton"
+                        disabled
+                    >
+
+                        <span>
+                            ↓
+                        </span>
+
                         Download Image
+
                     </button>
 
 
                     <button
                         type="button"
-                        id="downloadAgainButton"
-                        class="download-button secondary-download"
+                        class="reset-button"
+                        id="resetButton"
                     >
-                        Download Again
+
+                        Start Over
+
                     </button>
+
 
                 </div>
 
 
             </div>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             RESULT SUMMARY
+        ================================================== -->
+
+        <div
+            class="success-card"
+            id="successCard"
+        >
+
+
+            <div class="success-icon">
+                ✓
+            </div>
+
+
+            <div class="success-content">
+
+                <strong>
+                    Image compressed successfully!
+                </strong>
+
+                <span id="successText">
+                    Your image is ready to download.
+                </span>
+
+            </div>
+
+
+            <button
+                type="button"
+                id="successDownload"
+                class="success-download"
+            >
+                Download
+            </button>
 
 
         </div>
@@ -558,80 +723,82 @@
 
 
 <!-- =========================================================
-     FEATURES
+     INFORMATION
 ========================================================= -->
 
-<section class="features-section">
+<section class="info-section">
+
 
     <div class="section-heading">
 
-        <span>
-            WHY USE OUR COMPRESSOR
+        <span class="section-label">
+            IMAGE COMPRESSION
         </span>
 
         <h2>
-            Simple image compression
+            Reduce image size without unnecessary complexity
         </h2>
 
         <p>
-            Everything you need to reduce image file size.
+            Optimize your images before uploading them to websites,
+            social media, forms or email.
         </p>
 
     </div>
 
 
-    <div class="features-container">
+    <div class="info-grid">
 
 
-        <article class="feature-card">
+        <article class="info-card">
 
-            <div class="feature-icon">
+            <div class="info-icon">
                 ⚡
             </div>
 
             <h3>
-                Fast
+                Fast Compression
             </h3>
 
             <p>
                 Compress images directly in your browser
-                without complicated steps.
+                without installing additional software.
             </p>
 
         </article>
 
 
-        <article class="feature-card">
+        <article class="info-card">
 
-            <div class="feature-icon">
-                ◈
+            <div class="info-icon">
+                ◇
             </div>
 
             <h3>
-                Adjustable Quality
+                Multiple Formats
             </h3>
 
             <p>
-                Control image quality using the compression
-                slider.
+                Work with commonly used JPG, PNG and
+                WEBP image formats.
             </p>
 
         </article>
 
 
-        <article class="feature-card">
+        <article class="info-card">
 
-            <div class="feature-icon">
+            <div class="info-icon">
                 🔒
             </div>
 
             <h3>
-                Privacy Focused
+                Browser Based
             </h3>
 
             <p>
-                Image processing is performed in your browser
-                during the compression process.
+                Your image is processed in your browser
+                instead of requiring an account.
             </p>
 
         </article>
@@ -649,25 +816,26 @@
 
 <section class="how-section">
 
+
     <div class="section-heading">
 
-        <span>
+        <span class="section-label">
             HOW IT WORKS
         </span>
 
         <h2>
-            Compress an image in 3 steps
+            Compress an image in three simple steps
         </h2>
 
     </div>
 
 
-    <div class="steps-container">
+    <div class="how-grid">
 
 
-        <div class="step-card">
+        <div class="how-step">
 
-            <div class="step-number">
+            <div class="how-number">
                 1
             </div>
 
@@ -676,38 +844,34 @@
             </h3>
 
             <p>
-                Select a JPG, PNG or WEBP image.
+                Select a JPG, PNG or WEBP image
+                from your device.
             </p>
 
         </div>
 
 
-        <div class="step-line"></div>
+        <div class="how-step">
 
-
-        <div class="step-card">
-
-            <div class="step-number">
+            <div class="how-number">
                 2
             </div>
 
             <h3>
-                Adjust
+                Customize
             </h3>
 
             <p>
-                Select your preferred compression quality.
+                Choose the output format and
+                compression quality.
             </p>
 
         </div>
 
 
-        <div class="step-line"></div>
+        <div class="how-step">
 
-
-        <div class="step-card">
-
-            <div class="step-number">
+            <div class="how-number">
                 3
             </div>
 
@@ -716,98 +880,11 @@
             </h3>
 
             <p>
-                Download your compressed image.
+                Compress the image and download
+                your optimized file.
             </p>
 
         </div>
-
-
-    </div>
-
-</section>
-
-
-
-<!-- =========================================================
-     FAQ
-========================================================= -->
-
-<section class="faq-section">
-
-    <div class="section-heading">
-
-        <span>
-            FAQ
-        </span>
-
-        <h2>
-            Image Compressor FAQ
-        </h2>
-
-    </div>
-
-
-    <div class="faq-container">
-
-
-        <details class="faq-item">
-
-            <summary>
-                What image formats can I compress?
-                <span>+</span>
-            </summary>
-
-            <p>
-                You can compress commonly used JPG, PNG and
-                WEBP images.
-            </p>
-
-        </details>
-
-
-        <details class="faq-item">
-
-            <summary>
-                Can I control the image quality?
-                <span>+</span>
-            </summary>
-
-            <p>
-                Yes. Use the quality slider to choose between
-                a smaller file size and better image quality.
-            </p>
-
-        </details>
-
-
-        <details class="faq-item">
-
-            <summary>
-                Are my images uploaded to a server?
-                <span>+</span>
-            </summary>
-
-            <p>
-                This browser-based compressor processes the
-                image locally using your browser.
-            </p>
-
-        </details>
-
-
-        <details class="faq-item">
-
-            <summary>
-                Can I download the compressed image?
-                <span>+</span>
-            </summary>
-
-            <p>
-                Yes. After compression, you can download the
-                generated image using the download buttons.
-            </p>
-
-        </details>
 
 
     </div>
@@ -820,30 +897,36 @@
      CTA
 ========================================================= -->
 
-<section class="bottom-cta">
+<section class="page-cta">
 
-    <div>
+    <div class="page-cta-container">
 
         <span>
-            IMAGE COMPRESSOR PRO
+            MORE THAN IMAGE COMPRESSION?
         </span>
 
         <h2>
-            Reduce your image size today.
+            Create a professional resume too.
         </h2>
 
         <p>
-            Fast, simple and easy to use.
+            Use our Resume Builder to create and
+            organize your professional information.
         </p>
 
-        <button
-            type="button"
+
+        <a
+            href="../resume/"
             class="cta-button"
-            id="ctaUploadButton"
         >
-            Compress an Image
-            →
-        </button>
+
+            Open Resume Builder
+
+            <span>
+                →
+            </span>
+
+        </a>
 
     </div>
 
@@ -860,17 +943,19 @@
 
 <footer class="footer">
 
+
     <div class="footer-container">
 
 
         <div class="footer-brand">
+
 
             <a
                 href="../index.html"
                 class="footer-logo"
             >
 
-                <span>
+                <span class="footer-logo-icon">
                     ⇩
                 </span>
 
@@ -880,12 +965,15 @@
 
             </a>
 
+
             <p>
                 Simple online tools for image compression
                 and professional resume creation.
             </p>
 
+
         </div>
+
 
 
         <div class="footer-column">
@@ -905,6 +993,7 @@
         </div>
 
 
+
         <div class="footer-column">
 
             <h3>
@@ -916,14 +1005,19 @@
             </a>
 
             <a href="../about.html">
-                About
+                About Us
             </a>
 
             <a href="../contact.html">
-                Contact
+                Contact Us
+            </a>
+
+            <a href="../blog/">
+                Blog
             </a>
 
         </div>
+
 
 
         <div class="footer-column">
@@ -952,9 +1046,12 @@
 
     <div class="footer-bottom">
 
-        © 2026 Image Compressor Pro. All rights reserved.
+        <p>
+            © 2026 Image Compressor Pro. All rights reserved.
+        </p>
 
     </div>
+
 
 </footer>
 
@@ -966,18 +1063,14 @@
 
 <button
     type="button"
-    id="topBtn"
     class="top-btn"
+    id="topBtn"
+    aria-label="Back to top"
 >
     ↑
 </button>
 
 
-
-<!-- IMPORTANT:
-     This page is inside /compressor/
-     Therefore JS path is simply script.js
--->
 
 <script src="script.js"></script>
 
