@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const themeToggle =
         document.getElementById("themeToggle");
 
+
     const savedTheme =
         localStorage.getItem("icp-theme");
 
@@ -31,13 +32,13 @@ document.addEventListener("DOMContentLoaded", function () {
             document.body.classList.toggle("dark");
 
 
-            const isDark =
+            const darkMode =
                 document.body.classList.contains("dark");
 
 
             localStorage.setItem(
                 "icp-theme",
-                isDark ? "dark" : "light"
+                darkMode ? "dark" : "light"
             );
 
         });
@@ -53,15 +54,40 @@ document.addEventListener("DOMContentLoaded", function () {
     const mobileMenuBtn =
         document.getElementById("mobileMenuBtn");
 
+
     const navLinks =
         document.getElementById("navLinks");
+
+
+    function closeMobileMenu() {
+
+        if (!navLinks || !mobileMenuBtn) {
+            return;
+        }
+
+
+        navLinks.classList.remove("show");
+
+
+        mobileMenuBtn.setAttribute(
+            "aria-expanded",
+            "false"
+        );
+
+
+        mobileMenuBtn.textContent = "☰";
+
+    }
 
 
     if (mobileMenuBtn && navLinks) {
 
         mobileMenuBtn.addEventListener(
             "click",
-            function () {
+            function (event) {
+
+                event.stopPropagation();
+
 
                 const isOpen =
                     navLinks.classList.toggle("show");
@@ -88,14 +114,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     "click",
                     function () {
 
-                        navLinks.classList.remove("show");
-
-                        mobileMenuBtn.setAttribute(
-                            "aria-expanded",
-                            "false"
-                        );
-
-                        mobileMenuBtn.textContent = "☰";
+                        closeMobileMenu();
 
                     }
                 );
@@ -103,6 +122,60 @@ document.addEventListener("DOMContentLoaded", function () {
             });
 
     }
+
+
+
+    /* =====================================================
+       CLOSE MENU WHEN CLICKING OUTSIDE
+    ===================================================== */
+
+    document.addEventListener(
+        "click",
+        function (event) {
+
+            if (!navLinks || !mobileMenuBtn) {
+                return;
+            }
+
+
+            const clickedInsideNav =
+                navLinks.contains(event.target);
+
+
+            const clickedMenuButton =
+                mobileMenuBtn.contains(event.target);
+
+
+            if (
+                !clickedInsideNav &&
+                !clickedMenuButton
+            ) {
+
+                closeMobileMenu();
+
+            }
+
+        }
+    );
+
+
+
+    /* =====================================================
+       CLOSE MENU WHEN WINDOW GETS LARGER
+    ===================================================== */
+
+    window.addEventListener(
+        "resize",
+        function () {
+
+            if (window.innerWidth > 780) {
+
+                closeMobileMenu();
+
+            }
+
+        }
+    );
 
 
 
@@ -151,8 +224,11 @@ document.addEventListener("DOMContentLoaded", function () {
             function () {
 
                 window.scrollTo({
+
                     top: 0,
+
                     behavior: "smooth"
+
                 });
 
             }
@@ -185,6 +261,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             entry.target.classList.add(
                                 "is-visible"
                             );
+
 
                             observer.unobserve(
                                 entry.target
@@ -221,7 +298,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     /* =====================================================
        FAQ
-       Only one FAQ remains open at a time
+       Only one FAQ opens at a time
     ===================================================== */
 
     const faqItems =
@@ -256,71 +333,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     });
 
-
-
-    /* =====================================================
-       CLOSE MOBILE MENU WHEN CLICKING OUTSIDE
-    ===================================================== */
-
-    document.addEventListener(
-        "click",
-        function (event) {
-
-            if (
-                !navLinks ||
-                !mobileMenuBtn
-            ) {
-                return;
-            }
-
-
-            const clickedInsideMenu =
-                navLinks.contains(event.target);
-
-
-            const clickedButton =
-                mobileMenuBtn.contains(event.target);
-
-
-            if (
-                !clickedInsideMenu &&
-                !clickedButton
-            ) {
-
-                navLinks.classList.remove("show");
-
-                mobileMenuBtn.setAttribute(
-                    "aria-expanded",
-                    "false"
-                );
-
-                mobileMenuBtn.textContent = "☰";
-
-            }
-
-        }
-    );
-
-
-
-    /* =====================================================
-       PREVENT EMPTY # LINKS
-    ===================================================== */
-
-    document
-        .querySelectorAll('a[href="#"]')
-        .forEach(function (link) {
-
-            link.addEventListener(
-                "click",
-                function (event) {
-
-                    event.preventDefault();
-
-                }
-            );
-
-        });
 
 
 });
