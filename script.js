@@ -1,6 +1,6 @@
 /* =========================================================
    IMAGE COMPRESSOR PRO
-   MAIN HOME PAGE JAVASCRIPT
+   MAIN HOMEPAGE JAVASCRIPT
 ========================================================= */
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -13,9 +13,26 @@ document.addEventListener("DOMContentLoaded", function () {
     const themeToggle =
         document.getElementById("themeToggle");
 
+    const themeIcon =
+        document.querySelector(".theme-icon");
 
     const savedTheme =
         localStorage.getItem("icp-theme");
+
+
+    function updateThemeIcon() {
+
+        if (!themeIcon) {
+            return;
+        }
+
+        const isDark =
+            document.body.classList.contains("dark");
+
+        themeIcon.textContent =
+            isDark ? "☾" : "☼";
+
+    }
 
 
     if (savedTheme === "dark") {
@@ -25,23 +42,32 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
+    updateThemeIcon();
+
+
     if (themeToggle) {
 
-        themeToggle.addEventListener("click", function () {
+        themeToggle.addEventListener(
+            "click",
+            function () {
 
-            document.body.classList.toggle("dark");
-
-
-            const darkMode =
-                document.body.classList.contains("dark");
+                document.body.classList.toggle("dark");
 
 
-            localStorage.setItem(
-                "icp-theme",
-                darkMode ? "dark" : "light"
-            );
+                const isDark =
+                    document.body.classList.contains("dark");
 
-        });
+
+                localStorage.setItem(
+                    "icp-theme",
+                    isDark ? "dark" : "light"
+                );
+
+
+                updateThemeIcon();
+
+            }
+        );
 
     }
 
@@ -54,19 +80,18 @@ document.addEventListener("DOMContentLoaded", function () {
     const mobileMenuBtn =
         document.getElementById("mobileMenuBtn");
 
-
-    const navLinks =
-        document.getElementById("navLinks");
+    const mainNav =
+        document.getElementById("mainNav");
 
 
     function closeMobileMenu() {
 
-        if (!navLinks || !mobileMenuBtn) {
+        if (!mainNav || !mobileMenuBtn) {
             return;
         }
 
 
-        navLinks.classList.remove("show");
+        mainNav.classList.remove("show");
 
 
         mobileMenuBtn.setAttribute(
@@ -75,12 +100,39 @@ document.addEventListener("DOMContentLoaded", function () {
         );
 
 
-        mobileMenuBtn.textContent = "☰";
+        mobileMenuBtn.setAttribute(
+            "aria-label",
+            "Open menu"
+        );
 
     }
 
 
-    if (mobileMenuBtn && navLinks) {
+    function openMobileMenu() {
+
+        if (!mainNav || !mobileMenuBtn) {
+            return;
+        }
+
+
+        mainNav.classList.add("show");
+
+
+        mobileMenuBtn.setAttribute(
+            "aria-expanded",
+            "true"
+        );
+
+
+        mobileMenuBtn.setAttribute(
+            "aria-label",
+            "Close menu"
+        );
+
+    }
+
+
+    if (mobileMenuBtn && mainNav) {
 
         mobileMenuBtn.addEventListener(
             "click",
@@ -90,56 +142,59 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
                 const isOpen =
-                    navLinks.classList.toggle("show");
+                    mainNav.classList.contains("show");
 
 
-                mobileMenuBtn.setAttribute(
-                    "aria-expanded",
-                    isOpen ? "true" : "false"
-                );
+                if (isOpen) {
 
+                    closeMobileMenu();
 
-                mobileMenuBtn.textContent =
-                    isOpen ? "✕" : "☰";
+                } else {
+
+                    openMobileMenu();
+
+                }
 
             }
         );
 
 
-        navLinks
-            .querySelectorAll("a")
-            .forEach(function (link) {
+        const navLinks =
+            mainNav.querySelectorAll("a");
 
-                link.addEventListener(
-                    "click",
-                    function () {
 
-                        closeMobileMenu();
+        navLinks.forEach(function (link) {
 
-                    }
-                );
+            link.addEventListener(
+                "click",
+                function () {
 
-            });
+                    closeMobileMenu();
+
+                }
+            );
+
+        });
 
     }
 
 
 
     /* =====================================================
-       CLOSE MENU WHEN CLICKING OUTSIDE
+       CLOSE MOBILE MENU WHEN CLICKING OUTSIDE
     ===================================================== */
 
     document.addEventListener(
         "click",
         function (event) {
 
-            if (!navLinks || !mobileMenuBtn) {
+            if (!mainNav || !mobileMenuBtn) {
                 return;
             }
 
 
             const clickedInsideNav =
-                navLinks.contains(event.target);
+                mainNav.contains(event.target);
 
 
             const clickedMenuButton =
@@ -161,14 +216,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =====================================================
-       CLOSE MENU WHEN WINDOW GETS LARGER
+       CLOSE MOBILE MENU ON RESIZE
     ===================================================== */
 
     window.addEventListener(
         "resize",
         function () {
 
-            if (window.innerWidth > 780) {
+            if (window.innerWidth > 760) {
 
                 closeMobileMenu();
 
@@ -183,24 +238,24 @@ document.addEventListener("DOMContentLoaded", function () {
        BACK TO TOP
     ===================================================== */
 
-    const topBtn =
+    const topButton =
         document.getElementById("topBtn");
 
 
     function updateTopButton() {
 
-        if (!topBtn) {
+        if (!topButton) {
             return;
         }
 
 
-        if (window.scrollY > 400) {
+        if (window.scrollY > 450) {
 
-            topBtn.classList.add("visible");
+            topButton.classList.add("visible");
 
         } else {
 
-            topBtn.classList.remove("visible");
+            topButton.classList.remove("visible");
 
         }
 
@@ -210,16 +265,18 @@ document.addEventListener("DOMContentLoaded", function () {
     window.addEventListener(
         "scroll",
         updateTopButton,
-        { passive: true }
+        {
+            passive: true
+        }
     );
 
 
     updateTopButton();
 
 
-    if (topBtn) {
+    if (topButton) {
 
-        topBtn.addEventListener(
+        topButton.addEventListener(
             "click",
             function () {
 
@@ -239,100 +296,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =====================================================
-       SCROLL ANIMATION
+       ESC KEY
+       Close mobile menu
     ===================================================== */
 
-    const animatedElements =
-        document.querySelectorAll(
-            ".tool-card, .step, .benefit-card, .faq-item, .information-box"
-        );
+    document.addEventListener(
+        "keydown",
+        function (event) {
 
+            if (event.key === "Escape") {
 
-    if ("IntersectionObserver" in window) {
-
-        const observer =
-            new IntersectionObserver(
-                function (entries) {
-
-                    entries.forEach(function (entry) {
-
-                        if (entry.isIntersecting) {
-
-                            entry.target.classList.add(
-                                "is-visible"
-                            );
-
-
-                            observer.unobserve(
-                                entry.target
-                            );
-
-                        }
-
-                    });
-
-                },
-                {
-                    threshold: 0.12
-                }
-            );
-
-
-        animatedElements.forEach(function (element) {
-
-            observer.observe(element);
-
-        });
-
-    } else {
-
-        animatedElements.forEach(function (element) {
-
-            element.classList.add("is-visible");
-
-        });
-
-    }
-
-
-
-    /* =====================================================
-       FAQ
-       Only one FAQ opens at a time
-    ===================================================== */
-
-    const faqItems =
-        document.querySelectorAll(".faq-item");
-
-
-    faqItems.forEach(function (item) {
-
-        item.addEventListener(
-            "toggle",
-            function () {
-
-                if (!item.open) {
-                    return;
-                }
-
-
-                faqItems.forEach(function (otherItem) {
-
-                    if (otherItem !== item) {
-
-                        otherItem.removeAttribute(
-                            "open"
-                        );
-
-                    }
-
-                });
+                closeMobileMenu();
 
             }
-        );
 
-    });
-
+        }
+    );
 
 
 });
