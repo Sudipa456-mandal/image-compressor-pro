@@ -12,7 +12,12 @@
 
     <meta
         name="description"
-        content="Free online image compressor. Compress JPG, PNG and WEBP images, reduce file size and download optimized images easily."
+        content="Free online image compressor to reduce JPG, PNG and WEBP image file sizes. Compress images directly in your browser without registration."
+    >
+
+    <meta
+        name="keywords"
+        content="image compressor, compress image, JPG compressor, PNG compressor, WEBP compressor, reduce image size, online image compressor"
     >
 
     <meta
@@ -21,8 +26,28 @@
     >
 
     <meta
+        name="author"
+        content="Image Compressor Pro"
+    >
+
+    <meta
         name="theme-color"
-        content="#f7faff"
+        content="#f7f9fc"
+    >
+
+    <meta
+        property="og:title"
+        content="Free Online Image Compressor | Image Compressor Pro"
+    >
+
+    <meta
+        property="og:description"
+        content="Compress JPG, PNG and WEBP images online quickly and easily."
+    >
+
+    <meta
+        property="og:type"
+        content="website"
     >
 
     <title>
@@ -54,6 +79,7 @@
         <a
             href="../index.html"
             class="logo"
+            aria-label="Image Compressor Pro Home"
         >
 
             <span class="logo-icon">
@@ -73,6 +99,7 @@
         <nav
             class="nav-links"
             id="navLinks"
+            aria-label="Main navigation"
         >
 
             <a href="../index.html">
@@ -94,42 +121,44 @@
                 Blog
             </a>
 
-            
         </nav>
 
 
-        <!-- THEME -->
+        <div class="nav-actions">
 
-        <button
-            type="button"
-            class="theme-toggle"
-            id="themeToggle"
-            aria-label="Toggle dark mode"
-        >
+            <!-- THEME -->
 
-            <span>
-                ☀
-            </span>
+            <button
+                type="button"
+                class="theme-toggle"
+                id="themeToggle"
+                aria-label="Toggle dark mode"
+            >
 
-            <span>
-                ◐
-            </span>
+                <span class="theme-sun">
+                    ☀
+                </span>
 
-        </button>
+                <span class="theme-moon">
+                    ◐
+                </span>
+
+            </button>
 
 
-        <!-- MOBILE MENU -->
+            <!-- MOBILE MENU -->
 
-        <button
-            type="button"
-            class="mobile-menu-btn"
-            id="mobileMenuBtn"
-            aria-label="Open navigation menu"
-            aria-expanded="false"
-        >
-            ☰
-        </button>
+            <button
+                type="button"
+                class="mobile-menu-btn"
+                id="mobileMenuBtn"
+                aria-label="Open navigation menu"
+                aria-expanded="false"
+            >
+                ☰
+            </button>
 
+        </div>
 
     </div>
 
@@ -141,7 +170,7 @@
 
 
 <!-- =========================================================
-     PAGE HERO
+     HERO
 ========================================================= -->
 
 <section class="page-hero">
@@ -151,7 +180,9 @@
 
         <div class="hero-badge">
 
-            <span>✦</span>
+            <span>
+                ✦
+            </span>
 
             FREE ONLINE TOOL
 
@@ -163,7 +194,7 @@
             Compress Your Images
 
             <span>
-                Easily & Quickly
+                Easily &amp; Quickly
             </span>
 
         </h1>
@@ -171,8 +202,8 @@
 
         <p>
 
-            Reduce image file size without complicated software.
-            Upload your JPG, PNG or WEBP image and optimize it
+            Reduce image file size while keeping your images
+            looking great. Compress JPG, PNG and WEBP files
             directly in your browser.
 
         </p>
@@ -206,28 +237,25 @@
 
 
 <!-- =========================================================
-     COMPRESSOR SECTION
+     COMPRESSOR
 ========================================================= -->
 
-<section class="compressor-section">
+<section
+    class="compressor-section"
+    id="compressor"
+>
 
     <div class="compressor-container">
 
 
-        <!-- =================================================
-             UPLOAD AREA
-        ================================================== -->
+        <!-- UPLOAD -->
 
         <div
             class="upload-card"
             id="uploadCard"
         >
 
-
-            <div
-                class="upload-icon"
-                id="uploadIcon"
-            >
+            <div class="upload-icon">
                 ⇧
             </div>
 
@@ -238,8 +266,8 @@
 
 
             <p>
-                Drag & drop your image here
-                or choose a file from your device.
+                Drag and drop an image here or choose
+                a file from your device.
             </p>
 
 
@@ -279,14 +307,11 @@
                 Drop image here
             </div>
 
-
         </div>
 
 
 
-        <!-- =================================================
-             ERROR MESSAGE
-        ================================================== -->
+        <!-- ERROR -->
 
         <div
             class="error-message"
@@ -296,9 +321,7 @@
 
 
 
-        <!-- =================================================
-             WORKSPACE
-        ================================================== -->
+        <!-- WORKSPACE -->
 
         <div
             class="workspace"
@@ -306,10 +329,9 @@
         >
 
 
-            <!-- LEFT PREVIEW -->
+            <!-- PREVIEW CARD -->
 
             <div class="preview-card">
-
 
                 <div class="card-header">
 
@@ -343,6 +365,7 @@
                         src=""
                         alt="Uploaded image preview"
                     >
+
 
                     <div
                         class="preview-placeholder"
@@ -404,15 +427,13 @@
 
                 </div>
 
-
             </div>
 
 
 
-            <!-- RIGHT SETTINGS -->
+            <!-- SETTINGS -->
 
             <div class="settings-card">
-
 
                 <div class="card-header">
 
@@ -485,7 +506,6 @@
 
                 <div class="setting-group">
 
-
                     <div class="setting-label-row">
 
                         <label for="qualitySlider">
@@ -520,7 +540,6 @@
 
                     </div>
 
-
                 </div>
 
 
@@ -528,7 +547,6 @@
                 <!-- RESULT -->
 
                 <div class="result-box">
-
 
                     <div class="result-row">
 
@@ -574,7 +592,6 @@
 
                     </div>
 
-
                 </div>
 
 
@@ -612,10 +629,9 @@
 
 
 
-                <!-- ACTIONS -->
+                <!-- ACTION BUTTONS -->
 
                 <div class="action-buttons">
-
 
                     <button
                         type="button"
@@ -653,31 +669,23 @@
                         class="reset-button"
                         id="resetButton"
                     >
-
                         Start Over
-
                     </button>
-
 
                 </div>
 
-
             </div>
-
 
         </div>
 
 
 
-        <!-- =================================================
-             RESULT SUMMARY
-        ================================================== -->
+        <!-- SUCCESS -->
 
         <div
             class="success-card"
             id="successCard"
         >
-
 
             <div class="success-icon">
                 ✓
@@ -705,9 +713,7 @@
                 Download
             </button>
 
-
         </div>
-
 
     </div>
 
@@ -716,86 +722,92 @@
 
 
 <!-- =========================================================
-     INFORMATION
+     INTRO CONTENT
 ========================================================= -->
 
-<section class="info-section">
+<section class="content-section">
 
+    <div class="content-container">
 
-    <div class="section-heading">
+        <div class="section-heading">
 
-        <span class="section-label">
-            IMAGE COMPRESSION
-        </span>
+            <span class="section-label">
+                ONLINE IMAGE COMPRESSOR
+            </span>
 
-        <h2>
-            Reduce image size without unnecessary complexity
-        </h2>
-
-        <p>
-            Optimize your images before uploading them to websites,
-            social media, forms or email.
-        </p>
-
-    </div>
-
-
-    <div class="info-grid">
-
-
-        <article class="info-card">
-
-            <div class="info-icon">
-                ⚡
-            </div>
-
-            <h3>
-                Fast Compression
-            </h3>
+            <h2>
+                Reduce image file size without unnecessary complexity
+            </h2>
 
             <p>
-                Compress images directly in your browser
-                without installing additional software.
+                Large image files can take longer to upload,
+                consume more storage and slow down webpages.
+                Image Compressor Pro provides a simple way
+                to reduce the size of JPG, PNG and WEBP images
+                before using them online.
             </p>
 
-        </article>
+        </div>
 
 
-        <article class="info-card">
-
-            <div class="info-icon">
-                ◇
-            </div>
-
-            <h3>
-                Multiple Formats
-            </h3>
-
-            <p>
-                Work with commonly used JPG, PNG and
-                WEBP image formats.
-            </p>
-
-        </article>
+        <div class="info-grid">
 
 
-        <article class="info-card">
+            <article class="info-card">
 
-            <div class="info-icon">
-                🔒
-            </div>
+                <div class="info-icon">
+                    ⚡
+                </div>
 
-            <h3>
-                Browser Based
-            </h3>
+                <h3>
+                    Fast Compression
+                </h3>
 
-            <p>
-                Your image is processed in your browser
-                instead of requiring an account.
-            </p>
+                <p>
+                    Compress images directly in your browser
+                    without installing additional software.
+                </p>
 
-        </article>
+            </article>
 
+
+            <article class="info-card">
+
+                <div class="info-icon">
+                    ◇
+                </div>
+
+                <h3>
+                    JPG, PNG &amp; WEBP
+                </h3>
+
+                <p>
+                    Work with three popular image formats
+                    and choose the format that fits your needs.
+                </p>
+
+            </article>
+
+
+            <article class="info-card">
+
+                <div class="info-icon">
+                    🔒
+                </div>
+
+                <h3>
+                    Browser Based
+                </h3>
+
+                <p>
+                    Image processing happens directly in your
+                    browser, so no account is required.
+                </p>
+
+            </article>
+
+
+        </div>
 
     </div>
 
@@ -809,80 +821,90 @@
 
 <section class="how-section">
 
+    <div class="how-container">
 
-    <div class="section-heading">
+        <div class="section-heading">
 
-        <span class="section-label">
-            HOW IT WORKS
-        </span>
+            <span class="section-label">
+                HOW IT WORKS
+            </span>
 
-        <h2>
-            Compress an image in three simple steps
-        </h2>
-
-    </div>
-
-
-    <div class="how-grid">
-
-
-        <div class="how-step">
-
-            <div class="how-number">
-                1
-            </div>
-
-            <h3>
-                Upload
-            </h3>
-
-            <p>
-                Select a JPG, PNG or WEBP image
-                from your device.
-            </p>
+            <h2>
+                Compress an image in three simple steps
+            </h2>
 
         </div>
 
 
-        <div class="how-step">
+        <div class="how-grid">
 
-            <div class="how-number">
-                2
+
+            <div class="how-step">
+
+                <div class="how-number">
+                    1
+                </div>
+
+                <h3>
+                    Upload
+                </h3>
+
+                <p>
+                    Select a JPG, PNG or WEBP image
+                    from your device.
+                </p>
+
             </div>
 
-            <h3>
-                Customize
-            </h3>
 
-            <p>
-                Choose the output format and
-                compression quality.
-            </p>
+            <div class="how-step">
 
-        </div>
+                <div class="how-number">
+                    2
+                </div>
 
+                <h3>
+                    Customize
+                </h3>
 
-        <div class="how-step">
+                <p>
+                    Choose the output format and
+                    compression quality.
+                </p>
 
-            <div class="how-number">
-                3
             </div>
 
-            <h3>
-                Download
-            </h3>
 
-            <p>
-                Compress the image and download
-                your optimized file.
-            </p>
+            <div class="how-step">
+
+                <div class="how-number">
+                    3
+                </div>
+
+                <h3>
+                    Download
+                </h3>
+
+                <p>
+                    Compress the image and download
+                    your optimized file.
+                </p>
+
+            </div>
+
 
         </div>
-
 
     </div>
 
 </section>
+
+
+
+<!-- =========================================================
+     SEO CONTENT
+========================================================= -->
+
 
 
 
@@ -895,7 +917,7 @@
     <div class="page-cta-container">
 
         <span>
-            MORE THAN IMAGE COMPRESSION?
+            MORE ONLINE TOOLS
         </span>
 
         <h2>
@@ -903,8 +925,8 @@
         </h2>
 
         <p>
-            Use our Resume Builder to create and
-            organize your professional information.
+            Build and organize your professional resume
+            using our online Resume Builder.
         </p>
 
 
@@ -936,12 +958,10 @@
 
 <footer class="footer">
 
-
     <div class="footer-container">
 
 
         <div class="footer-brand">
-
 
             <a
                 href="../index.html"
@@ -963,7 +983,6 @@
                 Simple online tools for image compression
                 and professional resume creation.
             </p>
-
 
         </div>
 
@@ -995,14 +1014,6 @@
 
             <a href="../index.html">
                 Home
-            </a>
-
-            <a href="../about.html">
-                About Us
-            </a>
-
-            <a href="../contact.html">
-                Contact Us
             </a>
 
             <a href="../blog/">
@@ -1045,14 +1056,11 @@
 
     </div>
 
-
 </footer>
 
 
 
-<!-- =========================================================
-     BACK TO TOP
-========================================================= -->
+<!-- BACK TO TOP -->
 
 <button
     type="button"
