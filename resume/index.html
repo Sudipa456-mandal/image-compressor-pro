@@ -1,974 +1,451 @@
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <meta name="description"
-          content="Create a professional resume in minutes with ResumeCraft. Choose a modern template, customize your resume and download it as a PDF.">
-
-    <meta name="keywords"
-          content="resume builder, CV builder, professional resume, free resume maker">
-
-    <meta name="author"
-          content="ResumeCraft">
-
-    <meta name="robots"
-          content="index, follow">
-
-    <title>ResumeCraft - Professional Resume Builder</title>
+    <title>Free Resume Builder | Create a Professional Resume | ResumeCraft</title>
+    <meta name="description" content="Create a professional resume with ResumeCraft. Choose a modern or ATS-friendly template, add your experience and skills, customize your design, and prepare your resume online.">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#f7f8fc">
 
     <link rel="stylesheet" href="css/style.css">
-
 </head>
-
 
 <body>
 
-
-<!-- =========================
-     NAVIGATION
-========================= -->
-
-<header class="navbar">
-
+<header class="site-header">
     <div class="nav-container">
-
-        <a href="index.html" class="logo">
-            Resume<span>Craft</span>
+        <a href="../index.html" class="brand" aria-label="Image Compressor Pro home">
+            <span class="brand-mark">⇩</span>
+            <span>Image Compressor <strong>Pro</strong></span>
         </a>
 
-
-        <nav class="nav-links">
-
-            <a href="#features">
-                Features
-            </a>
-
-            <a href="templates.html">
-                Templates
-            </a>
-
-            <a href="#how-it-works">
-                How It Works
-            </a>
-
-        </nav>
-
-
-        <div class="nav-actions">
-
-            <a href="builder.html" class="login-link">
-                Resume Builder
-            </a>
-
-            <a href="builder.html" class="nav-btn">
-                Create Resume
-            </a>
-
-        </div>
-
-
-        <button
-            class="menu-btn"
-            id="menuBtn"
-            aria-label="Open menu">
-
+        <button class="mobile-nav-toggle" id="mobileNavToggle"
+                type="button" aria-label="Open navigation" aria-expanded="false">
             ☰
-
         </button>
 
+        <nav class="site-nav" id="siteNav" aria-label="Main navigation">
+            <a href="../index.html">Home</a>
+            <a href="../image-compressor/">Image Compressor</a>
+            <a href="index.html" class="active">Resume Builder</a>
+            <a href="../blog/">Blog</a>
+        </nav>
+
+        <a href="templates.html" class="nav-cta">Create Resume</a>
     </div>
-
 </header>
-
-
-
-<!-- =========================
-     HERO
-========================= -->
 
 <main>
 
-
 <section class="hero">
-
     <div class="hero-container">
+        <div class="hero-copy">
+            <span class="eyebrow">RESUMECRAFT • ONLINE RESUME BUILDER</span>
 
+            <h1>Create a professional resume with confidence.</h1>
 
-        <!-- HERO TEXT -->
-
-        <div class="hero-content">
-
-
-            <div class="hero-badge">
-
-                <span class="badge-dot"></span>
-
-                Free Professional Resume Builder
-
-            </div>
-
-
-            <h1>
-
-                Build a Resume That
-                <span>Gets Noticed.</span>
-
-            </h1>
-
-
-            <p class="hero-description">
-
-                Create a professional, modern resume in minutes.
-                Choose a template, add your experience and
-                download your resume as a PDF.
-
+            <p class="hero-lead">
+                Build a clean, professional resume using ready-to-use templates.
+                Add your experience, education and skills, customize the design,
+                and prepare your resume online.
             </p>
 
-
-            <div class="hero-buttons">
-
-                <a href="builder.html"
-                   class="primary-btn">
-
-                    Create My Resume
-
-                    <span>→</span>
-
+            <div class="hero-actions">
+                <a href="templates.html" class="primary-button">
+                    Create My Resume <span>→</span>
                 </a>
-
-
-                <a href="#templates"
-                   class="secondary-btn">
-
+                <a href="#templates" class="secondary-button">
                     Explore Templates
-
                 </a>
-
             </div>
 
-
-            <div class="hero-trust">
-
-                <div class="trust-item">
-
-                    <strong>100%</strong>
-
-                    <span>Free to Start</span>
-
-                </div>
-
-
-                <div class="trust-divider"></div>
-
-
-                <div class="trust-item">
-
-                    <strong>5+</strong>
-
-                    <span>Professional Templates</span>
-
-                </div>
-
-
-                <div class="trust-divider"></div>
-
-
-                <div class="trust-item">
-
-                    <strong>PDF</strong>
-
-                    <span>Download</span>
-
-                </div>
-
+            <div class="trust-row">
+                <span>✓ Professional templates</span>
+                <span>✓ Easy customization</span>
+                <span>✓ ATS-friendly option</span>
             </div>
-
-
         </div>
 
+        <div class="hero-visual" aria-label="Resume preview">
+            <div class="floating-note note-one">Professional layouts</div>
+            <div class="floating-note note-two">Easy to customize</div>
 
-
-        <!-- RESUME PREVIEW -->
-
-        <div class="hero-preview">
-
-
-            <div class="preview-glow"></div>
-
-
-            <div class="resume-card">
-
-
-                <div class="resume-top">
-
-
-                    <div class="resume-person">
-
-
-                        <div class="resume-avatar">
-                            JD
-                        </div>
-
-
-                        <div>
-
-                            <div class="resume-name">
-                                JOHN DOE
-                            </div>
-
-                            <div class="resume-title">
-                                Senior Web Developer
-                            </div>
-
-                        </div>
-
-
+            <div class="resume-paper">
+                <div class="paper-top">
+                    <div>
+                        <div class="fake-name">ALEX MORGAN</div>
+                        <div class="fake-title">SOFTWARE DEVELOPER</div>
                     </div>
-
-
+                    <div class="fake-contact">
+                        alex@example.com<br>
+                        +91 98765 43210
+                    </div>
                 </div>
 
+                <div class="paper-line"></div>
 
-                <div class="resume-contact">
-
-                    john.doe@email.com
-                    <span>•</span>
-                    +91 98765 43210
-                    <span>•</span>
-                    Kolkata, India
-
-                </div>
-
-
-
-                <div class="resume-section">
-
-                    <div class="resume-heading">
-                        PROFILE
-                    </div>
-
-                    <div class="resume-lines">
-
-                        <span class="line full"></span>
-
-                        <span class="line full"></span>
-
-                        <span class="line medium"></span>
-
-                    </div>
-
-                </div>
-
-
-
-                <div class="resume-section">
-
-                    <div class="resume-heading">
-                        EXPERIENCE
-                    </div>
-
-
-                    <div class="experience-item">
-
-                        <div class="experience-title">
-                            Senior Web Developer
+                <div class="paper-columns">
+                    <div>
+                        <div class="paper-heading">PROFILE</div>
+                        <div class="fake-lines">
+                            <i></i><i></i><i></i><i class="short"></i>
                         </div>
 
-                        <div class="experience-company">
-                            ABC Technologies
+                        <div class="paper-heading space">EXPERIENCE</div>
+                        <div class="fake-job">Software Developer</div>
+                        <div class="fake-lines">
+                            <i></i><i></i><i></i><i class="medium"></i>
                         </div>
 
-                        <div class="resume-lines">
-
-                            <span class="line full"></span>
-
-                            <span class="line full"></span>
-
-                            <span class="line short"></span>
-
+                        <div class="fake-job">Junior Developer</div>
+                        <div class="fake-lines">
+                            <i></i><i></i><i class="medium"></i>
                         </div>
-
                     </div>
 
-
-                    <div class="experience-item">
-
-                        <div class="experience-title">
-                            Web Developer
+                    <aside>
+                        <div class="paper-heading">SKILLS</div>
+                        <div class="skill-pills">
+                            <b>JavaScript</b><b>SQL</b><b>Git</b><b>HTML</b>
                         </div>
 
-                        <div class="experience-company">
-                            XYZ Solutions
+                        <div class="paper-heading space">EDUCATION</div>
+                        <div class="fake-job">B.Tech Computer Science</div>
+                        <div class="fake-lines">
+                            <i></i><i class="short"></i>
                         </div>
-
-                    </div>
-
+                    </aside>
                 </div>
-
-
-
-                <div class="resume-section">
-
-                    <div class="resume-heading">
-                        EDUCATION
-                    </div>
-
-
-                    <div class="education-item">
-
-                        <strong>
-                            B.Tech in Computer Science
-                        </strong>
-
-                        <span>
-                            ABC University • 2021 - 2025
-                        </span>
-
-                    </div>
-
-                </div>
-
-
-
-                <div class="resume-section">
-
-                    <div class="resume-heading">
-                        SKILLS
-                    </div>
-
-
-                    <div class="skills">
-
-                        <span>JavaScript</span>
-                        <span>HTML</span>
-                        <span>CSS</span>
-                        <span>SQL</span>
-                        <span>React</span>
-
-                    </div>
-
-                </div>
-
-
             </div>
-
-
-            <div class="preview-label">
-
-                <span class="live-dot"></span>
-
-                Live Resume Preview
-
-            </div>
-
-
         </div>
-
     </div>
-
 </section>
 
-
-
-<!-- =========================
-     FEATURES
-========================= -->
-
-<section class="features"
-         id="features">
-
+<section class="benefits">
     <div class="section-container">
-
-
-        <div class="section-heading">
-
-            <span class="section-label">
-                POWERFUL FEATURES
-            </span>
-
-            <h2>
-                Everything You Need to Build
-                a Better Resume
-            </h2>
-
+        <div class="section-heading centered">
+            <span class="eyebrow">WHY RESUMECRAFT</span>
+            <h2>A simpler way to build a better resume</h2>
             <p>
-                Simple tools designed to help you create
-                a professional resume without the complexity.
+                Everything you need to organize your career information
+                into a polished resume.
             </p>
-
         </div>
 
-
-
-        <div class="feature-grid">
-
-
-            <article class="feature-card">
-
-                <div class="feature-icon blue">
-                    ✦
-                </div>
-
-                <h3>
-                    Easy Resume Builder
-                </h3>
-
+        <div class="benefit-grid">
+            <article class="benefit-card">
+                <div class="benefit-icon">✦</div>
+                <h3>Professional templates</h3>
                 <p>
-                    Enter your information step by step
-                    and build your resume without complicated
-                    editing tools.
+                    Start with clean layouts designed for different career
+                    styles, from classic to modern.
                 </p>
-
             </article>
 
-
-
-            <article class="feature-card">
-
-                <div class="feature-icon purple">
-                    ◈
-                </div>
-
-                <h3>
-                    Professional Templates
-                </h3>
-
+            <article class="benefit-card">
+                <div class="benefit-icon">⌘</div>
+                <h3>Easy editing</h3>
                 <p>
-                    Choose from modern, clean and
-                    professional resume designs.
+                    Add, edit and organize your personal information,
+                    experience, education and skills in one place.
                 </p>
-
             </article>
 
-
-
-            <article class="feature-card">
-
-                <div class="feature-icon green">
-                    ✓
-                </div>
-
-                <h3>
-                    Live Preview
-                </h3>
-
+            <article class="benefit-card">
+                <div class="benefit-icon">✓</div>
+                <h3>ATS-friendly option</h3>
                 <p>
-                    See your resume update instantly
-                    while you enter your information.
+                    Use a straightforward resume layout when you want
+                    a cleaner format for applicant tracking systems.
                 </p>
-
             </article>
 
-
-
-            <article class="feature-card">
-
-                <div class="feature-icon orange">
-                    ↓
-                </div>
-
-                <h3>
-                    PDF Download
-                </h3>
-
+            <article class="benefit-card">
+                <div class="benefit-icon">Aa</div>
+                <h3>Customize your design</h3>
                 <p>
-                    Download your completed resume
-                    and use it for your job applications.
+                    Adjust the template, font and accent style to create
+                    a resume that feels professional and personal.
                 </p>
-
             </article>
-
-
         </div>
-
     </div>
-
 </section>
 
-
-
-<!-- =========================
-     TEMPLATES
-========================= -->
-
-<section class="templates"
-         id="templates">
-
+<section class="templates-section" id="templates">
     <div class="section-container">
-
-
         <div class="section-heading">
-
-            <span class="section-label">
-                RESUME TEMPLATES
-            </span>
-
-            <h2>
-                Choose Your Professional Style
-            </h2>
-
+            <span class="eyebrow">RESUME TEMPLATES</span>
+            <h2>Choose a style that fits your career</h2>
             <p>
-                Start with a professionally designed template
-                and customize it to match your career.
+                Begin with a structured template and focus on the information
+                that matters most to employers.
             </p>
-
         </div>
 
-
-
-        <div class="template-grid">
-
-
-            <!-- TEMPLATE 1 -->
-
-            <div class="template-card">
-
-                <div class="template-preview modern-template">
-
-                    <div class="template-name">
-                        JOHN DOE
+        <div class="template-showcase">
+            <article class="template-card">
+                <div class="template-preview classic-preview">
+                    <div class="mini-name">JORDAN LEE</div>
+                    <div class="mini-role">MARKETING SPECIALIST</div>
+                    <hr>
+                    <div class="mini-layout">
+                        <span></span><span></span>
                     </div>
-
-                    <div class="template-job">
-                        SOFTWARE DEVELOPER
-                    </div>
-
-                    <div class="template-divider"></div>
-
-                    <div class="template-layout">
-
-                        <div class="template-sidebar">
-
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                            <span></span>
-
-                        </div>
-
-                        <div class="template-body">
-
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                            <span></span>
-
-                        </div>
-
-                    </div>
-
+                    <div class="mini-lines"><i></i><i></i><i></i></div>
                 </div>
-
-
                 <div class="template-info">
-
                     <div>
-
-                        <h3>
-                            Modern
-                        </h3>
-
-                        <p>
-                            Clean & contemporary
-                        </p>
-
+                        <h3>Classic</h3>
+                        <p>Traditional and professional</p>
                     </div>
-
-
-                    <a href="builder.html"
-                       class="template-btn">
-
-                        Use Template
-
-                    </a>
-
+                    <a href="templates.html?template=classic">Use template →</a>
                 </div>
+            </article>
 
-            </div>
-
-
-
-            <!-- TEMPLATE 2 -->
-
-            <div class="template-card">
-
-                <div class="template-preview classic-template">
-
-                    <div class="classic-name">
-                        JOHN DOE
+            <article class="template-card featured-template">
+                <span class="template-badge">POPULAR</span>
+                <div class="template-preview modern-preview">
+                    <div class="modern-side"></div>
+                    <div class="modern-content">
+                        <div class="mini-name">SAM TAYLOR</div>
+                        <div class="mini-role">PRODUCT DESIGNER</div>
+                        <hr>
+                        <div class="mini-lines"><i></i><i></i><i></i><i></i></div>
                     </div>
-
-                    <div class="classic-job">
-                        MARKETING SPECIALIST
-                    </div>
-
-                    <div class="classic-line"></div>
-
-                    <div class="classic-content">
-
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-
-                    </div>
-
                 </div>
-
-
                 <div class="template-info">
-
                     <div>
-
-                        <h3>
-                            Classic
-                        </h3>
-
-                        <p>
-                            Traditional & elegant
-                        </p>
-
+                        <h3>Modern</h3>
+                        <p>Clean and contemporary</p>
                     </div>
-
-
-                    <a href="builder.html"
-                       class="template-btn">
-
-                        Use Template
-
-                    </a>
-
+                    <a href="templates.html?template=modern">Use template →</a>
                 </div>
+            </article>
 
-            </div>
-
-
-
-            <!-- TEMPLATE 3 -->
-
-            <div class="template-card">
-
-                <div class="template-preview minimal-template">
-
-                    <div class="minimal-name">
-                        JOHN DOE
-                    </div>
-
-                    <div class="minimal-job">
-                        PRODUCT DESIGNER
-                    </div>
-
-                    <div class="minimal-grid">
-
-                        <div>
-
-                            <span></span>
-                            <span></span>
-                            <span></span>
-
-                        </div>
-
-                        <div>
-
-                            <span></span>
-                            <span></span>
-                            <span></span>
-
-                        </div>
-
-                    </div>
-
+            <article class="template-card">
+                <div class="template-preview ats-preview">
+                    <div class="mini-name">TAYLOR SMITH</div>
+                    <div class="mini-role">BUSINESS ANALYST</div>
+                    <hr>
+                    <div class="ats-block"></div>
+                    <div class="mini-lines"><i></i><i></i><i></i><i></i></div>
                 </div>
-
-
                 <div class="template-info">
-
                     <div>
-
-                        <h3>
-                            Minimal
-                        </h3>
-
-                        <p>
-                            Simple & elegant
-                        </p>
-
+                        <h3>ATS</h3>
+                        <p>Simple and structured</p>
                     </div>
-
-
-                    <a href="builder.html"
-                       class="template-btn">
-
-                        Use Template
-
-                    </a>
-
+                    <a href="templates.html?template=ats">Use template →</a>
                 </div>
-
-            </div>
-
-
+            </article>
         </div>
 
-
-        <div class="templates-more">
-
-            <a href="templates.html">
-
-                View All Templates →
-
-            </a>
-
+        <div class="center-action">
+            <a href="templates.html" class="outline-button">View All Templates →</a>
         </div>
-
-
     </div>
-
 </section>
 
-
-
-<!-- =========================
-     HOW IT WORKS
-========================= -->
-
-<section class="how-it-works"
-         id="how-it-works">
-
+<section class="steps-section">
     <div class="section-container">
-
-
-        <div class="section-heading">
-
-            <span class="section-label">
-                HOW IT WORKS
-            </span>
-
-            <h2>
-                Create Your Resume in 3 Simple Steps
-            </h2>
-
+        <div class="section-heading centered">
+            <span class="eyebrow">HOW IT WORKS</span>
+            <h2>Build your resume in four simple steps</h2>
         </div>
 
-
-
-        <div class="steps">
-
-
-            <div class="step-card">
-
-                <div class="step-number">
-                    01
+        <div class="steps-grid">
+            <article class="step">
+                <span>01</span>
+                <div>
+                    <h3>Choose a template</h3>
+                    <p>Select a layout that matches your career and preferred style.</p>
                 </div>
-
-                <h3>
-                    Enter Your Details
-                </h3>
-
-                <p>
-                    Add your personal information,
-                    experience, education and skills.
-                </p>
-
-            </div>
-
-
-
-            <div class="step-line"></div>
-
-
-
-            <div class="step-card">
-
-                <div class="step-number">
-                    02
+            </article>
+            <article class="step">
+                <span>02</span>
+                <div>
+                    <h3>Add your information</h3>
+                    <p>Enter your profile, experience, education and skills.</p>
                 </div>
-
-                <h3>
-                    Customize Your Resume
-                </h3>
-
-                <p>
-                    Select a professional template
-                    and customize your resume.
-                </p>
-
-            </div>
-
-
-
-            <div class="step-line"></div>
-
-
-
-            <div class="step-card">
-
-                <div class="step-number">
-                    03
+            </article>
+            <article class="step">
+                <span>03</span>
+                <div>
+                    <h3>Customize your resume</h3>
+                    <p>Adjust the design and organize sections to your preference.</p>
                 </div>
-
-                <h3>
-                    Download & Apply
-                </h3>
-
-                <p>
-                    Download your finished resume
-                    and start applying for jobs.
-                </p>
-
-            </div>
-
-
+            </article>
+            <article class="step">
+                <span>04</span>
+                <div>
+                    <h3>Review and download</h3>
+                    <p>Check your resume carefully before saving or downloading it.</p>
+                </div>
+            </article>
         </div>
-
     </div>
-
 </section>
 
-
-
-<!-- =========================
-     CTA
-========================= -->
-
-<section class="cta">
-
-    <div class="cta-container">
-
+<section class="guide-section">
+    <div class="section-container guide-grid">
         <div>
-
-            <span class="section-label">
-                START YOUR CAREER JOURNEY
-            </span>
-
-            <h2>
-                Your Next Opportunity
-                Starts With a Great Resume.
-            </h2>
-
+            <span class="eyebrow">RESUME GUIDE</span>
+            <h2>What should a professional resume include?</h2>
             <p>
-                Create your professional resume today.
-                It's quick, simple and free to start.
+                A strong resume should make it easy for a recruiter to
+                understand who you are, what you can do and what experience
+                you bring to the role.
             </p>
-
         </div>
 
-
-        <a href="builder.html"
-           class="cta-btn">
-
-            Create My Resume
-
-            <span>→</span>
-
-        </a>
-
+        <div class="guide-list">
+            <div><strong>01</strong><span><b>Contact information</b> — Name, professional email, phone and relevant links.</span></div>
+            <div><strong>02</strong><span><b>Professional summary</b> — A concise introduction focused on your strengths.</span></div>
+            <div><strong>03</strong><span><b>Work experience</b> — Relevant roles, responsibilities and measurable achievements.</span></div>
+            <div><strong>04</strong><span><b>Education and skills</b> — Qualifications and skills that support the position.</span></div>
+        </div>
     </div>
-
 </section>
 
+<section class="faq-section">
+    <div class="section-container narrow">
+        <div class="section-heading centered">
+            <span class="eyebrow">FAQ</span>
+            <h2>Frequently asked questions</h2>
+        </div>
+
+        <div class="faq-list">
+            <details>
+                <summary>What is ResumeCraft?</summary>
+                <p>
+                    ResumeCraft is an online resume-building tool that helps
+                    you organize your professional information using ready-made
+                    resume templates.
+                </p>
+            </details>
+
+            <details>
+                <summary>Which resume template should I choose?</summary>
+                <p>
+                    Choose a layout that is easy to read and suits your target
+                    role. A simple ATS-oriented layout can be useful when you
+                    want a straightforward structure.
+                </p>
+            </details>
+
+            <details>
+                <summary>What information should I prepare before creating a resume?</summary>
+                <p>
+                    Prepare your contact details, professional summary,
+                    employment history, education, skills and relevant links.
+                </p>
+            </details>
+
+            <details>
+                <summary>Can I customize my resume?</summary>
+                <p>
+                    Yes. ResumeCraft's builder is designed to let you choose
+                    templates and customize supported design settings while
+                    entering your resume information.
+                </p>
+            </details>
+        </div>
+    </div>
+</section>
+
+<section class="cta-section">
+    <div class="section-container">
+        <div class="cta-card">
+            <span class="eyebrow">READY TO START?</span>
+            <h2>Build a resume that represents your work.</h2>
+            <p>
+                Choose a template and start organizing your professional
+                information today.
+            </p>
+            <a href="templates.html" class="primary-button">Start Building →</a>
+        </div>
+    </div>
+</section>
 
 </main>
 
-
-
-<!-- =========================
-     FOOTER
-========================= -->
-
-<footer>
-
+<footer class="site-footer">
     <div class="footer-container">
-
-
         <div class="footer-brand">
-
-            <a href="index.html"
-               class="logo">
-
-                Resume<span>Craft</span>
-
+            <a href="../index.html" class="brand">
+                <span class="brand-mark">⇩</span>
+                <span>Image Compressor <strong>Pro</strong></span>
             </a>
-
-            <p>
-                Build a professional resume
-                that gets noticed.
-            </p>
-
+            <p>Simple online tools for image compression and professional resume creation.</p>
         </div>
 
-
-
-        <div class="footer-links">
-
-            <div>
-
-                <h4>
-                    Product
-                </h4>
-
-                <a href="#features">
-                    Features
-                </a>
-
-                <a href="templates.html">
-                    Templates
-                </a>
-
-                <a href="builder.html">
-                    Resume Builder
-                </a>
-
-            </div>
-
-
-            <div>
-
-                <h4>
-                    Company
-                </h4>
-
-                <a href="#">
-                    About
-                </a>
-
-                <a href="#">
-                    Contact
-                </a>
-
-                <a href="#">
-                    Privacy Policy
-                </a>
-
-            </div>
-
+        <div class="footer-column">
+            <h3>Tools</h3>
+            <a href="../image-compressor/">Image Compressor</a>
+            <a href="index.html">Resume Builder</a>
         </div>
 
+        <div class="footer-column">
+            <h3>Resume</h3>
+            <a href="templates.html">Resume Templates</a>
+            <a href="builder.html">Resume Editor</a>
+            <a href="#templates">Template Showcase</a>
+        </div>
+
+        <div class="footer-column">
+            <h3>Information</h3>
+            <a href="../blog/">Blog</a>
+            <a href="../privacy.html">Privacy Policy</a>
+            <a href="../terms.html">Terms of Use</a>
+            <a href="../disclaimer.html">Disclaimer</a>
+        </div>
     </div>
-
 
     <div class="footer-bottom">
-
-        <p>
-            © 2026 ResumeCraft. All rights reserved.
-        </p>
-
+        <p>© 2026 Image Compressor Pro. All rights reserved.</p>
     </div>
-
 </footer>
 
+<button class="back-top" id="backTop" type="button" aria-label="Back to top">↑</button>
 
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const toggle = document.getElementById("mobileNavToggle");
+    const nav = document.getElementById("siteNav");
+    const backTop = document.getElementById("backTop");
 
-<script src="js/script.js"></script>
+    if (toggle && nav) {
+        toggle.addEventListener("click", function () {
+            const open = nav.classList.toggle("open");
+            toggle.setAttribute("aria-expanded", open ? "true" : "false");
+            toggle.textContent = open ? "✕" : "☰";
+        });
+
+        nav.querySelectorAll("a").forEach(function (link) {
+            link.addEventListener("click", function () {
+                nav.classList.remove("open");
+                toggle.setAttribute("aria-expanded", "false");
+                toggle.textContent = "☰";
+            });
+        });
+    }
+
+    window.addEventListener("scroll", function () {
+        if (backTop) {
+            backTop.classList.toggle("show", window.scrollY > 500);
+        }
+    }, { passive: true });
+
+    if (backTop) {
+        backTop.addEventListener("click", function () {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+    }
+});
+</script>
 
 </body>
-
 </html>
