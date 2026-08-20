@@ -42,6 +42,8 @@
     <div class="header-container">
 
 
+        <!-- LOGO -->
+
         <a
             href="index.html"
             class="logo"
@@ -58,6 +60,8 @@
 
         </a>
 
+
+        <!-- NAVIGATION -->
 
         <nav
             class="main-nav"
@@ -102,6 +106,8 @@
         </nav>
 
 
+        <!-- HEADER ACTIONS -->
+
         <div class="header-actions">
 
             <button
@@ -110,9 +116,11 @@
                 class="theme-toggle"
                 aria-label="Toggle dark mode"
             >
+
                 <span class="theme-icon">
                     ☀
                 </span>
+
             </button>
 
 
@@ -150,6 +158,8 @@
         <div class="container">
 
 
+            <!-- PAGE HEADING -->
+
             <div class="contact-page-heading">
 
                 <span class="section-label">
@@ -169,10 +179,14 @@
 
 
 
+            <!-- CONTACT LAYOUT -->
+
             <div class="contact-layout">
 
 
-                <!-- CONTACT INFORMATION -->
+                <!-- =================================================
+                     CONTACT INFORMATION
+                ================================================= -->
 
                 <div class="contact-info-card">
 
@@ -181,12 +195,13 @@
                     </h2>
 
                     <p>
-                        If you have questions about our tools,
-                        encounter a technical issue, or have
-                        suggestions for improving Image Compressor
-                        Pro, please feel free to contact us.
+                        If you have any questions, suggestions,
+                        or need help with our website, feel free
+                        to contact us.
                     </p>
 
+
+                    <!-- EMAIL -->
 
                     <div class="contact-method">
 
@@ -211,6 +226,8 @@
                     </div>
 
 
+                    <!-- FEEDBACK -->
+
                     <div class="contact-method">
 
                         <div class="contact-method-icon">
@@ -233,6 +250,8 @@
                     </div>
 
 
+                    <!-- SUPPORT -->
+
                     <div class="contact-method">
 
                         <div class="contact-method-icon">
@@ -242,18 +261,20 @@
                         <div>
 
                             <h3>
-                                Technical Support
+                                Support
                             </h3>
 
                             <p>
-                                Let us know if you experience
-                                a problem while using our tools.
+                                Facing an issue while using
+                                one of our tools? Let us know.
                             </p>
 
                         </div>
 
                     </div>
 
+
+                    <!-- BUSINESS -->
 
                     <div class="contact-method">
 
@@ -280,7 +301,9 @@
 
 
 
-                <!-- CONTACT FORM -->
+                <!-- =================================================
+                     CONTACT FORM
+                ================================================= -->
 
                 <div class="contact-form-card">
 
@@ -289,7 +312,8 @@
                     </h2>
 
                     <p>
-                        Fill out the form below.
+                        Fill out the form below and we'll
+                        get back to you.
                     </p>
 
 
@@ -298,6 +322,8 @@
                         class="contact-form"
                     >
 
+
+                        <!-- NAME -->
 
                         <div class="form-group">
 
@@ -318,6 +344,8 @@
 
 
 
+                        <!-- EMAIL -->
+
                         <div class="form-group">
 
                             <label for="contactEmail">
@@ -337,6 +365,8 @@
 
 
 
+                        <!-- SUBJECT -->
+
                         <div class="form-group">
 
                             <label for="contactSubject">
@@ -347,13 +377,15 @@
                                 type="text"
                                 id="contactSubject"
                                 name="subject"
-                                placeholder="What is your message about?"
+                                placeholder="Enter subject"
                                 required
                             >
 
                         </div>
 
 
+
+                        <!-- MESSAGE -->
 
                         <div class="form-group">
 
@@ -372,6 +404,8 @@
                         </div>
 
 
+
+                        <!-- SUBMIT -->
 
                         <button
                             type="submit"
@@ -393,7 +427,6 @@
                             aria-live="polite"
                         ></p>
 
-
                     </form>
 
                 </div>
@@ -406,7 +439,9 @@
 
 
 
-    <!-- FAQ -->
+    <!-- =====================================================
+         FAQ LINK
+    ===================================================== -->
 
     <section class="faq-link-section">
 
@@ -426,7 +461,7 @@
 
                     <p>
                         Find answers to common questions about
-                        our website and tools.
+                        Image Compressor Pro and our tools.
                     </p>
 
                 </div>
@@ -460,6 +495,8 @@
         <div class="footer-grid">
 
 
+            <!-- BRAND -->
+
             <div class="footer-brand">
 
                 <a
@@ -488,6 +525,8 @@
 
 
 
+            <!-- TOOLS -->
+
             <div class="footer-column">
 
                 <h3>
@@ -505,6 +544,8 @@
             </div>
 
 
+
+            <!-- COMPANY -->
 
             <div class="footer-column">
 
@@ -531,6 +572,8 @@
 
 
 
+            <!-- LEGAL -->
+
             <div class="footer-column">
 
                 <h3>
@@ -551,9 +594,11 @@
 
             </div>
 
-
         </div>
 
+
+
+        <!-- FOOTER BOTTOM -->
 
         <div class="footer-bottom">
 
@@ -570,7 +615,9 @@
 
 
 
-<!-- BACK TO TOP -->
+<!-- =====================================================
+     BACK TO TOP
+===================================================== -->
 
 <button
     type="button"
@@ -586,7 +633,10 @@
 <script src="script.js"></script>
 
 
-<!-- CONTACT FORM SCRIPT -->
+
+<!-- =====================================================
+     CONTACT FORM
+===================================================== -->
 
 <script>
 
@@ -654,7 +704,9 @@ document.addEventListener(
 
 
                 const mailSubject =
-                    encodeURIComponent(subject);
+                    encodeURIComponent(
+                        subject
+                    );
 
 
                 const mailBody =
@@ -662,9 +714,11 @@ document.addEventListener(
                         "Name: " +
                         name +
                         "\n\n" +
+
                         "Email: " +
                         email +
                         "\n\n" +
+
                         "Message:\n" +
                         message
                     );
