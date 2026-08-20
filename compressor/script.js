@@ -112,6 +112,17 @@ document.addEventListener("DOMContentLoaded", function () {
     let compressedURL = null;
 
 
+    const DEFAULT_QUALITY = 80;
+
+    const MAX_FILE_SIZE =
+        20 * 1024 * 1024;
+
+    const ALLOWED_TYPES = [
+        "image/jpeg",
+        "image/png",
+        "image/webp"
+    ];
+
 
     /* =====================================================
        THEME
@@ -150,7 +161,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-
     /* =====================================================
        MOBILE MENU
     ===================================================== */
@@ -167,6 +177,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 mobileMenuBtn.setAttribute(
                     "aria-expanded",
                     isOpen ? "true" : "false"
+                );
+
+                mobileMenuBtn.setAttribute(
+                    "aria-label",
+                    isOpen
+                        ? "Close navigation menu"
+                        : "Open navigation menu"
                 );
 
                 mobileMenuBtn.textContent =
@@ -191,7 +208,13 @@ document.addEventListener("DOMContentLoaded", function () {
                             "false"
                         );
 
-                        mobileMenuBtn.textContent = "☰";
+                        mobileMenuBtn.setAttribute(
+                            "aria-label",
+                            "Open navigation menu"
+                        );
+
+                        mobileMenuBtn.textContent =
+                            "☰";
 
                     }
                 );
@@ -199,7 +222,6 @@ document.addEventListener("DOMContentLoaded", function () {
             });
 
     }
-
 
 
     /* =====================================================
@@ -225,7 +247,6 @@ document.addEventListener("DOMContentLoaded", function () {
         );
 
     }
-
 
 
     /* =====================================================
@@ -299,7 +320,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-
     /* =====================================================
        HANDLE FILE
     ===================================================== */
@@ -310,7 +330,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
         resetCompressionResult();
 
-        if (!file.type.startsWith("image/")) {
+
+        if (!file) {
+            return;
+        }
+
+
+        if (!ALLOWED_TYPES.includes(file.type)) {
 
             showError(
                 "Please select a JPG, PNG or WEBP image."
@@ -321,29 +347,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
 
-        const allowedTypes = [
-            "image/jpeg",
-            "image/png",
-            "image/webp"
-        ];
-
-
-        if (!allowedTypes.includes(file.type)) {
-
-            showError(
-                "This image format is not supported. Please use JPG, PNG or WEBP."
-            );
-
-            return;
-
-        }
-
-
-        const maxSize =
-            20 * 1024 * 1024;
-
-
-        if (file.size > maxSize) {
+        if (file.size > MAX_FILE_SIZE) {
 
             showError(
                 "The image is larger than 20 MB. Please choose a smaller image."
@@ -391,7 +395,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-
     /* =====================================================
        PREVIEW IMAGE
     ===================================================== */
@@ -423,7 +426,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-
     /* =====================================================
        IMAGE DIMENSIONS
     ===================================================== */
@@ -447,6 +449,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     img.naturalHeight +
                     " px";
 
+
                 URL.revokeObjectURL(url);
 
             };
@@ -458,6 +461,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 imageDimensions.textContent =
                     "—";
 
+
                 URL.revokeObjectURL(url);
 
             };
@@ -466,7 +470,6 @@ document.addEventListener("DOMContentLoaded", function () {
         img.src = url;
 
     }
-
 
 
     /* =====================================================
@@ -535,7 +538,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 
-
     /* =====================================================
        QUALITY SLIDER
     ===================================================== */
@@ -558,9 +560,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-
     /* =====================================================
-       COMPRESS
+       COMPRESS BUTTON
     ===================================================== */
 
     if (compressButton) {
@@ -588,7 +589,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-
     /* =====================================================
        COMPRESS IMAGE
     ===================================================== */
@@ -596,6 +596,17 @@ document.addEventListener("DOMContentLoaded", function () {
     function compressImage() {
 
         clearError();
+
+
+        if (!selectedFile) {
+
+            showError(
+                "Please upload an image first."
+            );
+
+            return;
+
+        }
 
 
         compressButton.disabled =
@@ -659,6 +670,45 @@ document.addEventListener("DOMContentLoaded", function () {
                             );
 
 
+                        if (!ctx) {
+
+                            finishWithError(
+                                "Your browser could not create the image processor."
+                            );
+
+                            return;
+
+                        }
+
+
+                        /*
+                         * White background for JPG.
+                         * This prevents transparent PNG/WebP
+                         * areas from becoming black.
+                         */
+
+                        const outputType =
+                            getOutputType();
+
+
+                        if (
+                            outputType ===
+                            "image/jpeg"
+                        ) {
+
+                            ctx.fillStyle =
+                                "#ffffff";
+
+                            ctx.fillRect(
+                                0,
+                                0,
+                                canvas.width,
+                                canvas.height
+                            );
+
+                        }
+
+
                         ctx.drawImage(
                             img,
                             0,
@@ -667,10 +717,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
                         setProgress(55);
-
-
-                        const outputType =
-                            getOutputType();
 
 
                         const quality =
@@ -749,11 +795,14 @@ document.addEventListener("DOMContentLoaded", function () {
                                             "show"
                                         );
 
+
                                         compressButton.disabled =
                                             false;
 
+
                                         downloadButton.disabled =
                                             false;
+
 
                                         successCard.classList.add(
                                             "show"
@@ -764,6 +813,12 @@ document.addEventListener("DOMContentLoaded", function () {
                                             "Your image was reduced by " +
                                             savings +
                                             ".";
+
+
+                                        successCard.scrollIntoView({
+                                            behavior: "smooth",
+                                            block: "nearest"
+                                        });
 
                                     },
                                     350
@@ -810,7 +865,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-
     /* =====================================================
        OUTPUT FORMAT
     ===================================================== */
@@ -847,14 +901,9 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
 
-        /*
-         * Original format
-         */
-
         return selectedFile.type;
 
     }
-
 
 
     /* =====================================================
@@ -870,7 +919,7 @@ document.addEventListener("DOMContentLoaded", function () {
             originalName.lastIndexOf(".");
 
 
-        let baseName =
+        const baseName =
             lastDot > 0
                 ? originalName.substring(
                     0,
@@ -909,7 +958,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-
     /* =====================================================
        DOWNLOAD
     ===================================================== */
@@ -937,9 +985,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function downloadCompressedImage() {
 
         if (!compressedBlob) {
-
             return;
-
         }
 
 
@@ -953,7 +999,9 @@ document.addEventListener("DOMContentLoaded", function () {
             document.createElement("a");
 
 
-        link.href = url;
+        link.href =
+            url;
+
 
         link.download =
             compressedFileName ||
@@ -977,7 +1025,6 @@ document.addEventListener("DOMContentLoaded", function () {
         );
 
     }
-
 
 
     /* =====================================================
@@ -1101,11 +1148,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         qualitySlider.value =
-            80;
+            DEFAULT_QUALITY;
 
 
         qualityValue.textContent =
-            "80%";
+            DEFAULT_QUALITY + "%";
 
 
         workspace.classList.remove(
@@ -1140,7 +1187,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
     }
-
 
 
     /* =====================================================
@@ -1189,7 +1235,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-
     /* =====================================================
        ERROR
     ===================================================== */
@@ -1198,6 +1243,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         errorMessage.textContent =
             message;
+
 
         errorMessage.classList.add(
             "show"
@@ -1210,6 +1256,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         errorMessage.textContent =
             "";
+
 
         errorMessage.classList.remove(
             "show"
@@ -1224,16 +1271,18 @@ document.addEventListener("DOMContentLoaded", function () {
             "show"
         );
 
+
         compressButton.disabled =
             false;
+
 
         downloadButton.disabled =
             true;
 
+
         showError(message);
 
     }
-
 
 
     /* =====================================================
@@ -1264,7 +1313,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-
     /* =====================================================
        FORMAT NAME
     ===================================================== */
@@ -1288,7 +1336,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
     }
-
 
 
     /* =====================================================
@@ -1349,7 +1396,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-
     /* =====================================================
        SAVINGS
     ===================================================== */
@@ -1390,7 +1436,6 @@ document.addEventListener("DOMContentLoaded", function () {
         );
 
     }
-
 
 
     /* =====================================================
@@ -1448,7 +1493,6 @@ document.addEventListener("DOMContentLoaded", function () {
         );
 
     }
-
 
 
     /* =====================================================
