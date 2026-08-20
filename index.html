@@ -12,7 +12,7 @@
 
     <meta
         name="description"
-        content="Create professional resumes and compress JPG, PNG and WEBP images with simple online tools."
+        content="Simple online tools to create professional resumes and compress images."
     >
 
     <meta
@@ -22,11 +22,11 @@
 
     <meta
         name="theme-color"
-        content="#f7faff"
+        content="#ffffff"
     >
 
     <title>
-        Image Compressor Pro | Resume Builder & Image Compressor
+        Image Compressor Pro | Resume Builder & Image Tools
     </title>
 
     <link
@@ -44,9 +44,9 @@
      HEADER
 ========================================================= -->
 
-<header class="navbar">
+<header class="site-header">
 
-    <div class="nav-container">
+    <div class="header-container">
 
 
         <!-- LOGO -->
@@ -54,13 +54,14 @@
         <a
             href="index.html"
             class="logo"
+            aria-label="Image Compressor Pro Home"
         >
 
             <span class="logo-icon">
-                ⇩
+                ↓
             </span>
 
-            <span class="logo-text">
+            <span class="logo-name">
                 Image Compressor
                 <strong>Pro</strong>
             </span>
@@ -68,64 +69,86 @@
         </a>
 
 
-        <!-- MAIN NAVIGATION -->
+        <!-- DESKTOP NAVIGATION -->
 
         <nav
-            class="nav-links"
-            id="navLinks"
+            class="main-nav"
+            id="mainNav"
             aria-label="Main navigation"
         >
 
             <a
                 href="index.html"
-                class="active"
+                class="nav-link active"
             >
                 Home
             </a>
 
-            <a href="resume/">
+            <a
+                href="resume/"
+                class="nav-link"
+            >
                 Resume Builder
             </a>
 
-            <a href="compressor/">
+            <a
+                href="compressor/"
+                class="nav-link"
+            >
                 Image Tools
             </a>
 
-            <a href="blog/">
+            <a
+                href="blog/"
+                class="nav-link"
+            >
                 Blog
             </a>
 
-            <a href="faq.html">
+            <a
+                href="faq.html"
+                class="nav-link"
+            >
                 FAQ
             </a>
 
         </nav>
 
 
-        <!-- THEME TOGGLE -->
+        <!-- HEADER ACTIONS -->
 
-        <button
-            type="button"
-            class="theme-toggle"
-            id="themeToggle"
-            aria-label="Toggle dark mode"
-        >
-            ☼
-        </button>
+        <div class="header-actions">
 
 
-        <!-- MOBILE MENU -->
+            <!-- DARK MODE -->
 
-        <button
-            type="button"
-            class="mobile-menu-btn"
-            id="mobileMenuBtn"
-            aria-label="Open navigation menu"
-            aria-expanded="false"
-        >
-            ☰
-        </button>
+            <button
+                type="button"
+                id="themeToggle"
+                class="theme-toggle"
+                aria-label="Toggle dark mode"
+                title="Toggle dark mode"
+            >
+                <span class="theme-icon">☼</span>
+            </button>
 
+
+            <!-- MOBILE MENU -->
+
+            <button
+                type="button"
+                id="mobileMenuBtn"
+                class="mobile-menu-btn"
+                aria-label="Open menu"
+                aria-expanded="false"
+            >
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+
+        </div>
 
     </div>
 
@@ -134,7 +157,7 @@
 
 
 <!-- =========================================================
-     MAIN CONTENT
+     MAIN
 ========================================================= -->
 
 <main>
@@ -148,50 +171,46 @@
 
         <div class="hero-container">
 
-            <div class="hero-content">
+
+            <div class="hero-badge">
+                <span>✦</span>
+                Free Online Tools
+            </div>
 
 
-                <span class="hero-badge">
-                    ✦ Free Online Tools
-                </span>
+            <h1>
+                Simple tools for
+                <span>everyday tasks.</span>
+            </h1>
 
 
-                <h1>
-                    Simple tools for
-                    everyday tasks.
-                </h1>
+            <p class="hero-description">
+                Create a professional resume or
+                compress your images quickly and easily.
+            </p>
 
 
-                <p>
-                    Create a professional resume
-                    or compress your images quickly
-                    and easily.
-                </p>
+            <div class="hero-buttons">
+
+                <a
+                    href="resume/"
+                    class="button button-primary"
+                >
+                    Create Resume
+                    <span>→</span>
+                </a>
 
 
-                <div class="cta-buttons">
-
-                    <a
-                        href="resume/"
-                        class="primary-button"
-                    >
-                        Create Resume
-                        <span>→</span>
-                    </a>
-
-
-                    <a
-                        href="compressor/"
-                        class="cta-outline-button"
-                    >
-                        Compress Image
-                        <span>→</span>
-                    </a>
-
-                </div>
-
+                <a
+                    href="compressor/"
+                    class="button button-secondary"
+                >
+                    Compress Image
+                    <span>→</span>
+                </a>
 
             </div>
+
 
         </div>
 
@@ -205,156 +224,145 @@
 
     <section class="tools-section">
 
-        <div class="section-heading">
-
-            <span class="section-label">
-                OUR TOOLS
-            </span>
-
-            <h2>
-                Simple tools. No unnecessary steps.
-            </h2>
-
-            <p>
-                Choose the tool you need and get started.
-            </p>
-
-        </div>
+        <div class="container">
 
 
-        <div class="tools-container">
+            <div class="section-heading">
 
+                <span class="section-label">
+                    OUR TOOLS
+                </span>
 
-            <!-- =================================================
-                 RESUME BUILDER
-            ================================================== -->
-
-            <article class="tool-card resume-card">
-
-
-                <div class="tool-card-top">
-
-                    <div class="tool-icon green-icon">
-                        ▤
-                    </div>
-
-                </div>
-
-
-                <h3>
-                    Resume Builder
-                </h3>
-
+                <h2>
+                    Choose the tool you need.
+                </h2>
 
                 <p>
-                    Create a professional resume with
-                    your personal information, education,
-                    experience and skills.
+                    Simple, fast and easy to use.
                 </p>
 
-
-                <ul class="tool-features">
-
-                    <li>
-                        <span>✓</span>
-                        Professional resume templates
-                    </li>
-
-                    <li>
-                        <span>✓</span>
-                        Add education and experience
-                    </li>
-
-                    <li>
-                        <span>✓</span>
-                        Customize your resume
-                    </li>
-
-                    <li>
-                        <span>✓</span>
-                        Download your resume
-                    </li>
-
-                </ul>
+            </div>
 
 
-                <a
-                    href="resume/"
-                    class="card-button green-button"
-                >
-                    Open Resume Builder
-                    <span>→</span>
-                </a>
+            <div class="tools-grid">
 
 
-            </article>
+                <!-- RESUME BUILDER -->
 
+                <article class="tool-card">
 
-
-            <!-- =================================================
-                 IMAGE COMPRESSOR
-            ================================================== -->
-
-            <article class="tool-card compressor-card">
-
-
-                <div class="tool-card-top">
-
-                    <div class="tool-icon blue-icon">
-                        ⇩
+                    <div class="tool-icon resume-icon">
+                        <span>▤</span>
                     </div>
 
-                </div>
+
+                    <h3>
+                        Resume Builder
+                    </h3>
 
 
-                <h3>
-                    Image Compressor
-                </h3>
+                    <p>
+                        Create a professional resume
+                        with templates, personal details,
+                        education, experience and skills.
+                    </p>
 
 
-                <p>
-                    Reduce JPG, PNG and WEBP image
-                    file sizes while keeping your images
-                    clear and useful.
-                </p>
+                    <ul class="tool-list">
+
+                        <li>
+                            <span>✓</span>
+                            Professional templates
+                        </li>
+
+                        <li>
+                            <span>✓</span>
+                            Add education & experience
+                        </li>
+
+                        <li>
+                            <span>✓</span>
+                            Customize your resume
+                        </li>
+
+                        <li>
+                            <span>✓</span>
+                            Download your resume
+                        </li>
+
+                    </ul>
 
 
-                <ul class="tool-features">
+                    <a
+                        href="resume/"
+                        class="tool-button resume-button"
+                    >
+                        Open Resume Builder
+                        <span>→</span>
+                    </a>
 
-                    <li>
-                        <span>✓</span>
-                        Compress JPG, PNG and WEBP
-                    </li>
-
-                    <li>
-                        <span>✓</span>
-                        Adjust compression quality
-                    </li>
-
-                    <li>
-                        <span>✓</span>
-                        Compress multiple images
-                    </li>
-
-                    <li>
-                        <span>✓</span>
-                        Download compressed images
-                    </li>
-
-                </ul>
+                </article>
 
 
-                <a
-                    href="compressor/"
-                    class="card-button blue-button"
-                >
-                    Open Image Compressor
-                    <span>→</span>
-                </a>
+
+                <!-- IMAGE COMPRESSOR -->
+
+                <article class="tool-card">
+
+                    <div class="tool-icon image-icon">
+                        <span>↓</span>
+                    </div>
 
 
-            </article>
+                    <h3>
+                        Image Compressor
+                    </h3>
 
+
+                    <p>
+                        Reduce JPG, PNG and WEBP image
+                        sizes while keeping your images
+                        clear and useful.
+                    </p>
+
+
+                    <ul class="tool-list">
+
+                        <li>
+                            <span>✓</span>
+                            JPG, PNG & WEBP
+                        </li>
+
+                        <li>
+                            <span>✓</span>
+                            Adjust compression quality
+                        </li>
+
+                        <li>
+                            <span>✓</span>
+                            Compress multiple images
+                        </li>
+
+                        <li>
+                            <span>✓</span>
+                            Download compressed images
+                        </li>
+
+                    </ul>
+
+
+                    <a
+                        href="compressor/"
+                        class="tool-button image-button"
+                    >
+                        Open Image Compressor
+                        <span>→</span>
+                    </a>
+
+                </article>
+
+
+            </div>
 
         </div>
 
@@ -368,115 +376,121 @@
 
     <section class="articles-section">
 
-        <div class="section-heading">
-
-            <span class="section-label">
-                ARTICLES
-            </span>
-
-            <h2>
-                Helpful guides
-            </h2>
-
-            <p>
-                Useful guides about resumes,
-                images and online tools.
-            </p>
-
-        </div>
+        <div class="container">
 
 
-        <div class="articles-container">
+            <div class="section-heading">
 
-
-            <!-- ARTICLE 01 -->
-
-            <article class="article-card">
-
-                <span class="article-category">
-                    Resume
+                <span class="section-label">
+                    ARTICLES
                 </span>
 
-                <h3>
-                    How to Create a Professional Resume
-                </h3>
+                <h2>
+                    Helpful guides.
+                </h2>
 
                 <p>
-                    Learn the basic structure of a
-                    professional resume.
+                    Useful tips about resumes and image tools.
                 </p>
 
-                <a href="blog/">
-                    Read Article →
+            </div>
+
+
+            <div class="articles-grid">
+
+
+                <!-- ARTICLE 1 -->
+
+                <article class="article-card">
+
+                    <span class="article-category">
+                        Resume
+                    </span>
+
+                    <h3>
+                        How to Create a Professional Resume
+                    </h3>
+
+                    <p>
+                        Learn the important sections
+                        every professional resume should have.
+                    </p>
+
+                    <a href="blog/">
+                        Read Article
+                        <span>→</span>
+                    </a>
+
+                </article>
+
+
+
+                <!-- ARTICLE 2 -->
+
+                <article class="article-card">
+
+                    <span class="article-category">
+                        Resume
+                    </span>
+
+                    <h3>
+                        How to Make an ATS-Friendly Resume
+                    </h3>
+
+                    <p>
+                        Learn how to structure your resume
+                        for applicant tracking systems.
+                    </p>
+
+                    <a href="blog/">
+                        Read Article
+                        <span>→</span>
+                    </a>
+
+                </article>
+
+
+
+                <!-- ARTICLE 3 -->
+
+                <article class="article-card">
+
+                    <span class="article-category">
+                        Images
+                    </span>
+
+                    <h3>
+                        How to Compress an Image
+                    </h3>
+
+                    <p>
+                        Learn how image compression can
+                        reduce file size for websites and sharing.
+                    </p>
+
+                    <a href="blog/">
+                        Read Article
+                        <span>→</span>
+                    </a>
+
+                </article>
+
+
+            </div>
+
+
+            <div class="view-all">
+
+                <a
+                    href="blog/"
+                    class="view-all-link"
+                >
+                    View All Articles
+                    <span>→</span>
                 </a>
 
-            </article>
+            </div>
 
-
-
-            <!-- ARTICLE 02 -->
-
-            <article class="article-card">
-
-                <span class="article-category">
-                    Resume
-                </span>
-
-                <h3>
-                    How to Make an ATS-Friendly Resume
-                </h3>
-
-                <p>
-                    Learn how to create a resume
-                    that is easy for ATS systems to read.
-                </p>
-
-                <a href="blog/">
-                    Read Article →
-                </a>
-
-            </article>
-
-
-
-            <!-- ARTICLE 03 -->
-
-            <article class="article-card">
-
-                <span class="article-category">
-                    Images
-                </span>
-
-                <h3>
-                    How to Compress an Image
-                </h3>
-
-                <p>
-                    Learn how image compression can
-                    reduce file size.
-                </p>
-
-                <a href="blog/">
-                    Read Article →
-                </a>
-
-            </article>
-
-
-        </div>
-
-
-        <!-- ALL ARTICLES -->
-
-        <div class="articles-more">
-
-            <a
-                href="blog/"
-                class="text-link"
-            >
-                View All Articles
-                <span>→</span>
-            </a>
 
         </div>
 
@@ -490,24 +504,37 @@
 
     <section class="faq-link-section">
 
-        <div class="faq-link-container">
+        <div class="container">
 
-            <h2>
-                Have questions?
-            </h2>
+            <div class="faq-link-box">
 
-            <p>
-                Find answers to common questions
-                about our tools and services.
-            </p>
+                <div>
 
-            <a
-                href="faq.html"
-                class="faq-page-button"
-            >
-                Visit FAQ
-                <span>→</span>
-            </a>
+                    <span class="section-label">
+                        NEED HELP?
+                    </span>
+
+                    <h2>
+                        Have questions?
+                    </h2>
+
+                    <p>
+                        Find answers to common questions
+                        about our tools.
+                    </p>
+
+                </div>
+
+
+                <a
+                    href="faq.html"
+                    class="faq-button"
+                >
+                    Visit FAQ
+                    <span>→</span>
+                </a>
+
+            </div>
 
         </div>
 
@@ -522,123 +549,127 @@
      FOOTER
 ========================================================= -->
 
-<footer class="footer">
+<footer class="site-footer">
 
-    <div class="footer-container">
+    <div class="container">
 
 
-        <!-- BRAND -->
+        <div class="footer-grid">
 
-        <div class="footer-brand">
 
-            <a
-                href="index.html"
-                class="footer-logo"
-            >
+            <!-- BRAND -->
 
-                <span class="footer-logo-icon">
-                    ⇩
-                </span>
+            <div class="footer-brand">
 
-                <strong>
-                    Image Compressor Pro
-                </strong>
+                <a
+                    href="index.html"
+                    class="footer-logo"
+                >
 
-            </a>
+                    <span class="logo-icon">
+                        ↓
+                    </span>
 
+                    <span>
+                        Image Compressor
+                        <strong>Pro</strong>
+                    </span>
+
+                </a>
+
+
+                <p>
+                    Simple online tools for resumes
+                    and image compression.
+                </p>
+
+            </div>
+
+
+
+            <!-- TOOLS -->
+
+            <div class="footer-column">
+
+                <h3>
+                    Tools
+                </h3>
+
+                <a href="resume/">
+                    Resume Builder
+                </a>
+
+                <a href="compressor/">
+                    Image Compressor
+                </a>
+
+            </div>
+
+
+
+            <!-- COMPANY -->
+
+            <div class="footer-column">
+
+                <h3>
+                    Company
+                </h3>
+
+                <a href="about.html">
+                    About Us
+                </a>
+
+                <a href="contact.html">
+                    Contact Us
+                </a>
+
+                <a href="blog/">
+                    Blog
+                </a>
+
+            </div>
+
+
+
+            <!-- LEGAL -->
+
+            <div class="footer-column">
+
+                <h3>
+                    Legal
+                </h3>
+
+                <a href="privacy.html">
+                    Privacy Policy
+                </a>
+
+                <a href="terms.html">
+                    Terms &amp; Conditions
+                </a>
+
+                <a href="disclaimer.html">
+                    Disclaimer
+                </a>
+
+                <a href="cookies.html">
+                    Cookie Policy
+                </a>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="footer-bottom">
 
             <p>
-                Simple online tools for resumes
-                and image compression.
+                © 2026 Image Compressor Pro.
+                All rights reserved.
             </p>
 
         </div>
 
-
-
-        <!-- TOOLS -->
-
-        <div class="footer-column">
-
-            <h3>
-                Tools
-            </h3>
-
-            <a href="resume/">
-                Resume Builder
-            </a>
-
-            <a href="compressor/">
-                Image Compressor
-            </a>
-
-        </div>
-
-
-
-        <!-- COMPANY -->
-
-        <div class="footer-column">
-
-            <h3>
-                Company
-            </h3>
-
-            <a href="about.html">
-                About Us
-            </a>
-
-            <a href="contact.html">
-                Contact Us
-            </a>
-
-            <a href="blog/">
-                Blog
-            </a>
-
-        </div>
-
-
-
-        <!-- LEGAL -->
-
-        <div class="footer-column">
-
-            <h3>
-                Legal
-            </h3>
-
-            <a href="privacy.html">
-                Privacy Policy
-            </a>
-
-            <a href="terms.html">
-                Terms &amp; Conditions
-            </a>
-
-            <a href="disclaimer.html">
-                Disclaimer
-            </a>
-
-            <a href="cookies.html">
-                Cookie Policy
-            </a>
-
-        </div>
-
-
-    </div>
-
-
-
-    <!-- FOOTER BOTTOM -->
-
-    <div class="footer-bottom">
-
-        <p>
-            © 2026 Image Compressor Pro.
-            All rights reserved.
-        </p>
 
     </div>
 
@@ -653,7 +684,7 @@
 <button
     type="button"
     id="topBtn"
-    class="top-btn"
+    class="top-button"
     aria-label="Back to top"
 >
     ↑
@@ -661,10 +692,7 @@
 
 
 
-<!-- JAVASCRIPT -->
-
 <script src="script.js"></script>
-
 
 </body>
 
