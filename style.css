@@ -2431,22 +2431,13 @@ body.dark .site-header {
 
 }
 /* =========================================================
-   LEGAL / INFORMATION PAGES
-   Disclaimer • Privacy Policy • Terms
+   POLICY / LEGAL PAGES
+   Disclaimer / Privacy / Terms
 ========================================================= */
 
+.policy-hero {
 
-/* =========================================================
-   LEGAL HERO
-========================================================= */
-
-.legal-hero {
-
-    position: relative;
-
-    padding: 70px 20px 65px;
-
-    overflow: hidden;
+    padding: 62px 0 48px;
 
     background: var(--surface);
 
@@ -2455,156 +2446,88 @@ body.dark .site-header {
 
 }
 
+.policy-hero .container {
 
-.legal-hero::before {
-
-    content: "";
-
-    position: absolute;
-
-    width: 260px;
-    height: 260px;
-
-    top: -130px;
-    right: -80px;
-
-    background:
-        var(--primary-light);
-
-    border-radius: 50%;
-
-    pointer-events: none;
+    max-width: 850px;
 
 }
 
+.policy-label {
 
-.legal-hero-container {
+    display: inline-block;
 
-    position: relative;
+    margin-bottom: 12px;
 
-    z-index: 1;
-
-    max-width: 760px;
-
-    text-align: center;
-
-}
-
-
-.legal-badge {
-
-    display: inline-flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    margin-bottom: 16px;
-
-    padding:
-        7px 14px;
-
-    border:
-        1px solid var(--border);
-
-    border-radius: 999px;
-
-    background:
-        var(--card);
-
-    color:
-        var(--primary);
+    color: var(--primary);
 
     font-size: 12px;
 
     font-weight: 800;
 
-    letter-spacing:
-        0.3px;
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
 
 }
 
+.policy-hero h1 {
 
-.legal-hero h1 {
+    margin: 0 0 12px;
 
-    margin:
-        0 0 12px;
-
-    color:
-        var(--text);
+    color: var(--text);
 
     font-size:
         clamp(34px, 5vw, 48px);
 
     line-height: 1.15;
 
-    letter-spacing:
-        -1.5px;
-
-    font-weight: 800;
+    letter-spacing: -1.5px;
 
 }
 
+.policy-hero p {
 
-.legal-hero p {
+    max-width: 700px;
 
-    max-width: 620px;
+    margin: 0;
 
-    margin:
-        0 auto;
-
-    color:
-        var(--text-secondary);
+    color: var(--text-secondary);
 
     font-size: 16px;
 
-    line-height: 1.65;
+    line-height: 1.7;
 
 }
-
 
 
 /* =========================================================
-   LEGAL PAGE
+   POLICY PAGE
 ========================================================= */
 
-.legal-page {
+.policy-page {
 
-    padding:
-        65px 0 80px;
+    padding: 55px 0 75px;
 
-    background:
-        var(--background);
+    background: var(--background);
 
 }
 
+.policy-page .container {
 
-.legal-page .container {
-
-    width:
-        min(
-            calc(100% - 40px),
-            900px
-        );
-
-    margin:
-        0 auto;
+    max-width: 900px;
 
 }
-
 
 
 /* =========================================================
-   LEGAL CARD
+   POLICY CARD
 ========================================================= */
 
-.legal-card {
+.policy-card {
 
-    padding:
-        46px 52px;
+    padding: 42px 48px;
 
-    background:
-        var(--card);
+    background: var(--card);
 
     border:
         1px solid var(--border);
@@ -2618,67 +2541,51 @@ body.dark .site-header {
 }
 
 
-
 /* =========================================================
-   UPDATED DATE
+   LAST UPDATED
 ========================================================= */
 
-.legal-updated {
+.policy-updated {
 
     display: inline-flex;
 
     align-items: center;
 
-    gap: 5px;
-
     margin-bottom: 28px;
 
-    padding:
-        8px 12px;
+    padding: 8px 13px;
 
-    background:
-        var(--surface);
+    background: var(--surface);
 
     border:
-        1px solid var(--border-light);
+        1px solid var(--border);
 
-    border-radius:
-        var(--radius-sm);
+    border-radius: 8px;
 
-    color:
-        var(--text-secondary);
+    color: var(--text-secondary);
 
-    font-size: 12px;
+    font-size: 13px;
 
 }
 
+.policy-updated strong {
 
-.legal-updated strong {
+    margin-right: 5px;
 
-    color:
-        var(--text);
+    color: var(--text);
 
 }
-
 
 
 /* =========================================================
    INTRODUCTION
 ========================================================= */
 
-.legal-intro {
+.policy-intro {
 
-    margin:
-        0 0 38px;
+    margin: 0 0 38px;
 
-    padding-bottom:
-        32px;
-
-    border-bottom:
-        1px solid var(--border);
-
-    color:
-        var(--text-secondary);
+    color: var(--text-secondary);
 
     font-size: 16px;
 
@@ -2687,221 +2594,175 @@ body.dark .site-header {
 }
 
 
-
 /* =========================================================
-   LEGAL SECTIONS
+   POLICY SECTIONS
 ========================================================= */
 
-.legal-section {
+.policy-section {
 
-    margin-bottom:
-        34px;
+    padding: 30px 0;
+
+    border-top:
+        1px solid var(--border-light);
+
+}
+
+.policy-section:first-of-type {
+
+    border-top: none;
+
+    padding-top: 0;
 
 }
 
 
-.legal-section:last-child {
+.policy-section h2 {
 
-    margin-bottom:
-        0;
+    margin: 0 0 15px;
 
-}
+    color: var(--text);
 
-
-.legal-section h2 {
-
-    margin:
-        0 0 13px;
-
-    color:
-        var(--text);
-
-    font-size: 21px;
+    font-size: 22px;
 
     line-height: 1.35;
 
-    letter-spacing:
-        -0.2px;
+    letter-spacing: -0.3px;
 
 }
 
 
-.legal-section p {
+.policy-section p {
 
-    margin:
-        0 0 13px;
+    margin: 0 0 15px;
 
-    color:
-        var(--text-secondary);
+    color: var(--text-secondary);
 
-    font-size: 14px;
+    font-size: 15px;
 
     line-height: 1.8;
 
 }
 
+.policy-section p:last-child {
 
-.legal-section p:last-child {
-
-    margin-bottom:
-        0;
+    margin-bottom: 0;
 
 }
 
 
-.legal-section a {
+.policy-section a {
 
-    color:
-        var(--primary);
+    color: var(--primary);
 
     font-weight: 600;
 
-    text-decoration:
-        none;
+    text-decoration: none;
 
 }
 
+.policy-section a:hover {
 
-.legal-section a:hover {
-
-    text-decoration:
-        underline;
+    text-decoration: underline;
 
 }
-
 
 
 /* =========================================================
-   HIGHLIGHT BOX
+   IMPORTANT NOTE
 ========================================================= */
 
-.legal-highlight {
+.policy-note {
 
-    display: flex;
+    margin-top: 20px;
 
-    flex-direction: column;
+    padding: 16px 18px;
 
-    gap: 4px;
-
-    margin:
-        20px 0 5px;
-
-    padding:
-        18px 20px;
-
-    background:
-        var(--primary-light);
+    background: var(--primary-light);
 
     border-left:
         4px solid var(--primary);
 
-    border-radius:
-        0 var(--radius-sm)
-        var(--radius-sm) 0;
+    border-radius: 8px;
 
-}
-
-
-.legal-highlight strong {
-
-    color:
-        var(--text);
+    color: var(--text-secondary);
 
     font-size: 14px;
 
-}
-
-
-.legal-highlight span {
-
-    color:
-        var(--text-secondary);
-
-    font-size: 13px;
-
-    line-height: 1.6;
+    line-height: 1.7;
 
 }
 
+.policy-note strong {
+
+    color: var(--text);
+
+}
+
+
+/* =========================================================
+   CONTACT SECTION
+========================================================= */
+
+.policy-contact {
+
+    padding-bottom: 0;
+
+}
 
 
 /* =========================================================
    DARK MODE
 ========================================================= */
 
-body.dark .legal-highlight {
+body.dark .policy-note {
 
-    background:
-        var(--primary-light);
-
-}
-
-
-body.dark .legal-badge {
-
-    background:
-        var(--card);
+    background: var(--primary-light);
 
 }
-
 
 
 /* =========================================================
-   LEGAL PAGE MOBILE
+   MOBILE
 ========================================================= */
 
 @media (max-width: 760px) {
 
-    .legal-hero {
+    .policy-hero {
 
         padding:
-            55px 15px 50px;
+            48px 0 38px;
 
     }
 
 
-    .legal-hero h1 {
+    .policy-hero h1 {
 
-        font-size:
-            34px;
+        font-size: 34px;
 
-        letter-spacing:
-            -1px;
+        letter-spacing: -1px;
 
     }
 
 
-    .legal-hero p {
+    .policy-hero p {
 
-        font-size:
-            14px;
+        font-size: 14px;
 
     }
 
 
-    .legal-page {
+    .policy-page {
 
         padding:
-            40px 0 55px;
+            35px 0 55px;
 
     }
 
 
-    .legal-page .container {
-
-        width:
-            min(
-                calc(100% - 30px),
-                900px
-            );
-
-    }
-
-
-    .legal-card {
+    .policy-card {
 
         padding:
-            30px 22px;
+            28px 22px;
 
         border-radius:
             var(--radius-md);
@@ -2909,45 +2770,45 @@ body.dark .legal-badge {
     }
 
 
-    .legal-intro {
+    .policy-intro {
 
-        font-size:
-            15px;
+        font-size: 15px;
 
-        line-height:
-            1.7;
+        margin-bottom: 25px;
 
     }
 
 
-    .legal-section {
+    .policy-section {
 
-        margin-bottom:
-            29px;
-
-    }
-
-
-    .legal-section h2 {
-
-        font-size:
-            19px;
+        padding: 25px 0;
 
     }
 
 
-    .legal-section p {
+    .policy-section h2 {
 
-        font-size:
-            14px;
+        font-size: 19px;
 
-        line-height:
-            1.75;
+    }
+
+
+    .policy-section p {
+
+        font-size: 14px;
+
+        line-height: 1.75;
+
+    }
+
+
+    .policy-updated {
+
+        font-size: 12px;
 
     }
 
 }
-
 
 
 /* =========================================================
@@ -2956,26 +2817,24 @@ body.dark .legal-badge {
 
 @media (max-width: 420px) {
 
-    .legal-hero h1 {
-
-        font-size:
-            30px;
-
-    }
-
-
-    .legal-card {
+    .policy-card {
 
         padding:
-            26px 18px;
+            24px 18px;
 
     }
 
 
-    .legal-updated {
+    .policy-hero h1 {
 
-        font-size:
-            11px;
+        font-size: 31px;
+
+    }
+
+
+    .policy-section h2 {
+
+        font-size: 18px;
 
     }
 
