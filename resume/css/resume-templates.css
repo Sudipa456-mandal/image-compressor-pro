@@ -1,626 +1,173 @@
 /* =========================================================
-   RESUMECRAFT — PROFESSIONAL TEMPLATE SYSTEM
-   IMPORTANT:
-   The selected class is placed on #resumeTemplateWrapper.
-   Every template below therefore changes the REAL builder
-   preview, not only the template cards.
+   RESUMECRAFT - ACTUAL TEMPLATE LAYOUTS
+   These styles work with the existing builder.html preview DOM.
+   Each template changes layout, spacing, typography and hierarchy.
 ========================================================= */
 
-.resume-template-wrapper {
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
-}
-
+.resume-template-wrapper { width: 100%; display: block; }
 .resume-template-wrapper .resume-page {
     position: relative;
     width: 100%;
     min-height: 555px;
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
-    overflow: hidden;
     background: #fff;
-    color: #172033;
+    color: #1f2937;
+    overflow: hidden;
     font-family: Arial, Helvetica, sans-serif;
     line-height: 1.45;
 }
-
 .resume-template-wrapper .resume-header,
 .resume-template-wrapper .resume-section,
-.resume-template-wrapper .resume-divider {
-    box-sizing: border-box;
-}
-
-.resume-template-wrapper .resume-heading h1,
-.resume-template-wrapper .resume-heading h2,
-.resume-template-wrapper .resume-section-title,
-.resume-template-wrapper .resume-section p {
-    margin-top: 0;
-}
-
-.resume-template-wrapper .resume-heading h1 {
-    margin-bottom: 0;
-    color: #111827;
-    line-height: 1.12;
-}
-
-.resume-template-wrapper .resume-heading h2 {
-    margin: 5px 0 0;
-    font-size: 11px;
-    font-weight: 500;
-}
-
-.resume-template-wrapper .resume-contact {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 4px 10px;
-    margin-top: 8px;
-}
-
-.resume-template-wrapper .resume-contact span {
-    font-size: 8px;
-    color: #667085;
-}
-
-.resume-template-wrapper .preview-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 4px 10px;
-    margin-top: 6px;
-}
-
-.resume-template-wrapper .preview-links a {
-    font-size: 8px;
-    color: #3155d8;
-    text-decoration: none;
-}
-
-.resume-template-wrapper .resume-section {
-    margin: 0 0 20px;
-    break-inside: avoid;
-}
-
-.resume-template-wrapper .resume-section-title {
-    margin-bottom: 9px;
-    font-size: 10px;
-    font-weight: 800;
-    letter-spacing: 1.2px;
-    text-transform: uppercase;
-}
-
-.resume-template-wrapper .resume-section p {
-    margin-bottom: 0;
-    font-size: 8.5px;
-    color: #344054;
-    line-height: 1.55;
-}
-
-.resume-template-wrapper .resume-photo {
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #f2f4f7;
-}
-
-.resume-template-wrapper .resume-photo img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.resume-template-wrapper .resume-photo span {
-    font-size: 20px;
-}
-
+.resume-template-wrapper .resume-divider { box-sizing: border-box; }
+.resume-template-wrapper .resume-heading { min-width: 0; }
+.resume-template-wrapper .resume-heading h1 { margin: 0; line-height: 1.12; word-break: break-word; }
+.resume-template-wrapper .resume-heading h2 { margin: 4px 0 0; line-height: 1.3; word-break: break-word; }
+.resume-template-wrapper .resume-contact { display: flex; flex-wrap: wrap; gap: 4px 9px; margin-top: 7px; }
+.resume-template-wrapper .resume-contact span { font-size: 8px; color: #667085; word-break: break-word; }
+.resume-template-wrapper .preview-links { display: flex; flex-wrap: wrap; gap: 4px 9px; margin-top: 5px; }
+.resume-template-wrapper .preview-links a { font-size: 8px; color: #2563eb; text-decoration: none; }
+.resume-template-wrapper .resume-photo { overflow: hidden; border-radius: 50%; background: #f2f4f7; display: flex; align-items: center; justify-content: center; }
+.resume-template-wrapper .resume-photo img { width: 100%; height: 100%; object-fit: cover; display: none; }
+.resume-template-wrapper .resume-photo span { font-size: 22px; }
+.resume-template-wrapper .resume-section { break-inside: avoid; }
+.resume-template-wrapper .resume-section-title { margin: 0 0 9px; font-size: 9.5px; font-weight: 800; letter-spacing: 1.1px; text-transform: uppercase; }
+.resume-template-wrapper .resume-section p { margin: 0; font-size: 8.5px; line-height: 1.55; color: #475467; }
 .resume-template-wrapper .experience-preview-item,
-.resume-template-wrapper .education-preview-item {
-    margin-bottom: 12px;
-}
-
+.resume-template-wrapper .education-preview-item { margin-bottom: 12px; }
 .resume-template-wrapper .experience-preview-item h4,
-.resume-template-wrapper .education-preview-item h4 {
-    margin: 0;
-    color: #111827;
-    font-size: 9.5px;
-    font-weight: 700;
-}
-
+.resume-template-wrapper .education-preview-item h4 { margin: 0; font-size: 9.5px; color: #111827; }
 .resume-template-wrapper .experience-preview-item .company,
-.resume-template-wrapper .education-preview-item .institution {
-    margin-top: 2px;
-    color: #475467;
-    font-size: 8px;
-}
-
+.resume-template-wrapper .education-preview-item .institution { margin-top: 2px; font-size: 8px; color: #475467; }
 .resume-template-wrapper .experience-preview-item .date,
-.resume-template-wrapper .education-preview-item .date {
-    margin-top: 2px;
-    color: #667085;
-    font-size: 7.5px;
-}
-
+.resume-template-wrapper .education-preview-item .date { margin-top: 2px; font-size: 7.5px; color: #667085; }
 .resume-template-wrapper .experience-preview-item p,
-.resume-template-wrapper .education-preview-item p {
-    margin-top: 4px;
-}
+.resume-template-wrapper .education-preview-item p { margin-top: 4px; }
+.resume-template-wrapper .preview-skills { display: flex; flex-wrap: wrap; gap: 5px; }
+.resume-template-wrapper .preview-skills span { display: inline-block; padding: 3px 7px; border: 1px solid #d0d5dd; border-radius: 4px; font-size: 7.5px; color: #344054; background: #f8fafc; }
 
-.resume-template-wrapper .preview-skills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
-}
+/* ===================== CLASSIC ===================== */
+.template-classic .resume-page { padding: 32px 34px 36px; border-top: 6px solid #1f2937; }
+.template-classic .resume-header { text-align: center; padding-bottom: 18px; }
+.template-classic .resume-photo { width: 62px; height: 62px; margin: 0 auto 9px; }
+.template-classic .resume-heading h1 { font-family: Georgia, serif; font-size: 25px; font-weight: 700; }
+.template-classic .resume-heading h2 { font-family: Georgia, serif; color: #4b5563; font-size: 11px; }
+.template-classic .resume-contact, .template-classic .preview-links { justify-content: center; }
+.template-classic .resume-divider { width: 75%; height: 1px; margin: 0 auto 18px; background: #9ca3af; }
+.template-classic .resume-section { margin: 0 0 19px; }
+.template-classic .resume-section-title { text-align: center; font-family: Georgia, serif; color: #1f2937; border-bottom: 1px solid #d1d5db; padding-bottom: 5px; }
 
-.resume-template-wrapper .preview-skills span {
-    display: inline-block;
-    padding: 3px 7px;
-    border: 1px solid #d0d5dd;
-    border-radius: 4px;
-    background: #f8fafc;
-    color: #344054;
-    font-size: 7.5px;
-}
-
-/* =========================================================
-   01 — CLASSIC
-========================================================= */
-.template-classic .resume-page {
-    padding: 30px 34px 35px;
-    border-top: 5px solid #1f2937;
-}
-
-.template-classic .resume-header {
-    padding-bottom: 18px;
-    text-align: center;
-}
-
-.template-classic .resume-photo {
-    width: 62px;
-    height: 62px;
-    margin: 0 auto 10px;
-    border-radius: 50%;
-}
-
-.template-classic .resume-heading h1 {
-    font-family: Georgia, serif;
-    font-size: 25px;
-}
-
-.template-classic .resume-heading h2 {
-    font-family: Georgia, serif;
-    color: #667085;
-}
-
-.template-classic .resume-contact,
-.template-classic .preview-links {
-    justify-content: center;
-}
-
-.template-classic .resume-divider {
-    width: 72%;
-    height: 1px;
-    margin: 0 auto 20px;
-    background: #1f2937;
-}
-
-.template-classic .resume-section-title {
-    padding-bottom: 5px;
-    border-bottom: 1px solid #d0d5dd;
-    font-family: Georgia, serif;
-    text-align: center;
-}
-
-/* =========================================================
-   02 — MODERN
-========================================================= */
-.template-modern .resume-page {
-    display: grid;
-    grid-template-columns: minmax(0, 1.55fr) minmax(125px, .72fr);
-    grid-template-areas:
-        "header header"
-        "summary education"
-        "experience skills";
-    gap: 0 24px;
-    padding: 0 28px 32px;
-    border-top: 6px solid #2563eb;
-}
-
-.template-modern .resume-header {
-    grid-area: header;
-    display: grid;
-    grid-template-columns: 68px 1fr;
-    gap: 16px;
-    align-items: center;
-    padding: 25px 0 18px;
-    border-bottom: 2px solid #2563eb;
-}
-
-.template-modern .resume-photo {
-    width: 68px;
-    height: 68px;
-    border-radius: 10px;
-}
-
-.template-modern .resume-heading h1 { font-size: 25px; }
-.template-modern .resume-heading h2 { color: #2563eb; }
-.template-modern .resume-summary { grid-area: summary; }
-.template-modern .resume-education { grid-area: education; }
-.template-modern .resume-experience { grid-area: experience; }
-.template-modern .resume-skills { grid-area: skills; }
+/* ===================== MODERN ===================== */
+.template-modern .resume-page { display: grid; grid-template-columns: 112px minmax(0,1fr); grid-template-rows: auto 1fr; background: linear-gradient(to right,#123b45 0 112px,#fff 112px 100%); }
+.template-modern .resume-header { grid-column: 1 / -1; display: grid; grid-template-columns: 112px minmax(0,1fr); gap: 17px; align-items: center; padding: 25px 22px 22px 12px; background: #fff; border-top: 7px solid #0f766e; border-bottom: 1px solid #d0d5dd; }
+.template-modern .resume-photo { width: 70px; height: 70px; justify-self: center; }
+.template-modern .resume-heading h1 { font-size: 24px; color: #101828; }
+.template-modern .resume-heading h2 { color: #0f766e; }
+.template-modern .resume-contact { position: absolute; left: 10px; top: 124px; width: 92px; flex-direction: column; gap: 7px; margin: 0; }
+.template-modern .resume-contact span, .template-modern .preview-links a { color: #fff; font-size: 7px; }
+.template-modern .preview-links { position: absolute; left: 10px; top: 218px; width: 92px; flex-direction: column; }
 .template-modern .resume-divider { display: none; }
-.template-modern .resume-section { margin-top: 19px; }
-.template-modern .resume-section-title {
-    color: #2563eb;
-    padding-bottom: 5px;
-    border-bottom: 1px solid #dbe3ef;
-}
+.template-modern .resume-summary, .template-modern .resume-experience, .template-modern .resume-education { grid-column: 2; margin: 0; padding: 16px 22px; }
+.template-modern .resume-skills { grid-column: 1; margin: 0; padding: 16px 10px; color: #fff; align-self: start; }
+.template-modern .resume-skills .resume-section-title { color: #fff; border-bottom-color: rgba(255,255,255,.3); }
+.template-modern .resume-skills .preview-skills { flex-direction: column; }
+.template-modern .resume-skills .preview-skills span { color: #fff; background: transparent; border-color: rgba(255,255,255,.35); }
+.template-modern .resume-section-title { color: #0f766e; border-bottom: 1px solid #dbe4e7; padding-bottom: 5px; }
 
-/* =========================================================
-   03 — MINIMAL
-========================================================= */
-.template-minimal .resume-page {
-    display: grid;
-    grid-template-columns: minmax(0, 1.4fr) minmax(0, .8fr);
-    grid-template-areas:
-        "header header"
-        "summary experience"
-        "education skills";
-    gap: 0 24px;
-    padding: 38px 35px 35px;
-}
-
-.template-minimal .resume-header {
-    grid-area: header;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #e4e7ec;
-}
-
+/* ===================== MINIMAL ===================== */
+.template-minimal .resume-page { padding: 38px 35px 36px; }
+.template-minimal .resume-header { padding-bottom: 20px; border-bottom: 1px solid #e5e7eb; }
 .template-minimal .resume-photo { display: none; }
-.template-minimal .resume-heading h1 {
-    font-size: 27px;
-    font-weight: 500;
-    letter-spacing: -.4px;
-}
-.template-minimal .resume-heading h2 { color: #667085; }
-.template-minimal .resume-summary { grid-area: summary; }
-.template-minimal .resume-experience { grid-area: experience; }
-.template-minimal .resume-education { grid-area: education; }
-.template-minimal .resume-skills { grid-area: skills; }
-.template-minimal .resume-divider { display: none; }
-.template-minimal .resume-section { margin-top: 20px; }
-.template-minimal .resume-section-title {
-    color: #344054;
-    padding-bottom: 6px;
-    border-bottom: 1px solid #e4e7ec;
-    letter-spacing: 1.7px;
-}
+.template-minimal .resume-heading h1 { font-size: 27px; font-weight: 500; letter-spacing: -.5px; }
+.template-minimal .resume-heading h2 { color: #667085; font-size: 11px; }
+.template-minimal .resume-section { margin: 20px 0; }
+.template-minimal .resume-section-title { color: #344054; border-bottom: 1px solid #e5e7eb; padding-bottom: 5px; }
 
-/* =========================================================
-   04 — EXECUTIVE
-========================================================= */
-.template-executive .resume-page {
-    padding: 0 34px 35px;
-    border-top: 9px solid #111827;
-}
-
-.template-executive .resume-header {
-    padding: 27px 0 20px;
-    border-bottom: 3px solid #111827;
-    text-align: center;
-}
-
+/* ===================== EXECUTIVE ===================== */
+.template-executive .resume-page { padding: 0 34px 36px; border-top: 9px solid #111827; }
+.template-executive .resume-header { text-align: center; padding: 28px 0 19px; border-bottom: 3px double #111827; }
 .template-executive .resume-photo { display: none; }
-.template-executive .resume-heading h1 {
-    font-size: 27px;
-    text-transform: uppercase;
-    letter-spacing: .8px;
-}
-.template-executive .resume-heading h2 {
-    color: #344054;
-    text-transform: uppercase;
-    letter-spacing: 1.3px;
-}
-.template-executive .resume-contact,
-.template-executive .preview-links { justify-content: center; }
-.template-executive .resume-divider { display: none; }
-.template-executive .resume-section { margin-top: 19px; }
-.template-executive .resume-section-title {
-    padding: 7px 9px;
-    border-left: 4px solid #111827;
-    background: #f2f4f7;
-    color: #111827;
-}
+.template-executive .resume-heading h1 { font-size: 27px; text-transform: uppercase; letter-spacing: 1px; }
+.template-executive .resume-heading h2 { color: #344054; text-transform: uppercase; letter-spacing: 1.3px; font-size: 10px; }
+.template-executive .resume-contact, .template-executive .preview-links { justify-content: center; }
+.template-executive .resume-section { margin: 18px 0; }
+.template-executive .resume-section-title { background: #111827; color: #fff; padding: 6px 8px; }
 
-/* =========================================================
-   05 — PROFESSIONAL
-========================================================= */
-.template-professional .resume-page {
-    display: grid;
-    grid-template-columns: minmax(0, 1.45fr) minmax(0, .8fr);
-    grid-template-areas:
-        "header header"
-        "summary skills"
-        "experience education";
-    gap: 0 24px;
-    padding: 0 32px 35px;
-    border-top: 5px solid #2563eb;
-}
-
-.template-professional .resume-header {
-    grid-area: header;
-    padding: 27px 0 18px;
-    border-bottom: 3px solid #2563eb;
-}
-
+/* ===================== PROFESSIONAL ===================== */
+.template-professional .resume-page { display: grid; grid-template-columns: minmax(0,1.35fr) minmax(0,.85fr); column-gap: 22px; padding: 0 30px 35px; }
+.template-professional .resume-header { grid-column: 1 / -1; padding: 27px 0 17px; border-bottom: 4px solid #2563eb; }
 .template-professional .resume-photo { display: none; }
-.template-professional .resume-heading h1 { font-size: 26px; }
+.template-professional .resume-heading h1 { font-size: 25px; }
 .template-professional .resume-heading h2 { color: #2563eb; }
-.template-professional .resume-summary { grid-area: summary; }
-.template-professional .resume-skills { grid-area: skills; }
-.template-professional .resume-experience { grid-area: experience; }
-.template-professional .resume-education { grid-area: education; }
-.template-professional .resume-divider { display: none; }
-.template-professional .resume-section { margin-top: 19px; }
-.template-professional .resume-section-title {
-    color: #2563eb;
-    padding-bottom: 6px;
-    border-bottom: 1px solid #cbd5e1;
-}
+.template-professional .resume-summary, .template-professional .resume-experience { grid-column: 1; margin: 18px 0 0; }
+.template-professional .resume-education, .template-professional .resume-skills { grid-column: 2; margin: 18px 0 0; }
+.template-professional .resume-section-title { color: #2563eb; border-bottom: 1px solid #dbe3ef; padding-bottom: 5px; }
 
-/* =========================================================
-   06 — ELEGANT
-========================================================= */
-.template-elegant .resume-page {
-    padding: 40px 38px 35px;
-    background: #fffdfa;
-    color: #292929;
-}
-
-.template-elegant .resume-header {
-    padding-bottom: 19px;
-    text-align: center;
-}
-
+/* ===================== ELEGANT ===================== */
+.template-elegant .resume-page { padding: 40px 38px 36px; background: #fffdfa; color: #292929; }
+.template-elegant .resume-header { text-align: center; padding-bottom: 18px; }
 .template-elegant .resume-photo { display: none; }
-.template-elegant .resume-heading h1 {
-    font-family: Georgia, serif;
-    font-size: 28px;
-    font-weight: 500;
-}
-.template-elegant .resume-heading h2 {
-    font-family: Georgia, serif;
-    color: #777;
-    font-weight: 400;
-}
-.template-elegant .resume-contact,
-.template-elegant .preview-links { justify-content: center; }
-.template-elegant .resume-divider {
-    width: 70px;
-    height: 1px;
-    margin: 0 auto 22px;
-    background: #777;
-}
-.template-elegant .resume-section { margin-bottom: 21px; }
-.template-elegant .resume-section-title {
-    padding-bottom: 6px;
-    border-bottom: 1px solid #d9d5ce;
-    color: #444;
-    font-family: Georgia, serif;
-    font-weight: 500;
-    text-align: center;
-}
+.template-elegant .resume-heading h1 { font-family: Georgia,serif; font-size: 28px; font-weight: 500; }
+.template-elegant .resume-heading h2 { font-family: Georgia,serif; color: #6b625a; font-weight: 400; }
+.template-elegant .resume-contact, .template-elegant .preview-links { justify-content: center; }
+.template-elegant .resume-divider { width: 70px; height: 1px; margin: 0 auto 20px; background: #8b8178; }
+.template-elegant .resume-section { margin-bottom: 20px; }
+.template-elegant .resume-section-title { font-family: Georgia,serif; text-align: center; color: #514942; border-bottom: 1px solid #ded8d1; padding-bottom: 5px; }
 
-/* =========================================================
-   07 — CREATIVE
-========================================================= */
-.template-creative .resume-page {
-    display: grid;
-    grid-template-columns: 145px minmax(0, 1fr);
-    grid-template-areas:
-        "header header"
-        "skills summary"
-        "skills experience"
-        "skills education";
-    padding: 0 25px 30px 0;
-    background: #fff;
-    border-left: 7px solid #7c3aed;
-}
-
-.template-creative .resume-header {
-    grid-area: header;
-    display: grid;
-    grid-template-columns: 72px 1fr;
-    gap: 16px;
-    align-items: center;
-    padding: 25px 25px 20px 18px;
-    background: #faf5ff;
-    border-bottom: 2px solid #7c3aed;
-}
-
-.template-creative .resume-photo {
-    width: 72px;
-    height: 72px;
-    border-radius: 12px;
-}
-.template-creative .resume-heading h1 { font-size: 25px; }
-.template-creative .resume-heading h2 { color: #7c3aed; }
-.template-creative .resume-summary { grid-area: summary; }
-.template-creative .resume-experience { grid-area: experience; }
-.template-creative .resume-education { grid-area: education; }
-.template-creative .resume-skills {
-    grid-area: skills;
-    margin: 0;
-    padding: 20px 13px 20px 12px;
-    background: #faf5ff;
-}
-.template-creative .resume-contact { grid-column: 1 / -1; }
-.template-creative .preview-links { grid-column: 1 / -1; }
+/* ===================== CREATIVE ===================== */
+.template-creative .resume-page { display: grid; grid-template-columns: 108px minmax(0,1fr); background: linear-gradient(to right,#4c1d95 0 108px,#fff 108px 100%); }
+.template-creative .resume-header { grid-column: 1 / -1; display: grid; grid-template-columns: 108px minmax(0,1fr); gap: 17px; align-items: center; padding: 25px 22px 22px 10px; background: #6d28d9; color: #fff; }
+.template-creative .resume-photo { width: 68px; height: 68px; justify-self: center; background: rgba(255,255,255,.18); }
+.template-creative .resume-heading h1, .template-creative .resume-heading h2 { color: #fff; }
+.template-creative .resume-heading h1 { font-size: 24px; }
+.template-creative .resume-contact { position: absolute; left: 9px; top: 122px; width: 90px; flex-direction: column; gap: 7px; }
+.template-creative .resume-contact span, .template-creative .preview-links a { color: #fff; font-size: 7px; }
+.template-creative .preview-links { position: absolute; left: 9px; top: 218px; width: 90px; flex-direction: column; }
 .template-creative .resume-divider { display: none; }
-.template-creative .resume-section:not(.resume-skills) { margin: 20px 0 0 22px; }
-.template-creative .resume-section-title {
-    padding: 0 0 6px 8px;
-    border-left: 3px solid #7c3aed;
-    border-bottom: 1px solid #e9d5ff;
-    color: #6d28d9;
-}
-.template-creative .resume-skills .resume-section-title {
-    color: #6d28d9;
-}
+.template-creative .resume-summary, .template-creative .resume-experience, .template-creative .resume-education { grid-column: 2; margin: 0; padding: 16px 23px; }
+.template-creative .resume-skills { grid-column: 1; margin: 0; padding: 16px 9px; color: #fff; }
+.template-creative .resume-skills .resume-section-title { color: #fff; border-bottom-color: rgba(255,255,255,.35); }
+.template-creative .resume-skills .preview-skills { flex-direction: column; }
+.template-creative .resume-skills .preview-skills span { color: #fff; background: transparent; border-color: rgba(255,255,255,.35); }
+.template-creative .resume-section-title { color: #6d28d9; border-left: 3px solid #6d28d9; padding-left: 7px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
 
-/* =========================================================
-   08 — CORPORATE
-========================================================= */
-.template-corporate .resume-page {
-    padding: 0 32px 35px;
-    border-left: 7px solid #1f2937;
-}
-
-.template-corporate .resume-header {
-    padding: 28px 0 20px;
-    border-bottom: 1px solid #d1d5db;
-}
+/* ===================== CORPORATE ===================== */
+.template-corporate .resume-page { padding: 0 32px 36px; border-left: 7px solid #1f2937; }
+.template-corporate .resume-header { padding: 28px 0 19px; border-bottom: 1px solid #d1d5db; }
 .template-corporate .resume-photo { display: none; }
-.template-corporate .resume-heading h1 {
-    font-size: 26px;
-    text-transform: uppercase;
-    letter-spacing: .5px;
-}
-.template-corporate .resume-heading h2 {
-    color: #374151;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-.template-corporate .resume-divider { display: none; }
+.template-corporate .resume-heading h1 { font-size: 26px; text-transform: uppercase; letter-spacing: .6px; }
+.template-corporate .resume-heading h2 { color: #374151; text-transform: uppercase; letter-spacing: 1px; }
 .template-corporate .resume-section { margin: 19px 0; }
-.template-corporate .resume-section-title {
-    padding-bottom: 6px;
-    border-bottom: 2px solid #2563eb;
-    color: #1f2937;
-}
+.template-corporate .resume-section-title { color: #1f2937; border-bottom: 2px solid #2563eb; padding-bottom: 5px; }
 
-/* =========================================================
-   09 — COMPACT
-========================================================= */
-.template-compact .resume-page {
-    padding: 22px 27px 27px;
-    border-top: 3px solid #2563eb;
-}
-.template-compact .resume-header {
-    padding-bottom: 13px;
-    border-bottom: 1px solid #d1d5db;
-    text-align: center;
-}
+/* ===================== COMPACT ===================== */
+.template-compact .resume-page { padding: 22px 27px 28px; }
+.template-compact .resume-header { text-align: center; padding-bottom: 12px; border-bottom: 1px solid #d1d5db; }
 .template-compact .resume-photo { display: none; }
 .template-compact .resume-heading h1 { font-size: 22px; }
 .template-compact .resume-heading h2 { font-size: 10px; color: #2563eb; }
-.template-compact .resume-contact,
-.template-compact .preview-links { justify-content: center; margin-top: 5px; }
-.template-compact .resume-contact span { font-size: 7px; }
-.template-compact .resume-section { margin: 12px 0; }
-.template-compact .resume-section-title {
-    margin-bottom: 5px;
-    padding-bottom: 4px;
-    border-bottom: 1px solid #e5e7eb;
-    color: #2563eb;
-    font-size: 9px;
-}
+.template-compact .resume-contact, .template-compact .preview-links { justify-content: center; margin-top: 4px; }
+.template-compact .resume-contact span, .template-compact .preview-links a { font-size: 7px; }
+.template-compact .resume-section { margin: 11px 0; }
+.template-compact .resume-section-title { font-size: 8.5px; color: #2563eb; border-bottom: 1px solid #e5e7eb; padding-bottom: 3px; margin-bottom: 5px; }
 .template-compact .resume-section p { font-size: 7.8px; }
 
-/* =========================================================
-   10 — ATS
-========================================================= */
-.template-ats .resume-page {
-    padding: 28px 32px 32px;
-    border: 0;
-    background: #fff;
-    color: #111;
-    font-family: Arial, Helvetica, sans-serif;
-}
-.template-ats .resume-header {
-    padding-bottom: 14px;
-    border-bottom: 2px solid #111;
-}
+/* ===================== ATS ===================== */
+.template-ats .resume-page { padding: 28px 32px 34px; font-family: Arial,Helvetica,sans-serif; color: #111; }
+.template-ats .resume-header { padding-bottom: 13px; border-bottom: 2px solid #111; }
 .template-ats .resume-photo { display: none; }
-.template-ats .resume-heading h1 {
-    font-size: 24px;
-    color: #111;
-}
+.template-ats .resume-heading h1 { font-size: 24px; color: #111; }
 .template-ats .resume-heading h2 { color: #111; }
-.template-ats .resume-contact,
-.template-ats .preview-links { justify-content: flex-start; }
+.template-ats .resume-contact, .template-ats .preview-links { justify-content: flex-start; }
 .template-ats .preview-links a { color: #111; }
-.template-ats .resume-divider { display: none; }
 .template-ats .resume-section { margin: 17px 0; }
-.template-ats .resume-section-title {
-    padding-bottom: 5px;
-    border-bottom: 1px solid #111;
-    color: #111;
-}
-.template-ats .preview-skills span {
-    padding: 0;
-    border: 0;
-    background: transparent;
-    color: #111;
-}
+.template-ats .resume-section-title { color: #111; border-bottom: 1px solid #111; padding-bottom: 4px; }
+.template-ats .preview-skills span { background: none; border: 0; padding: 0; margin-right: 10px; font-weight: 400; }
+.template-ats .preview-skills span::after { content: ","; }
+.template-ats .preview-skills span:last-child::after { content: ""; }
 
-/* =========================================================
-   TEMPLATE-SWITCH SAFETY
-========================================================= */
-.resume-template-wrapper[data-template="classic"] .resume-page { }
-.resume-template-wrapper[data-template="modern"] .resume-page { }
-.resume-template-wrapper[data-template="minimal"] .resume-page { }
-.resume-template-wrapper[data-template="executive"] .resume-page { }
-.resume-template-wrapper[data-template="professional"] .resume-page { }
-.resume-template-wrapper[data-template="elegant"] .resume-page { }
-.resume-template-wrapper[data-template="creative"] .resume-page { }
-.resume-template-wrapper[data-template="corporate"] .resume-page { }
-.resume-template-wrapper[data-template="compact"] .resume-page { }
-.resume-template-wrapper[data-template="ats"] .resume-page { }
-
-@media (max-width: 800px) {
-    .template-modern .resume-page,
-    .template-minimal .resume-page,
-    .template-professional .resume-page {
-        display: block;
-    }
-
-    .template-modern .resume-header,
-    .template-creative .resume-header {
-        grid-template-columns: 60px 1fr;
-    }
-
-    .template-modern .resume-photo,
-    .template-creative .resume-photo {
-        width: 60px;
-        height: 60px;
-    }
-
-    .template-creative .resume-page {
-        display: block;
-        padding: 0 20px 28px 0;
-    }
-
-    .template-creative .resume-skills {
-        margin: 18px 0 0;
-        padding: 15px;
-    }
-
-    .template-creative .resume-section:not(.resume-skills) {
-        margin-left: 15px;
-    }
-}
-
+/* Print */
 @media print {
-    .resume-template-wrapper .resume-page {
-        box-shadow: none !important;
-        border-radius: 0 !important;
-    }
-
-    .resume-template-wrapper a {
-        text-decoration: none;
-    }
-
-    * {
-        -webkit-print-color-adjust: exact !important;
-        print-color-adjust: exact !important;
-    }
+    .resume-template-wrapper .resume-page { box-shadow: none !important; border-radius: 0 !important; }
 }
