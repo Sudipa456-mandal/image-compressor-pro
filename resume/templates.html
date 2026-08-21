@@ -54,31 +54,29 @@
 
         <a
             href="index.html"
-            class="logo">
+            class="logo"
+            aria-label="ResumeCraft Resume Builder Home">
 
             Resume<span>Craft</span>
 
         </a>
 
 
-        <nav class="nav-links">
+        <nav
+            class="nav-links"
+            aria-label="Primary navigation">
 
             <a href="index.html">
                 Home
             </a>
 
-            <a href="index.html#features">
-                Features
-            </a>
-
             <a
                 href="templates.html"
-                class="active">
-                Templates
-            </a>
+                class="active"
+                aria-current="page">
 
-            <a href="index.html#how-it-works">
-                How It Works
+                Templates
+
             </a>
 
             <a href="builder.html">
@@ -88,7 +86,9 @@
             <a
                 href="builder.html"
                 class="create-btn">
+
                 Create Resume
+
             </a>
 
         </nav>
@@ -96,7 +96,11 @@
 
         <button
             class="mobile-menu-btn"
-            id="mobileMenuBtn">
+            id="mobileMenuBtn"
+            type="button"
+            aria-label="Open navigation"
+            aria-expanded="false"
+            aria-controls="primary-navigation">
 
             ☰
 
@@ -105,7 +109,6 @@
     </div>
 
 </header>
-
 
 
 <!-- =========================================
@@ -159,45 +162,51 @@
 
         </div>
 
+<div
+    class="template-filter"
+    aria-label="Filter resume templates">
 
-        <div class="template-filter">
+    <button
+        type="button"
+        class="filter-btn active"
+        data-filter="all"
+        aria-pressed="true">
 
-            <button
-                class="filter-btn active"
-                data-filter="all">
+        All
 
-                All
+    </button>
 
-            </button>
+    <button
+        type="button"
+        class="filter-btn"
+        data-filter="professional"
+        aria-pressed="false">
 
+        Professional
 
-            <button
-                class="filter-btn"
-                data-filter="professional">
+    </button>
 
-                Professional
+    <button
+        type="button"
+        class="filter-btn"
+        data-filter="creative"
+        aria-pressed="false">
 
-            </button>
+        Creative
 
+    </button>
 
-            <button
-                class="filter-btn"
-                data-filter="creative">
+    <button
+        type="button"
+        class="filter-btn"
+        data-filter="ats"
+        aria-pressed="false">
 
-                Creative
+        ATS Friendly
 
-            </button>
+    </button>
 
-
-            <button
-                class="filter-btn"
-                data-filter="ats">
-
-                ATS Friendly
-
-            </button>
-
-        </div>
+</div>
 
     </div>
 
@@ -220,7 +229,8 @@
 <article
     class="template-card"
     data-category="professional"
-    data-template="modern">
+    data-template="modern"
+    aria-label="Modern resume template">
 
 
     <div class="template-preview modern-preview">
@@ -311,10 +321,11 @@
 
 
         <button
+            type="button"
             class="use-template-btn"
             data-template="modern">
 
-            Use Template
+            Use Modern Template
 
         </button>
 
@@ -331,7 +342,8 @@
 <article
     class="template-card"
     data-category="professional"
-    data-template="classic">
+    data-template="classic"
+    aria-label="Classic resume template">
 
 
     <div class="template-preview classic-preview">
@@ -391,10 +403,11 @@
 
 
         <button
+            type="button"
             class="use-template-btn"
             data-template="classic">
 
-            Use Template
+            Use Classic Template
 
         </button>
 
@@ -411,7 +424,8 @@
 <article
     class="template-card"
     data-category="professional"
-    data-template="minimal">
+    data-template="minimal"
+    aria-label="Minimal resume template">
 
 
     <div class="template-preview minimal-preview">
@@ -488,10 +502,11 @@
 
 
         <button
+            type="button"
             class="use-template-btn"
             data-template="minimal">
 
-            Use Template
+            Use Minimal Template
 
         </button>
 
@@ -508,7 +523,8 @@
 <article
     class="template-card"
     data-category="professional"
-    data-template="executive">
+    data-template="executive"
+    aria-label="Executive resume template">
 
 
     <div class="template-preview executive-preview">
@@ -580,10 +596,11 @@
 
 
         <button
+            type="button"
             class="use-template-btn"
             data-template="executive">
 
-            Use Template
+            Use Executive Template
 
         </button>
 
@@ -600,7 +617,8 @@
 <article
     class="template-card"
     data-category="professional"
-    data-template="professional">
+    data-template="professional"
+    aria-label="Professional resume template">
 
 
     <div class="template-preview professional-preview">
@@ -690,10 +708,11 @@
 
 
         <button
+            type="button"
             class="use-template-btn"
             data-template="professional">
 
-            Use Template
+            Use Professional Template
 
         </button>
 
@@ -710,7 +729,8 @@
 <article
     class="template-card"
     data-category="professional"
-    data-template="elegant">
+    data-template="elegant"
+    aria-label="Elegant resume template">
 
 
     <div class="template-preview elegant-preview">
@@ -769,10 +789,11 @@
 
 
         <button
+            type="button"
             class="use-template-btn"
             data-template="elegant">
 
-            Use Template
+            Use Elegant Template
 
         </button>
 
@@ -789,7 +810,8 @@
 <article
     class="template-card"
     data-category="creative"
-    data-template="creative">
+    data-template="creative"
+    aria-label="Creative resume template">
 
 
     <div class="template-preview creative-preview">
@@ -872,10 +894,11 @@
 
 
         <button
+            type="button"
             class="use-template-btn"
             data-template="creative">
 
-            Use Template
+            Use Creative Template
 
         </button>
 
@@ -892,7 +915,8 @@
 <article
     class="template-card"
     data-category="professional"
-    data-template="corporate">
+    data-template="corporate"
+    aria-label="Corporate resume template">
 
 
     <div class="template-preview corporate-preview">
@@ -964,10 +988,11 @@
 
 
         <button
+            type="button"
             class="use-template-btn"
             data-template="corporate">
 
-            Use Template
+            Use Corporate Template
 
         </button>
 
@@ -984,7 +1009,8 @@
 <article
     class="template-card"
     data-category="ats"
-    data-template="compact">
+    data-template="compact"
+    aria-label="Compact resume template">
 
 
     <div class="template-preview compact-preview">
@@ -1068,10 +1094,11 @@
 
 
         <button
+            type="button"
             class="use-template-btn"
             data-template="compact">
 
-            Use Template
+            Use Compact Template
 
         </button>
 
@@ -1088,7 +1115,8 @@
 <article
     class="template-card"
     data-category="ats"
-    data-template="ats">
+    data-template="ats"
+    aria-label="Ats resume template">
 
 
     <div class="template-preview ats-preview">
@@ -1172,10 +1200,11 @@
 
 
         <button
+            type="button"
             class="use-template-btn"
             data-template="ats">
 
-            Use Template
+            Use Ats Template
 
         </button>
 
@@ -1186,7 +1215,173 @@
 
 </div>
 
+<section class="template-guide">
 
+    <div class="template-guide-inner">
+
+        <span class="hero-label">
+            RESUME TEMPLATE GUIDE
+        </span>
+
+        <h2>
+            How to choose the right resume template
+        </h2>
+
+        <p>
+            Choosing the right resume template depends on your
+            experience, industry and the type of position you are
+            applying for. A good resume template should make your
+            information easy to read and help employers quickly
+            understand your experience and skills.
+        </p>
+
+
+        <div class="guide-grid">
+
+            <article>
+
+                <h3>
+                    Professional Resume Templates
+                </h3>
+
+                <p>
+                    Professional templates are suitable for many
+                    corporate, technical, finance, business and
+                    administrative roles. They provide a structured
+                    layout while keeping your experience easy to scan.
+                </p>
+
+            </article>
+
+
+            <article>
+
+                <h3>
+                    Creative Resume Templates
+                </h3>
+
+                <p>
+                    Creative templates can be useful for design,
+                    marketing and other visually oriented careers
+                    where presentation can complement your professional
+                    experience.
+                </p>
+
+            </article>
+
+
+            <article>
+
+                <h3>
+                    ATS-Friendly Resume Templates
+                </h3>
+
+                <p>
+                    ATS-oriented templates use a simpler structure,
+                    clear headings and straightforward formatting.
+                    This can make resume information easier for
+                    applicant tracking systems and recruiters to process.
+                </p>
+
+            </article>
+
+
+            <article>
+
+                <h3>
+                    Minimal Resume Templates
+                </h3>
+
+                <p>
+                    Minimal templates focus on clarity and whitespace.
+                    They are useful when you want your experience,
+                    education and skills to remain the primary focus
+                    of your resume.
+                </p>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+    <section class="template-faq">
+
+    <div class="template-faq-inner">
+
+        <span class="hero-label">
+            FREQUENTLY ASKED QUESTIONS
+        </span>
+
+        <h2>
+            Resume template questions
+        </h2>
+
+
+        <details>
+
+            <summary>
+                Which resume template should I choose?
+            </summary>
+
+            <p>
+                Choose a template that is easy to read and matches
+                your target industry. For most professional roles,
+                a clean and structured template is a good starting point.
+            </p>
+
+        </details>
+
+
+        <details>
+
+            <summary>
+                What is an ATS-friendly resume template?
+            </summary>
+
+            <p>
+                An ATS-friendly template generally uses a simple
+                structure, standard headings and readable formatting
+                so that resume information can be processed more easily.
+            </p>
+
+        </details>
+
+
+        <details>
+
+            <summary>
+                Can I customize the template?
+            </summary>
+
+            <p>
+                Yes. After selecting a template, you can enter your
+                personal information, experience, education and skills
+                in the ResumeCraft builder and customize the supported
+                design settings.
+            </p>
+
+        </details>
+
+
+        <details>
+
+            <summary>
+                Can I change my template later?
+            </summary>
+
+            <p>
+                Yes, provided your ResumeCraft builder supports changing
+                the selected template. Your resume information can then
+                be displayed using the new layout.
+            </p>
+
+        </details>
+
+    </div>
+
+</section>
 <!-- =========================================
      BOTTOM CTA
 ========================================= -->
