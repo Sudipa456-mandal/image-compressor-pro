@@ -1,84 +1,116 @@
-
 /* =========================================================
    RESUMECRAFT BUILDER
    Complete Builder JavaScript
 ========================================================= */
 
-let resumeTemplateWrapper = null;
-
 /* =========================================================
-   TEMPLATE SYSTEM
+   RESUMECRAFT BUILDER
+   TEMPLATE SYSTEM — SINGLE SOURCE OF TRUTH
 ========================================================= */
 
-const templateNames = [
-    "modern",
-    "classic",
-    "minimal",
-    "executive",
-    "professional",
-    "elegant",
-    "creative",
-    "corporate",
-    "compact",
-    "ats"
+let resumeTemplateWrapper = null;
+
+const TEMPLATE_NAMES = [
+    "classic", "modern", "minimal", "executive", "professional",
+    "elegant", "creative", "corporate", "compact", "ats"
 ];
 
-function applyResumeTemplate(templateName) {
+const DEFAULT_TEMPLATE = "minimal";
 
-    if (!resumeTemplateWrapper) return;
+function normalizeTemplate(value) {
+    const template = String(value || "").trim().toLowerCase();
+    return TEMPLATE_NAMES.includes(template) ? template : DEFAULT_TEMPLATE;
+}
 
-    if (!templateNames.includes(templateName)) {
-        templateName = "minimal";
+function getTemplateFromURL() {
+    const params = new URLSearchParams(window.location.search);
+    const value = params.get("template");
+    return value ? normalizeTemplate(value) : null;
+}
+
+function getStoredTemplate() {
+    const direct = localStorage.getItem("resumeCraftTemplate");
+    if (direct && TEMPLATE_NAMES.includes(direct)) return direct;
+
+    const old = localStorage.getItem("selectedResumeTemplate");
+    if (old && TEMPLATE_NAMES.includes(old)) return old;
+
+    try {
+        const data = JSON.parse(localStorage.getItem("resumeCraftData") || "{}");
+        const saved = data?.settings?.template;
+        if (saved && TEMPLATE_NAMES.includes(saved)) return saved;
+    } catch (error) {
+        console.warn("Resume data could not be read:", error);
     }
 
-    templateNames.forEach(template => {
-        resumeTemplateWrapper.classList.remove(
-            `template-${template}`
+    return null;
+}
+
+function saveSelectedTemplate(template) {
+    localStorage.setItem("resumeCraftTemplate", template);
+    localStorage.setItem("selectedResumeTemplate", template);
+
+    try {
+        const data = JSON.parse(localStorage.getItem("resumeCraftData") || "{}");
+        data.settings = data.settings || {};
+        data.settings.template = template;
+        localStorage.setItem("resumeCraftData", JSON.stringify(data));
+    } catch (error) {
+        console.warn("Template could not be saved:", error);
+    }
+}
+
+function applyResumeTemplate(templateName) {
+    const wrapper = document.getElementById("resumeTemplateWrapper");
+
+    if (!wrapper) {
+        console.error("ResumeCraft: #resumeTemplateWrapper was not found.");
+        return;
+    }
+
+    const template = normalizeTemplate(templateName);
+
+    TEMPLATE_NAMES.forEach(function (name) {
+        wrapper.classList.remove("template-" + name);
+    });
+
+    wrapper.classList.add("template-" + template);
+    wrapper.setAttribute("data-template", template);
+    saveSelectedTemplate(template);
+
+    document.querySelectorAll("[data-template]").forEach(function (el) {
+        el.classList.toggle(
+            "is-selected-template",
+            el.getAttribute("data-template") === template
         );
     });
 
-    resumeTemplateWrapper.classList.add(
-        `template-${templateName}`
-    );
-
-    localStorage.setItem(
-        "selectedResumeTemplate",
-        templateName
-    );
+    console.log("ResumeCraft template:", template);
 }
 
 function initializeResumeTemplate() {
+    resumeTemplateWrapper = document.getElementById("resumeTemplateWrapper");
 
-    resumeTemplateWrapper =
-        document.getElementById(
-            "resumeTemplateWrapper"
-        );
+    if (!resumeTemplateWrapper) {
+        console.error("ResumeCraft: #resumeTemplateWrapper is missing.");
+        return;
+    }
 
-    if (!resumeTemplateWrapper) return;
+    const urlTemplate = getTemplateFromURL();
+    const storedTemplate = getStoredTemplate();
+    const selectedTemplate = urlTemplate || storedTemplate || DEFAULT_TEMPLATE;
 
-    const params =
-        new URLSearchParams(
-            window.location.search
-        );
-
-    const urlTemplate =
-        params.get("template");
-
-    const savedTemplate =
-        localStorage.getItem(
-            "selectedResumeTemplate"
-        );
-
-    const selectedTemplate =
-        urlTemplate ||
-        savedTemplate ||
-        "minimal";
-
-    applyResumeTemplate(
-        selectedTemplate
-    );
+    applyResumeTemplate(selectedTemplate);
 }
 
+window.applyResumeTemplate = applyResumeTemplate;
+window.ResumeCraftTemplates = {
+    names: TEMPLATE_NAMES,
+    apply: applyResumeTemplate,
+    current: function () {
+        return document.getElementById("resumeTemplateWrapper")?.getAttribute("data-template") || DEFAULT_TEMPLATE;
+    }
+};
 
 /* =========================================================
    MAIN
