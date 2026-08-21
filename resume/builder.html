@@ -2,138 +2,104 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
 
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
+    <meta name="robots" content="noindex, nofollow">
+
     <meta name="description"
-          content="Create a professional resume with ResumeCraft. Add your experience, education, skills and professional summary, then preview your resume before downloading it.">
-
-    <meta name="robots"
-          content="index, follow">
-
-    <meta name="author"
-          content="ResumeCraft">
-
-    <meta name="theme-color"
-          content="#3867ff">
+          content="Create and customize your professional resume with ResumeCraft.">
 
     <title>Resume Builder | ResumeCraft</title>
 
-    <!-- Main builder styles -->
-    <link rel="stylesheet"
-          href="css/builder.css">
-
-    <!-- Resume template styles -->
-    <link rel="stylesheet"
-          href="css/resume-templates.css">
-
+    <!-- Builder Styles -->
+    <link rel="stylesheet" href="css/builder.css">
+    <link rel="stylesheet" href="css/resume-templates.css">
 </head>
-
 
 <body>
 
-
-<!-- =====================================================
-     ACCESSIBILITY
-===================================================== -->
-
-<a class="skip-link"
-   href="#builderEditor">
-    Skip to resume editor
-</a>
-
-
-
-<!-- =====================================================
-     TOP BAR
-===================================================== -->
+<!-- =========================================================
+     BUILDER HEADER
+========================================================= -->
 
 <header class="builder-topbar">
 
-    <div class="builder-topbar-inner">
+    <a href="index.html"
+       class="builder-logo"
+       aria-label="ResumeCraft Home">
 
-        <a href="index.html"
-           class="builder-logo"
-           aria-label="ResumeCraft home">
+        Resume<span>Craft</span>
 
-            Resume<span>Craft</span>
+    </a>
+
+    <div class="builder-top-actions">
+
+        <a href="templates.html"
+           class="topbar-link">
+
+            Change Template
 
         </a>
 
+        <a href="index.html"
+           class="topbar-link">
 
-        <div class="builder-topbar-info">
+            Exit Builder
 
-            <span>
-                Resume Builder
-            </span>
-
-        </div>
+        </a>
 
     </div>
 
 </header>
 
 
-
-<!-- =====================================================
+<!-- =========================================================
      MAIN BUILDER
-===================================================== -->
+========================================================= -->
 
-<main class="builder-layout"
-      id="resumeBuilder">
+<main class="builder-layout">
 
 
-    <!-- =================================================
+    <!-- =====================================================
          LEFT SIDEBAR
-    ================================================== -->
+    ====================================================== -->
 
-    <aside class="builder-sidebar"
-           aria-label="Resume building steps">
-
-
-        <!-- SIDEBAR INTRO -->
+    <aside class="builder-sidebar">
 
         <div class="sidebar-intro">
 
-            <span>
-                BUILD YOUR RESUME
+            <span class="sidebar-eyebrow">
+                RESUME BUILDER
             </span>
 
             <h2>
-                Your progress
+                Build your resume
             </h2>
 
             <p>
-                Complete each section to build
+                Complete each section to create
                 your professional resume.
             </p>
 
         </div>
 
 
-
-        <!-- =================================================
-             BUILDER STEPS
-        ================================================== -->
+        <!-- BUILDER STEPS -->
 
         <nav class="builder-steps"
              aria-label="Resume sections">
 
 
-            <!-- HEADER -->
+            <!-- STEP 1 -->
 
-            <button
-                type="button"
-                class="builder-step active"
-                data-section="heading"
-                aria-current="step"
-            >
+            <button type="button"
+                    class="builder-step active"
+                    data-section="heading">
 
-                <span class="step-circle"
-                      aria-hidden="true">
+                <span class="step-circle">
                     01
                 </span>
 
@@ -144,7 +110,7 @@
                     </strong>
 
                     <small>
-                        Name and contact information
+                        Name & contact information
                     </small>
 
                 </span>
@@ -152,17 +118,13 @@
             </button>
 
 
+            <!-- STEP 2 -->
 
-            <!-- EXPERIENCE -->
+            <button type="button"
+                    class="builder-step locked"
+                    data-section="experience">
 
-            <button
-                type="button"
-                class="builder-step locked"
-                data-section="experience"
-            >
-
-                <span class="step-circle"
-                      aria-hidden="true">
+                <span class="step-circle">
                     02
                 </span>
 
@@ -173,7 +135,7 @@
                     </strong>
 
                     <small>
-                        Your work history
+                        Work history
                     </small>
 
                 </span>
@@ -181,17 +143,13 @@
             </button>
 
 
+            <!-- STEP 3 -->
 
-            <!-- EDUCATION -->
+            <button type="button"
+                    class="builder-step locked"
+                    data-section="education">
 
-            <button
-                type="button"
-                class="builder-step locked"
-                data-section="education"
-            >
-
-                <span class="step-circle"
-                      aria-hidden="true">
+                <span class="step-circle">
                     03
                 </span>
 
@@ -202,7 +160,7 @@
                     </strong>
 
                     <small>
-                        Your academic background
+                        Academic background
                     </small>
 
                 </span>
@@ -210,17 +168,13 @@
             </button>
 
 
+            <!-- STEP 4 -->
 
-            <!-- SKILLS -->
+            <button type="button"
+                    class="builder-step locked"
+                    data-section="skills">
 
-            <button
-                type="button"
-                class="builder-step locked"
-                data-section="skills"
-            >
-
-                <span class="step-circle"
-                      aria-hidden="true">
+                <span class="step-circle">
                     04
                 </span>
 
@@ -239,17 +193,13 @@
             </button>
 
 
+            <!-- STEP 5 -->
 
-            <!-- SUMMARY -->
+            <button type="button"
+                    class="builder-step locked"
+                    data-section="summary">
 
-            <button
-                type="button"
-                class="builder-step locked"
-                data-section="summary"
-            >
-
-                <span class="step-circle"
-                      aria-hidden="true">
+                <span class="step-circle">
                     05
                 </span>
 
@@ -260,7 +210,7 @@
                     </strong>
 
                     <small>
-                        Your professional introduction
+                        Professional introduction
                     </small>
 
                 </span>
@@ -268,28 +218,24 @@
             </button>
 
 
+            <!-- STEP 6 -->
 
-            <!-- FINALIZE -->
+            <button type="button"
+                    class="builder-step locked"
+                    data-section="finalize">
 
-            <button
-                type="button"
-                class="builder-step locked"
-                data-section="finalize"
-            >
-
-                <span class="step-circle"
-                      aria-hidden="true">
+                <span class="step-circle">
                     06
                 </span>
 
                 <span class="step-content">
 
                     <strong>
-                        Review & Download
+                        Finalize
                     </strong>
 
                     <small>
-                        Finish your resume
+                        Review & download
                     </small>
 
                 </span>
@@ -299,14 +245,9 @@
         </nav>
 
 
+        <!-- COMPLETION -->
 
-        <!-- =================================================
-             COMPLETION
-        ================================================== -->
-
-        <div class="sidebar-completion"
-             aria-label="Resume completeness">
-
+        <div class="sidebar-completion">
 
             <div class="completion-heading">
 
@@ -320,48 +261,29 @@
 
             </div>
 
+            <div class="completion-track">
 
-            <div class="completion-track"
-                 role="progressbar"
-                 aria-valuemin="0"
-                 aria-valuemax="100"
-                 aria-valuenow="0"
-                 aria-label="Resume completeness">
-
-                <div
-                    id="progressBar"
-                    class="completion-fill">
+                <div id="progressBar"
+                     class="completion-fill">
                 </div>
 
             </div>
 
-
             <p>
-                Add your information section by section
-                to create a complete resume.
+                Add your information to improve
+                your resume completeness.
             </p>
 
         </div>
 
 
-
-        <!-- =================================================
-             SIDEBAR FOOTER
-        ================================================== -->
+        <!-- SIDEBAR FOOTER -->
 
         <div class="sidebar-footer">
 
-            <a href="../privacy.html">
-                Privacy
-            </a>
-
-            <a href="../terms.html">
-                Terms
-            </a>
-
-            <a href="../contact.html">
-                Contact
-            </a>
+            <span>
+                Your data stays in your browser.
+            </span>
 
         </div>
 
@@ -369,28 +291,22 @@
 
 
 
-    <!-- =================================================
+    <!-- =====================================================
          CENTER EDITOR
-    ================================================== -->
+    ====================================================== -->
 
-    <main class="builder-editor"
-          id="builderEditor">
+    <section class="builder-editor">
 
         <div class="editor-inner">
-
 
 
             <!-- =================================================
                  STEP 01 — PERSONAL DETAILS
             ================================================== -->
 
-            <section
-                class="builder-section active"
-                id="section-heading"
-                data-section="heading"
-                aria-labelledby="headingTitle"
-            >
-
+            <section class="builder-section active"
+                     id="section-heading"
+                     data-section="heading">
 
                 <div class="section-heading">
 
@@ -398,23 +314,21 @@
                         STEP 01
                     </span>
 
-                    <h1 id="headingTitle">
+                    <h1>
                         Start with your personal details
                     </h1>
 
                     <p>
-                        Add the information employers need
-                        to identify and contact you.
+                        Add your name, professional title
+                        and contact information.
                     </p>
 
                 </div>
 
 
-
-                <!-- PERSONAL INFORMATION CARD -->
+                <!-- PERSONAL INFORMATION -->
 
                 <div class="form-card">
-
 
                     <div class="form-card-header">
 
@@ -425,14 +339,12 @@
                             </h2>
 
                             <p>
-                                Fields marked with *
-                                are required.
+                                Required fields are marked with *
                             </p>
 
                         </div>
 
                     </div>
-
 
 
                     <!-- PROFILE PHOTO -->
@@ -441,19 +353,15 @@
 
                         <div class="compact-photo-preview">
 
-                            <span id="previewPhotoIcon"
-                                  aria-hidden="true">
+                            <span id="previewPhotoIcon">
                                 👤
                             </span>
 
-                            <img
-                                id="previewPhoto"
-                                src=""
-                                alt="Profile photo preview"
-                            >
+                            <img id="previewPhoto"
+                                 src=""
+                                 alt="Profile photo preview">
 
                         </div>
-
 
                         <div class="compact-photo-info">
 
@@ -462,32 +370,27 @@
                             </strong>
 
                             <span>
-                                Optional · JPG or PNG · Max 2MB
+                                JPG or PNG · Maximum 2MB
                             </span>
 
+                            <label for="photoInput"
+                                   class="compact-upload-button">
 
-                            <label
-                                for="photoInput"
-                                class="compact-upload-button"
-                            >
                                 Upload photo
+
                             </label>
 
-
-                            <input
-                                type="file"
-                                id="photoInput"
-                                accept="image/png,image/jpeg"
-                                hidden
-                            >
+                            <input type="file"
+                                   id="photoInput"
+                                   accept="image/jpeg,image/png"
+                                   hidden>
 
                         </div>
 
                     </div>
 
 
-
-                    <!-- PERSONAL FORM -->
+                    <!-- FORM -->
 
                     <div class="form-grid two-columns">
 
@@ -500,21 +403,16 @@
                                 First name *
                             </label>
 
-                            <input
-                                type="text"
-                                id="firstName"
-                                placeholder="John"
-                                autocomplete="given-name"
-                                maxlength="50"
-                            >
+                            <input type="text"
+                                   id="firstName"
+                                   placeholder="John"
+                                   autocomplete="given-name">
 
-                            <small
-                                class="field-error"
-                                id="firstNameError"
-                            ></small>
+                            <small id="firstNameError"
+                                   class="field-error">
+                            </small>
 
                         </div>
-
 
 
                         <!-- LAST NAME -->
@@ -522,24 +420,19 @@
                         <div class="form-group">
 
                             <label for="lastName">
-                                Surname *
+                                Last name *
                             </label>
 
-                            <input
-                                type="text"
-                                id="lastName"
-                                placeholder="Smith"
-                                autocomplete="family-name"
-                                maxlength="50"
-                            >
+                            <input type="text"
+                                   id="lastName"
+                                   placeholder="Smith"
+                                   autocomplete="family-name">
 
-                            <small
-                                class="field-error"
-                                id="lastNameError"
-                            ></small>
+                            <small id="lastNameError"
+                                   class="field-error">
+                            </small>
 
                         </div>
-
 
 
                         <!-- PROFESSIONAL TITLE -->
@@ -550,20 +443,15 @@
                                 Professional title *
                             </label>
 
-                            <input
-                                type="text"
-                                id="professionalTitle"
-                                placeholder="Software Developer"
-                                maxlength="100"
-                            >
+                            <input type="text"
+                                   id="professionalTitle"
+                                   placeholder="Software Developer">
 
-                            <small
-                                class="field-error"
-                                id="professionalTitleError"
-                            ></small>
+                            <small id="professionalTitleError"
+                                   class="field-error">
+                            </small>
 
                         </div>
-
 
 
                         <!-- CITY -->
@@ -574,21 +462,16 @@
                                 City *
                             </label>
 
-                            <input
-                                type="text"
-                                id="city"
-                                placeholder="Kolkata"
-                                autocomplete="address-level2"
-                                maxlength="80"
-                            >
+                            <input type="text"
+                                   id="city"
+                                   placeholder="Kolkata"
+                                   autocomplete="address-level2">
 
-                            <small
-                                class="field-error"
-                                id="cityError"
-                            ></small>
+                            <small id="cityError"
+                                   class="field-error">
+                            </small>
 
                         </div>
-
 
 
                         <!-- COUNTRY -->
@@ -599,47 +482,37 @@
                                 Country *
                             </label>
 
-                            <input
-                                type="text"
-                                id="country"
-                                placeholder="India"
-                                autocomplete="country-name"
-                                maxlength="80"
-                            >
+                            <input type="text"
+                                   id="country"
+                                   placeholder="India"
+                                   autocomplete="country-name">
 
-                            <small
-                                class="field-error"
-                                id="countryError"
-                            ></small>
+                            <small id="countryError"
+                                   class="field-error">
+                            </small>
 
                         </div>
 
 
-
-                        <!-- PIN CODE -->
+                        <!-- PIN -->
 
                         <div class="form-group">
 
                             <label for="pinCode">
-                                PIN code *
+                                Postal / PIN code *
                             </label>
 
-                            <input
-                                type="text"
-                                id="pinCode"
-                                placeholder="700001"
-                                inputmode="numeric"
-                                maxlength="6"
-                                autocomplete="postal-code"
-                            >
+                            <input type="text"
+                                   id="pinCode"
+                                   placeholder="700001"
+                                   inputmode="numeric"
+                                   maxlength="10">
 
-                            <small
-                                class="field-error"
-                                id="pinCodeError"
-                            ></small>
+                            <small id="pinCodeError"
+                                   class="field-error">
+                            </small>
 
                         </div>
-
 
 
                         <!-- PHONE -->
@@ -650,21 +523,16 @@
                                 Phone *
                             </label>
 
-                            <input
-                                type="tel"
-                                id="phone"
-                                placeholder="+91 98765 43210"
-                                autocomplete="tel"
-                                maxlength="20"
-                            >
+                            <input type="tel"
+                                   id="phone"
+                                   placeholder="+91 98765 43210"
+                                   autocomplete="tel">
 
-                            <small
-                                class="field-error"
-                                id="phoneError"
-                            ></small>
+                            <small id="phoneError"
+                                   class="field-error">
+                            </small>
 
                         </div>
-
 
 
                         <!-- EMAIL -->
@@ -675,18 +543,14 @@
                                 Email *
                             </label>
 
-                            <input
-                                type="email"
-                                id="email"
-                                placeholder="john@example.com"
-                                autocomplete="email"
-                                maxlength="120"
-                            >
+                            <input type="email"
+                                   id="email"
+                                   placeholder="john@example.com"
+                                   autocomplete="email">
 
-                            <small
-                                class="field-error"
-                                id="emailError"
-                            ></small>
+                            <small id="emailError"
+                                   class="field-error">
+                            </small>
 
                         </div>
 
@@ -695,22 +559,19 @@
                 </div>
 
 
-
-                <!-- =================================================
-                     OPTIONAL LINKS
-                ================================================== -->
+                <!-- OPTIONAL INFORMATION -->
 
                 <div class="optional-card">
 
                     <div>
 
                         <h3>
-                            Add additional information
+                            Add more information
                         </h3>
 
                         <p>
-                            Include professional links
-                            if they are relevant to your career.
+                            Add professional links if they are
+                            relevant to your career.
                         </p>
 
                     </div>
@@ -718,56 +579,52 @@
 
                     <div class="optional-buttons">
 
-                        <button
-                            type="button"
-                            class="optional-info-button"
-                            data-field="linkedin"
-                        >
+                        <button type="button"
+                                class="optional-info-button"
+                                data-field="linkedin">
+
                             LinkedIn
-                            <span aria-hidden="true">+</span>
+                            <span>+</span>
+
                         </button>
 
+                        <button type="button"
+                                class="optional-info-button"
+                                data-field="website">
 
-                        <button
-                            type="button"
-                            class="optional-info-button"
-                            data-field="website"
-                        >
-                            Personal website
-                            <span aria-hidden="true">+</span>
+                            Personal Website
+                            <span>+</span>
+
                         </button>
 
                     </div>
 
 
-                    <div
-                        id="optionalFields"
-                        class="optional-fields"
-                    ></div>
+                    <div id="optionalFields"
+                         class="optional-fields">
+                    </div>
 
                 </div>
-
 
 
                 <!-- NAVIGATION -->
 
                 <div class="editor-navigation">
 
-                    <button
-                        type="button"
-                        class="secondary-action"
-                        id="backToTemplates"
-                    >
-                        ← Back to templates
-                    </button>
+                    <a href="templates.html"
+                       class="secondary-action">
 
+                        ← Change Template
 
-                    <button
-                        type="button"
-                        class="continue-section-btn"
-                        data-next="experience"
-                    >
-                        Continue to Experience →
+                    </a>
+
+                    <button type="button"
+                            class="continue-section-btn"
+                            data-next="experience">
+
+                        Continue to Experience
+                        →
+
                     </button>
 
                 </div>
@@ -780,32 +637,31 @@
                  STEP 02 — EXPERIENCE
             ================================================== -->
 
-            <section
-                class="builder-section"
-                id="section-experience"
-                data-section="experience"
-                aria-labelledby="experienceTitle"
-            >
+            <section class="builder-section"
+                     id="section-experience"
+                     data-section="experience">
 
-                <div class="step-label">
-                    STEP 02
+                <div class="section-heading">
+
+                    <span class="section-label">
+                        STEP 02
+                    </span>
+
+                    <h1>
+                        Add your work experience
+                    </h1>
+
+                    <p>
+                        Start with your most recent position
+                        and add previous roles if relevant.
+                    </p>
+
                 </div>
-
-                <h1 id="experienceTitle">
-                    Add your work experience
-                </h1>
-
-                <p class="editor-subtitle">
-                    Start with your most recent role and
-                    highlight responsibilities and achievements.
-                </p>
-
 
 
                 <div id="experienceList">
 
-                    <div class="section-card experience-item">
-
+                    <article class="section-card experience-item">
 
                         <div class="card-heading-row">
 
@@ -816,93 +672,73 @@
                                 </h2>
 
                                 <p>
-                                    Add your employment details.
+                                    Your latest or most relevant role
                                 </p>
 
                             </div>
 
+                            <button type="button"
+                                    class="remove-entry-btn"
+                                    style="display:none;">
 
-                            <button
-                                type="button"
-                                class="remove-entry-btn"
-                                style="display:none;"
-                            >
                                 Remove
+
                             </button>
 
                         </div>
-
 
 
                         <!-- JOB TITLE -->
 
                         <div class="form-group">
 
-                            <label for="jobTitle">
+                            <label>
                                 Job title *
                             </label>
 
-                            <input
-                                type="text"
-                                id="jobTitle"
-                                class="experience-job-title"
-                                placeholder="Software Developer"
-                                maxlength="100"
-                            >
+                            <input type="text"
+                                   class="experience-job-title"
+                                   placeholder="Software Developer">
 
-                            <small
-                                class="field-error"
-                                id="jobTitleError"
-                            ></small>
+                            <small class="field-error">
+                            </small>
 
                         </div>
 
 
-
-                        <!-- COMPANY + LOCATION -->
+                        <!-- COMPANY / LOCATION -->
 
                         <div class="form-row two-column">
 
                             <div class="form-group">
 
-                                <label for="companyName">
+                                <label>
                                     Company *
                                 </label>
 
-                                <input
-                                    type="text"
-                                    id="companyName"
-                                    class="experience-company"
-                                    placeholder="ABC Technologies"
-                                    maxlength="120"
-                                >
+                                <input type="text"
+                                       class="experience-company"
+                                       placeholder="ABC Technologies">
 
-                                <small
-                                    class="field-error"
-                                    id="companyNameError"
-                                ></small>
+                                <small class="field-error">
+                                </small>
 
                             </div>
 
 
                             <div class="form-group">
 
-                                <label for="workLocation">
+                                <label>
                                     Location
                                 </label>
 
-                                <input
-                                    type="text"
-                                    id="workLocation"
-                                    class="experience-location"
-                                    placeholder="Kolkata"
-                                    maxlength="80"
-                                >
+                                <input type="text"
+                                       class="experience-location"
+                                       placeholder="Kolkata">
 
                             </div>
 
                         </div>
-
 
 
                         <!-- DATES -->
@@ -911,120 +747,103 @@
 
                             <div class="form-group">
 
-                                <label for="startDate">
+                                <label>
                                     Start date *
                                 </label>
 
-                                <input
-                                    type="month"
-                                    id="startDate"
-                                    class="experience-start"
-                                >
+                                <input type="month"
+                                       class="experience-start">
 
-                                <small
-                                    class="field-error"
-                                    id="startDateError"
-                                ></small>
+                                <small class="field-error">
+                                </small>
 
                             </div>
 
 
                             <div class="form-group">
 
-                                <label for="endDate">
+                                <label>
                                     End date
                                 </label>
 
-                                <input
-                                    type="month"
-                                    id="endDate"
-                                    class="experience-end"
-                                >
+                                <input type="month"
+                                       class="experience-end">
 
-                                <small
-                                    class="field-error"
-                                    id="endDateError"
-                                ></small>
+                                <small class="field-error">
+                                </small>
 
                             </div>
 
                         </div>
 
 
-
-                        <!-- CURRENTLY WORKING -->
+                        <!-- CURRENT JOB -->
 
                         <div class="form-group checkbox-group">
 
                             <label>
 
-                                <input
-                                    type="checkbox"
-                                    class="currently-working"
-                                >
+                                <input type="checkbox"
+                                       class="currently-working">
 
-                                I currently work here
+                                Currently working here
 
                             </label>
 
                         </div>
-
 
 
                         <!-- DESCRIPTION -->
 
                         <div class="form-group">
 
-                            <label for="experienceDescription">
-                                Responsibilities & achievements
+                            <label>
+                                Description
                             </label>
 
-                            <textarea
-                                id="experienceDescription"
-                                class="experience-description"
-                                rows="5"
-                                maxlength="1200"
-                                placeholder="Describe your responsibilities, achievements and results..."
-                            ></textarea>
+                            <textarea class="experience-description"
+                                      rows="6"
+                                      maxlength="1000"
+                                      placeholder="Describe your responsibilities, achievements and results...">
+                            </textarea>
+
+                            <small class="form-help">
+                                Focus on achievements and measurable results.
+                            </small>
 
                         </div>
 
-                    </div>
+                    </article>
 
                 </div>
 
 
+                <button type="button"
+                        id="addExperienceButton"
+                        class="add-entry-btn">
 
-                <!-- ADD EXPERIENCE -->
-
-                <button
-                    type="button"
-                    id="addExperienceButton"
-                    class="add-entry-btn"
-                >
                     + Add another experience
+
                 </button>
 
 
-
-                <!-- ACTIONS -->
-
                 <div class="section-actions">
 
-                    <button
-                        type="button"
-                        class="back-section-btn"
-                        data-back="heading"
-                    >
+                    <button type="button"
+                            class="back-section-btn"
+                            data-back="heading">
+
                         ← Back
+
                     </button>
 
-                    <button
-                        type="button"
-                        class="continue-section-btn"
-                        data-next="education"
-                    >
-                        Continue to Education →
+                    <button type="button"
+                            class="continue-section-btn"
+                            data-next="education">
+
+                        Continue
+                        →
+
                     </button>
 
                 </div>
@@ -1037,31 +856,31 @@
                  STEP 03 — EDUCATION
             ================================================== -->
 
-            <section
-                class="builder-section"
-                id="section-education"
-                data-section="education"
-                aria-labelledby="educationTitle"
-            >
+            <section class="builder-section"
+                     id="section-education"
+                     data-section="education">
 
-                <div class="step-label">
-                    STEP 03
+                <div class="section-heading">
+
+                    <span class="section-label">
+                        STEP 03
+                    </span>
+
+                    <h1>
+                        Add your education
+                    </h1>
+
+                    <p>
+                        Include your school, college or university
+                        information.
+                    </p>
+
                 </div>
-
-                <h1 id="educationTitle">
-                    Add your education
-                </h1>
-
-                <p class="editor-subtitle">
-                    Include your academic qualifications,
-                    institutions and results where relevant.
-                </p>
-
 
 
                 <div id="educationEntries">
 
-                    <div class="section-card education-card">
+                    <article class="section-card education-card">
 
                         <div class="entry-header">
 
@@ -1072,14 +891,20 @@
                                 </h2>
 
                                 <p class="entry-subtitle">
-                                    Add your school, college
-                                    or university details.
+                                    Add your academic background.
                                 </p>
 
                             </div>
 
-                        </div>
+                            <button type="button"
+                                    class="remove-entry-btn"
+                                    style="display:none;">
 
+                                Remove
+
+                            </button>
+
+                        </div>
 
 
                         <!-- EDUCATION LEVEL -->
@@ -1130,13 +955,13 @@
 
                             </select>
 
-                            <small class="field-error"></small>
+                            <small class="field-error">
+                            </small>
 
                         </div>
 
 
-
-                        <!-- SCHOOL / COLLEGE -->
+                        <!-- INSTITUTION -->
 
                         <div class="form-group">
 
@@ -1144,20 +969,17 @@
                                 School / College / University *
                             </label>
 
-                            <input
-                                type="text"
-                                class="school-name"
-                                placeholder="XYZ University"
-                                maxlength="150"
-                            >
+                            <input type="text"
+                                   class="school-name"
+                                   placeholder="XYZ University">
 
-                            <small class="field-error"></small>
+                            <small class="field-error">
+                            </small>
 
                         </div>
 
 
-
-                        <!-- DEGREE -->
+                        <!-- QUALIFICATION -->
 
                         <div class="form-group">
 
@@ -1245,10 +1067,10 @@
 
                             </select>
 
-                            <small class="field-error"></small>
+                            <small class="field-error">
+                            </small>
 
                         </div>
-
 
 
                         <!-- FIELD OF STUDY -->
@@ -1259,78 +1081,11 @@
                                 Field of study
                             </label>
 
-                            <select class="education-field">
-
-                                <option value="">
-                                    Select field of study
-                                </option>
-
-                                <option value="Science">
-                                    Science
-                                </option>
-
-                                <option value="Commerce">
-                                    Commerce
-                                </option>
-
-                                <option value="Arts">
-                                    Arts
-                                </option>
-
-                                <option value="Computer Science">
-                                    Computer Science
-                                </option>
-
-                                <option value="Information Technology">
-                                    Information Technology
-                                </option>
-
-                                <option value="Engineering">
-                                    Engineering
-                                </option>
-
-                                <option value="Business Administration">
-                                    Business Administration
-                                </option>
-
-                                <option value="Accounting">
-                                    Accounting
-                                </option>
-
-                                <option value="Economics">
-                                    Economics
-                                </option>
-
-                                <option value="Mathematics">
-                                    Mathematics
-                                </option>
-
-                                <option value="Physics">
-                                    Physics
-                                </option>
-
-                                <option value="Chemistry">
-                                    Chemistry
-                                </option>
-
-                                <option value="Biology">
-                                    Biology
-                                </option>
-
-                                <option value="English">
-                                    English
-                                </option>
-
-                                <option value="Other">
-                                    Other
-                                </option>
-
-                            </select>
-
-                            <small class="field-error"></small>
+                            <input type="text"
+                                   class="education-field"
+                                   placeholder="Computer Science">
 
                         </div>
-
 
 
                         <!-- DATES -->
@@ -1343,12 +1098,11 @@
                                     Start date *
                                 </label>
 
-                                <input
-                                    type="month"
-                                    class="education-start"
-                                >
+                                <input type="month"
+                                       class="education-start">
 
-                                <small class="field-error"></small>
+                                <small class="field-error">
+                                </small>
 
                             </div>
 
@@ -1359,17 +1113,15 @@
                                     End date
                                 </label>
 
-                                <input
-                                    type="month"
-                                    class="education-end"
-                                >
+                                <input type="month"
+                                       class="education-end">
 
-                                <small class="field-error"></small>
+                                <small class="field-error">
+                                </small>
 
                             </div>
 
                         </div>
-
 
 
                         <!-- CURRENTLY STUDYING -->
@@ -1378,17 +1130,14 @@
 
                             <label>
 
-                                <input
-                                    type="checkbox"
-                                    class="currently-studying"
-                                >
+                                <input type="checkbox"
+                                       class="currently-studying">
 
-                                I am currently studying here
+                                Currently studying here
 
                             </label>
 
                         </div>
-
 
 
                         <!-- ACADEMIC RESULT -->
@@ -1399,17 +1148,14 @@
                                 Academic result
                             </label>
 
-
                             <div class="marks-options">
 
                                 <label>
 
-                                    <input
-                                        type="radio"
-                                        class="marks-type"
-                                        name="marksType-1"
-                                        value="percentage"
-                                    >
+                                    <input type="radio"
+                                           class="marks-type"
+                                           name="marksType-1"
+                                           value="percentage">
 
                                     Percentage
 
@@ -1418,12 +1164,10 @@
 
                                 <label>
 
-                                    <input
-                                        type="radio"
-                                        class="marks-type"
-                                        name="marksType-1"
-                                        value="cgpa"
-                                    >
+                                    <input type="radio"
+                                           class="marks-type"
+                                           name="marksType-1"
+                                           value="cgpa">
 
                                     CGPA
 
@@ -1434,57 +1178,48 @@
                         </div>
 
 
-
                         <!-- PERCENTAGE -->
 
-                        <div
-                            class="form-group percentage-field"
-                            style="display:none;"
-                        >
+                        <div class="form-group percentage-field"
+                             style="display:none;">
 
                             <label>
                                 Percentage
                             </label>
 
-                            <input
-                                type="number"
-                                class="percentage-input"
-                                min="0"
-                                max="100"
-                                step="0.01"
-                                placeholder="85.50"
-                            >
+                            <input type="number"
+                                   class="percentage-input"
+                                   min="0"
+                                   max="100"
+                                   step="0.01"
+                                   placeholder="85.50">
 
-                            <small class="field-error"></small>
+                            <small class="field-error">
+                            </small>
 
                         </div>
 
 
-
                         <!-- CGPA -->
 
-                        <div
-                            class="form-group cgpa-field"
-                            style="display:none;"
-                        >
+                        <div class="form-group cgpa-field"
+                             style="display:none;">
 
                             <label>
                                 CGPA
                             </label>
 
-                            <input
-                                type="number"
-                                class="cgpa-input"
-                                min="0"
-                                max="10"
-                                step="0.01"
-                                placeholder="8.50"
-                            >
+                            <input type="number"
+                                   class="cgpa-input"
+                                   min="0"
+                                   max="10"
+                                   step="0.01"
+                                   placeholder="8.50">
 
-                            <small class="field-error"></small>
+                            <small class="field-error">
+                            </small>
 
                         </div>
-
 
 
                         <!-- DESCRIPTION -->
@@ -1492,60 +1227,49 @@
                         <div class="form-group">
 
                             <label>
-                                Additional details
+                                Description
                             </label>
 
-                            <textarea
-                                class="education-description"
-                                rows="4"
-                                maxlength="1000"
-                                placeholder="Achievements, coursework, activities, awards or other relevant details..."
-                            ></textarea>
+                            <textarea class="education-description"
+                                      rows="4"
+                                      maxlength="700"
+                                      placeholder="Achievements, coursework, awards or activities...">
+                            </textarea>
 
                         </div>
 
-                    </div>
+                    </article>
 
                 </div>
 
 
+                <button type="button"
+                        id="addEducationButton"
+                        class="add-entry-button">
 
-                <!-- ADD EDUCATION -->
-
-                <button
-                    type="button"
-                    id="addEducationButton"
-                    class="add-entry-button"
-                >
-
-                    <span aria-hidden="true">
-                        +
-                    </span>
-
+                    <span>+</span>
                     Add another education
 
                 </button>
 
 
-
-                <!-- ACTIONS -->
-
                 <div class="section-actions">
 
-                    <button
-                        type="button"
-                        class="back-section-btn"
-                        data-back="experience"
-                    >
+                    <button type="button"
+                            class="back-section-btn"
+                            data-back="experience">
+
                         ← Back
+
                     </button>
 
-                    <button
-                        type="button"
-                        class="continue-section-btn"
-                        data-next="skills"
-                    >
-                        Continue to Skills →
+                    <button type="button"
+                            class="continue-section-btn"
+                            data-next="skills">
+
+                        Continue
+                        →
+
                     </button>
 
                 </div>
@@ -1558,85 +1282,88 @@
                  STEP 04 — SKILLS
             ================================================== -->
 
-            <section
-                class="builder-section"
-                id="section-skills"
-                data-section="skills"
-                aria-labelledby="skillsTitle"
-            >
+            <section class="builder-section"
+                     id="section-skills"
+                     data-section="skills">
 
-                <div class="step-label">
-                    STEP 04
+                <div class="section-heading">
+
+                    <span class="section-label">
+                        STEP 04
+                    </span>
+
+                    <h1>
+                        Add your key skills
+                    </h1>
+
+                    <p>
+                        Include skills that are relevant to
+                        the position you're applying for.
+                    </p>
+
                 </div>
-
-                <h1 id="skillsTitle">
-                    Add your key skills
-                </h1>
-
-                <p class="editor-subtitle">
-                    Choose skills that are relevant to
-                    the position you're applying for.
-                </p>
-
 
 
                 <div class="section-card">
 
-                    <h2>
-                        Skills
-                    </h2>
+                    <div class="card-heading-row">
+
+                        <div>
+
+                            <h2>
+                                Skills
+                            </h2>
+
+                            <p>
+                                Add one skill at a time.
+                            </p>
+
+                        </div>
+
+                    </div>
+
 
                     <div class="skill-input-row">
 
-                        <label
-                            for="skillInput"
-                            class="sr-only">
-                            Enter a skill
-                        </label>
+                        <input type="text"
+                               id="skillInput"
+                               maxlength="60"
+                               placeholder="Example: JavaScript">
 
-                        <input
-                            type="text"
-                            id="skillInput"
-                            placeholder="Example: JavaScript"
-                            maxlength="60"
-                        >
+                        <button type="button"
+                                id="addSkillButton">
 
-                        <button
-                            type="button"
-                            id="addSkillButton"
-                        >
                             + Add Skill
+
                         </button>
 
                     </div>
 
 
-                    <div
-                        id="skillsList"
-                        class="skills-list"
-                        aria-live="polite"
-                    ></div>
+                    <div id="skillsList"
+                         class="skills-list">
+                    </div>
 
                 </div>
 
 
-
                 <div class="section-actions">
 
-                    <button
-                        type="button"
-                        class="back-section-btn"
-                        data-back="education"
-                    >
+                    <button type="button"
+                            class="back-section-btn"
+                            data-back="education">
+
                         ← Back
+
                     </button>
 
-                    <button
-                        type="button"
-                        class="continue-section-btn"
-                        data-next="summary"
-                    >
-                        Continue to Summary →
+                    <button type="button"
+                            class="continue-section-btn"
+                            data-next="summary">
+
+                        Continue
+                        →
+
                     </button>
 
                 </div>
@@ -1649,77 +1376,99 @@
                  STEP 05 — SUMMARY
             ================================================== -->
 
-            <section
-                class="builder-section"
-                id="section-summary"
-                data-section="summary"
-                aria-labelledby="summaryTitle"
-            >
+            <section class="builder-section"
+                     id="section-summary"
+                     data-section="summary">
 
-                <div class="step-label">
-                    STEP 05
+                <div class="section-heading">
+
+                    <span class="section-label">
+                        STEP 05
+                    </span>
+
+                    <h1>
+                        Write your professional summary
+                    </h1>
+
+                    <p>
+                        Give employers a concise overview of
+                        your experience, strengths and career goals.
+                    </p>
+
                 </div>
-
-                <h1 id="summaryTitle">
-                    Write your professional summary
-                </h1>
-
-                <p class="editor-subtitle">
-                    Give employers a concise overview of your
-                    experience, strengths and career focus.
-                </p>
-
 
 
                 <div class="section-card">
 
-                    <h2>
-                        Professional Summary
-                    </h2>
+                    <div class="card-heading-row">
 
-                    <label
-                        for="professionalSummary"
-                        class="sr-only">
-                        Professional summary
-                    </label>
+                        <div>
 
-                    <textarea
-                        id="professionalSummary"
-                        rows="9"
-                        maxlength="500"
-                        placeholder="Example: Results-oriented software developer with experience in building web applications..."
-                    ></textarea>
+                            <h2>
+                                Professional Summary
+                            </h2>
+
+                            <p>
+                                Keep it concise and focused on
+                                your professional value.
+                            </p>
+
+                        </div>
+
+                    </div>
 
 
-                    <div class="character-count"
-                         aria-live="polite">
+                    <textarea id="professionalSummary"
+                              rows="10"
+                              maxlength="500"
+                              placeholder="Example: Detail-oriented software developer with experience in building web applications, working with databases and solving technical problems...">
+                    </textarea>
+
+
+                    <div class="character-count">
 
                         <span id="summaryCount">
                             0
-                        </span>/500
+                        </span>
+
+                        / 500
 
                     </div>
 
                 </div>
 
 
+                <div class="summary-tip">
+
+                    <strong>
+                        Writing tip
+                    </strong>
+
+                    <p>
+                        Mention your experience, strongest skills
+                        and the type of role you are targeting.
+                    </p>
+
+                </div>
+
 
                 <div class="section-actions">
 
-                    <button
-                        type="button"
-                        class="back-section-btn"
-                        data-back="skills"
-                    >
+                    <button type="button"
+                            class="back-section-btn"
+                            data-back="skills">
+
                         ← Back
+
                     </button>
 
-                    <button
-                        type="button"
-                        class="continue-section-btn"
-                        data-next="finalize"
-                    >
-                        Continue to Review →
+                    <button type="button"
+                            class="continue-section-btn"
+                            data-next="finalize">
+
+                        Review Resume
+                        →
+
                     </button>
 
                 </div>
@@ -1732,68 +1481,72 @@
                  STEP 06 — FINALIZE
             ================================================== -->
 
-            <section
-                class="builder-section"
-                id="section-finalize"
-                data-section="finalize"
-                aria-labelledby="finalizeTitle"
-            >
+            <section class="builder-section"
+                     id="section-finalize"
+                     data-section="finalize">
 
-                <div class="step-label">
-                    STEP 06
+                <div class="section-heading">
+
+                    <span class="section-label">
+                        STEP 06
+                    </span>
+
+                    <h1>
+                        Review your resume
+                    </h1>
+
+                    <p>
+                        Your resume is ready to review.
+                        Make any changes before downloading.
+                    </p>
+
                 </div>
-
-                <h1 id="finalizeTitle">
-                    Review your resume
-                </h1>
-
-                <p class="editor-subtitle">
-                    Check the live preview on the right,
-                    then download your completed resume.
-                </p>
-
 
 
                 <div class="finalize-card">
 
-                    <div
-                        class="finalize-icon"
-                        aria-hidden="true">
+                    <div class="finalize-icon">
                         ✓
                     </div>
-
 
                     <h2>
                         Your resume is ready
                     </h2>
 
-
                     <p>
-                        Review your information and make
-                        any final changes before downloading.
+                        Review the live preview on the right.
+                        When you're satisfied, download your resume.
                     </p>
 
 
-                    <button
-                        type="button"
-                        id="downloadResumeButton"
-                        class="download-button"
-                    >
+                    <button type="button"
+                            id="downloadResumeButton"
+                            class="download-button">
+
                         Download Resume
+
+                    </button>
+
+
+                    <button type="button"
+                            id="printResumeButton"
+                            class="print-button">
+
+                        Print Resume
+
                     </button>
 
                 </div>
 
 
-
                 <div class="section-actions">
 
-                    <button
-                        type="button"
-                        class="back-section-btn"
-                        data-back="summary"
-                    >
+                    <button type="button"
+                            class="back-section-btn"
+                            data-back="summary">
+
                         ← Back
+
                     </button>
 
                 </div>
@@ -1802,24 +1555,21 @@
 
         </div>
 
-    </main>
+    </section>
 
 
 
-    <!-- =================================================
-         RIGHT — LIVE PREVIEW
-    ================================================== -->
+    <!-- =====================================================
+         RIGHT LIVE PREVIEW
+    ====================================================== -->
 
-    <aside
-        class="builder-preview"
-        aria-label="Live resume preview">
-
+    <aside class="builder-preview">
 
         <div class="preview-header">
 
             <div>
 
-                <span>
+                <span class="preview-eyebrow">
                     LIVE PREVIEW
                 </span>
 
@@ -1829,51 +1579,48 @@
 
             </div>
 
+
+            <a href="templates.html"
+               class="preview-template-link">
+
+                Change template
+
+            </a>
+
         </div>
 
 
-
-        <!-- PREVIEW AREA -->
-
         <div class="preview-area">
 
-
-            <div
-                class="resume-template-wrapper template-minimal"
-                id="resumeTemplateWrapper"
-            >
+            <div class="resume-template-wrapper template-minimal"
+                 id="resumeTemplateWrapper">
 
 
-                <div
-                    class="resume-page"
-                    id="resumePage"
-                >
+                <article class="resume-page"
+                         id="resumePage">
 
 
-                    <!-- =================================================
-                         RESUME HEADER
-                    ================================================== -->
+                    <!-- RESUME HEADER -->
 
                     <header class="resume-header">
 
 
+                        <!-- PHOTO -->
+
                         <div class="resume-photo">
 
-                            <span
-                                id="resumePhotoIcon"
-                                aria-hidden="true">
+                            <span id="resumePhotoIcon">
                                 👤
                             </span>
 
-                            <img
-                                id="resumePhoto"
-                                src=""
-                                alt="Profile"
-                            >
+                            <img id="resumePhoto"
+                                 src=""
+                                 alt="Profile">
 
                         </div>
 
 
+                        <!-- NAME / TITLE -->
 
                         <div class="resume-heading">
 
@@ -1881,12 +1628,12 @@
                                 Your Name
                             </h1>
 
-
                             <h2 id="previewTitle">
                                 Professional Title
                             </h2>
 
 
+                            <!-- CONTACT -->
 
                             <div class="resume-contact">
 
@@ -1905,35 +1652,27 @@
                             </div>
 
 
+                            <!-- LINKS -->
 
-                            <div
-                                id="previewLinks"
-                                class="preview-links"
-                            ></div>
+                            <div id="previewLinks"
+                                 class="preview-links">
+                            </div>
 
                         </div>
 
                     </header>
 
 
-
                     <div class="resume-divider"></div>
 
 
+                    <!-- SUMMARY -->
 
-                    <!-- =================================================
-                         SUMMARY
-                    ================================================== -->
-
-                    <section
-                        class="resume-section resume-summary"
-                        aria-label="Professional summary"
-                    >
+                    <section class="resume-section resume-summary">
 
                         <h3 class="resume-section-title">
-                            PROFESSIONAL SUMMARY
+                            Professional Summary
                         </h3>
-
 
                         <p id="previewSummary">
                             Your professional summary
@@ -1943,20 +1682,13 @@
                     </section>
 
 
+                    <!-- EXPERIENCE -->
 
-                    <!-- =================================================
-                         EXPERIENCE
-                    ================================================== -->
-
-                    <section
-                        class="resume-section resume-experience"
-                        aria-label="Work experience"
-                    >
+                    <section class="resume-section resume-experience">
 
                         <h3 class="resume-section-title">
-                            EXPERIENCE
+                            Experience
                         </h3>
-
 
                         <div id="previewExperience">
 
@@ -1970,20 +1702,13 @@
                     </section>
 
 
+                    <!-- EDUCATION -->
 
-                    <!-- =================================================
-                         EDUCATION
-                    ================================================== -->
-
-                    <section
-                        class="resume-section resume-education"
-                        aria-label="Education"
-                    >
+                    <section class="resume-section resume-education">
 
                         <h3 class="resume-section-title">
-                            EDUCATION
+                            Education
                         </h3>
-
 
                         <div id="previewEducation">
 
@@ -1997,34 +1722,31 @@
                     </section>
 
 
+                    <!-- SKILLS -->
 
-                    <!-- =================================================
-                         SKILLS
-                    ================================================== -->
-
-                    <section
-                        class="resume-section resume-skills"
-                        aria-label="Skills"
-                    >
+                    <section class="resume-section resume-skills">
 
                         <h3 class="resume-section-title">
-                            SKILLS
+                            Skills
                         </h3>
 
+                        <div id="previewSkills"
+                             class="preview-skills">
 
-                        <div
-                            id="previewSkills"
-                            class="preview-skills"
-                        ></div>
+                            <span>
+                                Add your skills
+                            </span>
+
+                        </div>
 
                     </section>
 
-                </div>
+
+                </article>
 
             </div>
 
         </div>
-
 
 
         <!-- PREVIEW FOOTER -->
@@ -2032,12 +1754,11 @@
         <div class="preview-footer">
 
             <span>
-                ✓ Live preview
+                ✓ Live updates
             </span>
 
-
             <a href="templates.html">
-                Change template
+                Browse templates
             </a>
 
         </div>
@@ -2048,22 +1769,21 @@
 
 
 
-<!-- =====================================================
-     TOAST NOTIFICATION
-===================================================== -->
+<!-- =========================================================
+     TOAST MESSAGE
+========================================================= -->
 
-<div
-    id="toast"
-    class="toast"
-    role="status"
-    aria-live="polite"
-></div>
-
+<div id="toast"
+     class="toast"
+     role="status"
+     aria-live="polite">
+</div>
 
 
-<!-- =====================================================
-     JAVASCRIPT
-===================================================== -->
+
+<!-- =========================================================
+     BUILDER JAVASCRIPT
+========================================================= -->
 
 <script src="js/builder.js"></script>
 
