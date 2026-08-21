@@ -3144,3 +3144,193 @@ a {
     }
 
 }
+/* =========================================================
+   ACADEMIC RESULT - PROFESSIONAL RADIO CARDS
+========================================================= */
+
+.academic-result-group {
+    margin-top: 20px;
+}
+
+.academic-result-group > label {
+    display: block;
+    margin-bottom: 9px;
+}
+
+
+/* Options container */
+
+.academic-result-group .marks-options {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+
+/* Individual option */
+
+.academic-result-group .marks-option {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    min-width: 145px;
+    height: 48px;
+
+    padding: 0 14px;
+
+    box-sizing: border-box;
+
+    background: #ffffff;
+    border: 1px solid #d9e0e8;
+    border-radius: 9px;
+
+    cursor: pointer;
+    user-select: none;
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+/* Hide original radio */
+
+.academic-result-group .marks-option input {
+    position: absolute;
+
+    opacity: 0;
+
+    width: 1px;
+    height: 1px;
+
+    pointer-events: none;
+}
+
+
+/* Custom radio */
+
+.academic-result-group .marks-radio {
+    width: 19px;
+    height: 19px;
+
+    flex: 0 0 19px;
+
+    border: 2px solid #c7d0dc;
+    border-radius: 50%;
+
+    background: #ffffff;
+
+    box-sizing: border-box;
+
+    position: relative;
+
+    transition: all 0.2s ease;
+}
+
+
+/* Selected radio */
+
+.academic-result-group
+.marks-option
+input:checked
++ .marks-radio {
+    border-color: #2563eb;
+}
+
+
+/* Inner circle */
+
+.academic-result-group
+.marks-option
+input:checked
++ .marks-radio::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 9px;
+    height: 9px;
+
+    left: 3px;
+    top: 3px;
+
+    border-radius: 50%;
+
+    background: #2563eb;
+}
+
+
+/* Text */
+
+.academic-result-group .marks-text {
+    color: #334155;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    line-height: 1.4;
+}
+
+
+/* Hover */
+
+.academic-result-group .marks-option:hover {
+    background: #f8fafc;
+    border-color: #b8c5d6;
+}
+
+
+/* Selected card */
+
+.academic-result-group
+.marks-option:has(input:checked) {
+
+    background: #eff6ff;
+    border-color: #93c5fd;
+
+    box-shadow:
+        0 1px 3px rgba(37, 99, 235, 0.06);
+}
+
+
+/* Selected text */
+
+.academic-result-group
+.marks-option:has(input:checked)
+.marks-text {
+
+    color: #1d4ed8;
+}
+
+
+/* Keyboard accessibility */
+
+.academic-result-group
+.marks-option:has(input:focus-visible) {
+
+    outline: 3px solid rgba(37, 99, 235, 0.15);
+    outline-offset: 2px;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .academic-result-group .marks-options {
+        flex-direction: column;
+    }
+
+    .academic-result-group .marks-option {
+        width: 100%;
+        min-width: 0;
+    }
+
+}
