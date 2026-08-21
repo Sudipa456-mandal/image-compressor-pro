@@ -22,11 +22,43 @@
 
 <header class="builder-topbar">
 
-    <a href="index.html" class="builder-logo">
-        Resume<span>Craft</span>
-    </a>
+    <div class="topbar-left">
 
-   
+        <a href="index.html" class="builder-logo">
+            Resume<span>Craft</span>
+        </a>
+
+        <span class="topbar-divider"></span>
+
+        <span class="builder-page-title">
+            Resume Builder
+        </span>
+
+    </div>
+
+
+    <div class="topbar-center">
+
+        <span class="save-status">
+            <span class="save-dot"></span>
+            Saved automatically
+        </span>
+
+    </div>
+
+
+    <div class="topbar-right">
+
+        <a href="templates.html" class="topbar-link">
+            Change Template
+        </a>
+
+        <a href="index.html" class="topbar-link">
+            Exit Builder
+        </a>
+
+    </div>
+
 </header>
 
 
@@ -43,13 +75,19 @@
 
     <aside class="builder-sidebar">
 
-        <div class="sidebar-intro">
+       <div class="sidebar-intro">
 
-            <span>BUILD YOUR RESUME</span>
+    <span class="sidebar-eyebrow">
+        RESUME BUILDER
+    </span>
 
-            <h2>Your progress</h2>
+    <h2>Build your resume</h2>
 
-        </div>
+    <p>
+        Complete each section to create your professional resume.
+    </p>
+
+</div>
 
 
         <nav class="builder-steps">
@@ -213,9 +251,10 @@
 
             <div class="completion-heading">
 
-                <strong>
-                    Resume completeness
-                </strong>
+                <div>
+            <strong>Resume progress</strong>
+            <span>Complete your profile</span>
+        </div>
 
                 <span id="completionPercent">
                     0%
@@ -232,12 +271,7 @@
 
             </div>
 
-            <p>
-                Complete your details to create
-                a stronger resume.
-            </p>
-
-        </div>
+                    </div>
 
 
        <div class="sidebar-footer">
@@ -297,16 +331,23 @@
                     <div class="form-card-header">
 
                         <div>
+                            <span class="card-eyebrow">
+                PERSONAL DETAILS
+            </span>
 
                             <h2>
                                 Personal information
                             </h2>
-
                             <p>
-                                Required fields are marked *
-                            </p>
+                Add the information employers need to contact you.
+            </p>
+
+                            
 
                         </div>
+                        <span class="required-note">
+            * Required
+        </span>
 
                     </div>
  <div class="compact-photo">
@@ -327,15 +368,15 @@
 
             <strong>Profile photo</strong>
 
-            <span>
-                JPG or PNG · Max 2MB
-            </span>
+           <span>
+    Optional · JPG or PNG · Maximum 2MB
+</span>
 
             <label
                 for="photoInput"
                 class="compact-upload-button"
             >
-                Upload photo
+                Choose photo
             </label>
 
             <input
@@ -1525,16 +1566,19 @@
 
             <div>
 
-                <span>
-                    LIVE PREVIEW
-                </span>
+                <span class="preview-eyebrow">
+                LIVE PREVIEW
+            </span>
 
                 <h2>
                     Your resume
                 </h2>
 
             </div>
-
+<div class="preview-status">
+            <span></span>
+            Updated
+        </div>
 
             </div>
 
@@ -1651,6 +1695,7 @@
 
                 <section class="resume-section resume-education">
 
+                    
                     <h3 class="resume-section-title">
                         EDUCATION
                     </h3>
@@ -1696,7 +1741,7 @@
         <div class="preview-footer">
 
             <span>
-                ✓ Live updates
+                 Live preview
             </span>
 
             <a href="templates.html">
