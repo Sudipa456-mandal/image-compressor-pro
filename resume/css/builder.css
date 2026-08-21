@@ -1859,6 +1859,9 @@ a {
         min-height: calc(100vh - 60px);
     }
 
+
+    
+
     .builder-sidebar {
         position: static;
 
@@ -1993,142 +1996,698 @@ a {
    Keep the existing builder functionality, but give the
    editor a cleaner SaaS-style layout.
 ========================================================= */
+/* =========================================================
+   RESUMECRAFT PROFESSIONAL UI
+   FINAL DESIGN OVERRIDES
+   ========================================================= */
 
 :root {
     --rc-primary: #0f766e;
     --rc-primary-dark: #115e59;
+    --rc-primary-light: #f0fdfa;
     --rc-primary-soft: #ecfdf5;
-    --rc-ink: #172033;
-    --rc-muted: #667085;
-    --rc-border: #e4e7ec;
+
     --rc-bg: #f5f7fa;
+    --rc-card: #ffffff;
+
+    --rc-text: #172033;
+    --rc-text-secondary: #475467;
+    --rc-text-muted: #667085;
+
+    --rc-border: #e4e7ec;
+    --rc-border-dark: #d0d5dd;
+
+    --rc-danger: #dc2626;
 }
 
-body { background: var(--rc-bg); color: var(--rc-ink); }
+
+/* =========================================================
+   TOP BAR
+   ========================================================= */
 
 .builder-topbar {
     height: 64px;
     padding: 0 24px;
-    background: rgba(255,255,255,.97);
-    border-bottom: 1px solid #e5e7eb;
-    box-shadow: 0 1px 3px rgba(16,24,40,.04);
+
+    background: rgba(255, 255, 255, 0.98);
+
+    border-bottom: 1px solid var(--rc-border);
+
+    box-shadow:
+        0 1px 3px rgba(16, 24, 40, 0.04);
+
+    z-index: 100;
 }
 
-.builder-logo { font-size: 21px; letter-spacing: -.6px; }
-.builder-logo span { color: var(--rc-primary); }
+.builder-logo {
+    font-size: 21px;
+    font-weight: 800;
+    letter-spacing: -0.6px;
+
+    color: var(--rc-text);
+}
+
+.builder-logo span {
+    color: var(--rc-primary);
+}
+
+
+/* =========================================================
+   TOP ACTIONS
+   ========================================================= */
 
 .builder-top-actions {
     margin-left: auto;
+
     display: flex;
     align-items: center;
+
     gap: 9px;
 }
+
 .builder-save-status {
     display: inline-flex;
     align-items: center;
+
     gap: 6px;
+
     padding: 7px 10px;
+
     border-radius: 8px;
-    color: #475467;
+
+    color: var(--rc-text-secondary);
+
     font-size: 12px;
+
     background: #f8fafc;
+
     border: 1px solid #eaecf0;
 }
+
 .builder-top-link {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+
     min-height: 36px;
+
     padding: 0 12px;
+
     border-radius: 8px;
+
+    border: 1px solid var(--rc-border-dark);
+
+    background: #ffffff;
+
+    color: #344054;
+
     font-size: 12px;
     font-weight: 700;
-    border: 1px solid #d0d5dd;
-    background: #fff;
-    color: #344054;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease;
 }
+
+.builder-top-link:hover {
+    background: #f8fafc;
+    border-color: #98a2b3;
+}
+
 .builder-top-link.primary {
-    color: #fff;
     background: var(--rc-primary);
     border-color: var(--rc-primary);
+
+    color: #ffffff;
 }
-.builder-top-link:hover { border-color: #98a2b3; }
-.builder-top-link.primary:hover { background: var(--rc-primary-dark); border-color: var(--rc-primary-dark); }
+
+.builder-top-link.primary:hover {
+    background: var(--rc-primary-dark);
+    border-color: var(--rc-primary-dark);
+}
+
+
+/* =========================================================
+   MAIN LAYOUT
+   ========================================================= */
 
 .builder-layout {
-    grid-template-columns: 238px minmax(560px, 1fr) 500px;
+    grid-template-columns:
+        238px
+        minmax(560px, 1fr)
+        500px;
+
     min-height: calc(100vh - 64px);
 }
+
+
+/* =========================================================
+   LEFT SIDEBAR
+   ========================================================= */
 
 .builder-sidebar {
     top: 64px;
+
     height: calc(100vh - 64px);
+
     min-height: calc(100vh - 64px);
-    background: #fff;
-    border-right: 1px solid #e5e7eb;
+
+    background: #ffffff;
+
+    border-right: 1px solid var(--rc-border);
 }
-.sidebar-intro { padding: 24px 20px 16px; }
-.sidebar-intro span { color: var(--rc-primary); font-size: 10px; }
-.sidebar-intro h2 { font-size: 19px; }
-.builder-steps { padding: 0 12px; gap: 3px; }
-.builder-step { border-radius: 10px; padding: 10px 9px; }
-.builder-step:hover { background: #f8fafc; }
-.builder-step.active { background: #ecfdf5; }
-.builder-step.active .step-circle { background: var(--rc-primary); box-shadow: none; }
-.builder-step.active .step-content strong { color: var(--rc-primary-dark); }
-.step-circle { width: 34px; height: 34px; flex-basis: 34px; font-size: 10px; }
-.step-content strong { font-size: 13px; }
-.step-content small { font-size: 10px; }
-.sidebar-completion { margin: auto 14px 14px; border-radius: 11px; padding: 14px; background: #f8fafc; }
-.completion-fill { background: var(--rc-primary); }
-.sidebar-footer { padding: 13px 18px 17px; }
 
-.builder-editor { background: #f6f8fa; }
-.editor-inner { max-width: 820px; padding: 36px 34px 70px; }
-.section-heading { margin-bottom: 22px; }
-.section-label, .step-label { color: var(--rc-primary); font-size: 10px; }
-.section-heading h1, .builder-section > h1 { font-size: 28px; letter-spacing: -.7px; }
-.section-heading p, .editor-subtitle { font-size: 13px; color: #667085; }
-.form-card, .optional-card, .section-card { border-radius: 12px; padding: 22px; box-shadow: 0 1px 4px rgba(16,24,40,.03); border-color: #e4e7ec; }
-.form-card-header h2, .section-card h2 { font-size: 16px; }
-.form-group label { font-size: 11px; color: #344054; }
-.form-group input, .form-group select, .form-group textarea, .section-card input, .section-card select, .section-card textarea, #professionalSummary, #skillInput { border-color: #d0d5dd; border-radius: 8px; min-height: 42px; }
-.form-group input:focus, .form-group select:focus, .form-group textarea:focus, .section-card input:focus, .section-card select:focus, .section-card textarea:focus, #professionalSummary:focus, #skillInput:focus { border-color: var(--rc-primary); box-shadow: 0 0 0 3px rgba(15,118,110,.10); }
-.checkbox-group { margin: 8px 0 17px; }
-.checkbox-group label { width: fit-content; padding: 9px 11px; border: 1px solid #d0d5dd; border-radius: 8px; background: #fff; color: #475467; }
-.checkbox-group label:hover { border-color: #98a2b3; background: #f8fafc; }
-.checkbox-group input { width: 16px !important; min-height: 16px !important; accent-color: var(--rc-primary); }
-.marks-options { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
-.marks-options label { margin: 0; padding: 8px 11px; border: 1px solid #d0d5dd; border-radius: 8px; background: #fff; }
-.marks-options label:has(input:checked) { border-color: var(--rc-primary); background: var(--rc-primary-soft); color: var(--rc-primary-dark); }
-.marks-options input { width: 15px !important; min-height: 15px !important; accent-color: var(--rc-primary); }
-.add-entry-btn, .add-entry-button { border-radius: 8px; border-color: #b2ddda; background: #f0fdfa; color: var(--rc-primary-dark); }
-.continue-section-btn, .primary-action { background: var(--rc-primary); border-color: var(--rc-primary); }
-.continue-section-btn:hover, .primary-action:hover { background: var(--rc-primary-dark); }
+.sidebar-intro {
+    padding: 24px 20px 16px;
+}
 
-.builder-preview { top: 64px; height: calc(100vh - 64px); background: #eef2f4; border-left: 1px solid #dfe3e8; }
-.preview-header { min-height: 68px; padding: 13px 18px; }
-.preview-header span { color: var(--rc-primary); }
-.preview-header h2 { font-size: 15px; }
-.preview-area { padding: 24px 20px 32px; }
-.preview-footer { min-height: 44px; padding: 0 16px; }
-.preview-footer a { color: var(--rc-primary-dark); }
+.sidebar-intro span {
+    color: var(--rc-primary);
+
+    font-size: 10px;
+    font-weight: 800;
+}
+
+.sidebar-intro h2 {
+    font-size: 19px;
+
+    color: var(--rc-text);
+}
+
+
+/* =========================================================
+   STEPS
+   ========================================================= */
+
+.builder-steps {
+    padding: 0 12px;
+
+    gap: 3px;
+}
+
+.builder-step {
+    border-radius: 10px;
+
+    padding: 10px 9px;
+}
+
+.builder-step:hover {
+    background: #f8fafc;
+}
+
+.builder-step.active {
+    background: var(--rc-primary-soft);
+}
+
+.builder-step.active .step-circle {
+    background: var(--rc-primary);
+
+    color: #ffffff;
+
+    box-shadow: none;
+}
+
+.builder-step.active .step-content strong {
+    color: var(--rc-primary-dark);
+}
+
+.step-circle {
+    width: 34px;
+    height: 34px;
+
+    flex-basis: 34px;
+
+    font-size: 10px;
+}
+
+.step-content strong {
+    font-size: 13px;
+}
+
+.step-content small {
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   COMPLETION
+   ========================================================= */
+
+.sidebar-completion {
+    margin: auto 14px 14px;
+
+    padding: 14px;
+
+    border-radius: 11px;
+
+    background: #f8fafc;
+
+    border: 1px solid var(--rc-border);
+}
+
+.completion-fill {
+    background: var(--rc-primary);
+}
+
+
+/* =========================================================
+   EDITOR
+   ========================================================= */
+
+.builder-editor {
+    background: var(--rc-bg);
+}
+
+.editor-inner {
+    max-width: 820px;
+
+    padding: 36px 34px 70px;
+}
+
+
+/* =========================================================
+   SECTION HEADINGS
+   ========================================================= */
+
+.section-heading {
+    margin-bottom: 22px;
+}
+
+.section-label,
+.step-label {
+    color: var(--rc-primary);
+
+    font-size: 10px;
+}
+
+.section-heading h1,
+.builder-section > h1 {
+    font-size: 28px;
+
+    letter-spacing: -0.7px;
+
+    color: var(--rc-text);
+}
+
+.section-heading p,
+.editor-subtitle {
+    font-size: 13px;
+
+    color: var(--rc-text-muted);
+}
+
+
+/* =========================================================
+   FORM CARDS
+   ========================================================= */
+
+.form-card,
+.optional-card,
+.section-card {
+    padding: 22px;
+
+    border-radius: 12px;
+
+    background: var(--rc-card);
+
+    border: 1px solid var(--rc-border);
+
+    box-shadow:
+        0 1px 4px rgba(16, 24, 40, 0.03);
+}
+
+.form-card-header h2,
+.section-card h2 {
+    font-size: 16px;
+}
+
+
+/* =========================================================
+   FORM LABELS
+   ========================================================= */
+
+.form-group label {
+    font-size: 11px;
+
+    color: #344054;
+}
+
+
+/* =========================================================
+   INPUTS
+   ========================================================= */
+
+.form-group input,
+.form-group select,
+.form-group textarea,
+.section-card input,
+.section-card select,
+.section-card textarea,
+#professionalSummary,
+#skillInput {
+    border-color: var(--rc-border-dark);
+
+    border-radius: 8px;
+
+    color: var(--rc-text);
+
+    background: #ffffff;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus,
+.section-card input:focus,
+.section-card select:focus,
+.section-card textarea:focus,
+#professionalSummary:focus,
+#skillInput:focus {
+    border-color: var(--rc-primary);
+
+    box-shadow:
+        0 0 0 3px rgba(15, 118, 110, 0.10);
+}
+
+
+/* =========================================================
+   CHECKBOX
+   ========================================================= */
+
+.checkbox-group {
+    margin: 8px 0 17px;
+}
+
+.checkbox-group label {
+    width: fit-content;
+
+    padding: 9px 11px;
+
+    border: 1px solid var(--rc-border-dark);
+
+    border-radius: 8px;
+
+    background: #ffffff;
+
+    color: var(--rc-text-secondary);
+}
+
+.checkbox-group label:hover {
+    border-color: #98a2b3;
+
+    background: #f8fafc;
+}
+
+.checkbox-group input {
+    width: 16px !important;
+    height: 16px !important;
+
+    min-height: 16px !important;
+
+    accent-color: var(--rc-primary);
+}
+
+
+/* =========================================================
+   EDUCATION MARKS
+   ========================================================= */
+
+.marks-options {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 8px;
+
+    margin-top: 4px;
+}
+
+.marks-options label {
+    margin: 0;
+
+    padding: 8px 11px;
+
+    border: 1px solid var(--rc-border-dark);
+
+    border-radius: 8px;
+
+    background: #ffffff;
+}
+
+.marks-options label:has(input:checked) {
+    border-color: var(--rc-primary);
+
+    background: var(--rc-primary-soft);
+
+    color: var(--rc-primary-dark);
+}
+
+.marks-options input {
+    width: 15px !important;
+    height: 15px !important;
+
+    min-height: 15px !important;
+
+    accent-color: var(--rc-primary);
+}
+
+
+/* =========================================================
+   ADD ENTRY BUTTONS
+   ========================================================= */
+
+.add-entry-btn,
+.add-entry-button {
+    border-radius: 8px;
+
+    border-color: #b2ddda;
+
+    background: #f0fdfa;
+
+    color: var(--rc-primary-dark);
+}
+
+.add-entry-btn:hover,
+.add-entry-button:hover {
+    background: #ccfbf1;
+
+    border-color: #80cbc4;
+}
+
+
+/* =========================================================
+   PRIMARY BUTTONS
+   ========================================================= */
+
+.continue-section-btn,
+.primary-action,
+#addSkillButton,
+.download-button {
+    background: var(--rc-primary);
+
+    border-color: var(--rc-primary);
+
+    color: #ffffff;
+}
+
+.continue-section-btn:hover,
+.primary-action:hover,
+#addSkillButton:hover,
+.download-button:hover {
+    background: var(--rc-primary-dark);
+
+    border-color: var(--rc-primary-dark);
+}
+
+
+/* =========================================================
+   SKILLS
+   ========================================================= */
+
+.skill-tag {
+    background: var(--rc-primary-soft);
+
+    border-color: #b2ddda;
+
+    color: var(--rc-primary-dark);
+}
+
+.skill-tag button {
+    color: var(--rc-primary-dark);
+}
+
+.skill-tag button:hover {
+    background: #ccfbf1;
+}
+
+
+/* =========================================================
+   RIGHT PREVIEW
+   ========================================================= */
+
+.builder-preview {
+    top: 64px;
+
+    height: calc(100vh - 64px);
+
+    background: #eef2f4;
+
+    border-left: 1px solid #dfe3e8;
+}
+
+
+/* =========================================================
+   PREVIEW HEADER
+   ========================================================= */
+
+.preview-header {
+    min-height: 68px;
+
+    padding: 13px 18px;
+}
+
+.preview-header span {
+    color: var(--rc-primary);
+}
+
+.preview-header h2 {
+    font-size: 15px;
+}
+
+
+/* =========================================================
+   PREVIEW AREA
+   ========================================================= */
+
+.preview-area {
+    padding: 24px 20px 32px;
+}
+
+
+/* =========================================================
+   RESUME PREVIEW
+   ========================================================= */
+
+.resume-divider {
+    background: var(--rc-primary);
+}
+
+.resume-heading h2 {
+    color: var(--rc-primary);
+}
+
+.resume-section h3 {
+    color: var(--rc-primary);
+}
+
+.preview-company,
+.preview-school {
+    color: var(--rc-primary);
+}
+
+.preview-skills span {
+    background: var(--rc-primary-soft);
+
+    border-color: #b2ddda;
+
+    color: var(--rc-primary-dark);
+}
+
+
+/* =========================================================
+   PREVIEW FOOTER
+   ========================================================= */
+
+.preview-footer {
+    min-height: 44px;
+
+    padding: 0 16px;
+}
+
+.preview-footer a {
+    color: var(--rc-primary-dark);
+}
+
+
+/* =========================================================
+   RESPONSIVE — LAPTOP
+   ========================================================= */
 
 @media (max-width: 1280px) {
-    .builder-layout { grid-template-columns: 220px minmax(500px, 1fr) 430px; }
+
+    .builder-layout {
+        grid-template-columns:
+            220px
+            minmax(500px, 1fr)
+            430px;
+    }
+
 }
+
+
+/* =========================================================
+   RESPONSIVE — TABLET
+   ========================================================= */
 
 @media (max-width: 1080px) {
-    .builder-layout { grid-template-columns: 220px 1fr; }
-    .builder-preview { display: none; }
+
+    .builder-layout {
+        grid-template-columns:
+            220px
+            1fr;
+    }
+
+    .builder-preview {
+        display: none;
+    }
+
 }
 
+
+/* =========================================================
+   RESPONSIVE — MOBILE
+   ========================================================= */
+
 @media (max-width: 720px) {
-    .builder-topbar { height: 60px; padding: 0 14px; }
-    .builder-top-actions { gap: 5px; }
-    .builder-save-status { display: none; }
-    .builder-top-link { min-height: 34px; padding: 0 9px; font-size: 11px; }
-    .builder-layout { display: block; min-height: calc(100vh - 60px); }
-    .builder-sidebar { position: static; height: auto; min-height: auto; }
-    .editor-inner { padding: 28px 14px 55px; }
+
+    .builder-topbar {
+        height: 60px;
+
+        padding: 0 14px;
+    }
+
+    .builder-top-actions {
+        gap: 5px;
+    }
+
+    .builder-save-status {
+        display: none;
+    }
+
+    .builder-top-link {
+        min-height: 34px;
+
+        padding: 0 9px;
+
+        font-size: 11px;
+    }
+
+    .builder-layout {
+        display: block;
+
+        min-height: calc(100vh - 60px);
+    }
+
+    .builder-sidebar {
+        position: static;
+
+        height: auto;
+
+        min-height: auto;
+    }
+
+    .editor-inner {
+        padding: 28px 14px 55px;
+    }
+
 }
