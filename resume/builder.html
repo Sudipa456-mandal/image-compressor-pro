@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,13 +8,10 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
-    <title>Free Resume Builder | ResumeCraft</title>
-    <meta name="description" content="Create a professional resume with ResumeCraft. Add your experience, education and skills, choose a clean template and download your resume.">
-    <meta name="robots" content="noindex,follow">
-    <meta name="theme-color" content="#0f766e">
+    <title>ResumeCraft - Resume Builder</title>
 
     <link rel="stylesheet" href="css/builder.css">
-    <link rel="stylesheet" href="css/resume-templates.css">
+<link rel="stylesheet" href="css/resume-templates.css">
 </head>
 
 <body>
@@ -23,9 +21,12 @@
 ===================================================== -->
 
 <header class="builder-topbar">
-    <a href="index.html" class="builder-logo" aria-label="ResumeCraft home">
+
+    <a href="index.html" class="builder-logo">
         Resume<span>Craft</span>
     </a>
+
+   
 </header>
 
 
@@ -240,9 +241,11 @@
 
 
         <div class="sidebar-footer">
-            <a href="../privacy.html">Privacy</a>
-            <a href="../terms.html">Terms</a>
-            <a href="../disclaimer.html">Disclaimer</a>
+
+            <a href="#">Privacy</a>
+            <a href="#">Terms</a>
+            <a href="#">Contact</a>
+
         </div>
 
     </aside>
@@ -1520,172 +1523,191 @@
 
     <aside class="builder-preview">
 
-    <!-- ================================
-         RESUME PREVIEW HEADER
-    ================================= -->
-    <div class="preview-header">
-        <div>
-            <span>LIVE PREVIEW</span>
-            <h2>Your Resume</h2>
-        </div>
-
-        <div class="preview-status">
-            <span class="status-dot"></span>
-            Live
-        </div>
-    </div>
-
-
-    <!-- ================================
-         RESUME PREVIEW
-    ================================= -->
-    <div class="preview-area">
-
-        <div class="resume-template-wrapper" id="resumePreview">
-
-            <!-- builder.js will render the resume here -->
-
-        </div>
-
-    </div>
-
-
-    <!-- ================================
-         LIVE UPDATES
-    ================================= -->
-    <section class="live-updates-card">
-
-        <div class="live-updates-title">
-
-            <div class="live-icon">
-                ✓
-            </div>
+        <div class="preview-header">
 
             <div>
-                <h3>Live Updates</h3>
-                <p>Your resume updates automatically.</p>
+
+                <span>
+                    LIVE PREVIEW
+                </span>
+
+                <h2>
+                    Your resume
+                </h2>
+
+            </div>
+
+
+            </div>
+
+
+        <div class="preview-area">
+
+    <div
+        class="resume-template-wrapper template-minimal"
+        id="resumeTemplateWrapper"
+    >
+
+        <div
+            class="resume-page"
+            id="resumePage"
+        >
+
+                <!-- RESUME HEADER -->
+
+                <div class="resume-header">
+
+                    <div class="resume-photo">
+
+                        <span id="resumePhotoIcon">
+                            👤
+                        </span>
+
+                        <img
+                            id="resumePhoto"
+                            src=""
+                            alt="Profile"
+                        >
+
+                    </div>
+
+
+                    <div class="resume-heading">
+
+                        <h1 id="previewName">
+                            Your Name
+                        </h1>
+
+                        <h2 id="previewTitle">
+                            Professional Title
+                        </h2>
+
+                        <div class="resume-contact">
+
+                            <span id="previewEmail">
+                                email@example.com
+                            </span>
+
+                            <span id="previewPhone">
+                                Phone
+                            </span>
+
+                            <span id="previewLocation">
+                                Location
+                            </span>
+
+                        </div>
+<div
+    id="previewLinks"
+    class="preview-links"
+></div>
+</div>
+</div>
+                   
+
+               
+
+
+
+                <div class="resume-divider"></div>
+
+
+                <!-- SUMMARY -->
+
+                <section class="resume-section resume-summary">
+
+    <h3 class="resume-section-title">
+        PROFESSIONAL SUMMARY
+    </h3>
+                    <p id="previewSummary">
+                        Your professional summary
+                        will appear here.
+                    </p>
+
+                </section>
+
+
+                <!-- EXPERIENCE -->
+
+                <section class="resume-section resume-experience">
+
+                    <h3 class="resume-section-title">
+
+
+                        EXPERIENCE
+                    </h3>
+
+                    <div id="previewExperience">
+
+                        <p>
+                            Your professional experience
+                            will appear here.
+                        </p>
+
+                    </div>
+
+                </section>
+
+
+                <!-- EDUCATION -->
+
+                <section class="resume-section resume-education">
+
+                    <h3 class="resume-section-title">
+                        EDUCATION
+                    </h3>
+
+                    <div id="previewEducation">
+
+                        <p>
+                            Your education details
+                            will appear here.
+                        </p>
+
+                    </div>
+
+                </section>
+
+
+                <!-- SKILLS -->
+
+                <section class="resume-section resume-skills">
+
+                    <h3 class="resume-section-title">
+                        SKILLS
+                    </h3>
+
+                    <div
+                        id="previewSkills"
+                        class="preview-skills"
+                    >
+
+                        <span>JavaScript</span>
+                        <span>HTML</span>
+                        <span>CSS</span>
+
+                    </div>
+
+                </section>
+
             </div>
 
         </div>
 
 
-        <div class="live-update-list">
+        <div class="preview-footer">
 
-            <div class="live-update-item">
-                <span>✓</span>
-                <p>Changes appear instantly</p>
-            </div>
+            <span>
+                ✓ Live updates
+            </span>
 
-            <div class="live-update-item">
-                <span>✓</span>
-                <p>Your information is saved automatically</p>
-            </div>
-
-            <div class="live-update-item">
-                <span>✓</span>
-                <p>Switch templates anytime</p>
-            </div>
+            <a href="templates.html">
+                Change template
+            </a>
 
         </div>
 
-    </section>
-
-
-    <!-- ================================
-         CHANGE TEMPLATE
-    ================================= -->
-    <section class="change-template-card">
-
-        <div class="change-template-heading">
-
-            <div>
-                <span class="design-label">DESIGN</span>
-
-                <h3>Change Template</h3>
-
-                <p>
-                    Choose a professional resume layout.
-                </p>
-            </div>
-
-        </div>
-
-
-        <!-- Template buttons -->
-        <div class="template-selector">
-
-            <button
-                type="button"
-                class="template-option active"
-                data-template="classic">
-
-                <span class="template-mini classic-mini"></span>
-
-                <strong>Classic</strong>
-
-            </button>
-
-
-            <button
-                type="button"
-                class="template-option"
-                data-template="modern">
-
-                <span class="template-mini modern-mini"></span>
-
-                <strong>Modern</strong>
-
-            </button>
-
-
-            <button
-                type="button"
-                class="template-option"
-                data-template="minimal">
-
-                <span class="template-mini minimal-mini"></span>
-
-                <strong>Minimal</strong>
-
-            </button>
-
-
-            <button
-                type="button"
-                class="template-option"
-                data-template="professional">
-
-                <span class="template-mini professional-mini"></span>
-
-                <strong>Professional</strong>
-
-            </button>
-
-        </div>
-
-
-        <a
-            href="templates.html"
-            class="browse-templates-btn">
-
-            Browse All Templates
-            <span>→</span>
-
-        </a>
-
-    </section>
-
-
-    <!-- Preview footer -->
-    <div class="preview-footer">
-
-        <a href="../privacy.html">Privacy</a>
-
-        <a href="../terms.html">Terms</a>
-
-    </div>
-
-</aside>
+    </aside>
 
 </div>
 
