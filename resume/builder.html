@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,41 +21,22 @@
 
 <header class="builder-topbar">
 
-    <div class="topbar-left">
+    <a href="index.html" class="builder-logo" aria-label="ResumeCraft home">
+        Resume<span>Craft</span>
+    </a>
 
-        <a href="index.html" class="builder-logo">
-            Resume<span>Craft</span>
-        </a>
-
-        <span class="topbar-divider"></span>
-
-        <span class="builder-page-title">
-            Resume Builder
+    <div class="builder-top-actions">
+        <span class="builder-save-status" aria-live="polite">
+            <span aria-hidden="true">✓</span> Saved automatically
         </span>
 
-    </div>
-
-
-    <div class="topbar-center">
-
-        <span class="save-status">
-            <span class="save-dot"></span>
-            Saved automatically
-        </span>
-
-    </div>
-
-
-    <div class="topbar-right">
-
-        <a href="templates.html" class="topbar-link">
-            Change Template
+        <a href="templates.html" class="builder-top-link">
+            Change template
         </a>
 
-        <a href="index.html" class="topbar-link">
-            Exit Builder
+        <a href="index.html" class="builder-top-link primary">
+            Exit builder
         </a>
-
     </div>
 
 </header>
@@ -75,19 +55,13 @@
 
     <aside class="builder-sidebar">
 
-       <div class="sidebar-intro">
+        <div class="sidebar-intro">
 
-    <span class="sidebar-eyebrow">
-        RESUME BUILDER
-    </span>
+            <span>BUILD YOUR RESUME</span>
 
-    <h2>Build your resume</h2>
+            <h2>Your progress</h2>
 
-    <p>
-        Complete each section to create your professional resume.
-    </p>
-
-</div>
+        </div>
 
 
         <nav class="builder-steps">
@@ -251,10 +225,9 @@
 
             <div class="completion-heading">
 
-                <div>
-            <strong>Resume progress</strong>
-            <span>Complete your profile</span>
-        </div>
+                <strong>
+                    Resume completeness
+                </strong>
 
                 <span id="completionPercent">
                     0%
@@ -271,14 +244,21 @@
 
             </div>
 
-                    </div>
+            <p>
+                Complete your details to create
+                a stronger resume.
+            </p>
+
+        </div>
 
 
-       <div class="sidebar-footer">
-    <a href="../privacy.html">Privacy</a>
-    <a href="../terms.html">Terms</a>
-    <a href="../contact.html">Contact</a>
-</div>
+        <div class="sidebar-footer">
+
+            <a href="#">Privacy</a>
+            <a href="#">Terms</a>
+            <a href="#">Contact</a>
+
+        </div>
 
     </aside>
 
@@ -331,23 +311,16 @@
                     <div class="form-card-header">
 
                         <div>
-                            <span class="card-eyebrow">
-                PERSONAL DETAILS
-            </span>
 
                             <h2>
                                 Personal information
                             </h2>
-                            <p>
-                Add the information employers need to contact you.
-            </p>
 
-                            
+                            <p>
+                                Required fields are marked *
+                            </p>
 
                         </div>
-                        <span class="required-note">
-            * Required
-        </span>
 
                     </div>
  <div class="compact-photo">
@@ -368,15 +341,15 @@
 
             <strong>Profile photo</strong>
 
-           <span>
-    Optional · JPG or PNG · Maximum 2MB
-</span>
+            <span>
+                JPG or PNG · Max 2MB
+            </span>
 
             <label
                 for="photoInput"
                 class="compact-upload-button"
             >
-                Choose photo
+                Upload photo
             </label>
 
             <input
@@ -806,22 +779,19 @@
             </div>
 <!-- CURRENTLY WORKING HERE -->
 
-<div class="form-group current-status">
+<div class="form-group checkbox-group">
 
-    <label class="status-option">
+    <label>
         <input
             type="checkbox"
             class="currently-working"
         >
 
-        <span class="custom-checkbox"></span>
-
-        <span class="status-text">
-            Currently working here
-        </span>
+        Currently working here
     </label>
 
 </div>
+
 
             <!-- DESCRIPTION -->
             <div class="form-group">
@@ -1197,67 +1167,54 @@
 
             <!-- CURRENTLY STUDYING -->
 
-           <div class="form-group current-status">
+            <div class="form-group checkbox-group">
 
-    <label class="status-option">
-        <input
-            type="checkbox"
-            class="currently-studying"
-        >
+                <label>
 
-        <span class="custom-checkbox"></span>
+                    <input
+                        type="checkbox"
+                        class="currently-studying"
+                    >
 
-        <span class="status-text">
-            Currently studying here
-        </span>
-    </label>
+                    Currently studying here
 
-</div>
+                </label>
+
+            </div>
 
 
             <!-- MARKS -->
 
-          <div class="form-group academic-result-group">
+            <div class="form-group">
 
-    <label>
-        Academic Result
-    </label>
-<div class="marks-options">
+                <label>
+                    Academic Result
+                </label>
 
-        <label class="marks-option">
+                <div class="marks-options">
 
-            <input
-                type="radio"
-                class="marks-type"
-                name="marksType-1"
-                value="percentage"
-            >
+                    <label>
+                        <input
+                            type="radio"
+                            class="marks-type"
+                            name="marksType-1"
+                            value="percentage"
+                        >
 
-            <span class="marks-radio"></span>
-
-            <span class="marks-text">
-                Percentage
-            </span>
-
-</label>
+                        Percentage
+                    </label>
 
 
-        <label class="marks-option">
+                    <label>
+                        <input
+                            type="radio"
+                            class="marks-type"
+                            name="marksType-1"
+                            value="cgpa"
+                        >
 
-            <input
-                type="radio"
-                class="marks-type"
-                name="marksType-1"
-                value="cgpa"
-            >
-
-            <span class="marks-radio"></span>
-
-            <span class="marks-text">
-                CGPA
-            </span>
-
-        </label>
+                        CGPA
+                    </label>
 
                 </div>
 
@@ -1582,29 +1539,26 @@
 
             <div>
 
-                <span class="preview-eyebrow">
-                LIVE PREVIEW
-            </span>
+                <span>
+                    LIVE PREVIEW
+                </span>
 
                 <h2>
                     Your resume
                 </h2>
 
             </div>
-<div class="preview-status">
-            <span></span>
-            Updated
-        </div>
+
 
             </div>
 
 
         <div class="preview-area">
 
-   <div 
-    class="resume-template-wrapper"
-    id="resumeTemplateWrapper"
->
+    <div
+        class="resume-template-wrapper template-minimal"
+        id="resumeTemplateWrapper"
+    >
 
         <div
             class="resume-page"
@@ -1711,7 +1665,6 @@
 
                 <section class="resume-section resume-education">
 
-                    
                     <h3 class="resume-section-title">
                         EDUCATION
                     </h3>
@@ -1754,7 +1707,18 @@
         </div>
 
 
-        
+        <div class="preview-footer">
+
+            <span>
+                ✓ Live updates
+            </span>
+
+            <a href="templates.html">
+                Change template
+            </a>
+
+        </div>
+
     </aside>
 
 </div>
