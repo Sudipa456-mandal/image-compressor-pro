@@ -1,19 +1,30 @@
 /* =========================================================
-   ResumeCraft Builder
-   Compatible with current builder.html
+   RESUMECRAFT - RESUME BUILDER
+   Professional, lightweight, privacy-friendly builder
 ========================================================= */
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", function () {
 
     "use strict";
 
     /* =====================================================
-       STORAGE
+       CONFIG
     ===================================================== */
 
     const STORAGE_KEY = "resumeCraftData";
 
-    const defaultData = {
+    const steps = [
+        "heading",
+        "experience",
+        "education",
+        "skills",
+        "summary",
+        "finalize"
+    ];
+
+    let currentSection = "heading";
+
+    let resumeData = {
         personal: {
             firstName: "",
             lastName: "",
@@ -28,51 +39,14 @@ document.addEventListener("DOMContentLoaded", () => {
             photo: ""
         },
 
-        experience: [
-            {
-                jobTitle: "",
-                companyName: "",
-                workLocation: "",
-                startDate: "",
-                endDate: "",
-                currentlyWorking: false,
-                description: ""
-            }
-        ],
+        experience: [],
 
-        education: [
-            {
-                level: "",
-                school: "",
-                degree: "",
-                field: "",
-                startDate: "",
-                endDate: "",
-                currentlyStudying: false,
-                marksType: "",
-                percentage: "",
-                cgpa: "",
-                description: ""
-            }
-        ],
+        education: [],
 
         skills: [],
 
-        summary: "",
-
-        settings: {
-            template: "classic"
-        },
-
-        currentSection: "heading"
+        summary: ""
     };
-
-
-    /* =====================================================
-       GLOBAL DATA
-    ===================================================== */
-
-    let resumeData = loadData();
 
 
     /* =====================================================
@@ -87,7 +61,87 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       UTILITY
+       LOAD DATA
+    ===================================================== */
+
+    function loadData() {
+
+        try {
+
+            const saved =
+                localStorage.getItem(STORAGE_KEY);
+
+            if (!saved) return;
+
+            const parsed = JSON.parse(saved);
+
+            resumeData = {
+                ...resumeData,
+                ...parsed,
+
+                personal: {
+                    ...resumeData.personal,
+                    ...(parsed.personal || {})
+                },
+
+                experience:
+                    Array.isArray(parsed.experience)
+                        ? parsed.experience
+                        : [],
+
+                education:
+                    Array.isArray(parsed.education)
+                        ? parsed.education
+                        : [],
+
+                skills:
+                    Array.isArray(parsed.skills)
+                        ? parsed.skills
+                        : [],
+
+                summary:
+                    parsed.summary || ""
+            };
+
+        } catch (error) {
+
+            console.warn(
+                "ResumeCraft data could not be loaded.",
+                error
+            );
+
+        }
+
+    }
+
+
+    /* =====================================================
+       SAVE DATA
+    ===================================================== */
+
+    function saveData() {
+
+        try {
+
+            localStorage.setItem(
+                STORAGE_KEY,
+                JSON.stringify(resumeData)
+            );
+
+        } catch (error) {
+
+            console.warn(
+                "ResumeCraft data could not be saved.",
+                error
+            );
+
+        }
+
+    }
+
+
+    /* =====================================================
+       SAFE TEXT
     ===================================================== */
 
     function escapeHTML(value) {
@@ -102,602 +156,256 @@ document.addEventListener("DOMContentLoaded", () => {
             .replace(/>/g, "&gt;")
             .replace(/"/g, "&quot;")
             .replace(/'/g, "&#039;");
+
     }
 
 
-    function saveData() {
+    /* =====================================================
+       INITIALIZE PERSONAL FORM
+    ===================================================== */
 
-        try {
+    function initializePersonalForm() {
 
-            localStorage.setItem(
-                STORAGE_KEY,
-                JSON.stringify(resumeData)
-            );
+        const fields = [
+            "firstName",
+            "lastName",
+            "professionalTitle",
+            "city",
+            "country",
+            "pinCode",
+            "phone",
+            "email"
+        ];
 
-        } catch (error) {
+        fields.forEach(function (field) {
 
-            console.error(
-                "Could not save resume data:",
-                error
-            );
-        }
-    }
+            const element = $("#" + field);
 
+            if (!element) return;
 
-    function loadData() {
-
-        try {
-
-            const saved =
-                localStorage.getItem(STORAGE_KEY);
-
-            if (!saved) {
-                return structuredClone(defaultData);
-            }
-
-            const parsed = JSON.parse(saved);
-
-            return mergeData(
-                structuredClone(defaultData),
-                parsed
-            );
-
-        } catch (error) {
-
-            console.error(
-                "Could not load saved data:",
-                error
-            );
-
-            return structuredClone(defaultData);
-        }
-    }
-
-
-    function mergeData(defaults, saved) {
-
-        if (
-            typeof defaults !== "object" ||
-            defaults === null
-        ) {
-            return saved;
-        }
-
-        if (
-            typeof saved !== "object" ||
-            saved === null
-        ) {
-            return defaults;
-        }
-
-        Object.keys(saved).forEach(key => {
-
-            if (
-                Array.isArray(saved[key])
-            ) {
-
-                defaults[key] = saved[key];
-
-            } else if (
-                typeof saved[key] === "object" &&
-                saved[key] !== null &&
-                typeof defaults[key] === "object" &&
-                defaults[key] !== null
-            ) {
-
-                defaults[key] =
-                    mergeData(
-                        defaults[key],
-                        saved[key]
-                    );
-
-            } else {
-
-                defaults[key] = saved[key];
-
-            }
+            element.value =
+                resumeData.personal[field] || "";
 
         });
 
-        return defaults;
     }
 
 
     /* =====================================================
-       TOAST
+       PERSONAL FORM EVENTS
     ===================================================== */
 
-    function showToast(message) {
+    function setupPersonalForm() {
 
-        const toast = $("#toast");
+        const fields = [
+            "firstName",
+            "lastName",
+            "professionalTitle",
+            "city",
+            "country",
+            "pinCode",
+            "phone",
+            "email"
+        ];
 
-        if (!toast) {
-            return;
-        }
+        fields.forEach(function (field) {
 
-        toast.textContent = message;
-        toast.classList.add("show");
+            const element = $("#" + field);
 
-        clearTimeout(
-            showToast.timeout
-        );
+            if (!element) return;
 
-        showToast.timeout =
-            setTimeout(() => {
+            element.addEventListener(
+                "input",
+                function () {
 
-                toast.classList.remove("show");
+                    resumeData.personal[field] =
+                        element.value.trim();
 
-            }, 2500);
-    }
+                    saveData();
+                    updatePreview();
+                    updateCompletion();
 
-
-    /* =====================================================
-       SECTION NAVIGATION
-    ===================================================== */
-
-    const sectionOrder = [
-        "heading",
-        "experience",
-        "education",
-        "skills",
-        "summary",
-        "finalize"
-    ];
-
-
-    function showSection(sectionName) {
-
-        if (
-            !sectionOrder.includes(sectionName)
-        ) {
-            return;
-        }
-
-        $$(".builder-section").forEach(section => {
-
-            section.classList.toggle(
-                "active",
-                section.dataset.section === sectionName
+                }
             );
 
         });
 
-
-        $$(".builder-step").forEach(step => {
-
-            step.classList.toggle(
-                "active",
-                step.dataset.section === sectionName
-            );
-
-        });
-
-
-        resumeData.currentSection =
-            sectionName;
-
-        saveData();
-
-        updateStepState();
-
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
-    }
-
-
-    function updateStepState() {
-
-        const currentIndex =
-            sectionOrder.indexOf(
-                resumeData.currentSection
-            );
-
-        $$(".builder-step").forEach(step => {
-
-            const section =
-                step.dataset.section;
-
-            const index =
-                sectionOrder.indexOf(section);
-
-            step.classList.remove("locked");
-            step.classList.remove("completed");
-
-            if (index > currentIndex) {
-
-                step.classList.add("locked");
-
-            } else if (index < currentIndex) {
-
-                step.classList.add("completed");
-
-            }
-
-        });
-    }
-
-
-    function canOpenSection(sectionName) {
-
-        const targetIndex =
-            sectionOrder.indexOf(sectionName);
-
-        const currentIndex =
-            sectionOrder.indexOf(
-                resumeData.currentSection
-            );
-
-        if (targetIndex <= currentIndex) {
-            return true;
-        }
-
-        return true;
     }
 
 
     /* =====================================================
-       SIDEBAR STEP BUTTONS
+       OPTIONAL LINKS
     ===================================================== */
 
-    $$(".builder-step").forEach(button => {
+    function setupOptionalLinks() {
 
-        button.addEventListener(
-            "click",
-            () => {
-
-                const section =
-                    button.dataset.section;
-
-                if (!canOpenSection(section)) {
-
-                    showToast(
-                        "Complete the previous section first."
-                    );
-
-                    return;
-                }
-
-                showSection(section);
-            }
-        );
-    });
-
-
-    /* =====================================================
-       CONTINUE BUTTONS
-    ===================================================== */
-
-    $$(".continue-section-btn").forEach(button => {
-
-        button.addEventListener(
-            "click",
-            () => {
-
-                const currentSection =
-                    button.closest(
-                        ".builder-section"
-                    );
-
-                if (!currentSection) {
-                    return;
-                }
-
-                const section =
-                    currentSection.dataset.section;
-
-                if (!validateSection(section)) {
-                    return;
-                }
-
-                const next =
-                    button.dataset.next;
-
-                if (next) {
-                    showSection(next);
-                }
-            }
-        );
-    });
-
-
-    /* =====================================================
-       BACK BUTTONS
-    ===================================================== */
-
-    $$(".back-section-btn").forEach(button => {
-
-        button.addEventListener(
-            "click",
-            () => {
-
-                const back =
-                    button.dataset.back;
-
-                if (back) {
-                    showSection(back);
-                }
-            }
-        );
-    });
-
-
-    /* =====================================================
-       BACK TO TEMPLATES
-    ===================================================== */
-
-    const backToTemplates =
-        $("#backToTemplates");
-
-    if (backToTemplates) {
-
-        backToTemplates.addEventListener(
-            "click",
-            () => {
-
-                window.location.href =
-                    "templates.html";
-            }
-        );
-    }
-
-
-    /* =====================================================
-       PERSONAL INFORMATION
-    ===================================================== */
-
-    const personalFields = [
-        "firstName",
-        "lastName",
-        "professionalTitle",
-        "city",
-        "country",
-        "pinCode",
-        "phone",
-        "email"
-    ];
-
-
-    personalFields.forEach(fieldId => {
-
-        const input =
-            document.getElementById(fieldId);
-
-        if (!input) {
-            return;
-        }
-
-        input.value =
-            resumeData.personal[fieldId] || "";
-
-        input.addEventListener(
-            "input",
-            () => {
-
-                resumeData.personal[fieldId] =
-                    input.value.trim();
-
-                clearFieldError(input);
-
-                saveAndUpdate();
-            }
-        );
-    });
-
-
-    /* =====================================================
-       OPTIONAL INFORMATION
-    ===================================================== */
-
-    function renderOptionalFields() {
+        const buttons =
+            $$(".optional-info-button");
 
         const container =
             $("#optionalFields");
 
-        if (!container) {
-            return;
-        }
+        if (!container) return;
 
-        container.innerHTML = "";
-
-        const fields = [];
-
-        if (resumeData.personal.linkedin) {
-
-            fields.push({
-                id: "linkedin",
-                label: "LinkedIn",
-                placeholder:
-                    "https://linkedin.com/in/yourname",
-                value:
-                    resumeData.personal.linkedin
-            });
-
-        }
-
-        if (resumeData.personal.website) {
-
-            fields.push({
-                id: "website",
-                label: "Website",
-                placeholder:
-                    "https://yourwebsite.com",
-                value:
-                    resumeData.personal.website
-            });
-
-        }
-
-        fields.forEach(field => {
-
-            const wrapper =
-                document.createElement("div");
-
-            wrapper.className =
-                "form-group optional-field";
-
-            wrapper.innerHTML = `
-                <label for="${field.id}">
-                    ${field.label}
-                </label>
-
-                <div class="optional-input-row">
-
-                    <input
-                        type="url"
-                        id="${field.id}"
-                        value="${escapeHTML(field.value)}"
-                        placeholder="${field.placeholder}"
-                    >
-
-                    <button
-                        type="button"
-                        class="remove-optional"
-                        data-field="${field.id}"
-                    >
-                        Remove
-                    </button>
-
-                </div>
-            `;
-
-            container.appendChild(wrapper);
-
-            const input =
-                document.getElementById(field.id);
-
-            input.addEventListener(
-                "input",
-                () => {
-
-                    resumeData.personal[field.id] =
-                        input.value.trim();
-
-                    saveAndUpdate();
-                }
-            );
-        });
-
-
-        $$(".remove-optional").forEach(button => {
+        buttons.forEach(function (button) {
 
             button.addEventListener(
                 "click",
-                () => {
+                function () {
 
                     const field =
                         button.dataset.field;
 
-                    resumeData.personal[field] = "";
+                    if (!field) return;
 
-                    renderOptionalFields();
+                    if (
+                        container.querySelector(
+                            `[data-optional="${field}"]`
+                        )
+                    ) {
 
-                    saveAndUpdate();
+                        return;
+
+                    }
+
+                    const label =
+                        field === "linkedin"
+                            ? "LinkedIn profile"
+                            : "Personal website";
+
+                    const placeholder =
+                        field === "linkedin"
+                            ? "https://linkedin.com/in/yourname"
+                            : "https://yourwebsite.com";
+
+                    const wrapper =
+                        document.createElement("div");
+
+                    wrapper.className =
+                        "optional-field-row";
+
+                    wrapper.dataset.optional =
+                        field;
+
+                    wrapper.innerHTML = `
+                        <div class="form-group full-width">
+
+                            <label for="${field}">
+                                ${label}
+                            </label>
+
+                            <div class="optional-input-wrap">
+
+                                <input
+                                    type="url"
+                                    id="${field}"
+                                    placeholder="${placeholder}"
+                                    value="${escapeHTML(
+                                        resumeData.personal[field] || ""
+                                    )}"
+                                >
+
+                                <button
+                                    type="button"
+                                    class="remove-optional"
+                                    aria-label="Remove ${label}"
+                                >
+                                    Remove
+                                </button>
+
+                            </div>
+
+                        </div>
+                    `;
+
+                    container.appendChild(wrapper);
+
+                    const input =
+                        $("#" + field, wrapper);
+
+                    input.addEventListener(
+                        "input",
+                        function () {
+
+                            resumeData.personal[field] =
+                                input.value.trim();
+
+                            saveData();
+                            updatePreview();
+
+                        }
+                    );
+
+                    const removeButton =
+                        $(".remove-optional", wrapper);
+
+                    removeButton.addEventListener(
+                        "click",
+                        function () {
+
+                            resumeData.personal[field] = "";
+
+                            wrapper.remove();
+
+                            saveData();
+                            updatePreview();
+
+                        }
+                    );
+
+                    input.focus();
+
                 }
             );
+
         });
-    }
 
 
-    $$(".optional-info-button").forEach(button => {
+        /* Restore saved optional fields */
 
-        button.addEventListener(
-            "click",
-            () => {
+        ["linkedin", "website"].forEach(
+            function (field) {
 
-                const field =
-                    button.dataset.field;
+                if (
+                    resumeData.personal[field]
+                ) {
 
-                if (!field) {
-                    return;
+                    const button =
+                        $(
+                            `.optional-info-button[data-field="${field}"]`
+                        );
+
+                    if (button) {
+                        button.click();
+                    }
+
                 }
 
-                if (!resumeData.personal[field]) {
-
-                    resumeData.personal[field] = "";
-                }
-
-                renderOptionalFields();
-
-                const input =
-                    document.getElementById(field);
-
-                if (input) {
-                    input.focus();
-                }
-
-                saveData();
             }
         );
-    });
 
-
-    renderOptionalFields();
+    }
 
 
     /* =====================================================
        PROFILE PHOTO
     ===================================================== */
 
-    const photoInput =
-        $("#photoInput");
+    function setupPhotoUpload() {
 
-    const previewPhoto =
-        $("#previewPhoto");
+        const input =
+            $("#photoInput");
 
-    const previewPhotoIcon =
-        $("#previewPhotoIcon");
+        if (!input) return;
 
-
-    function renderPhoto() {
-
-        if (!previewPhoto) {
-            return;
-        }
-
-        if (resumeData.personal.photo) {
-
-            previewPhoto.src =
-                resumeData.personal.photo;
-
-            previewPhoto.style.display =
-                "block";
-
-            if (previewPhotoIcon) {
-                previewPhotoIcon.style.display =
-                    "none";
-            }
-
-        } else {
-
-            previewPhoto.removeAttribute(
-                "src"
-            );
-
-            previewPhoto.style.display =
-                "none";
-
-            if (previewPhotoIcon) {
-                previewPhotoIcon.style.display =
-                    "inline";
-            }
-        }
-    }
-
-
-    if (photoInput) {
-
-        photoInput.addEventListener(
+        input.addEventListener(
             "change",
-            event => {
+            function () {
 
                 const file =
-                    event.target.files[0];
+                    input.files && input.files[0];
 
-                if (!file) {
-                    return;
-                }
+                if (!file) return;
 
                 if (
                     ![
@@ -707,12 +415,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 ) {
 
                     showToast(
-                        "Please upload a JPG or PNG image."
+                        "Please select a JPG or PNG image."
                     );
 
-                    photoInput.value = "";
-
+                    input.value = "";
                     return;
+
                 }
 
                 if (
@@ -724,85 +432,168 @@ document.addEventListener("DOMContentLoaded", () => {
                         "Photo must be smaller than 2MB."
                     );
 
-                    photoInput.value = "";
-
+                    input.value = "";
                     return;
+
                 }
 
                 const reader =
                     new FileReader();
 
-                reader.onload = () => {
+                reader.onload = function (event) {
 
                     resumeData.personal.photo =
-                        reader.result;
+                        event.target.result;
 
-                    renderPhoto();
+                    saveData();
+                    updatePhotoPreview();
+                    updatePreview();
 
-                    saveAndUpdate();
-
-                    showToast(
-                        "Profile photo updated."
-                    );
                 };
 
                 reader.readAsDataURL(file);
+
             }
         );
+
+        updatePhotoPreview();
+
     }
 
 
-    renderPhoto();
+    function updatePhotoPreview() {
+
+        const photo =
+            resumeData.personal.photo;
+
+        const previewPhoto =
+            $("#previewPhoto");
+
+        const previewIcon =
+            $("#previewPhotoIcon");
+
+        const resumePhoto =
+            $("#resumePhoto");
+
+        const resumePhotoIcon =
+            $("#resumePhotoIcon");
+
+        if (photo) {
+
+            if (previewPhoto) {
+
+                previewPhoto.src = photo;
+                previewPhoto.style.display = "block";
+
+            }
+
+            if (previewIcon) {
+
+                previewIcon.style.display = "none";
+
+            }
+
+            if (resumePhoto) {
+
+                resumePhoto.src = photo;
+                resumePhoto.style.display = "block";
+
+            }
+
+            if (resumePhotoIcon) {
+
+                resumePhotoIcon.style.display = "none";
+
+            }
+
+        } else {
+
+            if (previewPhoto) {
+
+                previewPhoto.removeAttribute("src");
+                previewPhoto.style.display = "none";
+
+            }
+
+            if (previewIcon) {
+
+                previewIcon.style.display = "inline";
+
+            }
+
+            if (resumePhoto) {
+
+                resumePhoto.removeAttribute("src");
+                resumePhoto.style.display = "none";
+
+            }
+
+            if (resumePhotoIcon) {
+
+                resumePhotoIcon.style.display = "inline";
+
+            }
+
+        }
+
+    }
 
 
     /* =====================================================
        EXPERIENCE
     ===================================================== */
 
-    function getExperienceFromDOM() {
+    function createExperience() {
 
-        return $$(".experience-item")
-            .map(item => {
+        return {
+            jobTitle: "",
+            company: "",
+            location: "",
+            startDate: "",
+            endDate: "",
+            currentlyWorking: false,
+            description: ""
+        };
 
-                return {
-                    jobTitle:
-                        $(".experience-job-title", item)?.value.trim() || "",
+    }
 
-                    companyName:
-                        $(".experience-company", item)?.value.trim() || "",
 
-                    workLocation:
-                        $(".experience-location", item)?.value.trim() || "",
+    function ensureExperience() {
 
-                    startDate:
-                        $(".experience-start", item)?.value || "",
+        if (
+            !Array.isArray(resumeData.experience)
+        ) {
 
-                    endDate:
-                        $(".experience-end", item)?.value || "",
+            resumeData.experience = [];
 
-                    currentlyWorking:
-                        $(".currently-working", item)?.checked || false,
+        }
 
-                    description:
-                        $(".experience-description", item)?.value.trim() || ""
-                };
-            });
+        if (
+            resumeData.experience.length === 0
+        ) {
+
+            resumeData.experience.push(
+                createExperience()
+            );
+
+        }
+
     }
 
 
     function renderExperience() {
 
-        const list =
+        const container =
             $("#experienceList");
 
-        if (!list) {
-            return;
-        }
+        if (!container) return;
 
-        list.innerHTML = "";
+        ensureExperience();
+
+        container.innerHTML = "";
 
         resumeData.experience.forEach(
-            (experience, index) => {
+            function (item, index) {
 
                 const card =
                     document.createElement("div");
@@ -810,23 +601,34 @@ document.addEventListener("DOMContentLoaded", () => {
                 card.className =
                     "section-card experience-item";
 
+                card.dataset.index = index;
+
                 card.innerHTML = `
 
                     <div class="card-heading-row">
 
-                        <h2>
-                            Work Experience ${index + 1}
-                        </h2>
+                        <div>
+
+                            <span class="entry-number">
+                                Experience ${index + 1}
+                            </span>
+
+                            <h2>Work Experience</h2>
+
+                        </div>
 
                         <button
                             type="button"
                             class="remove-entry-btn"
-                            ${resumeData.experience.length === 1 ? "style=\"display:none;\"" : ""}
+                            ${resumeData.experience.length === 1
+                                ? 'style="display:none;"'
+                                : ""}
                         >
                             Remove
                         </button>
 
                     </div>
+
 
                     <div class="form-group">
 
@@ -837,11 +639,9 @@ document.addEventListener("DOMContentLoaded", () => {
                         <input
                             type="text"
                             class="experience-job-title"
-                            value="${escapeHTML(experience.jobTitle)}"
                             placeholder="Software Developer"
+                            value="${escapeHTML(item.jobTitle)}"
                         >
-
-                        <small class="field-error"></small>
 
                     </div>
 
@@ -857,14 +657,11 @@ document.addEventListener("DOMContentLoaded", () => {
                             <input
                                 type="text"
                                 class="experience-company"
-                                value="${escapeHTML(experience.companyName)}"
                                 placeholder="ABC Technologies"
+                                value="${escapeHTML(item.company)}"
                             >
 
-                            <small class="field-error"></small>
-
                         </div>
-
 
                         <div class="form-group">
 
@@ -875,8 +672,8 @@ document.addEventListener("DOMContentLoaded", () => {
                             <input
                                 type="text"
                                 class="experience-location"
-                                value="${escapeHTML(experience.workLocation)}"
                                 placeholder="Kolkata"
+                                value="${escapeHTML(item.location)}"
                             >
 
                         </div>
@@ -895,13 +692,10 @@ document.addEventListener("DOMContentLoaded", () => {
                             <input
                                 type="month"
                                 class="experience-start"
-                                value="${experience.startDate || ""}"
+                                value="${escapeHTML(item.startDate)}"
                             >
 
-                            <small class="field-error"></small>
-
                         </div>
-
 
                         <div class="form-group">
 
@@ -912,11 +706,11 @@ document.addEventListener("DOMContentLoaded", () => {
                             <input
                                 type="month"
                                 class="experience-end"
-                                value="${experience.endDate || ""}"
-                                ${experience.currentlyWorking ? "disabled" : ""}
+                                value="${escapeHTML(item.endDate)}"
+                                ${item.currentlyWorking
+                                    ? "disabled"
+                                    : ""}
                             >
-
-                            <small class="field-error"></small>
 
                         </div>
 
@@ -930,7 +724,9 @@ document.addEventListener("DOMContentLoaded", () => {
                             <input
                                 type="checkbox"
                                 class="currently-working"
-                                ${experience.currentlyWorking ? "checked" : ""}
+                                ${item.currentlyWorking
+                                    ? "checked"
+                                    : ""}
                             >
 
                             Currently working here
@@ -950,653 +746,226 @@ document.addEventListener("DOMContentLoaded", () => {
                             class="experience-description"
                             rows="5"
                             placeholder="Describe your responsibilities and achievements..."
-                        >${escapeHTML(experience.description)}</textarea>
+                        >${escapeHTML(item.description)}</textarea>
 
                     </div>
+
                 `;
 
-                list.appendChild(card);
+                container.appendChild(card);
+
+                setupExperienceCard(
+                    card,
+                    index
+                );
+
             }
         );
 
-        attachExperienceEvents();
+        updatePreview();
+
     }
 
 
-    function attachExperienceEvents() {
+    function setupExperienceCard(
+        card,
+        index
+    ) {
 
-        $$(".experience-item").forEach(
-            (item, index) => {
+        const fields = {
 
-                $$(
-                    "input, textarea",
-                    item
-                ).forEach(input => {
+            jobTitle:
+                $(".experience-job-title", card),
 
-                    input.addEventListener(
-                        "input",
-                        () => {
+            company:
+                $(".experience-company", card),
 
-                            updateExperienceFromDOM();
+            location:
+                $(".experience-location", card),
 
-                            saveAndUpdate();
-                        }
-                    );
+            startDate:
+                $(".experience-start", card),
 
-                    input.addEventListener(
-                        "change",
-                        () => {
+            endDate:
+                $(".experience-end", card),
 
-                            updateExperienceFromDOM();
+            description:
+                $(".experience-description", card)
 
-                            saveAndUpdate();
-                        }
-                    );
-                });
+        };
 
 
-                const checkbox =
-                    $(".currently-working", item);
+        Object.keys(fields).forEach(
+            function (key) {
 
-                const endDate =
-                    $(".experience-end", item);
+                const input =
+                    fields[key];
 
-                if (checkbox && endDate) {
+                if (!input) return;
 
-                    checkbox.addEventListener(
-                        "change",
-                        () => {
+                input.addEventListener(
+                    "input",
+                    function () {
 
-                            endDate.disabled =
-                                checkbox.checked;
+                        resumeData.experience[index][key] =
+                            input.value;
 
-                            if (checkbox.checked) {
-                                endDate.value = "";
-                            }
+                        saveData();
+                        updatePreview();
+                        updateCompletion();
 
-                            updateExperienceFromDOM();
+                    }
+                );
 
-                            saveAndUpdate();
-                        }
-                    );
-                }
-
-
-                const removeButton =
-                    $(".remove-entry-btn", item);
-
-                if (removeButton) {
-
-                    removeButton.addEventListener(
-                        "click",
-                        () => {
-
-                            resumeData.experience.splice(
-                                index,
-                                1
-                            );
-
-                            if (
-                                resumeData.experience.length === 0
-                            ) {
-
-                                resumeData.experience.push({
-                                    jobTitle: "",
-                                    companyName: "",
-                                    workLocation: "",
-                                    startDate: "",
-                                    endDate: "",
-                                    currentlyWorking: false,
-                                    description: ""
-                                });
-                            }
-
-                            renderExperience();
-
-                            saveAndUpdate();
-
-                            showToast(
-                                "Experience removed."
-                            );
-                        }
-                    );
-                }
             }
         );
+
+
+        const working =
+            $(".currently-working", card);
+
+        if (working) {
+
+            working.addEventListener(
+                "change",
+                function () {
+
+                    resumeData.experience[index]
+                        .currentlyWorking =
+                        working.checked;
+
+                    const endDate =
+                        $(".experience-end", card);
+
+                    if (endDate) {
+
+                        endDate.disabled =
+                            working.checked;
+
+                        if (working.checked) {
+
+                            endDate.value = "";
+
+                            resumeData
+                                .experience[index]
+                                .endDate = "";
+
+                        }
+
+                    }
+
+                    saveData();
+                    updatePreview();
+
+                }
+            );
+
+        }
+
+
+        const remove =
+            $(".remove-entry-btn", card);
+
+        if (remove) {
+
+            remove.addEventListener(
+                "click",
+                function () {
+
+                    resumeData.experience.splice(
+                        index,
+                        1
+                    );
+
+                    saveData();
+
+                    renderExperience();
+                    updateCompletion();
+
+                }
+            );
+
+        }
+
     }
 
 
-    function updateExperienceFromDOM() {
+    function setupExperience() {
 
-        resumeData.experience =
-            getExperienceFromDOM();
-    }
+        const button =
+            $("#addExperienceButton");
 
+        if (!button) return;
 
-    const addExperienceButton =
-        $("#addExperienceButton");
-
-    if (addExperienceButton) {
-
-        addExperienceButton.addEventListener(
+        button.addEventListener(
             "click",
-            () => {
+            function () {
 
-                updateExperienceFromDOM();
+                resumeData.experience.push(
+                    createExperience()
+                );
 
-                resumeData.experience.push({
-                    jobTitle: "",
-                    companyName: "",
-                    workLocation: "",
-                    startDate: "",
-                    endDate: "",
-                    currentlyWorking: false,
-                    description: ""
-                });
+                saveData();
 
                 renderExperience();
 
-                saveAndUpdate();
-
                 showToast(
-                    "New experience added."
+                    "Experience added."
                 );
+
             }
         );
+
+        renderExperience();
+
     }
-
-
-    renderExperience();
 
 
     /* =====================================================
        EDUCATION
     ===================================================== */
 
-    function getEducationFromDOM() {
+    function createEducation() {
 
-        return $$(".education-card")
-            .map(card => {
+        return {
 
-                const marksType =
-                    $(".marks-type:checked", card)?.value || "";
+            level: "",
+            school: "",
+            degree: "",
+            field: "",
+            startDate: "",
+            endDate: "",
+            currentlyStudying: false,
+            marksType: "",
+            percentage: "",
+            cgpa: "",
+            description: ""
 
-                return {
+        };
 
-                    level:
-                        $(".education-level", card)?.value || "",
-
-                    school:
-                        $(".school-name", card)?.value.trim() || "",
-
-                    degree:
-                        $(".degree", card)?.value || "",
-
-                    field:
-                        $(".education-field", card)?.value || "",
-
-                    startDate:
-                        $(".education-start", card)?.value || "",
-
-                    endDate:
-                        $(".education-end", card)?.value || "",
-
-                    currentlyStudying:
-                        $(".currently-studying", card)?.checked || false,
-
-                    marksType,
-
-                    percentage:
-                        $(".percentage-input", card)?.value || "",
-
-                    cgpa:
-                        $(".cgpa-input", card)?.value || "",
-
-                    description:
-                        $(".education-description", card)?.value.trim() || ""
-                };
-            });
     }
 
 
-    function createEducationHTML(
-        education,
-        index
-    ) {
+    function ensureEducation() {
 
-        return `
+        if (
+            !Array.isArray(resumeData.education)
+        ) {
 
-            <div class="section-card education-card">
+            resumeData.education = [];
 
-                <div class="entry-header">
+        }
 
-                    <div>
+        if (
+            resumeData.education.length === 0
+        ) {
 
-                        <h2>
-                            Education ${index + 1}
-                        </h2>
+            resumeData.education.push(
+                createEducation()
+            );
 
-                        <p class="entry-subtitle">
-                            Add your school, college or university details.
-                        </p>
+        }
 
-                    </div>
-
-                    ${
-                        index > 0
-                        ? `
-                        <button
-                            type="button"
-                            class="remove-education-btn"
-                        >
-                            Remove
-                        </button>
-                        `
-                        : ""
-                    }
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        Education Level *
-                    </label>
-
-                    <select class="education-level">
-
-                        <option value="">
-                            Select education level
-                        </option>
-
-                        <option value="10th">
-                            10th / Secondary
-                        </option>
-
-                        <option value="12th">
-                            12th / Higher Secondary
-                        </option>
-
-                        <option value="diploma">
-                            Diploma
-                        </option>
-
-                        <option value="certificate">
-                            Certificate Course
-                        </option>
-
-                        <option value="bachelor">
-                            Bachelor's Degree
-                        </option>
-
-                        <option value="master">
-                            Master's Degree
-                        </option>
-
-                        <option value="phd">
-                            PhD / Doctorate
-                        </option>
-
-                        <option value="other">
-                            Other
-                        </option>
-
-                    </select>
-
-                    <small class="field-error"></small>
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        School / College / University *
-                    </label>
-
-                    <input
-                        type="text"
-                        class="school-name"
-                        placeholder="ABC School / XYZ University"
-                        value="${escapeHTML(education.school)}"
-                    >
-
-                    <small class="field-error"></small>
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        Degree / Qualification *
-                    </label>
-
-                    <select class="degree">
-
-                        <option value="">
-                            Select qualification
-                        </option>
-
-                        <option value="Secondary School Certificate">
-                            Secondary School Certificate
-                        </option>
-
-                        <option value="Higher Secondary Certificate">
-                            Higher Secondary Certificate
-                        </option>
-
-                        <option value="Diploma">
-                            Diploma
-                        </option>
-
-                        <option value="B.A.">
-                            B.A.
-                        </option>
-
-                        <option value="B.Sc.">
-                            B.Sc.
-                        </option>
-
-                        <option value="B.Com.">
-                            B.Com.
-                        </option>
-
-                        <option value="B.Tech">
-                            B.Tech
-                        </option>
-
-                        <option value="B.E.">
-                            B.E.
-                        </option>
-
-                        <option value="BBA">
-                            BBA
-                        </option>
-
-                        <option value="BCA">
-                            BCA
-                        </option>
-
-                        <option value="M.A.">
-                            M.A.
-                        </option>
-
-                        <option value="M.Sc.">
-                            M.Sc.
-                        </option>
-
-                        <option value="M.Com.">
-                            M.Com.
-                        </option>
-
-                        <option value="M.Tech">
-                            M.Tech
-                        </option>
-
-                        <option value="MBA">
-                            MBA
-                        </option>
-
-                        <option value="MCA">
-                            MCA
-                        </option>
-
-                        <option value="PhD">
-                            PhD
-                        </option>
-
-                        <option value="Other">
-                            Other
-                        </option>
-
-                    </select>
-
-                    <small class="field-error"></small>
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        Field of Study
-                    </label>
-
-                    <select class="education-field">
-
-                        <option value="">
-                            Select field of study
-                        </option>
-
-                        <option value="Science">
-                            Science
-                        </option>
-
-                        <option value="Commerce">
-                            Commerce
-                        </option>
-
-                        <option value="Arts">
-                            Arts
-                        </option>
-
-                        <option value="Computer Science">
-                            Computer Science
-                        </option>
-
-                        <option value="Information Technology">
-                            Information Technology
-                        </option>
-
-                        <option value="Engineering">
-                            Engineering
-                        </option>
-
-                        <option value="Business Administration">
-                            Business Administration
-                        </option>
-
-                        <option value="Accounting">
-                            Accounting
-                        </option>
-
-                        <option value="Economics">
-                            Economics
-                        </option>
-
-                        <option value="Mathematics">
-                            Mathematics
-                        </option>
-
-                        <option value="Physics">
-                            Physics
-                        </option>
-
-                        <option value="Chemistry">
-                            Chemistry
-                        </option>
-
-                        <option value="Biology">
-                            Biology
-                        </option>
-
-                        <option value="English">
-                            English
-                        </option>
-
-                        <option value="Other">
-                            Other
-                        </option>
-
-                    </select>
-
-                </div>
-
-
-                <div class="form-row two-column">
-
-                    <div class="form-group">
-
-                        <label>
-                            Start Date *
-                        </label>
-
-                        <input
-                            type="month"
-                            class="education-start"
-                            value="${education.startDate || ""}"
-                        >
-
-                        <small class="field-error"></small>
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label>
-                            End Date
-                        </label>
-
-                        <input
-                            type="month"
-                            class="education-end"
-                            value="${education.endDate || ""}"
-                            ${education.currentlyStudying ? "disabled" : ""}
-                        >
-
-                        <small class="field-error"></small>
-
-                    </div>
-
-                </div>
-
-
-                <div class="form-group checkbox-group">
-
-                    <label>
-
-                        <input
-                            type="checkbox"
-                            class="currently-studying"
-                            ${education.currentlyStudying ? "checked" : ""}
-                        >
-
-                        Currently studying here
-
-                    </label>
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        Academic Result
-                    </label>
-
-                    <div class="marks-options">
-
-                        <label>
-
-                            <input
-                                type="radio"
-                                class="marks-type"
-                                name="marksType-${index + 1}"
-                                value="percentage"
-                                ${education.marksType === "percentage" ? "checked" : ""}
-                            >
-
-                            Percentage
-
-                        </label>
-
-
-                        <label>
-
-                            <input
-                                type="radio"
-                                class="marks-type"
-                                name="marksType-${index + 1}"
-                                value="cgpa"
-                                ${education.marksType === "cgpa" ? "checked" : ""}
-                            >
-
-                            CGPA
-
-                        </label>
-
-                    </div>
-
-                </div>
-
-
-                <div
-                    class="form-group percentage-field"
-                    style="display:${education.marksType === "percentage" ? "block" : "none"};"
-                >
-
-                    <label>
-                        Percentage
-                    </label>
-
-                    <input
-                        type="number"
-                        class="percentage-input"
-                        min="0"
-                        max="100"
-                        step="0.01"
-                        placeholder="85.50"
-                        value="${education.percentage || ""}"
-                    >
-
-                    <small class="field-error"></small>
-
-                </div>
-
-
-                <div
-                    class="form-group cgpa-field"
-                    style="display:${education.marksType === "cgpa" ? "block" : "none"};"
-                >
-
-                    <label>
-                        CGPA
-                    </label>
-
-                    <input
-                        type="number"
-                        class="cgpa-input"
-                        min="0"
-                        max="10"
-                        step="0.01"
-                        placeholder="8.50"
-                        value="${education.cgpa || ""}"
-                    >
-
-                    <small class="field-error"></small>
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        Description
-                    </label>
-
-                    <textarea
-                        class="education-description"
-                        rows="4"
-                        placeholder="Achievements, coursework, activities, awards..."
-                    >${escapeHTML(education.description)}</textarea>
-
-                </div>
-
-            </div>
-        `;
     }
 
 
@@ -1605,436 +974,1079 @@ document.addEventListener("DOMContentLoaded", () => {
         const container =
             $("#educationEntries");
 
-        if (!container) {
-            return;
-        }
+        if (!container) return;
 
-        container.innerHTML =
-            resumeData.education
-                .map(createEducationHTML)
-                .join("");
+        ensureEducation();
 
-        attachEducationEvents();
-    }
+        container.innerHTML = "";
 
+        resumeData.education.forEach(
+            function (item, index) {
 
-    function attachEducationEvents() {
+                const card =
+                    document.createElement("div");
 
-        $$(".education-card").forEach(
-            (card, index) => {
+                card.className =
+                    "section-card education-card";
 
-                const level =
-                    $(".education-level", card);
+                card.dataset.index = index;
 
-                const school =
-                    $(".school-name", card);
+                card.innerHTML = `
 
-                const degree =
-                    $(".degree", card);
+                    <div class="entry-header">
 
-                const field =
-                    $(".education-field", card);
+                        <div>
 
-                if (resumeData.education[index]) {
+                            <span class="entry-number">
+                                Education ${index + 1}
+                            </span>
 
-                    level.value =
-                        resumeData.education[index].level || "";
+                            <h2>
+                                Education ${index + 1}
+                            </h2>
 
-                    degree.value =
-                        resumeData.education[index].degree || "";
+                            <p class="entry-subtitle">
+                                Add your school, college or university details.
+                            </p>
 
-                    field.value =
-                        resumeData.education[index].field || "";
-                }
+                        </div>
 
-
-                $$(
-                    "input, textarea, select",
-                    card
-                ).forEach(input => {
-
-                    input.addEventListener(
-                        "input",
-                        () => {
-
-                            updateEducationFromDOM();
-
-                            saveAndUpdate();
+                        ${
+                            resumeData.education.length > 1
+                                ? `
+                                    <button
+                                        type="button"
+                                        class="remove-entry-btn education-remove"
+                                    >
+                                        Remove
+                                    </button>
+                                  `
+                                : ""
                         }
-                    );
 
-                    input.addEventListener(
-                        "change",
-                        () => {
-
-                            updateEducationFromDOM();
-
-                            handleEducationUI(card);
-
-                            saveAndUpdate();
-                        }
-                    );
-                });
+                    </div>
 
 
-                const removeButton =
-                    $(".remove-education-btn", card);
+                    <div class="form-group">
 
-                if (removeButton) {
+                        <label>
+                            Education Level *
+                        </label>
 
-                    removeButton.addEventListener(
-                        "click",
-                        () => {
+                        <select class="education-level">
 
-                            updateEducationFromDOM();
+                            <option value="">
+                                Select education level
+                            </option>
 
-                            resumeData.education.splice(
-                                index,
-                                1
-                            );
+                            <option value="10th">
+                                10th / Secondary
+                            </option>
 
-                            if (
-                                resumeData.education.length === 0
-                            ) {
+                            <option value="12th">
+                                12th / Higher Secondary
+                            </option>
 
-                                resumeData.education.push({
-                                    level: "",
-                                    school: "",
-                                    degree: "",
-                                    field: "",
-                                    startDate: "",
-                                    endDate: "",
-                                    currentlyStudying: false,
-                                    marksType: "",
-                                    percentage: "",
-                                    cgpa: "",
-                                    description: ""
-                                });
-                            }
+                            <option value="diploma">
+                                Diploma
+                            </option>
 
-                            renderEducation();
+                            <option value="certificate">
+                                Certificate Course
+                            </option>
 
-                            saveAndUpdate();
+                            <option value="bachelor">
+                                Bachelor's Degree
+                            </option>
 
-                            showToast(
-                                "Education removed."
-                            );
-                        }
-                    );
-                }
+                            <option value="master">
+                                Master's Degree
+                            </option>
 
-                handleEducationUI(card);
+                            <option value="phd">
+                                PhD / Doctorate
+                            </option>
+
+                            <option value="other">
+                                Other
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            School / College / University *
+                        </label>
+
+                        <input
+                            type="text"
+                            class="school-name"
+                            placeholder="ABC School / XYZ University"
+                            value="${escapeHTML(item.school)}"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Degree / Qualification *
+                        </label>
+
+                        <select class="degree">
+
+                            <option value="">
+                                Select qualification
+                            </option>
+
+                            <option>B.A.</option>
+                            <option>B.Sc.</option>
+                            <option>B.Com.</option>
+                            <option>B.Tech</option>
+                            <option>B.E.</option>
+                            <option>BBA</option>
+                            <option>BCA</option>
+                            <option>M.A.</option>
+                            <option>M.Sc.</option>
+                            <option>M.Com.</option>
+                            <option>M.Tech</option>
+                            <option>MBA</option>
+                            <option>MCA</option>
+                            <option>Diploma</option>
+                            <option>PhD</option>
+                            <option>Other</option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Field of Study
+                        </label>
+
+                        <select class="education-field">
+
+                            <option value="">
+                                Select field of study
+                            </option>
+
+                            <option>Science</option>
+                            <option>Commerce</option>
+                            <option>Arts</option>
+                            <option>Computer Science</option>
+                            <option>Information Technology</option>
+                            <option>Engineering</option>
+                            <option>Business Administration</option>
+                            <option>Accounting</option>
+                            <option>Economics</option>
+                            <option>Mathematics</option>
+                            <option>Physics</option>
+                            <option>Chemistry</option>
+                            <option>Biology</option>
+                            <option>English</option>
+                            <option>Other</option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-row two-column">
+
+                        <div class="form-group">
+
+                            <label>
+                                Start Date *
+                            </label>
+
+                            <input
+                                type="month"
+                                class="education-start"
+                                value="${escapeHTML(item.startDate)}"
+                            >
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label>
+                                End Date
+                            </label>
+
+                            <input
+                                type="month"
+                                class="education-end"
+                                value="${escapeHTML(item.endDate)}"
+                                ${item.currentlyStudying
+                                    ? "disabled"
+                                    : ""}
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group checkbox-group">
+
+                        <label>
+
+                            <input
+                                type="checkbox"
+                                class="currently-studying"
+                                ${item.currentlyStudying
+                                    ? "checked"
+                                    : ""}
+                            >
+
+                            Currently studying here
+
+                        </label>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Academic Result
+                        </label>
+
+                        <div class="marks-options">
+
+                            <label>
+                                <input
+                                    type="radio"
+                                    class="marks-type"
+                                    name="marksType-${index}"
+                                    value="percentage"
+                                    ${item.marksType === "percentage"
+                                        ? "checked"
+                                        : ""}
+                                >
+                                Percentage
+                            </label>
+
+                            <label>
+                                <input
+                                    type="radio"
+                                    class="marks-type"
+                                    name="marksType-${index}"
+                                    value="cgpa"
+                                    ${item.marksType === "cgpa"
+                                        ? "checked"
+                                        : ""}
+                                >
+                                CGPA
+                            </label>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="form-group percentage-field"
+                        ${item.marksType === "percentage"
+                            ? ""
+                            : 'style="display:none;"'}
+                    >
+
+                        <label>
+                            Percentage
+                        </label>
+
+                        <input
+                            type="number"
+                            class="percentage-input"
+                            min="0"
+                            max="100"
+                            step="0.01"
+                            placeholder="85.50"
+                            value="${escapeHTML(item.percentage)}"
+                        >
+
+                    </div>
+
+
+                    <div
+                        class="form-group cgpa-field"
+                        ${item.marksType === "cgpa"
+                            ? ""
+                            : 'style="display:none;"'}
+                    >
+
+                        <label>
+                            CGPA
+                        </label>
+
+                        <input
+                            type="number"
+                            class="cgpa-input"
+                            min="0"
+                            max="10"
+                            step="0.01"
+                            placeholder="8.50"
+                            value="${escapeHTML(item.cgpa)}"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Description
+                        </label>
+
+                        <textarea
+                            class="education-description"
+                            rows="4"
+                            placeholder="Achievements, coursework, activities, awards..."
+                        >${escapeHTML(item.description)}</textarea>
+
+                    </div>
+
+                `;
+
+                container.appendChild(card);
+
+                setEducationValues(
+                    card,
+                    item
+                );
+
+                setupEducationCard(
+                    card,
+                    index
+                );
+
             }
         );
+
+        updatePreview();
+
     }
 
 
-    function handleEducationUI(card) {
+    function setEducationValues(
+        card,
+        item
+    ) {
+
+        const level =
+            $(".education-level", card);
+
+        const degree =
+            $(".degree", card);
+
+        const field =
+            $(".education-field", card);
+
+        if (level) {
+            level.value =
+                item.level || "";
+        }
+
+        if (degree) {
+            degree.value =
+                item.degree || "";
+        }
+
+        if (field) {
+            field.value =
+                item.field || "";
+        }
+
+    }
+
+
+    function setupEducationCard(
+        card,
+        index
+    ) {
+
+        const map = {
+
+            level:
+                $(".education-level", card),
+
+            school:
+                $(".school-name", card),
+
+            degree:
+                $(".degree", card),
+
+            field:
+                $(".education-field", card),
+
+            startDate:
+                $(".education-start", card),
+
+            endDate:
+                $(".education-end", card),
+
+            percentage:
+                $(".percentage-input", card),
+
+            cgpa:
+                $(".cgpa-input", card),
+
+            description:
+                $(".education-description", card)
+
+        };
+
+
+        Object.keys(map).forEach(
+            function (key) {
+
+                const element =
+                    map[key];
+
+                if (!element) return;
+
+                element.addEventListener(
+                    "input",
+                    function () {
+
+                        resumeData.education[index][key] =
+                            element.value;
+
+                        saveData();
+                        updatePreview();
+                        updateCompletion();
+
+                    }
+                );
+
+                element.addEventListener(
+                    "change",
+                    function () {
+
+                        resumeData.education[index][key] =
+                            element.value;
+
+                        saveData();
+                        updatePreview();
+                        updateCompletion();
+
+                    }
+                );
+
+            }
+        );
+
 
         const studying =
             $(".currently-studying", card);
 
-        const endDate =
-            $(".education-end", card);
+        if (studying) {
 
-        if (studying && endDate) {
+            studying.addEventListener(
+                "change",
+                function () {
 
-            endDate.disabled =
-                studying.checked;
+                    resumeData.education[index]
+                        .currentlyStudying =
+                        studying.checked;
 
-            if (studying.checked) {
-                endDate.value = "";
+                    const end =
+                        $(".education-end", card);
+
+                    if (end) {
+
+                        end.disabled =
+                            studying.checked;
+
+                        if (studying.checked) {
+
+                            end.value = "";
+
+                            resumeData.education[index]
+                                .endDate = "";
+
+                        }
+
+                    }
+
+                    saveData();
+                    updatePreview();
+
+                }
+            );
+
+        }
+
+
+        const radios =
+            $$(".marks-type", card);
+
+        radios.forEach(
+            function (radio) {
+
+                radio.addEventListener(
+                    "change",
+                    function () {
+
+                        if (!radio.checked) return;
+
+                        resumeData.education[index]
+                            .marksType =
+                            radio.value;
+
+                        const percentage =
+                            $(".percentage-field", card);
+
+                        const cgpa =
+                            $(".cgpa-field", card);
+
+                        if (percentage) {
+
+                            percentage.style.display =
+                                radio.value === "percentage"
+                                    ? ""
+                                    : "none";
+
+                        }
+
+                        if (cgpa) {
+
+                            cgpa.style.display =
+                                radio.value === "cgpa"
+                                    ? ""
+                                    : "none";
+
+                        }
+
+                        saveData();
+                        updatePreview();
+
+                    }
+                );
+
             }
+        );
+
+
+        const remove =
+            $(".education-remove", card);
+
+        if (remove) {
+
+            remove.addEventListener(
+                "click",
+                function () {
+
+                    resumeData.education.splice(
+                        index,
+                        1
+                    );
+
+                    saveData();
+
+                    renderEducation();
+                    updateCompletion();
+
+                }
+            );
+
         }
 
-
-        const marksType =
-            $(".marks-type:checked", card)?.value || "";
-
-        const percentage =
-            $(".percentage-field", card);
-
-        const cgpa =
-            $(".cgpa-field", card);
-
-        if (percentage) {
-
-            percentage.style.display =
-                marksType === "percentage"
-                    ? "block"
-                    : "none";
-        }
-
-        if (cgpa) {
-
-            cgpa.style.display =
-                marksType === "cgpa"
-                    ? "block"
-                    : "none";
-        }
     }
 
 
-    function updateEducationFromDOM() {
+    function setupEducation() {
 
-        resumeData.education =
-            getEducationFromDOM();
-    }
+        const button =
+            $("#addEducationButton");
 
+        if (!button) return;
 
-    const addEducationButton =
-        $("#addEducationButton");
-
-    if (addEducationButton) {
-
-        addEducationButton.addEventListener(
+        button.addEventListener(
             "click",
-            () => {
+            function () {
 
-                updateEducationFromDOM();
+                resumeData.education.push(
+                    createEducation()
+                );
 
-                resumeData.education.push({
-                    level: "",
-                    school: "",
-                    degree: "",
-                    field: "",
-                    startDate: "",
-                    endDate: "",
-                    currentlyStudying: false,
-                    marksType: "",
-                    percentage: "",
-                    cgpa: "",
-                    description: ""
-                });
+                saveData();
 
                 renderEducation();
 
-                saveAndUpdate();
-
                 showToast(
-                    "New education added."
+                    "Education added."
                 );
+
             }
         );
+
+        renderEducation();
+
     }
-
-
-    renderEducation();
 
 
     /* =====================================================
        SKILLS
     ===================================================== */
 
-    const skillInput =
-        $("#skillInput");
+    function setupSkills() {
 
-    const addSkillButton =
-        $("#addSkillButton");
+        const input =
+            $("#skillInput");
 
-    const skillsList =
-        $("#skillsList");
+        const button =
+            $("#addSkillButton");
 
+        const list =
+            $("#skillsList");
 
-    function renderSkills() {
-
-        if (!skillsList) {
+        if (!input || !button || !list) {
             return;
         }
 
-        skillsList.innerHTML = "";
 
-        resumeData.skills.forEach(
-            (skill, index) => {
+        function renderSkills() {
 
-                const item =
-                    document.createElement("div");
+            list.innerHTML = "";
 
-                item.className =
-                    "skill-tag";
+            resumeData.skills.forEach(
+                function (skill, index) {
 
-                item.innerHTML = `
-                    <span>
-                        ${escapeHTML(skill)}
-                    </span>
+                    const tag =
+                        document.createElement("span");
 
-                    <button
-                        type="button"
-                        class="remove-skill"
-                        data-index="${index}"
-                        aria-label="Remove skill"
-                    >
-                        ×
-                    </button>
-                `;
+                    tag.className =
+                        "skill-tag";
 
-                skillsList.appendChild(item);
-            }
-        );
+                    tag.innerHTML = `
+                        <span>
+                            ${escapeHTML(skill)}
+                        </span>
 
+                        <button
+                            type="button"
+                            class="remove-skill"
+                            aria-label="Remove ${escapeHTML(skill)}"
+                        >
+                            ×
+                        </button>
+                    `;
 
-        $$(".remove-skill").forEach(button => {
+                    const remove =
+                        $(".remove-skill", tag);
 
-            button.addEventListener(
-                "click",
-                () => {
+                    remove.addEventListener(
+                        "click",
+                        function () {
 
-                    const index =
-                        Number(
-                            button.dataset.index
-                        );
+                            resumeData.skills.splice(
+                                index,
+                                1
+                            );
 
-                    resumeData.skills.splice(
-                        index,
-                        1
+                            saveData();
+
+                            renderSkills();
+                            updatePreview();
+                            updateCompletion();
+
+                        }
                     );
 
-                    renderSkills();
+                    list.appendChild(tag);
 
-                    saveAndUpdate();
                 }
             );
-        });
-    }
 
+            updatePreview();
 
-    function addSkill() {
-
-        if (!skillInput) {
-            return;
         }
 
-        const skill =
-            skillInput.value.trim();
 
-        if (!skill) {
+        function addSkill() {
 
-            showToast(
-                "Please enter a skill."
+            const value =
+                input.value.trim();
+
+            if (!value) {
+
+                input.focus();
+
+                showToast(
+                    "Enter a skill first."
+                );
+
+                return;
+
+            }
+
+            const exists =
+                resumeData.skills.some(
+                    skill =>
+                        skill.toLowerCase() ===
+                        value.toLowerCase()
+                );
+
+            if (exists) {
+
+                showToast(
+                    "This skill is already added."
+                );
+
+                input.select();
+
+                return;
+
+            }
+
+            resumeData.skills.push(
+                value
             );
 
-            skillInput.focus();
+            input.value = "";
 
-            return;
+            saveData();
+
+            renderSkills();
+            updateCompletion();
+
+            input.focus();
+
         }
 
-        const exists =
-            resumeData.skills.some(
-                existing =>
-                    existing.toLowerCase() ===
-                    skill.toLowerCase()
-            );
 
-        if (exists) {
-
-            showToast(
-                "This skill has already been added."
-            );
-
-            return;
-        }
-
-        resumeData.skills.push(skill);
-
-        skillInput.value = "";
-
-        renderSkills();
-
-        saveAndUpdate();
-
-        showToast(
-            "Skill added."
-        );
-
-        skillInput.focus();
-    }
-
-
-    if (addSkillButton) {
-
-        addSkillButton.addEventListener(
+        button.addEventListener(
             "click",
             addSkill
         );
-    }
 
 
-    if (skillInput) {
-
-        skillInput.addEventListener(
+        input.addEventListener(
             "keydown",
-            event => {
+            function (event) {
 
-                if (event.key === "Enter") {
+                if (
+                    event.key === "Enter"
+                ) {
 
                     event.preventDefault();
 
                     addSkill();
+
                 }
+
             }
         );
+
+
+        renderSkills();
+
     }
-
-
-    renderSkills();
 
 
     /* =====================================================
        SUMMARY
     ===================================================== */
 
-    const summaryInput =
-        $("#professionalSummary");
+    function setupSummary() {
 
-    const summaryCount =
-        $("#summaryCount");
+        const textarea =
+            $("#professionalSummary");
 
+        const counter =
+            $("#summaryCount");
 
-    function updateSummary() {
+        if (!textarea) return;
 
-        if (!summaryInput) {
-            return;
-        }
+        textarea.value =
+            resumeData.summary || "";
 
-        let value =
-            summaryInput.value;
+        function updateCount() {
 
-        if (value.length > 500) {
-
-            value =
-                value.substring(
+            const value =
+                textarea.value.substring(
                     0,
                     500
                 );
 
-            summaryInput.value =
-                value;
+            if (
+                textarea.value.length > 500
+            ) {
+
+                textarea.value =
+                    value;
+
+            }
+
+            if (counter) {
+
+                counter.textContent =
+                    textarea.value.length;
+
+            }
+
         }
 
-        resumeData.summary =
-            value;
+        textarea.addEventListener(
+            "input",
+            function () {
 
-        if (summaryCount) {
+                resumeData.summary =
+                    textarea.value
+                        .trim();
 
-            summaryCount.textContent =
-                value.length;
-        }
+                saveData();
 
-        saveAndUpdate();
+                updateCount();
+                updatePreview();
+                updateCompletion();
+
+            }
+        );
+
+        updateCount();
+
     }
 
 
-    if (summaryInput) {
+    /* =====================================================
+       NAVIGATION
+    ===================================================== */
 
-        summaryInput.value =
-            resumeData.summary || "";
+    function showSection(
+        sectionName
+    ) {
 
-        updateSummary();
+        if (
+            !steps.includes(sectionName)
+        ) {
 
-        summaryInput.addEventListener(
-            "input",
-            updateSummary
-        );
+            return;
+
+        }
+
+        currentSection =
+            sectionName;
+
+
+        $$(".builder-section")
+            .forEach(
+                function (section) {
+
+                    section.classList.toggle(
+                        "active",
+                        section.dataset.section ===
+                        sectionName
+                    );
+
+                }
+            );
+
+
+        $$(".builder-step")
+            .forEach(
+                function (step) {
+
+                    const name =
+                        step.dataset.section;
+
+                    step.classList.toggle(
+                        "active",
+                        name === sectionName
+                    );
+
+                    const currentIndex =
+                        steps.indexOf(
+                            sectionName
+                        );
+
+                    const stepIndex =
+                        steps.indexOf(name);
+
+                    step.classList.toggle(
+                        "completed",
+                        stepIndex <
+                        currentIndex
+                    );
+
+                    step.classList.toggle(
+                        "locked",
+                        stepIndex >
+                        currentIndex
+                    );
+
+                }
+            );
+
+
+        const editor =
+            $(".builder-editor");
+
+        if (editor) {
+
+            editor.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+        }
+
+    }
+
+
+    function setupNavigation() {
+
+        $$(".continue-section-btn")
+            .forEach(
+                function (button) {
+
+                    button.addEventListener(
+                        "click",
+                        function () {
+
+                            const next =
+                                button.dataset.next;
+
+                            if (!next) return;
+
+                            const currentIndex =
+                                steps.indexOf(
+                                    currentSection
+                                );
+
+                            const nextIndex =
+                                steps.indexOf(next);
+
+                            if (
+                                nextIndex >
+                                currentIndex
+                            ) {
+
+                                if (
+                                    !validateSection(
+                                        currentSection
+                                    )
+                                ) {
+
+                                    showToast(
+                                        "Please complete the required fields."
+                                    );
+
+                                    return;
+
+                                }
+
+                            }
+
+                            showSection(next);
+
+                        }
+                    );
+
+                }
+            );
+
+
+        $$(".back-section-btn")
+            .forEach(
+                function (button) {
+
+                    button.addEventListener(
+                        "click",
+                        function () {
+
+                            const back =
+                                button.dataset.back;
+
+                            if (back) {
+
+                                showSection(back);
+
+                            }
+
+                        }
+                    );
+
+                }
+            );
+
+
+        $$(".builder-step")
+            .forEach(
+                function (button) {
+
+                    button.addEventListener(
+                        "click",
+                        function () {
+
+                            const section =
+                                button.dataset.section;
+
+                            const targetIndex =
+                                steps.indexOf(section);
+
+                            const currentIndex =
+                                steps.indexOf(
+                                    currentSection
+                                );
+
+                            if (
+                                targetIndex >
+                                currentIndex
+                            ) {
+
+                                if (
+                                    !validateSection(
+                                        currentSection
+                                    )
+                                ) {
+
+                                    showToast(
+                                        "Complete this step before continuing."
+                                    );
+
+                                    return;
+
+                                }
+
+                            }
+
+                            showSection(section);
+
+                        }
+                    );
+
+                }
+            );
+
+
+        const backTemplates =
+            $("#backToTemplates");
+
+        if (backTemplates) {
+
+            backTemplates.addEventListener(
+                "click",
+                function () {
+
+                    window.location.href =
+                        "templates.html";
+
+                }
+            );
+
+        }
+
     }
 
 
@@ -2042,603 +2054,439 @@ document.addEventListener("DOMContentLoaded", () => {
        VALIDATION
     ===================================================== */
 
-    function setFieldError(
+    function clearErrors() {
+
+        $$(".field-error")
+            .forEach(
+                function (error) {
+
+                    error.textContent = "";
+
+                }
+            );
+
+        $$(".input-error")
+            .forEach(
+                function (input) {
+
+                    input.classList.remove(
+                        "input-error"
+                    );
+
+                }
+            );
+
+    }
+
+
+    function showFieldError(
         input,
         message
     ) {
 
-        if (!input) {
-            return;
-        }
+        if (!input) return;
 
         input.classList.add(
             "input-error"
         );
 
+        const group =
+            input.closest(".form-group");
+
+        if (!group) return;
+
         const error =
-            input.parentElement?.querySelector(
-                ".field-error"
-            );
+            $(".field-error", group);
 
         if (error) {
+
             error.textContent =
                 message;
+
         }
+
     }
 
 
-    function clearFieldError(input) {
+    function validateSection(
+        sectionName
+    ) {
 
-        if (!input) {
-            return;
-        }
+        clearErrors();
 
-        input.classList.remove(
-            "input-error"
-        );
-
-        const error =
-            input.parentElement?.querySelector(
-                ".field-error"
-            );
-
-        if (error) {
-            error.textContent = "";
-        }
-    }
-
-
-    function validateHeading() {
-
-        let valid = true;
-
-        const required = [
-            ["firstName", "First name is required."],
-            ["lastName", "Surname is required."],
-            [
-                "professionalTitle",
-                "Professional title is required."
-            ],
-            ["city", "City is required."],
-            ["country", "Country is required."],
-            ["pinCode", "Pin code is required."],
-            ["phone", "Phone number is required."],
-            ["email", "Email address is required."]
-        ];
-
-
-        required.forEach(
-            ([id, message]) => {
-
-                const input =
-                    document.getElementById(id);
-
-                if (!input) {
-                    return;
-                }
-
-                if (!input.value.trim()) {
-
-                    setFieldError(
-                        input,
-                        message
-                    );
-
-                    valid = false;
-
-                } else {
-
-                    clearFieldError(input);
-                }
-            }
-        );
-
-
-        const email =
-            $("#email");
 
         if (
-            email &&
-            email.value.trim()
+            sectionName === "heading"
         ) {
 
-            const emailPattern =
-                /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const required = [
+                "firstName",
+                "lastName",
+                "professionalTitle",
+                "city",
+                "country",
+                "pinCode",
+                "phone",
+                "email"
+            ];
+
+            let valid = true;
+
+            required.forEach(
+                function (field) {
+
+                    const input =
+                        $("#" + field);
+
+                    if (
+                        !input ||
+                        !input.value.trim()
+                    ) {
+
+                        showFieldError(
+                            input,
+                            "This field is required."
+                        );
+
+                        valid = false;
+
+                    }
+
+                }
+            );
+
+
+            const email =
+                $("#email");
 
             if (
-                !emailPattern.test(
-                    email.value.trim()
-                )
+                email &&
+                email.value.trim() &&
+                !/^[^\s@]+@[^\s@]+\.[^\s@]+$/
+                    .test(email.value.trim())
             ) {
 
-                setFieldError(
+                showFieldError(
                     email,
-                    "Please enter a valid email address."
+                    "Enter a valid email address."
                 );
 
                 valid = false;
+
             }
-        }
 
 
-        const pin =
-            $("#pinCode");
-
-        if (
-            pin &&
-            pin.value.trim()
-        ) {
+            const pin =
+                $("#pinCode");
 
             if (
+                pin &&
+                pin.value.trim() &&
                 !/^\d{6}$/.test(
                     pin.value.trim()
                 )
             ) {
 
-                setFieldError(
+                showFieldError(
                     pin,
                     "Enter a valid 6-digit PIN code."
                 );
 
                 valid = false;
+
             }
+
+            return valid;
+
         }
 
-
-        return valid;
-    }
-
-
-    function validateExperience() {
-
-        updateExperienceFromDOM();
-
-        let valid = true;
-
-        resumeData.experience.forEach(
-            (experience, index) => {
-
-                const card =
-                    $$(".experience-item")[index];
-
-                if (!card) {
-                    return;
-                }
-
-                const jobTitle =
-                    $(".experience-job-title", card);
-
-                const company =
-                    $(".experience-company", card);
-
-                const start =
-                    $(".experience-start", card);
-
-
-                if (!experience.jobTitle) {
-
-                    setFieldError(
-                        jobTitle,
-                        "Job title is required."
-                    );
-
-                    valid = false;
-                } else {
-                    clearFieldError(jobTitle);
-                }
-
-
-                if (!experience.companyName) {
-
-                    setFieldError(
-                        company,
-                        "Company name is required."
-                    );
-
-                    valid = false;
-                } else {
-                    clearFieldError(company);
-                }
-
-
-                if (!experience.startDate) {
-
-                    setFieldError(
-                        start,
-                        "Start date is required."
-                    );
-
-                    valid = false;
-                } else {
-                    clearFieldError(start);
-                }
-
-
-                if (
-                    experience.startDate &&
-                    experience.endDate &&
-                    experience.endDate <
-                    experience.startDate
-                ) {
-
-                    setFieldError(
-                        $(".experience-end", card),
-                        "End date cannot be before start date."
-                    );
-
-                    valid = false;
-                }
-            }
-        );
-
-
-        return valid;
-    }
-
-
-    function validateEducation() {
-
-        updateEducationFromDOM();
-
-        let valid = true;
-
-        resumeData.education.forEach(
-            (education, index) => {
-
-                const card =
-                    $$(".education-card")[index];
-
-                if (!card) {
-                    return;
-                }
-
-                const level =
-                    $(".education-level", card);
-
-                const school =
-                    $(".school-name", card);
-
-                const degree =
-                    $(".degree", card);
-
-                const start =
-                    $(".education-start", card);
-
-
-                if (!education.level) {
-
-                    setFieldError(
-                        level,
-                        "Please select education level."
-                    );
-
-                    valid = false;
-
-                } else {
-                    clearFieldError(level);
-                }
-
-
-                if (!education.school) {
-
-                    setFieldError(
-                        school,
-                        "School or college name is required."
-                    );
-
-                    valid = false;
-
-                } else {
-                    clearFieldError(school);
-                }
-
-
-                if (!education.degree) {
-
-                    setFieldError(
-                        degree,
-                        "Please select qualification."
-                    );
-
-                    valid = false;
-
-                } else {
-                    clearFieldError(degree);
-                }
-
-
-                if (!education.startDate) {
-
-                    setFieldError(
-                        start,
-                        "Start date is required."
-                    );
-
-                    valid = false;
-
-                } else {
-                    clearFieldError(start);
-                }
-
-
-                if (
-                    education.startDate &&
-                    education.endDate &&
-                    education.endDate <
-                    education.startDate
-                ) {
-
-                    setFieldError(
-                        $(".education-end", card),
-                        "End date cannot be before start date."
-                    );
-
-                    valid = false;
-                }
-
-
-                if (
-                    education.marksType ===
-                    "percentage"
-                ) {
-
-                    const percentage =
-                        Number(
-                            education.percentage
-                        );
-
-                    if (
-                        education.percentage !== "" &&
-                        (
-                            percentage < 0 ||
-                            percentage > 100
-                        )
-                    ) {
-
-                        setFieldError(
-                            $(".percentage-input", card),
-                            "Percentage must be between 0 and 100."
-                        );
-
-                        valid = false;
-                    }
-                }
-
-
-                if (
-                    education.marksType ===
-                    "cgpa"
-                ) {
-
-                    const cgpa =
-                        Number(
-                            education.cgpa
-                        );
-
-                    if (
-                        education.cgpa !== "" &&
-                        (
-                            cgpa < 0 ||
-                            cgpa > 10
-                        )
-                    ) {
-
-                        setFieldError(
-                            $(".cgpa-input", card),
-                            "CGPA must be between 0 and 10."
-                        );
-
-                        valid = false;
-                    }
-                }
-            }
-        );
-
-
-        return valid;
-    }
-
-
-    function validateSkills() {
 
         if (
-            resumeData.skills.length === 0
+            sectionName === "experience"
         ) {
 
-            showToast(
-                "Add at least one skill."
+            let valid = true;
+
+            resumeData.experience.forEach(
+                function (item, index) {
+
+                    if (!item.jobTitle.trim()) {
+                        valid = false;
+                    }
+
+                    if (!item.company.trim()) {
+                        valid = false;
+                    }
+
+                    if (!item.startDate) {
+                        valid = false;
+                    }
+
+                }
             );
 
-            if (skillInput) {
-                skillInput.focus();
+            if (!valid) {
+
+                showToast(
+                    "Please complete your work experience."
+                );
+
             }
 
-            return false;
+            return valid;
+
         }
 
-        return true;
-    }
-
-
-    function validateSummary() {
 
         if (
-            !resumeData.summary.trim()
+            sectionName === "education"
         ) {
 
-            showToast(
-                "Please add a professional summary."
+            let valid = true;
+
+            resumeData.education.forEach(
+                function (item) {
+
+                    if (!item.level) {
+                        valid = false;
+                    }
+
+                    if (!item.school.trim()) {
+                        valid = false;
+                    }
+
+                    if (!item.degree) {
+                        valid = false;
+                    }
+
+                    if (!item.startDate) {
+                        valid = false;
+                    }
+
+                }
             );
 
-            if (summaryInput) {
-                summaryInput.focus();
+            if (!valid) {
+
+                showToast(
+                    "Please complete your education details."
+                );
+
             }
 
-            return false;
+            return valid;
+
         }
 
-        return true;
-    }
 
-
-    function validateSection(section) {
-
-        switch (section) {
-
-            case "heading":
-                return validateHeading();
-
-            case "experience":
-                return validateExperience();
-
-            case "education":
-                return validateEducation();
-
-            case "skills":
-                return validateSkills();
-
-            case "summary":
-                return validateSummary();
-
-            default:
-                return true;
-        }
-    }
-
-
-    /* =====================================================
-       COMPLETION
-    ===================================================== */
-
-    function calculateCompletion() {
-
-        let total = 0;
-        let completed = 0;
-
-
-        const personalFields = [
-            "firstName",
-            "lastName",
-            "professionalTitle",
-            "city",
-            "country",
-            "pinCode",
-            "phone",
-            "email"
-        ];
-
-        personalFields.forEach(field => {
-
-            total++;
+        if (
+            sectionName === "skills"
+        ) {
 
             if (
-                resumeData.personal[field]
+                resumeData.skills.length === 0
             ) {
-                completed++;
+
+                showToast(
+                    "Add at least one skill."
+                );
+
+                return false;
+
             }
-        });
 
+        }
 
-        total++;
 
         if (
-            resumeData.experience.some(
-                exp =>
-                    exp.jobTitle &&
-                    exp.companyName &&
-                    exp.startDate
-            )
+            sectionName === "summary"
         ) {
-            completed++;
+
+            if (
+                !resumeData.summary.trim()
+            ) {
+
+                showToast(
+                    "Please add your professional summary."
+                );
+
+                return false;
+
+            }
+
         }
 
 
-        total++;
+        return true;
 
-        if (
-            resumeData.education.some(
-                edu =>
-                    edu.level &&
-                    edu.school &&
-                    edu.degree &&
-                    edu.startDate
-            )
-        ) {
-            completed++;
-        }
-
-
-        total++;
-
-        if (
-            resumeData.skills.length > 0
-        ) {
-            completed++;
-        }
-
-
-        total++;
-
-        if (
-            resumeData.summary.trim()
-        ) {
-            completed++;
-        }
-
-
-        return Math.round(
-            (completed / total) * 100
-        );
-    }
-
-
-    function updateCompletion() {
-
-        const percentage =
-            calculateCompletion();
-
-        const percentElement =
-            $("#completionPercent");
-
-        const progressBar =
-            $("#progressBar");
-
-        if (percentElement) {
-
-            percentElement.textContent =
-                `${percentage}%`;
-        }
-
-        if (progressBar) {
-
-            progressBar.style.width =
-                `${percentage}%`;
-        }
     }
 
 
     /* =====================================================
-       DATE FORMAT
+       PREVIEW
     ===================================================== */
 
-    function formatDate(value) {
+    function updatePreview() {
 
-        if (!value) {
-            return "";
+        const personal =
+            resumeData.personal;
+
+
+        const name =
+            [personal.firstName, personal.lastName]
+                .filter(Boolean)
+                .join(" ");
+
+        const previewName =
+            $("#previewName");
+
+        const previewTitle =
+            $("#previewTitle");
+
+        const previewEmail =
+            $("#previewEmail");
+
+        const previewPhone =
+            $("#previewPhone");
+
+        const previewLocation =
+            $("#previewLocation");
+
+        const previewSummary =
+            $("#previewSummary");
+
+
+        if (previewName) {
+
+            previewName.textContent =
+                name || "Your Name";
+
         }
 
-        const [year, month] =
-            value.split("-");
+        if (previewTitle) {
 
-        if (!year || !month) {
-            return value;
+            previewTitle.textContent =
+                personal.professionalTitle ||
+                "Professional Title";
+
         }
+
+        if (previewEmail) {
+
+            previewEmail.textContent =
+                personal.email ||
+                "email@example.com";
+
+        }
+
+        if (previewPhone) {
+
+            previewPhone.textContent =
+                personal.phone ||
+                "Phone";
+
+        }
+
+
+        if (previewLocation) {
+
+            const location =
+                [
+                    personal.city,
+                    personal.country,
+                    personal.pinCode
+                ]
+                    .filter(Boolean)
+                    .join(", ");
+
+            previewLocation.textContent =
+                location || "Location";
+
+        }
+
+
+        if (previewSummary) {
+
+            previewSummary.textContent =
+                resumeData.summary ||
+                "Your professional summary will appear here.";
+
+        }
+
+
+        updatePreviewLinks();
+        updateExperiencePreview();
+        updateEducationPreview();
+        updateSkillsPreview();
+        updatePhotoPreview();
+
+    }
+
+
+    function updatePreviewLinks() {
+
+        const container =
+            $("#previewLinks");
+
+        if (!container) return;
+
+        container.innerHTML = "";
+
+        const links = [
+            {
+                value:
+                    resumeData.personal.linkedin,
+                label:
+                    "LinkedIn"
+            },
+            {
+                value:
+                    resumeData.personal.website,
+                label:
+                    "Website"
+            }
+        ];
+
+
+        links.forEach(
+            function (link) {
+
+                if (!link.value) return;
+
+                const span =
+                    document.createElement("span");
+
+                span.textContent =
+                    link.label;
+
+                container.appendChild(
+                    span
+                );
+
+            }
+        );
+
+    }
+
+
+    function formatMonth(value) {
+
+        if (!value) return "";
 
         const date =
             new Date(
-                Number(year),
-                Number(month) - 1
+                value + "-01T00:00:00"
             );
+
+        if (
+            Number.isNaN(
+                date.getTime()
+            )
+        ) {
+
+            return value;
+
+        }
 
         return date.toLocaleDateString(
             "en-US",
@@ -2647,681 +2495,585 @@ document.addEventListener("DOMContentLoaded", () => {
                 year: "numeric"
             }
         );
+
     }
 
 
-    /* =====================================================
-       RESUME PREVIEW
-    ===================================================== */
+    function updateExperiencePreview() {
 
-    function renderPreview() {
+        const container =
+            $("#previewExperience");
 
-        const preview =
-            $("#resumePreview");
-
-        if (!preview) {
-            return;
-        }
-
-        const personal =
-            resumeData.personal;
-
-
-        const fullName =
-            `${personal.firstName || ""} ${personal.lastName || ""}`
-                .trim();
-
-
-        const experiences =
-            resumeData.experience.filter(
-                exp =>
-                    exp.jobTitle ||
-                    exp.companyName ||
-                    exp.description
-            );
-
-
-        const education =
-            resumeData.education.filter(
-                edu =>
-                    edu.school ||
-                    edu.degree ||
-                    edu.description
-            );
-
-
-        const locationParts = [
-            personal.city,
-            personal.country
-        ].filter(Boolean);
-
-
-        const contact = [
-            personal.email,
-            personal.phone,
-            locationParts.join(", "),
-            personal.linkedin,
-            personal.website
-        ].filter(Boolean);
-
-
-        let html = `
-            <div class="resume-preview-document template-${escapeHTML(
-                resumeData.settings.template
-            )}">
-
-                <header class="resume-preview-header">
-
-                    ${
-                        personal.photo
-                        ? `
-                        <div class="resume-preview-photo">
-                            <img
-                                src="${personal.photo}"
-                                alt="Profile photo"
-                            >
-                        </div>
-                        `
-                        : ""
-                    }
-
-                    <div class="resume-preview-heading">
-
-                        <h1>
-                            ${escapeHTML(
-                                fullName || "Your Name"
-                            )}
-                        </h1>
-
-                        ${
-                            personal.professionalTitle
-                            ? `
-                            <h2>
-                                ${escapeHTML(
-                                    personal.professionalTitle
-                                )}
-                            </h2>
-                            `
-                            : ""
-                        }
-
-                        ${
-                            contact.length
-                            ? `
-                            <div class="resume-preview-contact">
-                                ${contact
-                                    .map(
-                                        item =>
-                                            `<span>${escapeHTML(item)}</span>`
-                                    )
-                                    .join(" • ")}
-                            </div>
-                            `
-                            : ""
-                        }
-
-                    </div>
-
-                </header>
-        `;
-
+        if (!container) return;
 
         if (
-            resumeData.summary.trim()
+            resumeData.experience.length === 0
         ) {
 
-            html += `
-                <section class="resume-preview-section">
-
-                    <h3>
-                        Professional Summary
-                    </h3>
-
-                    <p>
-                        ${escapeHTML(
-                            resumeData.summary
-                        )}
-                    </p>
-
-                </section>
+            container.innerHTML = `
+                <p class="preview-placeholder">
+                    Your professional experience will appear here.
+                </p>
             `;
+
+            return;
+
         }
 
 
-        if (experiences.length) {
+        container.innerHTML =
+            resumeData.experience
+                .map(
+                    function (item) {
 
-            html += `
-                <section class="resume-preview-section">
+                        const start =
+                            formatMonth(
+                                item.startDate
+                            );
 
-                    <h3>
-                        Experience
-                    </h3>
-            `;
+                        const end =
+                            item.currentlyWorking
+                                ? "Present"
+                                : formatMonth(
+                                    item.endDate
+                                );
 
-            experiences.forEach(exp => {
-
-                const dates = [];
-
-                if (exp.startDate) {
-                    dates.push(
-                        formatDate(
-                            exp.startDate
-                        )
-                    );
-                }
-
-                if (exp.currentlyWorking) {
-
-                    dates.push(
-                        "Present"
-                    );
-
-                } else if (exp.endDate) {
-
-                    dates.push(
-                        formatDate(
-                            exp.endDate
-                        )
-                    );
-                }
+                        const dates =
+                            [start, end]
+                                .filter(Boolean)
+                                .join(" – ");
 
 
-                html += `
-                    <article class="resume-preview-entry">
+                        return `
+                            <article class="preview-entry">
 
-                        <div class="resume-entry-top">
+                                <div class="preview-entry-heading">
 
-                            <div>
+                                    <div>
 
-                                ${
-                                    exp.jobTitle
-                                    ? `
-                                    <h4>
-                                        ${escapeHTML(
-                                            exp.jobTitle
-                                        )}
-                                    </h4>
-                                    `
-                                    : ""
-                                }
+                                        <h4>
+                                            ${escapeHTML(
+                                                item.jobTitle ||
+                                                "Job Title"
+                                            )}
+                                        </h4>
 
-                                ${
-                                    exp.companyName
-                                    ? `
-                                    <strong>
-                                        ${escapeHTML(
-                                            exp.companyName
-                                        )}
-                                    </strong>
-                                    `
-                                    : ""
-                                }
+                                        <strong>
+                                            ${escapeHTML(
+                                                item.company ||
+                                                "Company"
+                                            )}
+                                        </strong>
 
-                                ${
-                                    exp.workLocation
-                                    ? `
+                                    </div>
+
                                     <span>
-                                        · ${escapeHTML(
-                                            exp.workLocation
+                                        ${escapeHTML(
+                                            dates
                                         )}
                                     </span>
-                                    `
-                                    : ""
-                                }
 
-                            </div>
-
-                            ${
-                                dates.length
-                                ? `
-                                <span class="resume-entry-date">
-                                    ${dates.join(" – ")}
-                                </span>
-                                `
-                                : ""
-                            }
-
-                        </div>
-
-                        ${
-                            exp.description
-                            ? `
-                            <p>
-                                ${escapeHTML(
-                                    exp.description
-                                )}
-                            </p>
-                            `
-                            : ""
-                        }
-
-                    </article>
-                `;
-            });
-
-            html += `
-                </section>
-            `;
-        }
-
-
-        if (education.length) {
-
-            html += `
-                <section class="resume-preview-section">
-
-                    <h3>
-                        Education
-                    </h3>
-            `;
-
-            education.forEach(edu => {
-
-                const dates = [];
-
-                if (edu.startDate) {
-
-                    dates.push(
-                        formatDate(
-                            edu.startDate
-                        )
-                    );
-                }
-
-                if (edu.currentlyStudying) {
-
-                    dates.push(
-                        "Present"
-                    );
-
-                } else if (edu.endDate) {
-
-                    dates.push(
-                        formatDate(
-                            edu.endDate
-                        )
-                    );
-                }
-
-
-                let result = "";
-
-                if (
-                    edu.marksType ===
-                    "percentage" &&
-                    edu.percentage
-                ) {
-
-                    result =
-                        `${edu.percentage}%`;
-
-                } else if (
-                    edu.marksType ===
-                    "cgpa" &&
-                    edu.cgpa
-                ) {
-
-                    result =
-                        `CGPA ${edu.cgpa}`;
-                }
-
-
-                html += `
-                    <article class="resume-preview-entry">
-
-                        <div class="resume-entry-top">
-
-                            <div>
+                                </div>
 
                                 ${
-                                    edu.degree
-                                    ? `
-                                    <h4>
-                                        ${escapeHTML(
-                                            edu.degree
-                                        )}
-                                    </h4>
-                                    `
-                                    : ""
+                                    item.location
+                                        ? `
+                                            <div class="preview-location">
+                                                ${escapeHTML(
+                                                    item.location
+                                                )}
+                                            </div>
+                                          `
+                                        : ""
                                 }
 
                                 ${
-                                    edu.school
-                                    ? `
-                                    <strong>
-                                        ${escapeHTML(
-                                            edu.school
-                                        )}
-                                    </strong>
-                                    `
-                                    : ""
+                                    item.description
+                                        ? `
+                                            <p>
+                                                ${escapeHTML(
+                                                    item.description
+                                                ).replace(
+                                                    /\n/g,
+                                                    "<br>"
+                                                )}
+                                            </p>
+                                          `
+                                        : ""
                                 }
 
-                            </div>
+                            </article>
+                        `;
 
-                            ${
-                                dates.length
-                                ? `
-                                <span class="resume-entry-date">
-                                    ${dates.join(" – ")}
-                                </span>
-                                `
-                                : ""
-                            }
+                    }
+                )
+                .join("");
 
-                        </div>
+    }
 
-                        ${
-                            edu.field
-                            ? `
-                            <div>
-                                ${escapeHTML(
-                                    edu.field
-                                )}
-                            </div>
-                            `
-                            : ""
-                        }
 
-                        ${
-                            result
-                            ? `
-                            <div>
-                                ${escapeHTML(result)}
-                            </div>
-                            `
-                            : ""
-                        }
+    function updateEducationPreview() {
 
-                        ${
-                            edu.description
-                            ? `
-                            <p>
-                                ${escapeHTML(
-                                    edu.description
-                                )}
-                            </p>
-                            `
-                            : ""
-                        }
+        const container =
+            $("#previewEducation");
 
-                    </article>
-                `;
-            });
+        if (!container) return;
 
-            html += `
-                </section>
+        if (
+            resumeData.education.length === 0
+        ) {
+
+            container.innerHTML = `
+                <p class="preview-placeholder">
+                    Your education details will appear here.
+                </p>
             `;
+
+            return;
+
         }
+
+
+        container.innerHTML =
+            resumeData.education
+                .map(
+                    function (item) {
+
+                        const start =
+                            formatMonth(
+                                item.startDate
+                            );
+
+                        const end =
+                            item.currentlyStudying
+                                ? "Present"
+                                : formatMonth(
+                                    item.endDate
+                                );
+
+                        const dates =
+                            [start, end]
+                                .filter(Boolean)
+                                .join(" – ");
+
+
+                        let result = "";
+
+                        if (
+                            item.marksType ===
+                            "percentage" &&
+                            item.percentage
+                        ) {
+
+                            result =
+                                `${item.percentage}%`;
+
+                        }
+
+                        if (
+                            item.marksType ===
+                            "cgpa" &&
+                            item.cgpa
+                        ) {
+
+                            result =
+                                `CGPA ${item.cgpa}`;
+
+                        }
+
+
+                        return `
+                            <article class="preview-entry">
+
+                                <div class="preview-entry-heading">
+
+                                    <div>
+
+                                        <h4>
+                                            ${escapeHTML(
+                                                item.degree ||
+                                                "Qualification"
+                                            )}
+                                        </h4>
+
+                                        <strong>
+                                            ${escapeHTML(
+                                                item.school ||
+                                                "Institution"
+                                            )}
+                                        </strong>
+
+                                    </div>
+
+                                    <span>
+                                        ${escapeHTML(
+                                            dates
+                                        )}
+                                    </span>
+
+                                </div>
+
+                                ${
+                                    item.field
+                                        ? `
+                                            <div class="preview-location">
+                                                ${escapeHTML(
+                                                    item.field
+                                                )}
+                                            </div>
+                                          `
+                                        : ""
+                                }
+
+                                ${
+                                    result
+                                        ? `
+                                            <div class="preview-result">
+                                                ${escapeHTML(
+                                                    result
+                                                )}
+                                            </div>
+                                          `
+                                        : ""
+                                }
+
+                                ${
+                                    item.description
+                                        ? `
+                                            <p>
+                                                ${escapeHTML(
+                                                    item.description
+                                                ).replace(
+                                                    /\n/g,
+                                                    "<br>"
+                                                )}
+                                            </p>
+                                          `
+                                        : ""
+                                }
+
+                            </article>
+                        `;
+
+                    }
+                )
+                .join("");
+
+    }
+
+
+    function updateSkillsPreview() {
+
+        const container =
+            $("#previewSkills");
+
+        if (!container) return;
+
+        if (
+            resumeData.skills.length === 0
+        ) {
+
+            container.innerHTML = `
+                <span class="preview-placeholder">
+                    Add your skills
+                </span>
+            `;
+
+            return;
+
+        }
+
+
+        container.innerHTML =
+            resumeData.skills
+                .map(
+                    function (skill) {
+
+                        return `
+                            <span>
+                                ${escapeHTML(skill)}
+                            </span>
+                        `;
+
+                    }
+                )
+                .join("");
+
+    }
+
+
+    /* =====================================================
+       COMPLETION
+    ===================================================== */
+
+    function updateCompletion() {
+
+        let completed = 0;
+
+        const total = 10;
 
 
         if (
-            resumeData.skills.length
-        ) {
+            resumeData.personal.firstName
+        ) completed++;
 
-            html += `
-                <section class="resume-preview-section">
+        if (
+            resumeData.personal.lastName
+        ) completed++;
 
-                    <h3>
-                        Skills
-                    </h3>
+        if (
+            resumeData.personal.professionalTitle
+        ) completed++;
 
-                    <div class="resume-preview-skills">
+        if (
+            resumeData.personal.email
+        ) completed++;
 
-                        ${resumeData.skills
-                            .map(
-                                skill =>
-                                    `<span>${escapeHTML(skill)}</span>`
-                            )
-                            .join("")}
+        if (
+            resumeData.personal.phone
+        ) completed++;
 
-                    </div>
+        if (
+            resumeData.personal.city
+        ) completed++;
 
-                </section>
-            `;
-        }
+        if (
+            resumeData.experience.length > 0 &&
+            resumeData.experience.some(
+                item =>
+                    item.jobTitle &&
+                    item.company &&
+                    item.startDate
+            )
+        ) completed++;
 
+        if (
+            resumeData.education.length > 0 &&
+            resumeData.education.some(
+                item =>
+                    item.school &&
+                    item.degree &&
+                    item.startDate
+            )
+        ) completed++;
 
-        html += `
-            </div>
-        `;
+        if (
+            resumeData.skills.length > 0
+        ) completed++;
 
-
-        preview.innerHTML =
-            html;
-    }
-
-
-    /* =====================================================
-       TEMPLATE SWITCHING
-    ===================================================== */
-
-    function updateTemplateButtons() {
-
-        $$(".template-option").forEach(
-            button => {
-
-                button.classList.toggle(
-                    "active",
-                    button.dataset.template ===
-                    resumeData.settings.template
-                );
-            }
-        );
-    }
+        if (
+            resumeData.summary
+        ) completed++;
 
 
-    $$(".template-option").forEach(
-        button => {
-
-            button.addEventListener(
-                "click",
-                () => {
-
-                    const template =
-                        button.dataset.template;
-
-                    if (!template) {
-                        return;
-                    }
-
-                    resumeData.settings.template =
-                        template;
-
-                    updateTemplateButtons();
-
-                    renderPreview();
-
-                    saveData();
-
-                    showToast(
-                        `${template.charAt(0).toUpperCase() + template.slice(1)} template selected.`
-                    );
-                }
+        const percentage =
+            Math.round(
+                completed / total * 100
             );
+
+
+        const text =
+            $("#completionPercent");
+
+        const bar =
+            $("#progressBar");
+
+
+        if (text) {
+
+            text.textContent =
+                percentage + "%";
+
         }
-    );
 
+        if (bar) {
 
-    updateTemplateButtons();
+            bar.style.width =
+                percentage + "%";
+
+        }
+
+    }
 
 
     /* =====================================================
-       DOWNLOAD RESUME
+       DOWNLOAD / PRINT
     ===================================================== */
 
-    const downloadButton =
-        $("#downloadResumeButton");
+    function setupDownload() {
 
+        const button =
+            $("#downloadResumeButton");
 
-    if (downloadButton) {
+        if (!button) return;
 
-        downloadButton.addEventListener(
+        button.addEventListener(
             "click",
-            () => {
+            function () {
 
-                const allValid =
-                    validateHeading() &&
-                    validateExperience() &&
-                    validateEducation() &&
-                    validateSkills() &&
-                    validateSummary();
+                if (
+                    !validateSection("heading")
+                ) {
 
-                if (!allValid) {
+                    showSection("heading");
 
                     showToast(
-                        "Please complete all required sections first."
+                        "Complete your contact details first."
                     );
 
                     return;
+
                 }
 
+                window.print();
 
-                renderPreview();
-
-                /*
-                 * If html2pdf.js is available,
-                 * generate the PDF.
-                 */
-
-                if (
-                    typeof window.html2pdf ===
-                    "function"
-                ) {
-
-                    const element =
-                        $("#resumePreview");
-
-                    const options = {
-
-                        margin: 0,
-
-                        filename:
-                            `${(
-                                resumeData.personal.firstName ||
-                                "resume"
-                            )}-${(
-                                resumeData.personal.lastName ||
-                                ""
-                            )}.pdf`,
-
-                        image: {
-                            type: "jpeg",
-                            quality: 0.98
-                        },
-
-                        html2canvas: {
-                            scale: 2,
-                            useCORS: true
-                        },
-
-                        jsPDF: {
-                            unit: "mm",
-                            format: "a4",
-                            orientation: "portrait"
-                        }
-                    };
-
-
-                    window.html2pdf()
-                        .set(options)
-                        .from(element)
-                        .save();
-
-                } else {
-
-                    showToast(
-                        "PDF library is not loaded. Please add html2pdf.js."
-                    );
-                }
             }
         );
+
     }
 
 
     /* =====================================================
-       SAVE + UPDATE
+       TOAST
     ===================================================== */
 
-    function saveAndUpdate() {
+    let toastTimer = null;
 
-        saveData();
+    function showToast(message) {
 
-        updateCompletion();
+        const toast =
+            $("#toast");
 
-        renderPreview();
+        if (!toast) return;
+
+        toast.textContent =
+            message;
+
+        toast.classList.add(
+            "show"
+        );
+
+        clearTimeout(
+            toastTimer
+        );
+
+        toastTimer =
+            setTimeout(
+                function () {
+
+                    toast.classList.remove(
+                        "show"
+                    );
+
+                },
+                2600
+            );
+
     }
 
 
     /* =====================================================
-       INITIALIZE
+       INPUT CLEANUP
     ===================================================== */
 
-    updateCompletion();
+    function setupInputHelpers() {
 
-    renderPreview();
+        const pin =
+            $("#pinCode");
 
-    updateStepState();
+        if (pin) {
+
+            pin.addEventListener(
+                "input",
+                function () {
+
+                    pin.value =
+                        pin.value
+                            .replace(
+                                /\D/g,
+                                ""
+                            )
+                            .slice(
+                                0,
+                                6
+                            );
+
+                }
+            );
+
+        }
 
 
-    showSection(
-        resumeData.currentSection ||
-        "heading"
-    );
+        const phone =
+            $("#phone");
+
+        if (phone) {
+
+            phone.addEventListener(
+                "input",
+                function () {
+
+                    phone.value =
+                        phone.value
+                            .replace(
+                                /[^0-9+\-() ]/g,
+                                ""
+                            )
+                            .slice(
+                                0,
+                                20
+                            );
+
+                }
+            );
+
+        }
+
+    }
 
 
     /* =====================================================
-       AUTO SAVE
-    ===================================================== */
-
-    setInterval(
-        () => {
-
-            saveData();
-
-        },
-        5000
-    );
-
-
-    /* =====================================================
-       BEFORE LEAVING PAGE
+       BEFORE UNLOAD
     ===================================================== */
 
     window.addEventListener(
         "beforeunload",
-        () => {
-
-            /*
-             * Make sure current form values
-             * are stored before leaving.
-             */
-
-            try {
-
-                updateExperienceFromDOM();
-
-                updateEducationFromDOM();
-
-                saveData();
-
-            } catch (error) {
-
-                console.error(
-                    "Final save failed:",
-                    error
-                );
-            }
-        }
+        saveData
     );
 
 
     /* =====================================================
-       READY
+       START APPLICATION
     ===================================================== */
 
-    console.log(
-        "ResumeCraft Builder initialized successfully."
-    );
+    loadData();
+
+    initializePersonalForm();
+
+    setupPersonalForm();
+
+    setupOptionalLinks();
+
+    setupPhotoUpload();
+
+    setupExperience();
+
+    setupEducation();
+
+    setupSkills();
+
+    setupSummary();
+
+    setupNavigation();
+
+    setupDownload();
+
+    setupInputHelpers();
+
+    updatePreview();
+
+    updateCompletion();
+
+    showSection("heading");
 
 });
