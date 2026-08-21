@@ -1,15 +1,35 @@
 /* =========================================================
-   RESUMECRAFT BUILDER
-   TEMPLATE SYSTEM
+   RESUMECRAFT - BUILDER TEMPLATE SYSTEM
+   =========================================================
+   
+   Supported templates:
+   classic
+   modern
+   minimal
+   executive
+   professional
+   elegant
+   creative
+   corporate
+   compact
+   ats
+
+   Priority:
+   1. URL template
+   2. Saved template
+   3. Minimal
 ========================================================= */
 
-document.addEventListener("DOMContentLoaded", function () {
+(function () {
+
+    "use strict";
+
 
     /* =====================================================
-       AVAILABLE TEMPLATES
+       1. AVAILABLE TEMPLATES
     ===================================================== */
 
-    const TEMPLATE_NAMES = [
+    const TEMPLATES = [
         "classic",
         "modern",
         "minimal",
@@ -24,232 +44,63 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =====================================================
-       GET RESUME TEMPLATE WRAPPER
+       2. GET RESUME WRAPPER
     ===================================================== */
 
-    const templateWrapper =
-        document.getElementById("resumeTemplateWrapper");
+    function getResumeWrapper() {
+
+        return document.getElementById(
+            "resumeTemplateWrapper"
+        );
+
+    }
 
 
     /* =====================================================
-       APPLY TEMPLATE
+       3. CHECK TEMPLATE
     ===================================================== */
-/* =========================================================
-   RESUMECRAFT - TEMPLATE SWITCHER
-   Templates:
-   classic
-   modern
-   minimal
-   executive
-   professional
-   elegant
-   creative
-   corporate
-   compact
-   ats
-========================================================= */
 
-const RESUME_TEMPLATES = [
-    "classic",
-    "modern",
-    "minimal",
-    "executive",
-    "professional",
-    "elegant",
-    "creative",
-    "corporate",
-    "compact",
-    "ats"
-];
+    function validTemplate(template) {
 
-
-/* =========================================================
-   APPLY SELECTED TEMPLATE
-========================================================= */
-
-function applyResumeTemplate(templateName) {
-
-    const wrapper = document.getElementById(
-        "resumeTemplateWrapper"
-    );
-
-    if (!wrapper) {
-        console.error(
-            "Resume template wrapper not found."
-        );
-        return;
-    }
-
-
-    /* -----------------------------------------
-       CLEAN ALL OLD TEMPLATE CLASSES
-    ----------------------------------------- */
-
-    RESUME_TEMPLATES.forEach(function(template) {
-
-        wrapper.classList.remove(
-            "template-" + template
-        );
-
-    });
-
-
-    /* -----------------------------------------
-       CHECK TEMPLATE
-    ----------------------------------------- */
-
-    if (
-        !RESUME_TEMPLATES.includes(templateName)
-    ) {
-
-        templateName = "minimal";
+        return TEMPLATES.indexOf(template) !== -1;
 
     }
-
-
-    /* -----------------------------------------
-       APPLY NEW TEMPLATE
-    ----------------------------------------- */
-
-    wrapper.classList.add(
-        "template-" + templateName
-    );
-
-
-    /* -----------------------------------------
-       SAVE TEMPLATE
-    ----------------------------------------- */
-
-    localStorage.setItem(
-        "resumeCraftTemplate",
-        templateName
-    );
-
-
-    console.log(
-        "Resume template changed to:",
-        templateName
-    );
-}
-
-
-/* =========================================================
-   LOAD SAVED TEMPLATE
-========================================================= */
-
-function loadResumeTemplate() {
-
-    const wrapper = document.getElementById(
-        "resumeTemplateWrapper"
-    );
-
-    if (!wrapper) return;
-
-
-    let savedTemplate =
-        localStorage.getItem(
-            "resumeCraftTemplate"
-        );
-
-
-    /* -----------------------------------------
-       DEFAULT TEMPLATE
-    ----------------------------------------- */
-
-    if (
-        !savedTemplate ||
-        !RESUME_TEMPLATES.includes(savedTemplate)
-    ) {
-
-        savedTemplate = "minimal";
-
-    }
-
-
-    applyResumeTemplate(
-        savedTemplate
-    );
-}
-
-
-/* =========================================================
-   TEMPLATE FROM URL
-   Example:
-   builder.html?template=classic
-========================================================= */
-
-function loadTemplateFromURL() {
-
-    const params =
-        new URLSearchParams(
-            window.location.search
-        );
-
-
-    const urlTemplate =
-        params.get("template");
-
-
-    if (
-        urlTemplate &&
-        RESUME_TEMPLATES.includes(urlTemplate)
-    ) {
-
-        applyResumeTemplate(
-            urlTemplate
-        );
-
-        return true;
-
-    }
-
-
-    return false;
-}
-
-
-/* =========================================================
-   START TEMPLATE SYSTEM
-========================================================= */
-
-document.addEventListener(
-    "DOMContentLoaded",
-    function() {
-
-        /*
-         * First check URL.
-         * If URL has ?template=classic,
-         * Classic will be shown.
-         */
-
-        const templateFromURL =
-            loadTemplateFromURL();
-
-
-        /*
-         * If there is no URL template,
-         * load the previously selected template.
-         */
-
-        if (!templateFromURL) {
-
-            loadResumeTemplate();
-
-        }
-
-    }
-);
 
 
     /* =====================================================
-       SAVE SELECTED TEMPLATE
+       4. REMOVE ALL TEMPLATE CLASSES
     ===================================================== */
 
-    function saveSelectedTemplate(templateName) {
+    function removeTemplateClasses(wrapper) {
+
+        TEMPLATES.forEach(function (template) {
+
+            wrapper.classList.remove(
+                "template-" + template
+            );
+
+        });
+
+    }
+
+
+    /* =====================================================
+       5. SAVE TEMPLATE
+    ===================================================== */
+
+    function saveTemplate(template) {
+
+        localStorage.setItem(
+            "resumeCraftTemplate",
+            template
+        );
+
+
+        /* Also save inside resumeCraftData */
 
         try {
 
-            let resumeData =
+            let data =
                 JSON.parse(
                     localStorage.getItem(
                         "resumeCraftData"
@@ -257,26 +108,25 @@ document.addEventListener(
                 ) || {};
 
 
-            if (!resumeData.settings) {
+            if (!data.settings) {
 
-                resumeData.settings = {};
+                data.settings = {};
 
             }
 
 
-            resumeData.settings.template =
-                templateName;
+            data.settings.template = template;
 
 
             localStorage.setItem(
                 "resumeCraftData",
-                JSON.stringify(resumeData)
+                JSON.stringify(data)
             );
 
         } catch (error) {
 
             console.error(
-                "Could not save selected template:",
+                "Template save error:",
                 error
             );
 
@@ -286,72 +136,83 @@ document.addEventListener(
 
 
     /* =====================================================
-       GET SAVED TEMPLATE
+       6. APPLY TEMPLATE
     ===================================================== */
 
-    function getSavedTemplate() {
+    function applyResumeTemplate(template) {
 
-        try {
-
-            const resumeData =
-                JSON.parse(
-                    localStorage.getItem(
-                        "resumeCraftData"
-                    )
-                );
+        const wrapper =
+            getResumeWrapper();
 
 
-            if (
-                resumeData &&
-                resumeData.settings &&
-                TEMPLATE_NAMES.includes(
-                    resumeData.settings.template
-                )
-            ) {
-
-                return resumeData.settings.template;
-
-            }
-
-        } catch (error) {
+        if (!wrapper) {
 
             console.error(
-                "Could not read saved template:",
-                error
+                "ERROR: resumeTemplateWrapper not found."
             );
+
+            return;
 
         }
 
 
-        return null;
+        /* Invalid template = minimal */
+
+        if (!validTemplate(template)) {
+
+            template = "minimal";
+
+        }
+
+
+        /* Remove old template */
+
+        removeTemplateClasses(
+            wrapper
+        );
+
+
+        /* Add selected template */
+
+        wrapper.classList.add(
+            "template-" + template
+        );
+
+
+        /* Save selected template */
+
+        saveTemplate(
+            template
+        );
+
+
+        console.log(
+            "Selected template:",
+            template
+        );
 
     }
 
 
     /* =====================================================
-       GET TEMPLATE FROM URL
-       
-       Example:
-       builder.html?template=classic
-       builder.html?template=modern
-       builder.html?template=ats
+       7. GET TEMPLATE FROM URL
     ===================================================== */
 
-    function getTemplateFromURL() {
+    function getURLTemplate() {
 
-        const urlParams =
+        const params =
             new URLSearchParams(
                 window.location.search
             );
 
 
         const template =
-            urlParams.get("template");
+            params.get("template");
 
 
         if (
             template &&
-            TEMPLATE_NAMES.includes(template)
+            validTemplate(template)
         ) {
 
             return template;
@@ -365,89 +226,137 @@ document.addEventListener(
 
 
     /* =====================================================
-       LOAD TEMPLATE
-       
-       Priority:
-       
-       1. URL template
-       2. Saved template
-       3. Minimal
+       8. GET SAVED TEMPLATE
+    ===================================================== */
+
+    function getSavedTemplate() {
+
+        /* Check direct saved template */
+
+        const saved =
+            localStorage.getItem(
+                "resumeCraftTemplate"
+            );
+
+
+        if (
+            saved &&
+            validTemplate(saved)
+        ) {
+
+            return saved;
+
+        }
+
+
+        /* Check resumeCraftData */
+
+        try {
+
+            const data =
+                JSON.parse(
+                    localStorage.getItem(
+                        "resumeCraftData"
+                    )
+                );
+
+
+            if (
+                data &&
+                data.settings &&
+                validTemplate(
+                    data.settings.template
+                )
+            ) {
+
+                return data.settings.template;
+
+            }
+
+        } catch (error) {
+
+            console.error(
+                "Template read error:",
+                error
+            );
+
+        }
+
+
+        return null;
+
+    }
+
+
+    /* =====================================================
+       9. LOAD TEMPLATE
     ===================================================== */
 
     function loadResumeTemplate() {
 
         const urlTemplate =
-            getTemplateFromURL();
+            getURLTemplate();
 
+
+        /* URL has highest priority */
+
+        if (urlTemplate) {
+
+            applyResumeTemplate(
+                urlTemplate
+            );
+
+            return;
+
+        }
+
+
+        /* Otherwise saved template */
 
         const savedTemplate =
             getSavedTemplate();
 
 
-        let selectedTemplate;
+        if (savedTemplate) {
 
+            applyResumeTemplate(
+                savedTemplate
+            );
 
-        /* -----------------------------------------------
-           URL HAS HIGHEST PRIORITY
-        ------------------------------------------------ */
-
-        if (urlTemplate) {
-
-            selectedTemplate =
-                urlTemplate;
+            return;
 
         }
 
 
-        /* -----------------------------------------------
-           OTHERWISE USE SAVED TEMPLATE
-        ------------------------------------------------ */
-
-        else if (savedTemplate) {
-
-            selectedTemplate =
-                savedTemplate;
-
-        }
-
-
-        /* -----------------------------------------------
-           DEFAULT
-        ------------------------------------------------ */
-
-        else {
-
-            selectedTemplate =
-                "minimal";
-
-        }
-
+        /* Default */
 
         applyResumeTemplate(
-            selectedTemplate
+            "minimal"
         );
 
     }
 
 
     /* =====================================================
-       LOAD SELECTED TEMPLATE
+       10. START
     ===================================================== */
 
-    loadResumeTemplate();
+    document.addEventListener(
+        "DOMContentLoaded",
+        function () {
+
+            loadResumeTemplate();
+
+        }
+    );
 
 
     /* =====================================================
-       MAKE FUNCTION AVAILABLE GLOBALLY
-       
-       This allows other JS files to call:
-       
-       applyResumeTemplate("classic")
-       applyResumeTemplate("modern")
-       etc.
+       11. MAKE FUNCTION AVAILABLE
     ===================================================== */
 
     window.applyResumeTemplate =
         applyResumeTemplate;
 
-});
+
+})();
