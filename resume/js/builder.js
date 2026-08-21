@@ -1,13 +1,13 @@
 /* =========================================================
    RESUMECRAFT BUILDER
    Complete Builder JavaScript
-========================================================= */
+   ========================================================= */
 
 let resumeTemplateWrapper = null;
 
 /* =========================================================
    TEMPLATE SYSTEM
-========================================================= */
+   ========================================================= */
 
 const templateNames = [
     "modern",
@@ -30,9 +30,9 @@ function applyResumeTemplate(templateName) {
         templateName = "minimal";
     }
 
-    templateNames.forEach(template => {
+    templateNames.forEach(name => {
         resumeTemplateWrapper.classList.remove(
-            `template-${template}`
+            `template-${name}`
         );
     });
 
@@ -44,7 +44,23 @@ function applyResumeTemplate(templateName) {
         "selectedResumeTemplate",
         templateName
     );
+
+    /*
+     * Optional:
+     * Update selected template buttons if they exist.
+     */
+    document
+        .querySelectorAll("[data-template]")
+        .forEach(button => {
+
+            button.classList.toggle(
+                "active",
+                button.dataset.template === templateName
+            );
+
+        });
 }
+
 
 function initializeResumeTemplate() {
 
@@ -80,8 +96,8 @@ function initializeResumeTemplate() {
 
 
 /* =========================================================
-   MAIN
-========================================================= */
+   DOM READY
+   ========================================================= */
 
 document.addEventListener(
     "DOMContentLoaded",
@@ -92,12 +108,13 @@ document.addEventListener(
 
         /* =================================================
            HELPERS
-        ================================================= */
+           ================================================= */
 
         const $ = (
             selector,
             parent = document
         ) => parent.querySelector(selector);
+
 
         const $$ = (
             selector,
@@ -162,9 +179,7 @@ document.addEventListener(
             toast.textContent =
                 message;
 
-            toast.classList.add(
-                "show"
-            );
+            toast.classList.add("show");
 
             clearTimeout(
                 window.resumeToastTimer
@@ -173,16 +188,21 @@ document.addEventListener(
             window.resumeToastTimer =
                 setTimeout(
                     () => {
+
                         toast.classList.remove(
                             "show"
                         );
+
                     },
                     2500
                 );
         }
 
 
-        function setError(input, message = "") {
+        function setError(
+            input,
+            message = ""
+        ) {
 
             if (!input) return;
 
@@ -223,26 +243,31 @@ document.addEventListener(
 
         function clearErrors(section) {
 
+            if (!section) return;
+
             $$(".input-error", section)
                 .forEach(input => {
 
                     input.classList.remove(
                         "input-error"
                     );
+
                 });
+
 
             $$(".field-error", section)
                 .forEach(error => {
 
                     error.textContent =
                         "";
+
                 });
         }
 
 
         /* =================================================
            RESUME DATA
-        ================================================= */
+           ================================================= */
 
         const resumeData = {
 
@@ -258,8 +283,36 @@ document.addEventListener(
 
 
         /* =================================================
+           TEMPLATE BUTTONS
+           ================================================= */
+
+        $$("[data-template]")
+            .forEach(button => {
+
+                button.addEventListener(
+                    "click",
+                    () => {
+
+                        const template =
+                            button.dataset.template;
+
+                        applyResumeTemplate(
+                            template
+                        );
+
+                        showToast(
+                            `${template.charAt(0).toUpperCase() + template.slice(1)} template selected.`
+                        );
+
+                    }
+                );
+
+            });
+
+
+        /* =================================================
            SECTION NAVIGATION
-        ================================================= */
+           ================================================= */
 
         const sections =
             $$(".builder-section");
@@ -288,6 +341,7 @@ document.addEventListener(
                 );
 
             if (!target) return;
+
 
             sections.forEach(section => {
 
@@ -361,13 +415,14 @@ document.addEventListener(
                 unlockStep(
                     sectionOrder[i]
                 );
+
             }
         }
 
 
         /* =================================================
            HEADER ELEMENTS
-        ================================================= */
+           ================================================= */
 
         const firstName =
             $("#firstName");
@@ -396,15 +451,14 @@ document.addEventListener(
 
         /* =================================================
            HEADER PREVIEW
-        ================================================= */
+           ================================================= */
 
         function updateHeaderPreview() {
 
-            const fullName =
-                [
-                    firstName?.value,
-                    lastName?.value
-                ]
+            const fullName = [
+                firstName?.value,
+                lastName?.value
+            ]
                 .filter(Boolean)
                 .join(" ")
                 .trim();
@@ -418,6 +472,7 @@ document.addEventListener(
                 previewName.textContent =
                     fullName ||
                     "Your Name";
+
             }
 
 
@@ -429,6 +484,7 @@ document.addEventListener(
                 previewTitle.textContent =
                     professionalTitle?.value ||
                     "Professional Title";
+
             }
 
 
@@ -440,6 +496,7 @@ document.addEventListener(
                 previewEmail.textContent =
                     email?.value ||
                     "email@example.com";
+
             }
 
 
@@ -451,6 +508,7 @@ document.addEventListener(
                 previewPhone.textContent =
                     phone?.value ||
                     "Phone";
+
             }
 
 
@@ -462,7 +520,8 @@ document.addEventListener(
 
                 pinCode?.value
 
-            ].filter(Boolean);
+            ]
+                .filter(Boolean);
 
 
             const previewLocation =
@@ -474,6 +533,7 @@ document.addEventListener(
                     locationParts.length
                         ? locationParts.join(", ")
                         : "Location";
+
             }
 
 
@@ -490,26 +550,26 @@ document.addEventListener(
             pinCode,
             phone,
             email
-        ].forEach(input => {
+        ]
+            .filter(Boolean)
+            .forEach(input => {
 
-            if (!input) return;
+                input.addEventListener(
+                    "input",
+                    updateHeaderPreview
+                );
 
-            input.addEventListener(
-                "input",
-                updateHeaderPreview
-            );
+                input.addEventListener(
+                    "change",
+                    updateHeaderPreview
+                );
 
-            input.addEventListener(
-                "change",
-                updateHeaderPreview
-            );
-
-        });
+            });
 
 
         /* =================================================
            HEADER VALIDATION
-        ================================================= */
+           ================================================= */
 
         function validateHeader() {
 
@@ -527,42 +587,50 @@ document.addEventListener(
 
                 {
                     input: firstName,
-                    message: "First name is required."
+                    message:
+                        "First name is required."
                 },
 
                 {
                     input: lastName,
-                    message: "Surname is required."
+                    message:
+                        "Surname is required."
                 },
 
                 {
                     input: professionalTitle,
-                    message: "Professional title is required."
+                    message:
+                        "Professional title is required."
                 },
 
                 {
                     input: city,
-                    message: "City is required."
+                    message:
+                        "City is required."
                 },
 
                 {
                     input: country,
-                    message: "Country is required."
+                    message:
+                        "Country is required."
                 },
 
                 {
                     input: pinCode,
-                    message: "Pin code is required."
+                    message:
+                        "Pin code is required."
                 },
 
                 {
                     input: phone,
-                    message: "Phone number is required."
+                    message:
+                        "Phone number is required."
                 },
 
                 {
                     input: email,
-                    message: "Email is required."
+                    message:
+                        "Email is required."
                 }
 
             ];
@@ -589,7 +657,9 @@ document.addEventListener(
             if (
                 email?.value &&
                 !/^[^\s@]+@[^\s@]+\.[^\s@]+$/
-                    .test(email.value.trim())
+                    .test(
+                        email.value.trim()
+                    )
             ) {
 
                 setError(
@@ -620,9 +690,11 @@ document.addEventListener(
             if (!valid) {
 
                 showToast(
-                    "Please complete the required header fields."
+                    "Please complete the required fields."
                 );
+
             }
+
 
             return valid;
         }
@@ -630,134 +702,124 @@ document.addEventListener(
 
         /* =================================================
            PROFILE PHOTO
-        ================================================= */
+           ================================================= */
 
         const photoInput =
             $("#photoInput");
 
 
-        if (photoInput) {
+        photoInput?.addEventListener(
+            "change",
+            event => {
 
-            photoInput.addEventListener(
-                "change",
-                event => {
+                const file =
+                    event.target.files[0];
 
-                    const file =
-                        event.target.files[0];
-
-                    if (!file) return;
+                if (!file) return;
 
 
-                    if (
-                        ![
-                            "image/jpeg",
-                            "image/png"
-                        ].includes(file.type)
-                    ) {
+                if (
+                    ![
+                        "image/jpeg",
+                        "image/png"
+                    ].includes(file.type)
+                ) {
 
-                        showToast(
-                            "Please upload JPG or PNG."
-                        );
-
-                        photoInput.value =
-                            "";
-
-                        return;
-                    }
-
-
-                    if (
-                        file.size >
-                        2 * 1024 * 1024
-                    ) {
-
-                        showToast(
-                            "Photo must be smaller than 2MB."
-                        );
-
-                        photoInput.value =
-                            "";
-
-                        return;
-                    }
-
-
-                    const reader =
-                        new FileReader();
-
-
-                    reader.onload =
-                        event => {
-
-                            resumeData.photo =
-                                event.target.result;
-
-
-                            const previewPhoto =
-                                $("#previewPhoto");
-
-                            const resumePhoto =
-                                $("#resumePhoto");
-
-
-                            if (previewPhoto) {
-
-                                previewPhoto.src =
-                                    resumeData.photo;
-
-                                previewPhoto.style.display =
-                                    "block";
-                            }
-
-
-                            if (resumePhoto) {
-
-                                resumePhoto.src =
-                                    resumeData.photo;
-
-                                resumePhoto.style.display =
-                                    "block";
-                            }
-
-
-                            const icon1 =
-                                $("#previewPhotoIcon");
-
-                            const icon2 =
-                                $("#resumePhotoIcon");
-
-
-                            if (icon1) {
-
-                                icon1.style.display =
-                                    "none";
-                            }
-
-
-                            if (icon2) {
-
-                                icon2.style.display =
-                                    "none";
-                            }
-
-
-                            showToast(
-                                "Profile photo added."
-                            );
-                        };
-
-
-                    reader.readAsDataURL(
-                        file
+                    showToast(
+                        "Please upload JPG or PNG."
                     );
+
+                    photoInput.value =
+                        "";
+
+                    return;
                 }
-            );
-        }
+
+
+                if (
+                    file.size >
+                    2 * 1024 * 1024
+                ) {
+
+                    showToast(
+                        "Photo must be smaller than 2MB."
+                    );
+
+                    photoInput.value =
+                        "";
+
+                    return;
+                }
+
+
+                const reader =
+                    new FileReader();
+
+
+                reader.onload =
+                    event => {
+
+                        resumeData.photo =
+                            event.target.result;
+
+
+                        const previewPhoto =
+                            $("#previewPhoto");
+
+                        const resumePhoto =
+                            $("#resumePhoto");
+
+
+                        if (previewPhoto) {
+
+                            previewPhoto.src =
+                                resumeData.photo;
+
+                            previewPhoto.style.display =
+                                "block";
+                        }
+
+
+                        if (resumePhoto) {
+
+                            resumePhoto.src =
+                                resumeData.photo;
+
+                            resumePhoto.style.display =
+                                "block";
+                        }
+
+
+                        $("#previewPhotoIcon")
+                            ?.style &&
+                            ($("#previewPhotoIcon")
+                                .style.display =
+                                "none");
+
+
+                        $("#resumePhotoIcon")
+                            ?.style &&
+                            ($("#resumePhotoIcon")
+                                .style.display =
+                                "none");
+
+
+                        showToast(
+                            "Profile photo added."
+                        );
+
+                    };
+
+
+                reader.readAsDataURL(file);
+
+            }
+        );
 
 
         /* =================================================
            OPTIONAL LINKS
-        ================================================= */
+           ================================================= */
 
         const optionalFields =
             $("#optionalFields");
@@ -837,6 +899,7 @@ document.addEventListener(
                                 <button
                                     type="button"
                                     class="remove-optional"
+                                    aria-label="Remove field"
                                 >
                                     ×
                                 </button>
@@ -865,6 +928,7 @@ document.addEventListener(
                                 updateOptionalPreview();
 
                                 updateProgress();
+
                             }
                         );
 
@@ -882,6 +946,7 @@ document.addEventListener(
                                     updateOptionalPreview();
 
                                     updateProgress();
+
                                 }
                             );
 
@@ -895,38 +960,101 @@ document.addEventListener(
 
 
         function normalizeExternalUrl(value) {
-            const raw = String(value || "").trim();
+
+            const raw =
+                String(value || "").trim();
+
             if (!raw) return "";
-            const candidate = /^https?:\/\//i.test(raw) ? raw : `https://${raw}`;
+
+            const candidate =
+                /^https?:\/\//i.test(raw)
+                    ? raw
+                    : `https://${raw}`;
+
             try {
-                const url = new URL(candidate);
-                return ["http:", "https:"].includes(url.protocol) ? url.href : "";
+
+                const url =
+                    new URL(candidate);
+
+                return [
+                    "http:",
+                    "https:"
+                ].includes(
+                    url.protocol
+                )
+                    ? url.href
+                    : "";
+
             } catch {
+
                 return "";
+
             }
         }
+
 
         function updateOptionalPreview() {
-            const links = $("#previewLinks");
+
+            const links =
+                $("#previewLinks");
+
             if (!links) return;
 
+
             const items = [];
-            const linkedin = normalizeExternalUrl(resumeData.linkedin);
-            const website = normalizeExternalUrl(resumeData.website);
+
+
+            const linkedin =
+                normalizeExternalUrl(
+                    resumeData.linkedin
+                );
+
+
+            const website =
+                normalizeExternalUrl(
+                    resumeData.website
+                );
+
 
             if (linkedin) {
-                items.push(`<a href="${escapeHTML(linkedin)}" target="_blank" rel="noopener noreferrer">LinkedIn</a>`);
-            }
-            if (website) {
-                items.push(`<a href="${escapeHTML(website)}" target="_blank" rel="noopener noreferrer">Portfolio</a>`);
+
+                items.push(`
+                    <a
+                        href="${escapeHTML(linkedin)}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        LinkedIn
+                    </a>
+                `);
+
             }
 
-            links.innerHTML = items.join("");
+
+            if (website) {
+
+                items.push(`
+                    <a
+                        href="${escapeHTML(website)}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Portfolio
+                    </a>
+                `);
+
+            }
+
+
+            links.innerHTML =
+                items.join("");
+
         }
+
 
         /* =================================================
            EXPERIENCE
-        ================================================= */
+           ================================================= */
 
         const experienceList =
             $("#experienceList");
@@ -951,7 +1079,9 @@ document.addEventListener(
 
                 <div class="card-heading-row">
 
-                    <h2>Work Experience</h2>
+                    <h2>
+                        Work Experience
+                    </h2>
 
                     <button
                         type="button"
@@ -961,7 +1091,6 @@ document.addEventListener(
                     </button>
 
                 </div>
-
 
                 <div class="form-group">
 
@@ -978,7 +1107,6 @@ document.addEventListener(
                     <small class="field-error"></small>
 
                 </div>
-
 
                 <div class="form-row two-column">
 
@@ -998,7 +1126,6 @@ document.addEventListener(
 
                     </div>
 
-
                     <div class="form-group">
 
                         <label>
@@ -1014,7 +1141,6 @@ document.addEventListener(
                     </div>
 
                 </div>
-
 
                 <div class="form-row two-column">
 
@@ -1033,7 +1159,6 @@ document.addEventListener(
 
                     </div>
 
-
                     <div class="form-group">
 
                         <label>
@@ -1051,7 +1176,6 @@ document.addEventListener(
 
                 </div>
 
-
                 <div class="form-group checkbox-group">
 
                     <label>
@@ -1066,7 +1190,6 @@ document.addEventListener(
                     </label>
 
                 </div>
-
 
                 <div class="form-group">
 
@@ -1090,10 +1213,7 @@ document.addEventListener(
             );
 
 
-            setupExperienceCard(
-                card
-            );
-
+            setupExperienceCard(card);
 
             updateExperienceRemoveButtons();
 
@@ -1141,9 +1261,11 @@ document.addEventListener(
                             false;
                     }
 
+
                     updateExperiencePreview();
 
                     updateProgress();
+
                 }
             );
 
@@ -1151,30 +1273,33 @@ document.addEventListener(
             $$(
                 "input, textarea",
                 card
-            ).forEach(input => {
+            )
+                .forEach(input => {
 
-                input.addEventListener(
-                    "input",
-                    () => {
+                    input.addEventListener(
+                        "input",
+                        () => {
 
-                        updateExperiencePreview();
+                            updateExperiencePreview();
 
-                        updateProgress();
-                    }
-                );
+                            updateProgress();
+
+                        }
+                    );
 
 
-                input.addEventListener(
-                    "change",
-                    () => {
+                    input.addEventListener(
+                        "change",
+                        () => {
 
-                        updateExperiencePreview();
+                            updateExperiencePreview();
 
-                        updateProgress();
-                    }
-                );
+                            updateProgress();
 
-            });
+                        }
+                    );
+
+                });
 
 
             $(".remove-entry-btn", card)
@@ -1189,8 +1314,10 @@ document.addEventListener(
                         updateExperiencePreview();
 
                         updateProgress();
+
                     }
                 );
+
         }
 
 
@@ -1207,10 +1334,12 @@ document.addEventListener(
 
                 if (!button) return;
 
+
                 button.style.display =
                     cards.length > 1
                         ? "inline-flex"
                         : "none";
+
             });
         }
 
@@ -1261,9 +1390,7 @@ document.addEventListener(
                     $(".currently-working", card);
 
 
-                if (
-                    !jobTitle?.value.trim()
-                ) {
+                if (!jobTitle?.value.trim()) {
 
                     setError(
                         jobTitle,
@@ -1274,9 +1401,7 @@ document.addEventListener(
                 }
 
 
-                if (
-                    !company?.value.trim()
-                ) {
+                if (!company?.value.trim()) {
 
                     setError(
                         company,
@@ -1321,16 +1446,13 @@ document.addEventListener(
                 showToast(
                     "Please complete your experience details."
                 );
+
             }
 
 
             return valid;
         }
 
-
-        /* =================================================
-           EXPERIENCE PREVIEW
-        ================================================= */
 
         function updateExperiencePreview() {
 
@@ -1354,6 +1476,7 @@ document.addEventListener(
                         $(".experience-company", card)
                             ?.value.trim()
                     );
+
                 });
 
 
@@ -1371,105 +1494,128 @@ document.addEventListener(
 
 
             preview.innerHTML =
-                validCards.map(card => {
+                validCards
+                    .map(card => {
 
-                    const title =
-                        $(".experience-job-title", card)
-                            ?.value.trim();
+                        const title =
+                            $(".experience-job-title", card)
+                                ?.value.trim();
 
-                    const company =
-                        $(".experience-company", card)
-                            ?.value.trim();
+                        const company =
+                            $(".experience-company", card)
+                                ?.value.trim();
 
-                    const location =
-                        $(".experience-location", card)
-                            ?.value.trim();
+                        const location =
+                            $(".experience-location", card)
+                                ?.value.trim();
 
-                    const start =
-                        $(".experience-start", card)
-                            ?.value;
+                        const start =
+                            $(".experience-start", card)
+                                ?.value;
 
-                    const end =
-                        $(".experience-end", card)
-                            ?.value;
+                        const end =
+                            $(".experience-end", card)
+                                ?.value;
 
-                    const working =
-                        $(".currently-working", card)
-                            ?.checked;
+                        const working =
+                            $(".currently-working", card)
+                                ?.checked;
 
-                    const description =
-                        $(".experience-description", card)
-                            ?.value.trim();
-
-
-                    let dates = "";
+                        const description =
+                            $(".experience-description", card)
+                                ?.value.trim();
 
 
-                    if (start) {
+                        let dates = "";
 
-                        dates =
-                            formatMonth(start);
 
-                        if (working) {
+                        if (start) {
 
-                            dates +=
-                                " – Present";
+                            dates =
+                                formatMonth(start);
 
-                        } else if (end) {
 
-                            dates +=
-                                ` – ${formatMonth(end)}`;
+                            if (working) {
+
+                                dates +=
+                                    " – Present";
+
+                            } else if (end) {
+
+                                dates +=
+                                    ` – ${formatMonth(end)}`;
+
+                            }
+
                         }
-                    }
 
 
-                    return `
+                        return `
 
-                        <div class="preview-experience-item">
+                            <div class="preview-experience-item">
 
-                            <h4>
-                                ${escapeHTML(
-                                    title ||
-                                    "Job Title"
-                                )}
-                            </h4>
+                                <h4>
+                                    ${escapeHTML(
+                                        title ||
+                                        "Job Title"
+                                    )}
+                                </h4>
 
-                            <strong>
-                                ${escapeHTML(
-                                    company ||
-                                    "Company"
-                                )}
-                            </strong>
+                                <strong>
+                                    ${escapeHTML(
+                                        company ||
+                                        "Company"
+                                    )}
+                                </strong>
 
-                            ${
-                                location
-                                    ? `<span>${escapeHTML(location)}</span>`
-                                    : ""
-                            }
+                                ${
+                                    location
+                                        ? `
+                                            <span>
+                                                ${escapeHTML(location)}
+                                            </span>
+                                          `
+                                        : ""
+                                }
 
-                            ${
-                                dates
-                                    ? `<small>${escapeHTML(dates)}</small>`
-                                    : ""
-                            }
+                                ${
+                                    dates
+                                        ? `
+                                            <small>
+                                                ${escapeHTML(dates)}
+                                            </small>
+                                          `
+                                        : ""
+                                }
 
-                            ${
-                                description
-                                    ? `<p>${escapeHTML(description).replace(/\n/g, "<br>")}</p>`
-                                    : ""
-                            }
+                                ${
+                                    description
+                                        ? `
+                                            <p>
+                                                ${escapeHTML(
+                                                    description
+                                                ).replace(
+                                                    /\n/g,
+                                                    "<br>"
+                                                )}
+                                            </p>
+                                          `
+                                        : ""
+                                }
 
-                        </div>
+                            </div>
 
-                    `;
+                        `;
 
-                }).join("");
+                    })
+                    .join("");
+
         }
 
 
         /* =================================================
            EDUCATION
-        ================================================= */
+           ================================================= */
 
         const educationEntries =
             $("#educationEntries");
@@ -1501,7 +1647,6 @@ document.addEventListener(
                     </button>
 
                 </div>
-
 
                 <div class="form-group">
 
@@ -1553,7 +1698,6 @@ document.addEventListener(
 
                 </div>
 
-
                 <div class="form-group">
 
                     <label>
@@ -1569,7 +1713,6 @@ document.addEventListener(
                     <small class="field-error"></small>
 
                 </div>
-
 
                 <div class="form-group">
 
@@ -1608,7 +1751,6 @@ document.addEventListener(
 
                 </div>
 
-
                 <div class="form-group">
 
                     <label>
@@ -1641,7 +1783,6 @@ document.addEventListener(
 
                 </div>
 
-
                 <div class="form-row two-column">
 
                     <div class="form-group">
@@ -1658,7 +1799,6 @@ document.addEventListener(
                         <small class="field-error"></small>
 
                     </div>
-
 
                     <div class="form-group">
 
@@ -1677,7 +1817,6 @@ document.addEventListener(
 
                 </div>
 
-
                 <div class="form-group checkbox-group">
 
                     <label>
@@ -1692,7 +1831,6 @@ document.addEventListener(
                     </label>
 
                 </div>
-
 
                 <div class="form-group">
 
@@ -1715,7 +1853,6 @@ document.addEventListener(
 
                         </label>
 
-
                         <label>
 
                             <input
@@ -1732,7 +1869,6 @@ document.addEventListener(
                     </div>
 
                 </div>
-
 
                 <div
                     class="form-group percentage-field"
@@ -1756,7 +1892,6 @@ document.addEventListener(
 
                 </div>
 
-
                 <div
                     class="form-group cgpa-field"
                     style="display:none;"
@@ -1778,7 +1913,6 @@ document.addEventListener(
                     <small class="field-error"></small>
 
                 </div>
-
 
                 <div class="form-group">
 
@@ -1826,10 +1960,7 @@ document.addEventListener(
             );
 
 
-            setupEducationCard(
-                card
-            );
-
+            setupEducationCard(card);
 
             updateEducationNumbers();
 
@@ -1877,11 +2008,14 @@ document.addEventListener(
 
                         endDate.disabled =
                             false;
+
                     }
+
 
                     updateEducationPreview();
 
                     updateProgress();
+
                 }
             );
 
@@ -1907,6 +2041,7 @@ document.addEventListener(
                                     "percentage"
                                         ? "block"
                                         : "none";
+
                             }
 
 
@@ -1917,12 +2052,14 @@ document.addEventListener(
                                     "cgpa"
                                         ? "block"
                                         : "none";
+
                             }
 
 
                             updateEducationPreview();
 
                             updateProgress();
+
                         }
                     );
 
@@ -1932,30 +2069,33 @@ document.addEventListener(
             $$(
                 "input, select, textarea",
                 card
-            ).forEach(input => {
+            )
+                .forEach(input => {
 
-                input.addEventListener(
-                    "input",
-                    () => {
+                    input.addEventListener(
+                        "input",
+                        () => {
 
-                        updateEducationPreview();
+                            updateEducationPreview();
 
-                        updateProgress();
-                    }
-                );
+                            updateProgress();
+
+                        }
+                    );
 
 
-                input.addEventListener(
-                    "change",
-                    () => {
+                    input.addEventListener(
+                        "change",
+                        () => {
 
-                        updateEducationPreview();
+                            updateEducationPreview();
 
-                        updateProgress();
-                    }
-                );
+                            updateProgress();
 
-            });
+                        }
+                    );
+
+                });
 
 
             $(".education-remove", card)
@@ -1972,8 +2112,10 @@ document.addEventListener(
                         updateEducationPreview();
 
                         updateProgress();
+
                     }
                 );
+
         }
 
 
@@ -1990,7 +2132,9 @@ document.addEventListener(
 
                             heading.textContent =
                                 `Education ${index + 1}`;
+
                         }
+
                     }
                 );
         }
@@ -2009,10 +2153,12 @@ document.addEventListener(
 
                 if (!button) return;
 
+
                 button.style.display =
                     cards.length > 1
                         ? "inline-flex"
                         : "none";
+
             });
         }
 
@@ -2034,10 +2180,6 @@ document.addEventListener(
 
         updateEducationRemoveButtons();
 
-
-        /* =================================================
-           EDUCATION VALIDATION
-        ================================================= */
 
         function validateEducation() {
 
@@ -2139,16 +2281,13 @@ document.addEventListener(
                 showToast(
                     "Please complete your education details."
                 );
+
             }
 
 
             return valid;
         }
 
-
-        /* =================================================
-           EDUCATION PREVIEW
-        ================================================= */
 
         function updateEducationPreview() {
 
@@ -2172,6 +2311,7 @@ document.addEventListener(
                         $(".degree", card)
                             ?.value
                     );
+
                 });
 
 
@@ -2189,166 +2329,195 @@ document.addEventListener(
 
 
             preview.innerHTML =
-                validCards.map(card => {
+                validCards
+                    .map(card => {
 
-                    const level =
-                        $(".education-level", card)
-                            ?.value;
-
-                    const school =
-                        $(".school-name", card)
-                            ?.value.trim();
-
-                    const degree =
-                        $(".degree", card)
-                            ?.value;
-
-                    const field =
-                        $(".education-field", card)
-                            ?.value;
-
-                    const start =
-                        $(".education-start", card)
-                            ?.value;
-
-                    const end =
-                        $(".education-end", card)
-                            ?.value;
-
-                    const studying =
-                        $(".currently-studying", card)
-                            ?.checked;
-
-                    const description =
-                        $(".education-description", card)
-                            ?.value.trim();
-
-
-                    const percentageRadio =
-                        $(
-                            '.marks-type[value="percentage"]',
-                            card
-                        );
-
-
-                    const cgpaRadio =
-                        $(
-                            '.marks-type[value="cgpa"]',
-                            card
-                        );
-
-
-                    let result = "";
-
-
-                    if (
-                        percentageRadio?.checked
-                    ) {
-
-                        const value =
-                            $(".percentage-input", card)
+                        const level =
+                            $(".education-level", card)
                                 ?.value;
 
-                        if (value) {
+                        const school =
+                            $(".school-name", card)
+                                ?.value.trim();
 
-                            result =
-                                `${value}%`;
-                        }
-                    }
-
-
-                    if (
-                        cgpaRadio?.checked
-                    ) {
-
-                        const value =
-                            $(".cgpa-input", card)
+                        const degree =
+                            $(".degree", card)
                                 ?.value;
 
-                        if (value) {
+                        const field =
+                            $(".education-field", card)
+                                ?.value;
 
-                            result =
-                                `CGPA ${value}`;
+                        const start =
+                            $(".education-start", card)
+                                ?.value;
+
+                        const end =
+                            $(".education-end", card)
+                                ?.value;
+
+                        const studying =
+                            $(".currently-studying", card)
+                                ?.checked;
+
+                        const description =
+                            $(".education-description", card)
+                                ?.value.trim();
+
+
+                        const percentageRadio =
+                            $(
+                                '.marks-type[value="percentage"]',
+                                card
+                            );
+
+
+                        const cgpaRadio =
+                            $(
+                                '.marks-type[value="cgpa"]',
+                                card
+                            );
+
+
+                        let result = "";
+
+
+                        if (
+                            percentageRadio?.checked
+                        ) {
+
+                            const value =
+                                $(".percentage-input", card)
+                                    ?.value;
+
+                            if (value) {
+
+                                result =
+                                    `${value}%`;
+
+                            }
+
                         }
-                    }
 
 
-                    let dates = "";
+                        if (
+                            cgpaRadio?.checked
+                        ) {
 
+                            const value =
+                                $(".cgpa-input", card)
+                                    ?.value;
 
-                    if (start) {
+                            if (value) {
 
-                        dates =
-                            formatMonth(start);
+                                result =
+                                    `CGPA ${value}`;
 
+                            }
 
-                        if (studying) {
-
-                            dates +=
-                                " – Present";
-
-                        } else if (end) {
-
-                            dates +=
-                                ` – ${formatMonth(end)}`;
                         }
-                    }
 
 
-                    return `
+                        let dates = "";
 
-                        <div class="preview-education-item">
 
-                            <h4>
-                                ${escapeHTML(
-                                    degree ||
-                                    level ||
-                                    "Education"
-                                )}
-                            </h4>
+                        if (start) {
 
-                            <strong>
-                                ${escapeHTML(
-                                    school ||
-                                    ""
-                                )}
-                            </strong>
+                            dates =
+                                formatMonth(start);
 
-                            ${
-                                field
-                                    ? `<span>${escapeHTML(field)}</span>`
-                                    : ""
+
+                            if (studying) {
+
+                                dates +=
+                                    " – Present";
+
+                            } else if (end) {
+
+                                dates +=
+                                    ` – ${formatMonth(end)}`;
+
                             }
 
-                            ${
-                                dates
-                                    ? `<small>${escapeHTML(dates)}</small>`
-                                    : ""
-                            }
+                        }
 
-                            ${
-                                result
-                                    ? `<small>${escapeHTML(result)}</small>`
-                                    : ""
-                            }
 
-                            ${
-                                description
-                                    ? `<p>${escapeHTML(description).replace(/\n/g, "<br>")}</p>`
-                                    : ""
-                            }
+                        return `
 
-                        </div>
+                            <div class="preview-education-item">
 
-                    `;
+                                <h4>
+                                    ${escapeHTML(
+                                        degree ||
+                                        level ||
+                                        "Education"
+                                    )}
+                                </h4>
 
-                }).join("");
+                                <strong>
+                                    ${escapeHTML(
+                                        school || ""
+                                    )}
+                                </strong>
+
+                                ${
+                                    field
+                                        ? `
+                                            <span>
+                                                ${escapeHTML(field)}
+                                            </span>
+                                          `
+                                        : ""
+                                }
+
+                                ${
+                                    dates
+                                        ? `
+                                            <small>
+                                                ${escapeHTML(dates)}
+                                            </small>
+                                          `
+                                        : ""
+                                }
+
+                                ${
+                                    result
+                                        ? `
+                                            <small>
+                                                ${escapeHTML(result)}
+                                            </small>
+                                          `
+                                        : ""
+                                }
+
+                                ${
+                                    description
+                                        ? `
+                                            <p>
+                                                ${escapeHTML(
+                                                    description
+                                                ).replace(
+                                                    /\n/g,
+                                                    "<br>"
+                                                )}
+                                            </p>
+                                          `
+                                        : ""
+                                }
+
+                            </div>
+
+                        `;
+
+                    })
+                    .join("");
+
         }
 
 
         /* =================================================
            SKILLS
-        ================================================= */
+           ================================================= */
 
         const skillInput =
             $("#skillInput");
@@ -2376,6 +2545,7 @@ document.addEventListener(
                         document.createElement(
                             "div"
                         );
+
 
                     tag.className =
                         "skill-tag";
@@ -2413,6 +2583,7 @@ document.addEventListener(
                                 updateSkillsPreview();
 
                                 updateProgress();
+
                             }
                         );
 
@@ -2420,6 +2591,7 @@ document.addEventListener(
                     skillsList.appendChild(
                         tag
                     );
+
                 }
             );
 
@@ -2504,7 +2676,9 @@ document.addEventListener(
                         event.preventDefault();
 
                         addSkill();
+
                     }
+
                 }
             );
 
@@ -2533,12 +2707,13 @@ document.addEventListener(
                             `<span>${escapeHTML(skill)}</span>`
                     )
                     .join("");
+
         }
 
 
         /* =================================================
            SUMMARY
-        ================================================= */
+           ================================================= */
 
         const summary =
             $("#professionalSummary");
@@ -2564,6 +2739,7 @@ document.addEventListener(
 
                         summaryCount.textContent =
                             summary.value.length;
+
                     }
 
 
@@ -2572,18 +2748,17 @@ document.addEventListener(
                         previewSummary.textContent =
                             summary.value.trim() ||
                             "Your professional summary will appear here.";
+
                     }
 
 
                     updateProgress();
+
                 }
             );
+
         }
 
-
-        /* =================================================
-           VALIDATE SKILLS
-        ================================================= */
 
         function validateSkills() {
 
@@ -2603,10 +2778,6 @@ document.addEventListener(
             return true;
         }
 
-
-        /* =================================================
-           VALIDATE SUMMARY
-        ================================================= */
 
         function validateSummary() {
 
@@ -2630,7 +2801,7 @@ document.addEventListener(
 
         /* =================================================
            SECTION VALIDATION
-        ================================================= */
+           ================================================= */
 
         function validateSection(
             sectionName
@@ -2655,13 +2826,15 @@ document.addEventListener(
 
                 default:
                     return true;
+
             }
+
         }
 
 
         /* =================================================
            CONTINUE BUTTONS
-        ================================================= */
+           ================================================= */
 
         $$(".continue-section-btn")
             .forEach(button => {
@@ -2698,15 +2871,9 @@ document.addEventListener(
                         }
 
 
-                        unlockThrough(
-                            next
-                        );
+                        unlockThrough(next);
 
-
-                        openSection(
-                            next
-                        );
-
+                        openSection(next);
 
                         updateProgress();
 
@@ -2718,16 +2885,18 @@ document.addEventListener(
                             showToast(
                                 "Your resume is ready."
                             );
+
                         }
 
                     }
                 );
+
             });
 
 
         /* =================================================
            BACK BUTTONS
-        ================================================= */
+           ================================================= */
 
         $$(".back-section-btn")
             .forEach(button => {
@@ -2741,17 +2910,17 @@ document.addEventListener(
 
                         if (!target) return;
 
-                        openSection(
-                            target
-                        );
+                        openSection(target);
+
                     }
                 );
+
             });
 
 
         /* =================================================
-           SIDEBAR
-        ================================================= */
+           SIDEBAR STEP BUTTONS
+           ================================================= */
 
         stepButtons.forEach(button => {
 
@@ -2774,20 +2943,21 @@ document.addEventListener(
                         );
 
                         return;
+
                     }
 
 
-                    openSection(
-                        section
-                    );
+                    openSection(section);
+
                 }
             );
+
         });
 
 
         /* =================================================
            BACK TO TEMPLATES
-        ================================================= */
+           ================================================= */
 
         $("#backToTemplates")
             ?.addEventListener(
@@ -2796,13 +2966,14 @@ document.addEventListener(
 
                     window.location.href =
                         "templates.html";
+
                 }
             );
 
 
         /* =================================================
            PROGRESS
-        ================================================= */
+           ================================================= */
 
         function updateProgress() {
 
@@ -2816,19 +2987,12 @@ document.addEventListener(
             const headerFields = [
 
                 firstName,
-
                 lastName,
-
                 professionalTitle,
-
                 city,
-
                 country,
-
                 pinCode,
-
                 phone,
-
                 email
 
             ].filter(Boolean);
@@ -2874,6 +3038,7 @@ document.addEventListener(
                         );
 
                     }).length;
+
             }
 
 
@@ -2909,6 +3074,7 @@ document.addEventListener(
                         );
 
                     }).length;
+
             }
 
 
@@ -2921,6 +3087,7 @@ document.addEventListener(
             ) {
 
                 completed++;
+
             }
 
 
@@ -2933,6 +3100,7 @@ document.addEventListener(
             ) {
 
                 completed++;
+
             }
 
 
@@ -2958,6 +3126,7 @@ document.addEventListener(
 
                 percentElement.textContent =
                     `${percentage}%`;
+
             }
 
 
@@ -2965,82 +3134,145 @@ document.addEventListener(
 
                 progressBar.style.width =
                     `${percentage}%`;
+
             }
+
         }
 
 
         /* =================================================
-           PDF DOWNLOAD
-        ================================================= */
+           PDF / PRINT EXPORT
+           ================================================= */
 
-        /* =====================================================
-   FINALIZE / PDF DOWNLOAD
-   PRINT-ONLY EXPORT
-   Does NOT modify the live preview.
-===================================================== */
+        $("#downloadResumeButton")
+            ?.addEventListener(
+                "click",
+                () => {
 
-$("#downloadResumeButton")?.addEventListener("click", () => {
+                    const resume =
+                        $("#resumePage");
 
-    const resume = $("#resumePage");
-    const templateWrapper = $("#resumeTemplateWrapper");
+                    const templateWrapper =
+                        $("#resumeTemplateWrapper");
 
-    if (!resume || !templateWrapper) {
-        console.error("Resume export elements not found.");
-        showToast("Resume preview not found.");
-        return;
-    }
 
-    /* Update the live resume first */
-    updateHeaderPreview();
-    updateExperiencePreview();
-    updateEducationPreview();
-    updateSkillsPreview();
-    updateOptionalPreview();
+                    if (
+                        !resume ||
+                        !templateWrapper
+                    ) {
 
-    /* Open print window directly from the button click */
-    const printWindow = window.open("", "_blank", "width=900,height=1200");
+                        console.error(
+                            "Resume export elements not found."
+                        );
 
-    if (!printWindow) {
-        showToast("Please allow pop-ups to print your resume.");
-        return;
-    }
+                        showToast(
+                            "Resume preview not found."
+                        );
 
-    /*
-       IMPORTANT:
-       Clone the TEMPLATE WRAPPER, not only #resumePage.
-       The template classes (template-modern, template-minimal,
-       template-executive, etc.) live on this wrapper.
-    */
-    const exportWrapper = templateWrapper.cloneNode(true);
-    exportWrapper.removeAttribute("id");
+                        return;
+                    }
 
-    const exportResume = exportWrapper.querySelector("#resumePage");
-    if (exportResume) {
-        exportResume.removeAttribute("id");
-    }
 
-    /* Current page directory for the local CSS files */
-    const baseURL =
-        window.location.href.substring(
-            0,
-            window.location.href.lastIndexOf("/") + 1
-        );
+                    /* Update live preview */
 
-    const resumeHTML = exportWrapper.outerHTML;
+                    updateHeaderPreview();
 
-    printWindow.document.open();
+                    updateExperiencePreview();
 
-    printWindow.document.write(`
+                    updateEducationPreview();
+
+                    updateSkillsPreview();
+
+                    updateOptionalPreview();
+
+
+                    const printWindow =
+                        window.open(
+                            "",
+                            "_blank",
+                            "width=900,height=1200"
+                        );
+
+
+                    if (!printWindow) {
+
+                        showToast(
+                            "Please allow pop-ups to print your resume."
+                        );
+
+                        return;
+                    }
+
+
+                    /*
+                     * Clone the complete template wrapper.
+                     * This keeps template classes.
+                     */
+
+                    const exportWrapper =
+                        templateWrapper.cloneNode(
+                            true
+                        );
+
+
+                    exportWrapper.removeAttribute(
+                        "id"
+                    );
+
+
+                    const exportResume =
+                        exportWrapper.querySelector(
+                            "#resumePage"
+                        );
+
+
+                    if (exportResume) {
+
+                        exportResume.removeAttribute(
+                            "id"
+                        );
+
+                    }
+
+
+                    const baseURL =
+                        window.location.href.substring(
+                            0,
+                            window.location.href.lastIndexOf("/") + 1
+                        );
+
+
+                    const resumeHTML =
+                        exportWrapper.outerHTML;
+
+
+                    printWindow.document.open();
+
+
+                    printWindow.document.write(`
+
 <!DOCTYPE html>
+
 <html>
+
 <head>
+
     <meta charset="UTF-8">
+
     <base href="${baseURL}">
 
-    <link rel="stylesheet" href="css/builder.css">
-    <link rel="stylesheet" href="css/resume-templates.css">
+    <link
+        rel="stylesheet"
+        href="css/builder.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/resume-templates.css"
+    >
 
     <style>
+
         @page {
             size: A4 portrait;
             margin: 0;
@@ -3048,91 +3280,177 @@ $("#downloadResumeButton")?.addEventListener("click", () => {
 
         html,
         body {
+
             width: 210mm;
+
             margin: 0;
+
             padding: 0;
+
             background: #ffffff;
+
         }
 
         body {
+
             overflow: visible !important;
+
         }
 
         .resume-template-wrapper {
+
             width: 210mm !important;
+
             min-width: 210mm !important;
+
             max-width: 210mm !important;
+
             margin: 0 !important;
+
             padding: 0 !important;
+
             position: relative !important;
+
             overflow: visible !important;
+
             box-sizing: border-box !important;
+
         }
 
         .resume-template-wrapper .resume-page {
+
             width: 210mm !important;
+
             min-width: 210mm !important;
+
             max-width: 210mm !important;
+
             min-height: 297mm !important;
+
             height: auto !important;
+
             margin: 0 !important;
+
             box-sizing: border-box !important;
+
             position: relative !important;
+
             left: auto !important;
+
             top: auto !important;
+
             transform: none !important;
+
             box-shadow: none !important;
+
             overflow: visible !important;
+
             break-inside: auto !important;
+
             page-break-inside: auto !important;
+
         }
 
         .resume-section,
         .resume-header,
         .preview-experience-item,
         .preview-education-item {
+
             -webkit-print-color-adjust: exact !important;
+
             print-color-adjust: exact !important;
+
         }
 
         * {
+
             -webkit-print-color-adjust: exact !important;
+
             print-color-adjust: exact !important;
+
         }
+
     </style>
+
 </head>
+
 <body>
+
     ${resumeHTML}
+
 </body>
+
 </html>
-    `);
 
-    printWindow.document.close();
+                    `);
 
-    /* Wait for CSS/images to finish rendering */
-    const startPrint = () => {
-        setTimeout(() => {
-            printWindow.focus();
-            printWindow.print();
-        }, 400);
-    };
 
-    if (printWindow.document.readyState === "complete") {
-        startPrint();
-    } else {
-        printWindow.addEventListener("load", startPrint, { once: true });
-    }
+                    printWindow.document.close();
 
-    printWindow.addEventListener("afterprint", () => {
-        setTimeout(() => printWindow.close(), 300);
-    }, { once: true });
 
-});
+                    const startPrint =
+                        () => {
+
+                            setTimeout(
+                                () => {
+
+                                    printWindow.focus();
+
+                                    printWindow.print();
+
+                                },
+                                500
+                            );
+
+                        };
+
+
+                    if (
+                        printWindow.document.readyState ===
+                        "complete"
+                    ) {
+
+                        startPrint();
+
+                    } else {
+
+                        printWindow.addEventListener(
+                            "load",
+                            startPrint,
+                            {
+                                once: true
+                            }
+                        );
+
+                    }
+
+
+                    printWindow.addEventListener(
+                        "afterprint",
+                        () => {
+
+                            setTimeout(
+                                () => {
+
+                                    printWindow.close();
+
+                                },
+                                300
+                            );
+
+                        },
+                        {
+                            once: true
+                        }
+                    );
+
+                }
+            );
 
 
         /* =================================================
            INITIALIZE
-        ================================================= */
+           ================================================= */
 
         updateHeaderPreview();
 
