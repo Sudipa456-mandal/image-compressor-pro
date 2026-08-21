@@ -34,68 +34,211 @@ document.addEventListener("DOMContentLoaded", function () {
     /* =====================================================
        APPLY TEMPLATE
     ===================================================== */
+/* =========================================================
+   RESUMECRAFT - TEMPLATE SWITCHER
+   Templates:
+   classic
+   modern
+   minimal
+   executive
+   professional
+   elegant
+   creative
+   corporate
+   compact
+   ats
+========================================================= */
 
-    function applyResumeTemplate(templateName) {
-
-        if (!templateWrapper) {
-            console.error(
-                "Resume template wrapper not found."
-            );
-
-            return;
-        }
-
-
-        /* -----------------------------------------------
-           CHECK TEMPLATE NAME
-        ------------------------------------------------ */
-
-        if (!TEMPLATE_NAMES.includes(templateName)) {
-
-            templateName = "minimal";
-
-        }
-
-
-        /* -----------------------------------------------
-           REMOVE ALL OLD TEMPLATE CLASSES
-        ------------------------------------------------ */
-
-        TEMPLATE_NAMES.forEach(function (template) {
-
-            templateWrapper.classList.remove(
-                "template-" + template
-            );
-
-        });
+const RESUME_TEMPLATES = [
+    "classic",
+    "modern",
+    "minimal",
+    "executive",
+    "professional",
+    "elegant",
+    "creative",
+    "corporate",
+    "compact",
+    "ats"
+];
 
 
-        /* -----------------------------------------------
-           ADD SELECTED TEMPLATE CLASS
-        ------------------------------------------------ */
+/* =========================================================
+   APPLY SELECTED TEMPLATE
+========================================================= */
 
-        templateWrapper.classList.add(
-            "template-" + templateName
+function applyResumeTemplate(templateName) {
+
+    const wrapper = document.getElementById(
+        "resumeTemplateWrapper"
+    );
+
+    if (!wrapper) {
+        console.error(
+            "Resume template wrapper not found."
+        );
+        return;
+    }
+
+
+    /* -----------------------------------------
+       CLEAN ALL OLD TEMPLATE CLASSES
+    ----------------------------------------- */
+
+    RESUME_TEMPLATES.forEach(function(template) {
+
+        wrapper.classList.remove(
+            "template-" + template
         );
 
-
-        /* -----------------------------------------------
-           SAVE TEMPLATE
-        ------------------------------------------------ */
-
-        saveSelectedTemplate(templateName);
+    });
 
 
-        /* -----------------------------------------------
-           DEBUG
-        ------------------------------------------------ */
+    /* -----------------------------------------
+       CHECK TEMPLATE
+    ----------------------------------------- */
 
-        console.log(
-            "Resume template selected:",
-            templateName
-        );
+    if (
+        !RESUME_TEMPLATES.includes(templateName)
+    ) {
+
+        templateName = "minimal";
 
     }
+
+
+    /* -----------------------------------------
+       APPLY NEW TEMPLATE
+    ----------------------------------------- */
+
+    wrapper.classList.add(
+        "template-" + templateName
+    );
+
+
+    /* -----------------------------------------
+       SAVE TEMPLATE
+    ----------------------------------------- */
+
+    localStorage.setItem(
+        "resumeCraftTemplate",
+        templateName
+    );
+
+
+    console.log(
+        "Resume template changed to:",
+        templateName
+    );
+}
+
+
+/* =========================================================
+   LOAD SAVED TEMPLATE
+========================================================= */
+
+function loadResumeTemplate() {
+
+    const wrapper = document.getElementById(
+        "resumeTemplateWrapper"
+    );
+
+    if (!wrapper) return;
+
+
+    let savedTemplate =
+        localStorage.getItem(
+            "resumeCraftTemplate"
+        );
+
+
+    /* -----------------------------------------
+       DEFAULT TEMPLATE
+    ----------------------------------------- */
+
+    if (
+        !savedTemplate ||
+        !RESUME_TEMPLATES.includes(savedTemplate)
+    ) {
+
+        savedTemplate = "minimal";
+
+    }
+
+
+    applyResumeTemplate(
+        savedTemplate
+    );
+}
+
+
+/* =========================================================
+   TEMPLATE FROM URL
+   Example:
+   builder.html?template=classic
+========================================================= */
+
+function loadTemplateFromURL() {
+
+    const params =
+        new URLSearchParams(
+            window.location.search
+        );
+
+
+    const urlTemplate =
+        params.get("template");
+
+
+    if (
+        urlTemplate &&
+        RESUME_TEMPLATES.includes(urlTemplate)
+    ) {
+
+        applyResumeTemplate(
+            urlTemplate
+        );
+
+        return true;
+
+    }
+
+
+    return false;
+}
+
+
+/* =========================================================
+   START TEMPLATE SYSTEM
+========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        /*
+         * First check URL.
+         * If URL has ?template=classic,
+         * Classic will be shown.
+         */
+
+        const templateFromURL =
+            loadTemplateFromURL();
+
+
+        /*
+         * If there is no URL template,
+         * load the previously selected template.
+         */
+
+        if (!templateFromURL) {
+
+            loadResumeTemplate();
+
+        }
+
+    }
+);
 
 
     /* =====================================================
