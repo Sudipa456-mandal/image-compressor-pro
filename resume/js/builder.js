@@ -1,4 +1,3 @@
-
 /* =========================================================
    RESUMECRAFT BUILDER
    Complete Builder JavaScript
@@ -895,97 +894,35 @@ document.addEventListener(
             });
 
 
-        function updateOptionalPreview() {
-
-            let links =
-                $("#previewLinks");
-
-
-            if (!links) {
-
-                const contact =
-                    $(".resume-contact");
-
-                if (!contact) return;
-
-                links =
-                    document.createElement(
-                        "div"
-                    );
-
-                links.id =
-                    "previewLinks";
-
-                links.className =
-                    "preview-links";
-
-                contact.parentNode.appendChild(
-                    links
-                );
+        function normalizeExternalUrl(value) {
+            const raw = String(value || "").trim();
+            if (!raw) return "";
+            const candidate = /^https?:\/\//i.test(raw) ? raw : `https://${raw}`;
+            try {
+                const url = new URL(candidate);
+                return ["http:", "https:"].includes(url.protocol) ? url.href : "";
+            } catch {
+                return "";
             }
-
-
-            const html = [];
-
-
-            if (resumeData.linkedin) {
-
-                html.push(
-                    `<span>LinkedIn: ${escapeHTML(resumeData.linkedin)}</span>`
-                );
-            }
-
-
-            if (resumeData.website) {
-
-                html.push(
-                    `<span>Portfolio: ${escapeHTML(resumeData.website)}</span>`
-                );
-            }
-
-
-            links.innerHTML =
-                html.join("");
         }
-       
-/* =====================================================
-   OPTIONAL LINKS PREVIEW
-===================================================== */
 
-function updateLinksPreview() {
+        function updateOptionalPreview() {
+            const links = $("#previewLinks");
+            if (!links) return;
 
-    const previewLinks = $("#previewLinks");
+            const items = [];
+            const linkedin = normalizeExternalUrl(resumeData.linkedin);
+            const website = normalizeExternalUrl(resumeData.website);
 
-    if (!previewLinks) return;
+            if (linkedin) {
+                items.push(`<a href="${escapeHTML(linkedin)}" target="_blank" rel="noopener noreferrer">LinkedIn</a>`);
+            }
+            if (website) {
+                items.push(`<a href="${escapeHTML(website)}" target="_blank" rel="noopener noreferrer">Portfolio</a>`);
+            }
 
-    const links = [];
-
-    if (resumeData.linkedin) {
-        links.push(`
-            <a
-                href="${escapeHTML(resumeData.linkedin)}"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                LinkedIn
-            </a>
-        `);
-    }
-
-    if (resumeData.website) {
-        links.push(`
-            <a
-                href="${escapeHTML(resumeData.website)}"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                Portfolio / Website
-            </a>
-        `);
-    }
-
-    previewLinks.innerHTML = links.join("");
-}
+            links.innerHTML = items.join("");
+        }
 
         /* =================================================
            EXPERIENCE
