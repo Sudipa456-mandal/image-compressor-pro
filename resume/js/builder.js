@@ -1,8 +1,8 @@
 /* =========================================================
    RESUMECRAFT - BUILDER TEMPLATE SYSTEM
    =========================================================
-   
-   Supported templates:
+
+   Templates:
    classic
    modern
    minimal
@@ -16,8 +16,9 @@
 
    Priority:
    1. URL template
-   2. Saved template
-   3. Minimal
+   2. resumeCraftData.settings.template
+   3. resumeCraftTemplate
+   4. minimal
 ========================================================= */
 
 (function () {
@@ -44,7 +45,7 @@
 
 
     /* =====================================================
-       2. GET RESUME WRAPPER
+       2. GET WRAPPER
     ===================================================== */
 
     function getResumeWrapper() {
@@ -57,38 +58,83 @@
 
 
     /* =====================================================
-       3. CHECK TEMPLATE
+       3. CHECK VALID TEMPLATE
     ===================================================== */
 
-    function validTemplate(template) {
+    function isValidTemplate(template) {
 
-        return TEMPLATES.indexOf(template) !== -1;
+        return (
+            typeof template === "string" &&
+            TEMPLATES.includes(
+                template.toLowerCase()
+            )
+        );
 
     }
 
 
     /* =====================================================
-       4. REMOVE ALL TEMPLATE CLASSES
+       4. NORMALIZE TEMPLATE NAME
     ===================================================== */
 
-    function removeTemplateClasses(wrapper) {
+    function normalizeTemplate(template) {
 
-        TEMPLATES.forEach(function (template) {
+        if (
+            typeof template !== "string"
+        ) {
 
-            wrapper.classList.remove(
-                "template-" + template
-            );
+            return null;
 
-        });
+        }
+
+        const normalized =
+            template
+                .trim()
+                .toLowerCase();
+
+        if (
+            TEMPLATES.includes(
+                normalized
+            )
+        ) {
+
+            return normalized;
+
+        }
+
+        return null;
 
     }
 
 
     /* =====================================================
-       5. SAVE TEMPLATE
+       5. REMOVE ALL TEMPLATE CLASSES
+    ===================================================== */
+
+    function removeAllTemplateClasses(wrapper) {
+
+        TEMPLATES.forEach(
+            function (template) {
+
+                wrapper.classList.remove(
+                    "template-" + template
+                );
+
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       6. SAVE TEMPLATE
     ===================================================== */
 
     function saveTemplate(template) {
+
+        /* ---------------------------------------------
+           Save simple template
+        --------------------------------------------- */
 
         localStorage.setItem(
             "resumeCraftTemplate",
@@ -96,11 +142,13 @@
         );
 
 
-        /* Also save inside resumeCraftData */
+        /* ---------------------------------------------
+           Save inside resumeCraftData
+        --------------------------------------------- */
 
         try {
 
-            let data =
+            let resumeData =
                 JSON.parse(
                     localStorage.getItem(
                         "resumeCraftData"
@@ -108,25 +156,30 @@
                 ) || {};
 
 
-            if (!data.settings) {
+            if (
+                !resumeData.settings
+            ) {
 
-                data.settings = {};
+                resumeData.settings = {};
 
             }
 
 
-            data.settings.template = template;
+            resumeData.settings.template =
+                template;
 
 
             localStorage.setItem(
                 "resumeCraftData",
-                JSON.stringify(data)
+                JSON.stringify(
+                    resumeData
+                )
             );
 
         } catch (error) {
 
             console.error(
-                "Template save error:",
+                "ResumeCraft template save error:",
                 error
             );
 
@@ -136,7 +189,7 @@
 
 
     /* =====================================================
-       6. APPLY TEMPLATE
+       7. APPLY TEMPLATE
     ===================================================== */
 
     function applyResumeTemplate(template) {
@@ -145,60 +198,103 @@
             getResumeWrapper();
 
 
+        /* ---------------------------------------------
+           Wrapper check
+        --------------------------------------------- */
+
         if (!wrapper) {
 
             console.error(
-                "ERROR: resumeTemplateWrapper not found."
+                "ResumeCraft ERROR: " +
+                "#resumeTemplateWrapper not found."
             );
 
-            return;
+            return false;
 
         }
 
 
-        /* Invalid template = minimal */
+        /* ---------------------------------------------
+           Normalize template
+        --------------------------------------------- */
 
-        if (!validTemplate(template)) {
+        let selectedTemplate =
+            normalizeTemplate(
+                template
+            );
 
-            template = "minimal";
+
+        /* ---------------------------------------------
+           Invalid template
+           → minimal
+        --------------------------------------------- */
+
+        if (!selectedTemplate) {
+
+            selectedTemplate =
+                "minimal";
 
         }
 
 
-        /* Remove old template */
+        /* ---------------------------------------------
+           Remove previous template
+        --------------------------------------------- */
 
-        removeTemplateClasses(
+        removeAllTemplateClasses(
             wrapper
         );
 
 
-        /* Add selected template */
+        /* ---------------------------------------------
+           Add selected template
+        --------------------------------------------- */
 
         wrapper.classList.add(
-            "template-" + template
+            "template-" +
+            selectedTemplate
         );
 
 
-        /* Save selected template */
+        /* ---------------------------------------------
+           Save selected template
+        --------------------------------------------- */
 
         saveTemplate(
-            template
+            selectedTemplate
         );
 
+
+        /* ---------------------------------------------
+           Debug
+        --------------------------------------------- */
 
         console.log(
-            "Selected template:",
-            template
+            "ResumeCraft ACTIVE TEMPLATE:",
+            selectedTemplate
         );
+
+        console.log(
+            "Wrapper classes:",
+            wrapper.className
+        );
+
+
+        return true;
 
     }
 
 
     /* =====================================================
-       7. GET TEMPLATE FROM URL
+       8. GET TEMPLATE FROM URL
+       
+       Example:
+       builder.html?template=classic
+       builder.html?template=modern
+       builder.html?template=ats
     ===================================================== */
 
-    function getURLTemplate() {
+    function getTemplateFromURL() {
 
         const params =
             new URLSearchParams(
@@ -207,53 +303,27 @@
 
 
         const template =
-            params.get("template");
+            params.get(
+                "template"
+            );
 
 
-        if (
-            template &&
-            validTemplate(template)
-        ) {
-
-            return template;
-
-        }
-
-
-        return null;
+        return normalizeTemplate(
+            template
+        );
 
     }
 
 
     /* =====================================================
-       8. GET SAVED TEMPLATE
+       9. GET TEMPLATE FROM resumeCraftData
     ===================================================== */
 
-    function getSavedTemplate() {
-
-        /* Check direct saved template */
-
-        const saved =
-            localStorage.getItem(
-                "resumeCraftTemplate"
-            );
-
-
-        if (
-            saved &&
-            validTemplate(saved)
-        ) {
-
-            return saved;
-
-        }
-
-
-        /* Check resumeCraftData */
+    function getTemplateFromResumeData() {
 
         try {
 
-            const data =
+            const resumeData =
                 JSON.parse(
                     localStorage.getItem(
                         "resumeCraftData"
@@ -262,21 +332,20 @@
 
 
             if (
-                data &&
-                data.settings &&
-                validTemplate(
-                    data.settings.template
-                )
+                resumeData &&
+                resumeData.settings
             ) {
 
-                return data.settings.template;
+                return normalizeTemplate(
+                    resumeData.settings.template
+                );
 
             }
 
         } catch (error) {
 
             console.error(
-                "Template read error:",
+                "ResumeCraft data read error:",
                 error
             );
 
@@ -289,74 +358,161 @@
 
 
     /* =====================================================
-       9. LOAD TEMPLATE
+       10. GET TEMPLATE FROM SIMPLE STORAGE
     ===================================================== */
 
-    function loadResumeTemplate() {
-
-        const urlTemplate =
-            getURLTemplate();
-
-
-        /* URL has highest priority */
-
-        if (urlTemplate) {
-
-            applyResumeTemplate(
-                urlTemplate
-            );
-
-            return;
-
-        }
-
-
-        /* Otherwise saved template */
+    function getTemplateFromStorage() {
 
         const savedTemplate =
-            getSavedTemplate();
-
-
-        if (savedTemplate) {
-
-            applyResumeTemplate(
-                savedTemplate
+            localStorage.getItem(
+                "resumeCraftTemplate"
             );
 
-            return;
 
-        }
-
-
-        /* Default */
-
-        applyResumeTemplate(
-            "minimal"
+        return normalizeTemplate(
+            savedTemplate
         );
 
     }
 
 
     /* =====================================================
-       10. START
+       11. FIND SELECTED TEMPLATE
     ===================================================== */
 
-    document.addEventListener(
-        "DOMContentLoaded",
-        function () {
+    function getSelectedTemplate() {
 
-            loadResumeTemplate();
+        /* ---------------------------------------------
+           1. URL
+        --------------------------------------------- */
+
+        const urlTemplate =
+            getTemplateFromURL();
+
+
+        if (urlTemplate) {
+
+            return urlTemplate;
 
         }
-    );
+
+
+        /* ---------------------------------------------
+           2. resumeCraftData
+        --------------------------------------------- */
+
+        const dataTemplate =
+            getTemplateFromResumeData();
+
+
+        if (dataTemplate) {
+
+            return dataTemplate;
+
+        }
+
+
+        /* ---------------------------------------------
+           3. simple localStorage
+        --------------------------------------------- */
+
+        const storageTemplate =
+            getTemplateFromStorage();
+
+
+        if (storageTemplate) {
+
+            return storageTemplate;
+
+        }
+
+
+        /* ---------------------------------------------
+           4. default
+        --------------------------------------------- */
+
+        return "minimal";
+
+    }
 
 
     /* =====================================================
-       11. MAKE FUNCTION AVAILABLE
+       12. LOAD TEMPLATE
+    ===================================================== */
+
+    function loadResumeTemplate() {
+
+        const selectedTemplate =
+            getSelectedTemplate();
+
+
+        console.log(
+            "ResumeCraft loading template:",
+            selectedTemplate
+        );
+
+
+        applyResumeTemplate(
+            selectedTemplate
+        );
+
+    }
+
+
+    /* =====================================================
+       13. WAIT UNTIL DOM IS READY
+    ===================================================== */
+
+    function startTemplateSystem() {
+
+        loadResumeTemplate();
+
+    }
+
+
+    if (
+        document.readyState === "loading"
+    ) {
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            startTemplateSystem
+        );
+
+    } else {
+
+        startTemplateSystem();
+
+    }
+
+
+    /* =====================================================
+       14. MAKE FUNCTION GLOBAL
+       
+       Other JS files can use:
+
+       applyResumeTemplate("classic")
+       applyResumeTemplate("modern")
+       applyResumeTemplate("minimal")
+       applyResumeTemplate("executive")
+       applyResumeTemplate("professional")
+       applyResumeTemplate("elegant")
+       applyResumeTemplate("creative")
+       applyResumeTemplate("corporate")
+       applyResumeTemplate("compact")
+       applyResumeTemplate("ats")
     ===================================================== */
 
     window.applyResumeTemplate =
         applyResumeTemplate;
+
+
+    /* =====================================================
+       15. MAKE LOAD FUNCTION GLOBAL
+    ===================================================== */
+
+    window.loadResumeTemplate =
+        loadResumeTemplate;
 
 
 })();
