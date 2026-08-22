@@ -1,14 +1,19 @@
 /* =========================================================
    IMAGE COMPRESSOR PRO — BLOG STYLES
-   Shared stylesheet for:
-   blog/index.html
-   blog/image-compression/*.html
-   blog/resume/*.html
-   ========================================================= */
+   File: blog/style.css
+
+   Compatible with:
+   - blog/index.html
+   - image-compression articles
+   - resume articles
+
+   No dependency on the main website stylesheet.
+========================================================= */
+
 
 /* =========================================================
    1. RESET
-   ========================================================= */
+========================================================= */
 
 *,
 *::before,
@@ -29,18 +34,24 @@ body {
         BlinkMacSystemFont,
         "Segoe UI",
         Roboto,
+        Helvetica,
         Arial,
         sans-serif;
+
     background: #f7f9fc;
-    color: #24324a;
-    line-height: 1.7;
+    color: #334155;
+
     -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
 }
 
 img {
     max-width: 100%;
     height: auto;
-    display: block;
+}
+
+a {
+    color: inherit;
 }
 
 button,
@@ -50,74 +61,23 @@ select {
     font: inherit;
 }
 
-a {
-    color: inherit;
-}
-
-::selection {
-    background: #dbeafe;
-    color: #102a56;
-}
-
 
 /* =========================================================
-   2. VARIABLES
-   ========================================================= */
-
-:root {
-    --primary: #2563eb;
-    --primary-dark: #1d4ed8;
-    --primary-light: #eff6ff;
-
-    --text: #17233c;
-    --text-secondary: #50627d;
-    --text-muted: #71809a;
-
-    --background: #f7f9fc;
-    --white: #ffffff;
-
-    --border: #e3e9f2;
-    --border-dark: #d4ddea;
-
-    --success: #15803d;
-
-    --shadow-sm:
-        0 4px 16px rgba(22, 45, 82, 0.05);
-
-    --shadow-md:
-        0 12px 35px rgba(22, 45, 82, 0.08);
-
-    --shadow-lg:
-        0 20px 55px rgba(22, 45, 82, 0.10);
-
-    --radius-sm: 8px;
-    --radius-md: 12px;
-    --radius-lg: 18px;
-}
-
-
-/* =========================================================
-   3. NAVIGATION
-   ========================================================= */
+   2. NAVIGATION
+========================================================= */
 
 .navbar {
+    width: 100%;
+    background: #ffffff;
+    border-bottom: 1px solid #e8edf4;
+
     position: sticky;
     top: 0;
     z-index: 1000;
-
-    width: 100%;
-
-    background: rgba(255, 255, 255, 0.96);
-
-    border-bottom: 1px solid var(--border);
-
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
 }
 
 .nav-container {
     width: min(1180px, calc(100% - 40px));
-
     min-height: 72px;
 
     margin: 0 auto;
@@ -126,21 +86,19 @@ a {
     align-items: center;
     justify-content: space-between;
 
-    gap: 24px;
+    gap: 28px;
 }
 
 
-/* ---------- LOGO ---------- */
+/* Logo */
 
 .logo {
     display: inline-flex;
     align-items: center;
-
     gap: 10px;
 
+    color: #14213d;
     text-decoration: none;
-
-    color: var(--text);
 
     font-size: 17px;
     font-weight: 700;
@@ -149,56 +107,51 @@ a {
 }
 
 .logo strong {
-    color: var(--primary);
+    color: #2563eb;
 }
 
 .logo-icon {
-    width: 38px;
-    height: 38px;
+    width: 36px;
+    height: 36px;
 
     display: inline-flex;
     align-items: center;
     justify-content: center;
 
-    border-radius: 10px;
+    border-radius: 9px;
 
-    background: var(--primary);
+    background: #2563eb;
     color: #ffffff;
 
-    font-size: 20px;
+    font-size: 19px;
     font-weight: 700;
 }
 
 
-/* ---------- NAV LINKS ---------- */
+/* Navigation links */
 
 .nav-links {
     display: flex;
     align-items: center;
+    justify-content: center;
 
-    gap: 5px;
-
-    margin-left: auto;
+    gap: 6px;
 }
 
 .nav-links a {
-    position: relative;
-
     display: inline-flex;
     align-items: center;
 
-    min-height: 42px;
+    padding: 9px 12px;
 
-    padding: 0 12px;
+    border-radius: 7px;
 
-    border-radius: 8px;
-
-    color: #52627b;
+    color: #475569;
 
     text-decoration: none;
 
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 500;
 
     transition:
         color 0.2s ease,
@@ -206,72 +159,64 @@ a {
 }
 
 .nav-links a:hover {
-    color: var(--primary);
-    background: var(--primary-light);
+    color: #2563eb;
+    background: #f1f5ff;
 }
 
 .nav-links a.active {
-    color: var(--primary);
-    background: var(--primary-light);
+    color: #2563eb;
+    background: #eef4ff;
+    font-weight: 600;
 }
 
 
-/* ---------- THEME BUTTON ---------- */
+/* Theme button */
 
 .theme-toggle {
     width: 42px;
-    height: 42px;
-
-    padding: 0;
+    height: 38px;
 
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    gap: 3px;
 
-    gap: 2px;
-
-    border: 1px solid var(--border);
-
-    border-radius: 9px;
+    border: 1px solid #dfe6ef;
+    border-radius: 8px;
 
     background: #ffffff;
-
-    color: #52627b;
+    color: #475569;
 
     cursor: pointer;
 
     transition:
-        border-color 0.2s ease,
-        background 0.2s ease;
+        background 0.2s ease,
+        border-color 0.2s ease;
 }
 
 .theme-toggle:hover {
-    border-color: #b9c9e3;
-    background: #f7faff;
+    background: #f4f7fb;
+    border-color: #cbd5e1;
 }
 
 .theme-toggle span {
-    font-size: 15px;
+    font-size: 13px;
 }
 
 
-/* ---------- MOBILE MENU BUTTON ---------- */
+/* Mobile menu */
 
 .mobile-menu-btn {
     display: none;
 
     width: 42px;
-    height: 42px;
+    height: 38px;
 
-    padding: 0;
-
-    border: 1px solid var(--border);
-
-    border-radius: 9px;
+    border: 1px solid #dfe6ef;
+    border-radius: 8px;
 
     background: #ffffff;
-
-    color: var(--text);
+    color: #334155;
 
     cursor: pointer;
 
@@ -280,80 +225,189 @@ a {
 
 
 /* =========================================================
-   4. BLOG HOME
-   ========================================================= */
+   3. GENERAL BLOG PAGE
+========================================================= */
 
-.blog-home {
-    background: var(--background);
+.blog-page {
+    min-height: 100vh;
+    background: #f7f9fc;
 }
 
 
-/* ---------- BLOG HERO ---------- */
+/* =========================================================
+   4. BLOG HOME
+========================================================= */
 
-.blog-home-hero,
+.blog-main {
+    width: 100%;
+    padding: 64px 20px 80px;
+}
+
+.blog-container {
+    width: min(1120px, 100%);
+    margin: 0 auto;
+}
+
+.blog-page-title,
+.blog-main h1 {
+    color: #14213d;
+}
+
+
+/* =========================================================
+   5. ARTICLE HERO
+========================================================= */
+
 .blog-hero {
-    padding: 75px 20px 65px;
+    width: 100%;
+
+    padding: 62px 20px 58px;
 
     text-align: center;
 
     background:
         linear-gradient(
-            135deg,
-            #f4f8ff 0%,
-            #ffffff 55%,
-            #f5f9ff 100%
+            180deg,
+            #f8fbff 0%,
+            #f3f7fd 100%
         );
 
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid #e4eaf2;
 }
 
-.blog-home-hero-inner {
-    width: min(850px, 100%);
+.blog-hero h1 {
+    width: min(900px, 100%);
+
+    margin: 0 auto 16px;
+
+    color: #10213f;
+
+    font-size: clamp(32px, 4vw, 48px);
+    line-height: 1.16;
+
+    font-weight: 800;
+
+    letter-spacing: -1px;
+}
+
+.blog-hero p {
+    width: min(720px, 100%);
+
     margin: 0 auto;
+
+    color: #536783;
+
+    font-size: 17px;
+    line-height: 1.75;
 }
 
-.blog-category,
-.blog-badge {
+
+/* =========================================================
+   6. ARTICLE MAIN CONTAINERS
+
+   Supports both structures used in your articles:
+   .article-wrapper
+   .blog-main
+   .blog-article
+========================================================= */
+
+.article-wrapper {
+    width: min(900px, calc(100% - 40px));
+
+    margin: 0 auto;
+
+    padding: 58px 0 85px;
+}
+
+.blog-main {
+    min-height: auto;
+}
+
+
+/* Main article card */
+
+.blog-article {
+    width: min(900px, calc(100% - 40px));
+
+    margin: 55px auto 80px;
+
+    padding: 52px 58px;
+
+    background: #ffffff;
+
+    border: 1px solid #e5eaf1;
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 8px 30px rgba(15, 35, 65, 0.06);
+}
+
+
+/* Article content without card */
+
+.article-content,
+.blog-content {
+    width: 100%;
+}
+
+
+/* =========================================================
+   7. BLOG ARTICLE HEADER
+========================================================= */
+
+.blog-header,
+.blog-article-header {
+    text-align: center;
+
+    margin-bottom: 42px;
+}
+
+.blog-badge,
+.blog-category {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
 
-    padding: 7px 13px;
+    padding: 8px 14px;
+
+    margin-bottom: 17px;
 
     border-radius: 999px;
 
-    background: var(--primary-light);
+    background: #edf4ff;
 
-    color: var(--primary);
+    color: #2563eb;
 
     font-size: 13px;
+    line-height: 1;
+
     font-weight: 700;
 
-    margin-bottom: 15px;
+    border: 1px solid #dbe9ff;
 }
 
-.blog-home-hero h1,
-.blog-hero h1 {
-    margin: 0;
+.blog-title {
+    margin: 0 auto;
 
-    color: var(--text);
+    max-width: 850px;
 
-    font-size: clamp(32px, 5vw, 48px);
+    color: #10213f;
 
-    line-height: 1.15;
+    font-size: clamp(32px, 4vw, 46px);
 
-    letter-spacing: -1px;
+    line-height: 1.17;
 
     font-weight: 800;
+
+    letter-spacing: -0.8px;
 }
 
-.blog-home-hero p,
-.blog-hero p {
+.blog-subtitle {
     max-width: 720px;
 
-    margin: 18px auto 0;
+    margin: 17px auto 0;
 
-    color: var(--text-secondary);
+    color: #60718c;
 
     font-size: 17px;
 
@@ -362,381 +416,171 @@ a {
 
 
 /* =========================================================
-   5. BLOG CATEGORY / CARDS
-   ========================================================= */
-
-.blog-container {
-    width: min(1120px, calc(100% - 40px));
-
-    margin: 0 auto;
-
-    padding: 60px 0 80px;
-}
-
-.blog-section {
-    margin-bottom: 60px;
-}
-
-.blog-section-header {
-    margin-bottom: 25px;
-}
-
-.blog-section-header h2 {
-    margin: 0 0 7px;
-
-    color: var(--text);
-
-    font-size: 28px;
-    line-height: 1.3;
-}
-
-.blog-section-header p {
-    margin: 0;
-
-    color: var(--text-secondary);
-
-    font-size: 15px;
-}
-
-.blog-grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(2, minmax(0, 1fr));
-
-    gap: 20px;
-}
-
-.blog-card {
-    display: flex;
-    flex-direction: column;
-
-    min-height: 100%;
-
-    padding: 25px;
-
-    background: #ffffff;
-
-    border: 1px solid var(--border);
-
-    border-radius: var(--radius-lg);
-
-    box-shadow: var(--shadow-sm);
-
-    text-decoration: none;
-
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease,
-        border-color 0.2s ease;
-}
-
-.blog-card:hover {
-    transform: translateY(-3px);
-
-    border-color: #c8d8f2;
-
-    box-shadow: var(--shadow-md);
-}
-
-.blog-card-category {
-    margin-bottom: 12px;
-
-    color: var(--primary);
-
-    font-size: 12px;
-    font-weight: 700;
-
-    text-transform: uppercase;
-
-    letter-spacing: 0.5px;
-}
-
-.blog-card h3 {
-    margin: 0 0 10px;
-
-    color: var(--text);
-
-    font-size: 20px;
-
-    line-height: 1.35;
-}
-
-.blog-card p {
-    margin: 0;
-
-    color: var(--text-secondary);
-
-    font-size: 14px;
-
-    line-height: 1.7;
-}
-
-.blog-card-link {
-    margin-top: auto;
-    padding-top: 18px;
-
-    color: var(--primary);
-
-    font-size: 14px;
-    font-weight: 700;
-}
-
-
-/* =========================================================
-   6. ARTICLE LAYOUT
-   ========================================================= */
-
-.blog-page {
-    background: var(--background);
-}
-
-.blog-main,
-.article-wrapper {
-    width: min(960px, calc(100% - 40px));
-
-    margin: 0 auto;
-
-    padding: 55px 0 80px;
-}
-
-.blog-article,
-.article-content {
-    background: #ffffff;
-
-    border: 1px solid var(--border);
-
-    border-radius: var(--radius-lg);
-
-    box-shadow: var(--shadow-sm);
-}
-
-
-/* =========================================================
-   7. ARTICLE HEADER
-   ========================================================= */
-
-.blog-article > .blog-header,
-.blog-article > .blog-hero {
-    text-align: center;
-}
-
-.blog-header {
-    padding: 45px 55px 30px;
-}
-
-.blog-title,
-.blog-header h1 {
-    margin: 0;
-
-    color: var(--text);
-
-    font-size: clamp(31px, 5vw, 43px);
-
-    line-height: 1.18;
-
-    letter-spacing: -0.7px;
-
-    font-weight: 800;
-}
-
-.blog-subtitle,
-.blog-header p {
-    max-width: 730px;
-
-    margin: 16px auto 0;
-
-    color: var(--text-secondary);
-
-    font-size: 17px;
-
-    line-height: 1.75;
-}
-
-
-/* =========================================================
-   8. ARTICLE CONTENT
-   ========================================================= */
-
-.blog-content,
-.article-content {
-    color: var(--text-secondary);
+   8. ARTICLE TYPOGRAPHY
+========================================================= */
+
+.article-content,
+.blog-content {
+    color: #405572;
 
     font-size: 16px;
 
     line-height: 1.85;
 }
 
-.blog-content {
-    padding: 0 55px 55px;
+.article-content p,
+.blog-content p {
+    margin: 0 0 20px;
 }
 
-.article-content {
-    padding: 45px 55px 55px;
+.article-content strong,
+.blog-content strong {
+    color: #172b4d;
+    font-weight: 700;
 }
 
-.blog-content p,
-.article-content p {
-    margin: 0 0 18px;
-}
 
-.blog-content h2,
-.article-content h2 {
-    margin: 40px 0 15px;
+/* Headings */
 
-    color: var(--text);
+.article-content h2,
+.blog-content h2 {
+    margin: 46px 0 16px;
 
-    font-size: 27px;
+    color: #122544;
+
+    font-size: 28px;
 
     line-height: 1.3;
+
+    font-weight: 750;
 
     letter-spacing: -0.3px;
 }
 
-.blog-content h3,
-.article-content h3 {
-    margin: 27px 0 9px;
+.article-content h3,
+.blog-content h3 {
+    margin: 30px 0 10px;
 
-    color: #233b65;
+    color: #1d3557;
 
     font-size: 20px;
 
     line-height: 1.4;
-}
-
-.blog-content strong,
-.article-content strong {
-    color: var(--text);
 
     font-weight: 700;
 }
 
 
-/* ---------- LISTS ---------- */
+/* First heading */
 
-.blog-content ul,
-.blog-content ol,
-.article-content ul,
-.article-content ol {
-    margin: 12px 0 25px;
-
-    padding-left: 25px;
-}
-
-.blog-content li,
-.article-content li {
-    margin-bottom: 8px;
-}
-
-.blog-content li::marker,
-.article-content li::marker {
-    color: var(--primary);
-}
-
-
-/* ---------- HR ---------- */
-
-.blog-content hr,
-.article-content hr {
-    height: 1px;
-
-    margin: 38px 0;
-
-    border: 0;
-
-    background: var(--border);
+.article-content > h2:first-child,
+.blog-content > h2:first-child {
+    margin-top: 0;
 }
 
 
 /* =========================================================
-   9. INTRO / INFO BOX
-   ========================================================= */
+   9. INTRO BOX
+========================================================= */
 
 .blog-intro {
-    margin: 5px 0 30px;
+    margin: 0 0 30px;
 
-    padding: 20px 22px;
+    padding: 19px 22px;
 
-    background: #f5f9ff;
+    background: #f4f8ff;
 
-    border-left: 4px solid var(--primary);
+    border-left: 4px solid #2563eb;
 
     border-radius: 0 10px 10px 0;
+
+    color: #4a6282;
+
+    font-size: 16px;
+
+    line-height: 1.75;
 }
 
 .blog-intro p {
-    margin: 0 0 9px;
+    margin: 0 0 8px;
 }
 
 .blog-intro p:last-child {
     margin-bottom: 0;
 }
 
-.blog-tip,
-.article-info-box,
-.tip-box {
-    margin: 25px 0;
 
-    padding: 18px 20px;
+/* =========================================================
+   10. LISTS
+========================================================= */
 
-    background: #f2f7ff;
+.article-content ul,
+.article-content ol,
+.blog-content ul,
+.blog-content ol {
+    margin: 15px 0 28px;
 
-    border: 1px solid #d9e7fb;
-
-    border-left: 4px solid var(--primary);
-
-    border-radius: 9px;
+    padding-left: 26px;
 }
 
-.blog-tip p,
-.article-info-box p,
-.tip-box p {
-    margin-bottom: 0;
+.article-content li,
+.blog-content li {
+    margin-bottom: 9px;
+
+    color: #405a7d;
+
+    line-height: 1.75;
 }
 
-.blog-tip strong,
-.article-info-box strong,
-.tip-box strong {
-    color: var(--primary);
+.article-content li::marker,
+.blog-content li::marker {
+    color: #2563eb;
 }
 
 
 /* =========================================================
-   10. STEP BOX
-   ========================================================= */
+   11. HORIZONTAL RULE
+========================================================= */
 
-.steps,
-.article-step-box {
-    margin: 20px 0 30px;
+.article-content hr,
+.blog-content hr {
+    height: 1px;
 
-    padding: 23px;
+    margin: 40px 0;
 
-    background: #f7faff;
+    border: 0;
 
-    border: 1px solid #dfe8f6;
-
-    border-radius: 13px;
+    background: #e3e9f1;
 }
 
+
+/* =========================================================
+   12. STEP BOX
+========================================================= */
+
 .steps {
-    display: flex;
-    flex-direction: column;
-    gap: 11px;
+    margin: 25px 0 32px;
 }
 
 .step {
     display: flex;
     align-items: flex-start;
 
-    gap: 14px;
+    gap: 15px;
 
-    padding: 13px 15px;
+    margin-bottom: 11px;
 
-    background: #ffffff;
+    padding: 16px 18px;
 
-    border: 1px solid var(--border);
+    background: #f8faff;
 
-    border-radius: 10px;
+    border: 1px solid #e3eaf5;
+
+    border-radius: 11px;
+}
+
+.step:last-child {
+    margin-bottom: 0;
 }
 
 .step-number {
@@ -751,7 +595,7 @@ a {
 
     border-radius: 50%;
 
-    background: var(--primary);
+    background: #2563eb;
 
     color: #ffffff;
 
@@ -761,80 +605,139 @@ a {
 
 .step-text {
     padding-top: 3px;
+
+    color: #405a7d;
+
+    line-height: 1.7;
+}
+
+
+/* Alternative step structure */
+
+.article-step-box {
+    margin: 25px 0 30px;
+
+    padding: 25px 28px;
+
+    background: #f7faff;
+
+    border: 1px solid #dfe8f5;
+
+    border-radius: 13px;
+}
+
+.article-step-box ol {
+    margin: 0;
 }
 
 
 /* =========================================================
-   11. TABLES
-   ========================================================= */
+   13. INFO / TIP BOXES
+========================================================= */
+
+.tip-box,
+.blog-tip,
+.article-info-box {
+    margin: 27px 0;
+
+    padding: 19px 21px;
+
+    background: #f1f7ff;
+
+    border: 1px solid #d9e8fb;
+
+    border-left: 4px solid #2563eb;
+
+    border-radius: 9px;
+
+    color: #405a7d;
+
+    line-height: 1.75;
+}
+
+.tip-box strong,
+.blog-tip strong,
+.article-info-box strong {
+    color: #1d5ed8;
+}
+
+
+/* =========================================================
+   14. TABLE
+========================================================= */
 
 .blog-table-wrapper {
     width: 100%;
 
-    margin: 20px 0 30px;
+    margin: 24px 0 32px;
 
     overflow-x: auto;
-
-    -webkit-overflow-scrolling: touch;
 }
 
 .blog-table,
-.article-content table {
+.article-content table,
+.blog-content table {
     width: 100%;
-
-    border-collapse: collapse;
 
     min-width: 520px;
 
+    border-collapse: collapse;
+
     background: #ffffff;
+
+    border: 1px solid #dfe6ef;
 }
 
 .blog-table th,
-.article-content table th {
-    padding: 13px 15px;
+.article-content table th,
+.blog-content table th {
+    padding: 14px 16px;
 
-    background: #f3f7fd;
+    background: #f3f7fc;
 
-    color: var(--text);
-
-    border: 1px solid var(--border-dark);
+    color: #162b4b;
 
     text-align: left;
 
     font-size: 14px;
 
     font-weight: 700;
+
+    border: 1px solid #dfe6ef;
 }
 
 .blog-table td,
-.article-content table td {
-    padding: 13px 15px;
+.article-content table td,
+.blog-content table td {
+    padding: 14px 16px;
 
-    color: var(--text-secondary);
+    color: #405a7d;
 
-    border: 1px solid var(--border);
+    font-size: 15px;
 
-    font-size: 14px;
+    border: 1px solid #dfe6ef;
 }
 
 .blog-table tr:nth-child(even) td,
-.article-content table tr:nth-child(even) td {
-    background: #fbfcfe;
+.article-content table tr:nth-child(even) td,
+.blog-content table tr:nth-child(even) td {
+    background: #fafcff;
 }
 
 .supported {
-    color: var(--success) !important;
+    color: #16834a !important;
 
     font-weight: 700;
 }
 
 
 /* =========================================================
-   12. CTA
-   ========================================================= */
+   15. CTA
+========================================================= */
 
 .blog-cta {
     display: flex;
+
     align-items: center;
     justify-content: space-between;
 
@@ -842,16 +745,16 @@ a {
 
     margin: 40px 0;
 
-    padding: 28px;
+    padding: 28px 30px;
 
     background:
         linear-gradient(
             135deg,
-            #f1f6ff,
+            #f0f6ff,
             #f8fbff
         );
 
-    border: 1px solid #dce7f6;
+    border: 1px solid #dce8f8;
 
     border-radius: 14px;
 }
@@ -859,7 +762,7 @@ a {
 .blog-cta h3 {
     margin: 0 0 7px;
 
-    color: var(--text);
+    color: #13294b;
 
     font-size: 21px;
 }
@@ -867,12 +770,18 @@ a {
 .blog-cta p {
     margin: 0;
 
-    color: var(--text-secondary);
+    color: #5b6f8c;
+
+    line-height: 1.6;
 }
+
+
+/* CTA button */
 
 .blog-cta-button,
 .article-button {
     display: inline-flex;
+
     align-items: center;
     justify-content: center;
 
@@ -880,44 +789,51 @@ a {
 
     flex-shrink: 0;
 
-    padding: 12px 19px;
+    padding: 12px 20px;
 
     border: 0;
 
     border-radius: 8px;
 
-    background: var(--primary);
+    background: #2563eb;
 
     color: #ffffff !important;
 
     text-decoration: none;
 
     font-size: 14px;
-    font-weight: 700;
 
-    cursor: pointer;
+    font-weight: 700;
 
     transition:
         background 0.2s ease,
-        transform 0.2s ease;
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
 .blog-cta-button:hover,
 .article-button:hover {
-    background: var(--primary-dark);
+    background: #1d4ed8;
 
     transform: translateY(-1px);
+
+    box-shadow:
+        0 6px 16px rgba(37, 99, 235, 0.18);
 }
 
 
 /* =========================================================
-   13. FAQ
-   ========================================================= */
+   16. FAQ
+========================================================= */
 
 .faq-item {
-    padding: 19px 0;
+    padding: 20px 0;
 
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid #e3e8ef;
+}
+
+.faq-item:first-child {
+    padding-top: 0;
 }
 
 .faq-item:last-child {
@@ -925,9 +841,9 @@ a {
 }
 
 .faq-question {
-    margin: 0 0 7px !important;
+    margin: 0 0 8px !important;
 
-    color: var(--text) !important;
+    color: #142b4d !important;
 
     font-size: 18px !important;
 
@@ -937,50 +853,48 @@ a {
 .faq-answer {
     margin: 0 !important;
 
-    color: var(--text-secondary);
+    color: #536985;
+}
+
+
+/* FAQ pages using normal h3 */
+
+.article-content h3 + p,
+.blog-content h3 + p {
+    margin-bottom: 25px;
 }
 
 
 /* =========================================================
-   14. RELATED GUIDES
-   ========================================================= */
+   17. RELATED GUIDES
+========================================================= */
 
 .related-guides {
-    display: grid;
-
-    grid-template-columns:
-        repeat(2, minmax(0, 1fr));
-
-    gap: 14px;
-
-    margin-top: 35px;
+    margin-top: 45px;
 }
 
 .related-guides h2 {
-    grid-column: 1 / -1;
-
-    margin-bottom: 2px;
+    margin-top: 0;
 }
 
-.related-guides a,
-.related-guide {
+.related-guides a {
     display: block;
 
-    padding: 16px 17px;
+    margin-bottom: 10px;
+
+    padding: 15px 17px;
 
     background: #f8faff;
 
-    border: 1px solid var(--border);
+    border: 1px solid #e0e7f0;
 
-    border-radius: 10px;
+    border-radius: 9px;
 
-    color: #214576;
+    color: #2459a8;
 
     text-decoration: none;
 
-    font-size: 14px;
-
-    font-weight: 700;
+    font-weight: 600;
 
     transition:
         background 0.2s ease,
@@ -988,19 +902,29 @@ a {
         transform 0.2s ease;
 }
 
-.related-guides a:hover,
-.related-guide:hover {
-    background: #f1f6ff;
+.related-guides a:hover {
+    background: #f2f7ff;
 
-    border-color: #bdd0ee;
+    border-color: #b9cff0;
 
-    transform: translateY(-2px);
+    transform: translateY(-1px);
+}
+
+
+/* Grid version */
+
+.related-guides-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 14px;
 }
 
 
 /* =========================================================
-   15. ARTICLE NAVIGATION
-   ========================================================= */
+   18. ARTICLE NAVIGATION
+========================================================= */
 
 .article-navigation {
     display: flex;
@@ -1010,50 +934,130 @@ a {
 
     gap: 15px;
 
-    flex-wrap: wrap;
-
-    margin-top: 38px;
-
-    padding-top: 25px;
-
-    border-top: 1px solid var(--border);
-}
-
-.article-navigation a,
-.article-back a {
-    color: var(--primary);
-
-    text-decoration: none;
-
-    font-size: 14px;
-
-    font-weight: 700;
-}
-
-.article-navigation a:hover,
-.article-back a:hover {
-    text-decoration: underline;
-}
-
-.article-back {
     margin-top: 42px;
 
     padding-top: 25px;
 
-    border-top: 1px solid var(--border);
+    border-top: 1px solid #e1e7ef;
+}
+
+.article-navigation a,
+.article-back a,
+.back-home a {
+    color: #2563eb;
+
+    text-decoration: none;
+
+    font-weight: 600;
+}
+
+.article-navigation a:hover,
+.article-back a:hover,
+.back-home a:hover {
+    text-decoration: underline;
+}
+
+.article-back {
+    margin-top: 45px;
+
+    padding-top: 28px;
+
+    border-top: 1px solid #e3e8ef;
+}
+
+.back-home {
+    margin-top: 35px;
 }
 
 
 /* =========================================================
-   16. FOOTER
-   ========================================================= */
+   19. BLOG INDEX CARDS
+========================================================= */
+
+.blog-grid,
+.blog-posts,
+.article-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 22px;
+}
+
+.blog-card,
+.blog-post,
+.article-card {
+    padding: 25px;
+
+    background: #ffffff;
+
+    border: 1px solid #e3e8ef;
+
+    border-radius: 13px;
+
+    box-shadow:
+        0 5px 20px rgba(15, 35, 65, 0.04);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.blog-card:hover,
+.blog-post:hover,
+.article-card:hover {
+    transform: translateY(-3px);
+
+    border-color: #cbd9ec;
+
+    box-shadow:
+        0 10px 28px rgba(15, 35, 65, 0.07);
+}
+
+.blog-card h2,
+.blog-post h2,
+.article-card h2 {
+    margin: 0 0 10px;
+
+    color: #142b4d;
+
+    font-size: 21px;
+}
+
+.blog-card p,
+.blog-post p,
+.article-card p {
+    margin: 0;
+
+    color: #60718a;
+
+    line-height: 1.7;
+}
+
+.blog-card a,
+.blog-post a,
+.article-card a {
+    color: #2563eb;
+
+    text-decoration: none;
+
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   20. FOOTER
+========================================================= */
 
 .footer {
+    width: 100%;
+
     margin-top: 0;
 
-    background: #111a2c;
+    background: #101b2d;
 
-    color: #dce5f3;
+    color: #cbd5e1;
 }
 
 .footer-container {
@@ -1071,7 +1075,7 @@ a {
         1fr
         1.2fr;
 
-    gap: 40px;
+    gap: 45px;
 }
 
 .footer-column {
@@ -1088,33 +1092,37 @@ a {
     color: #ffffff;
 
     font-size: 15px;
+
+    font-weight: 700;
 }
 
 .footer-column p {
-    max-width: 330px;
+    max-width: 320px;
 
-    margin: 15px 0 0;
+    margin: 14px 0 0;
 
-    color: #aab7cc;
+    color: #9eabc0;
 
     font-size: 14px;
 
     line-height: 1.75;
 }
 
-.footer-column > a:not(.footer-logo) {
-    margin-bottom: 9px;
+.footer-column a {
+    margin-bottom: 10px;
 
-    color: #aab7cc;
+    color: #aebbd0;
 
     text-decoration: none;
 
     font-size: 14px;
 
+    line-height: 1.5;
+
     transition: color 0.2s ease;
 }
 
-.footer-column > a:not(.footer-logo):hover {
+.footer-column a:hover {
     color: #ffffff;
 }
 
@@ -1125,34 +1133,35 @@ a {
 
     gap: 10px;
 
-    color: #ffffff;
+    color: #ffffff !important;
 
     text-decoration: none;
 
     font-size: 16px;
-}
-
-.footer-logo-icon {
-    width: 36px;
-    height: 36px;
-
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 9px;
-
-    background: var(--primary);
-
-    color: #ffffff;
 
     font-weight: 700;
 }
 
-.footer-bottom {
-    border-top: 1px solid rgba(255, 255, 255, 0.09);
+.footer-logo-icon {
+    width: 34px;
+    height: 34px;
 
-    padding: 20px;
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 8px;
+
+    background: #2563eb;
+
+    color: #ffffff;
+}
+
+.footer-bottom {
+    padding: 19px 20px;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
 
     text-align: center;
 }
@@ -1160,15 +1169,15 @@ a {
 .footer-bottom p {
     margin: 0;
 
-    color: #91a0b8;
+    color: #8996aa;
 
     font-size: 13px;
 }
 
 
 /* =========================================================
-   17. BACK TO TOP
-   ========================================================= */
+   21. BACK TO TOP
+========================================================= */
 
 .top-btn {
     position: fixed;
@@ -1176,258 +1185,276 @@ a {
     right: 22px;
     bottom: 22px;
 
-    z-index: 900;
+    width: 42px;
+    height: 42px;
 
-    width: 44px;
-    height: 44px;
+    display: none;
 
-    display: flex;
     align-items: center;
     justify-content: center;
 
-    border: 0;
+    border: 1px solid #d8e1ed;
 
-    border-radius: 10px;
+    border-radius: 9px;
 
-    background: var(--primary);
+    background: #ffffff;
 
-    color: #ffffff;
+    color: #2563eb;
 
-    box-shadow: var(--shadow-md);
+    font-size: 18px;
 
     cursor: pointer;
 
-    font-size: 19px;
+    box-shadow:
+        0 5px 18px rgba(15, 35, 65, 0.12);
 
-    opacity: 0;
-    visibility: hidden;
-
-    transform: translateY(10px);
-
-    transition:
-        opacity 0.2s ease,
-        visibility 0.2s ease,
-        transform 0.2s ease;
+    z-index: 900;
 }
 
 .top-btn.show {
-    opacity: 1;
-
-    visibility: visible;
-
-    transform: translateY(0);
+    display: flex;
 }
 
 .top-btn:hover {
-    background: var(--primary-dark);
+    background: #f4f7fb;
 }
 
 
 /* =========================================================
-   18. DARK MODE
-   ========================================================= */
+   22. DARK MODE
 
-body.dark-mode {
-    --background: #0f1726;
-    --white: #172033;
+   Works with common classes/attributes used by blog.js.
+========================================================= */
 
-    --text: #edf3ff;
-    --text-secondary: #b2bfd4;
-    --text-muted: #8e9bb0;
+body.dark-mode,
+html.dark-mode body {
+    background: #0f172a;
 
-    --border: #27344a;
-    --border-dark: #34445e;
-
-    background: #0f1726;
-
-    color: #b2bfd4;
+    color: #cbd5e1;
 }
 
-body.dark-mode .navbar {
-    background: rgba(17, 26, 44, 0.96);
+body.dark-mode .navbar,
+html.dark-mode .navbar {
+    background: #111c2e;
 
-    border-color: #27344a;
+    border-color: #243247;
 }
 
 body.dark-mode .logo,
-body.dark-mode .nav-links a {
-    color: #e8eef9;
+html.dark-mode .logo {
+    color: #ffffff;
+}
+
+body.dark-mode .nav-links a,
+html.dark-mode .nav-links a {
+    color: #b9c5d6;
 }
 
 body.dark-mode .nav-links a:hover,
-body.dark-mode .nav-links a.active {
-    background: #172b4b;
+body.dark-mode .nav-links a.active,
+html.dark-mode .nav-links a:hover,
+html.dark-mode .nav-links a.active {
+    background: #1b2b45;
 
-    color: #78a8ff;
+    color: #72a4ff;
 }
 
 body.dark-mode .theme-toggle,
-body.dark-mode .mobile-menu-btn {
-    background: #172033;
+body.dark-mode .mobile-menu-btn,
+html.dark-mode .theme-toggle,
+html.dark-mode .mobile-menu-btn {
+    background: #162338;
 
-    border-color: #30405a;
+    border-color: #2b3b52;
 
-    color: #e5edfb;
+    color: #dbe7f5;
 }
 
-body.dark-mode .blog-home-hero,
+body.dark-mode .blog-page {
+    background: #0f172a;
+}
+
 body.dark-mode .blog-hero {
     background:
         linear-gradient(
-            135deg,
-            #121e32,
+            180deg,
+            #111d31,
             #101a2b
         );
 
-    border-color: #27344a;
+    border-color: #26364d;
 }
 
-body.dark-mode .blog-home-hero h1,
 body.dark-mode .blog-hero h1,
-body.dark-mode .blog-section-header h2,
-body.dark-mode .blog-card h3,
-body.dark-mode .blog-content h2,
+body.dark-mode .blog-title,
 body.dark-mode .article-content h2,
-body.dark-mode .blog-content h3,
+body.dark-mode .blog-content h2,
 body.dark-mode .article-content h3,
-body.dark-mode .blog-cta h3,
-body.dark-mode .faq-question {
-    color: #edf3ff !important;
+body.dark-mode .blog-content h3 {
+    color: #f1f5f9;
 }
 
-body.dark-mode .blog-home-hero p,
 body.dark-mode .blog-hero p,
-body.dark-mode .blog-card p,
-body.dark-mode .blog-content,
+body.dark-mode .blog-subtitle,
 body.dark-mode .article-content,
-body.dark-mode .blog-content p,
+body.dark-mode .blog-content,
 body.dark-mode .article-content p,
-body.dark-mode .blog-content li,
-body.dark-mode .article-content li {
-    color: #b2bfd4;
+body.dark-mode .blog-content p,
+body.dark-mode .article-content li,
+body.dark-mode .blog-content li {
+    color: #aebcd0;
 }
 
-body.dark-mode .blog-card,
-body.dark-mode .blog-article,
-body.dark-mode .article-content {
-    background: #172033;
+body.dark-mode .blog-article {
+    background: #111c2e;
 
-    border-color: #27344a;
+    border-color: #27384e;
 
-    box-shadow: none;
-}
-
-body.dark-mode .blog-card:hover {
-    border-color: #3b5274;
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.22);
 }
 
 body.dark-mode .blog-intro,
-body.dark-mode .blog-tip,
-body.dark-mode .tip-box,
-body.dark-mode .article-info-box,
-body.dark-mode .steps,
 body.dark-mode .article-step-box,
-body.dark-mode .blog-cta,
-body.dark-mode .related-guides a,
-body.dark-mode .related-guide {
-    background: #142137;
+body.dark-mode .article-info-box,
+body.dark-mode .tip-box,
+body.dark-mode .blog-tip,
+body.dark-mode .step {
+    background: #16243a;
 
-    border-color: #2b4263;
+    border-color: #2b4260;
 }
 
-body.dark-mode .step {
-    background: #172033;
+body.dark-mode .step-text,
+body.dark-mode .tip-box,
+body.dark-mode .blog-tip,
+body.dark-mode .article-info-box {
+    color: #b5c4d8;
+}
 
-    border-color: #2b3b53;
+body.dark-mode .article-content hr,
+body.dark-mode .blog-content hr,
+body.dark-mode .article-back,
+body.dark-mode .article-navigation {
+    border-color: #2a394d;
 }
 
 body.dark-mode .blog-table,
-body.dark-mode .article-content table {
-    background: #172033;
+body.dark-mode .article-content table,
+body.dark-mode .blog-content table {
+    background: #111c2e;
+
+    border-color: #304158;
 }
 
 body.dark-mode .blog-table th,
-body.dark-mode .article-content table th {
-    background: #1d2a40;
+body.dark-mode .article-content table th,
+body.dark-mode .blog-content table th {
+    background: #18273d;
 
-    color: #edf3ff;
+    color: #e6edf7;
 
-    border-color: #34445e;
+    border-color: #304158;
 }
 
 body.dark-mode .blog-table td,
-body.dark-mode .article-content table td {
-    color: #b2bfd4;
+body.dark-mode .article-content table td,
+body.dark-mode .blog-content table td {
+    color: #b5c4d8;
 
-    border-color: #2b3b53;
+    border-color: #304158;
 }
 
 body.dark-mode .blog-table tr:nth-child(even) td,
-body.dark-mode .article-content table tr:nth-child(even) td {
-    background: #192438;
-}
-
-body.dark-mode .blog-content hr,
-body.dark-mode .article-content hr,
-body.dark-mode .article-back,
-body.dark-mode .article-navigation,
-body.dark-mode .faq-item {
-    border-color: #29384e;
+body.dark-mode .article-content table tr:nth-child(even) td,
+body.dark-mode .blog-content table tr:nth-child(even) td {
+    background: #142238;
 }
 
 body.dark-mode .related-guides a,
-body.dark-mode .related-guide {
-    color: #bcd2f5;
+body.dark-mode .blog-card,
+body.dark-mode .blog-post,
+body.dark-mode .article-card {
+    background: #111c2e;
+
+    border-color: #293a50;
+
+    color: #cbd5e1;
 }
 
-body.dark-mode .footer {
-    background: #080e19;
+body.dark-mode .related-guides a:hover {
+    background: #17273e;
+}
+
+body.dark-mode .blog-card h2,
+body.dark-mode .blog-post h2,
+body.dark-mode .article-card h2 {
+    color: #eef4fb;
+}
+
+body.dark-mode .blog-card p,
+body.dark-mode .blog-post p,
+body.dark-mode .article-card p {
+    color: #aab9ce;
+}
+
+body.dark-mode .top-btn {
+    background: #17253a;
+
+    border-color: #304157;
+
+    color: #8fb6ff;
 }
 
 
 /* =========================================================
-   19. RESPONSIVE — TABLET
-   ========================================================= */
+   23. RESPONSIVE — TABLET
+========================================================= */
 
 @media (max-width: 900px) {
 
     .nav-container {
-        width: min(100% - 30px, 760px);
+        width: min(100% - 28px, 760px);
     }
 
     .nav-links {
-        gap: 1px;
+        gap: 2px;
     }
 
     .nav-links a {
-        padding: 0 8px;
+        padding: 8px 8px;
 
         font-size: 13px;
     }
 
-    .footer-container {
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
+    .blog-article {
+        padding: 42px 38px;
     }
 
-    .blog-grid {
-        grid-template-columns: 1fr;
+    .footer-container {
+        grid-template-columns: repeat(2, 1fr);
+
+        gap: 35px;
     }
 }
 
 
 /* =========================================================
-   20. RESPONSIVE — MOBILE
-   ========================================================= */
+   24. RESPONSIVE — MOBILE
+========================================================= */
 
-@media (max-width: 700px) {
+@media (max-width: 768px) {
+
+    .navbar {
+        position: sticky;
+    }
 
     .nav-container {
-        min-height: 64px;
-
         width: calc(100% - 28px);
 
-        gap: 8px;
+        min-height: 64px;
+
+        gap: 10px;
     }
 
     .logo {
@@ -1435,32 +1462,32 @@ body.dark-mode .footer {
     }
 
     .logo-icon {
-        width: 34px;
-        height: 34px;
+        width: 32px;
+        height: 32px;
     }
 
     .nav-links {
+        display: none;
+
         position: absolute;
 
         top: 64px;
-        left: 14px;
-        right: 14px;
+        left: 0;
+        right: 0;
 
-        display: none;
+        width: 100%;
+
+        padding: 12px 15px 16px;
 
         flex-direction: column;
-
         align-items: stretch;
-
-        padding: 10px;
 
         background: #ffffff;
 
-        border: 1px solid var(--border);
+        border-bottom: 1px solid #e3e9f1;
 
-        border-radius: 12px;
-
-        box-shadow: var(--shadow-md);
+        box-shadow:
+            0 8px 20px rgba(15, 35, 65, 0.08);
     }
 
     .nav-links.mobile-open {
@@ -1470,17 +1497,7 @@ body.dark-mode .footer {
     .nav-links a {
         width: 100%;
 
-        min-height: 44px;
-
-        justify-content: flex-start;
-
-        padding: 0 13px;
-    }
-
-    body.dark-mode .nav-links {
-        background: #172033;
-
-        border-color: #2b3b53;
+        padding: 12px 14px;
     }
 
     .mobile-menu-btn {
@@ -1494,65 +1511,75 @@ body.dark-mode .footer {
         margin-left: auto;
     }
 
-    .blog-home-hero,
     .blog-hero {
-        padding: 50px 18px 45px;
+        padding: 46px 18px 42px;
     }
 
-    .blog-home-hero h1,
     .blog-hero h1 {
         font-size: 32px;
+
+        letter-spacing: -0.5px;
     }
 
-    .blog-home-hero p,
     .blog-hero p {
         font-size: 15px;
+
+        line-height: 1.7;
     }
 
-    .blog-container,
-    .blog-main,
     .article-wrapper {
         width: calc(100% - 28px);
 
-        padding-top: 35px;
-        padding-bottom: 55px;
+        padding: 38px 0 60px;
     }
 
-    .blog-header {
-        padding: 32px 22px 22px;
+    .blog-article {
+        width: calc(100% - 28px);
+
+        margin: 30px auto 55px;
+
+        padding: 32px 22px;
+
+        border-radius: 13px;
     }
 
-    .blog-content {
-        padding: 0 22px 32px;
-    }
-
-    .article-content {
-        padding: 30px 22px 35px;
-    }
-
-    .blog-title,
-    .blog-header h1 {
+    .blog-title {
         font-size: 31px;
     }
 
-    .blog-subtitle,
-    .blog-header p {
+    .blog-subtitle {
         font-size: 15px;
     }
 
-    .blog-content,
-    .article-content {
+    .article-content,
+    .blog-content {
         font-size: 15px;
+
+        line-height: 1.8;
     }
 
-    .blog-content h2,
-    .article-content h2 {
-        font-size: 23px;
+    .article-content h2,
+    .blog-content h2 {
+        margin-top: 37px;
+
+        font-size: 24px;
     }
 
-    .blog-content h3,
-    .article-content h3 {
-        font-size: 18px;
+    .article-content h3,
+    .blog-content h3 {
+        font-size: 19px;
+    }
+
+    .article-content p,
+    .blog-content p {
+        margin-bottom: 17px;
+    }
+
+    .article-content ul,
+    .article-content ol,
+    .blog-content ul,
+    .blog-content ol {
+        padding-left: 23px;
     }
 
     .blog-cta {
@@ -1560,7 +1587,7 @@ body.dark-mode .footer {
 
         align-items: flex-start;
 
-        padding: 22px;
+        padding: 23px;
     }
 
     .blog-cta-button,
@@ -1568,69 +1595,98 @@ body.dark-mode .footer {
         width: 100%;
     }
 
-    .related-guides {
+    .article-step-box {
+        padding: 20px;
+    }
+
+    .step {
+        padding: 14px;
+
+        gap: 11px;
+    }
+
+    .related-guides-grid,
+    .blog-grid,
+    .blog-posts,
+    .article-grid {
         grid-template-columns: 1fr;
+    }
+
+    .article-navigation {
+        flex-direction: column;
+
+        align-items: flex-start;
     }
 
     .footer-container {
         grid-template-columns: 1fr;
 
-        gap: 30px;
+        gap: 32px;
 
         padding: 42px 0 35px;
-    }
-
-    .top-btn {
-        right: 15px;
-        bottom: 15px;
     }
 }
 
 
 /* =========================================================
-   21. SMALL MOBILE
-   ========================================================= */
+   25. SMALL MOBILE
+========================================================= */
 
-@media (max-width: 420px) {
+@media (max-width: 480px) {
 
     .logo span:last-child {
-        font-size: 14px;
+        max-width: 180px;
+
+        overflow: hidden;
+
+        text-overflow: ellipsis;
     }
 
-    .theme-toggle {
-        width: 38px;
-        height: 38px;
-    }
-
-    .mobile-menu-btn {
-        width: 38px;
-        height: 38px;
-    }
-
-    .blog-home-hero h1,
     .blog-hero h1 {
         font-size: 28px;
     }
 
-    .blog-card {
-        padding: 20px;
+    .blog-article {
+        width: calc(100% - 20px);
+
+        padding: 27px 18px;
     }
 
-    .article-step-box,
-    .steps {
-        padding: 17px;
+    .article-wrapper {
+        width: calc(100% - 22px);
     }
 
-    .step {
-        gap: 10px;
-
-        padding: 12px;
+    .blog-badge,
+    .blog-category {
+        font-size: 12px;
     }
 
-    .step-number {
-        flex-basis: 29px;
+    .blog-title {
+        font-size: 28px;
+    }
 
-        width: 29px;
-        height: 29px;
+    .blog-content,
+    .article-content {
+        font-size: 15px;
+    }
+
+    .article-content h2,
+    .blog-content h2 {
+        font-size: 22px;
+    }
+
+    .blog-table-wrapper {
+        margin-left: -2px;
+
+        width: calc(100% + 4px);
+    }
+
+    .footer-container {
+        width: calc(100% - 30px);
+    }
+
+    .top-btn {
+        right: 15px;
+        bottom: 15px;
     }
 }
