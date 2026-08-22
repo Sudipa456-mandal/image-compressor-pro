@@ -1,6 +1,12 @@
 /* =========================================================
    IMAGE COMPRESSOR PRO
-   BLOG STYLES
+   COMBINED BLOG STYLES
+   IMAGE + RESUME GUIDES
+========================================================= */
+
+
+/* =========================================================
+   RESET
 ========================================================= */
 
 * {
@@ -23,7 +29,7 @@ body {
         Arial,
         sans-serif;
 
-    background: #f5f7fb;
+    background: #f6f8fb;
     color: #172033;
     line-height: 1.6;
 }
@@ -45,29 +51,37 @@ button {
 
 .navbar {
     width: 100%;
+
     background: #ffffff;
+
     border-bottom: 1px solid #e5e7eb;
+
     position: sticky;
     top: 0;
+
     z-index: 1000;
 }
 
 .nav-container {
     width: 100%;
     max-width: 1180px;
-    margin: 0 auto;
 
     min-height: 68px;
+
+    margin: 0 auto;
+
     padding: 0 22px;
 
     display: flex;
     align-items: center;
+
     gap: 30px;
 }
 
 .logo {
     display: inline-flex;
     align-items: center;
+
     gap: 9px;
 
     font-size: 17px;
@@ -93,6 +107,7 @@ button {
     border-radius: 8px;
 
     background: #2563eb;
+
     color: #ffffff;
 
     font-size: 17px;
@@ -137,6 +152,7 @@ button {
     height: 32px;
 
     border: 1px solid #dbe1ea;
+
     border-radius: 8px;
 
     background: #ffffff;
@@ -159,6 +175,7 @@ button {
     height: 36px;
 
     border: 1px solid #dbe1ea;
+
     border-radius: 8px;
 
     background: #ffffff;
@@ -196,6 +213,7 @@ button {
 
 .blog-hero-container {
     max-width: 1000px;
+
     min-height: 430px;
 
     margin: 0 auto;
@@ -209,8 +227,9 @@ button {
     text-align: center;
 }
 
-.blog-hero .hero-content {
-    max-width: 760px;
+.hero-content {
+    max-width: 780px;
+
     margin: 0 auto;
 }
 
@@ -266,31 +285,44 @@ button {
 
 
 /* =========================================================
-   BLOG SECTION
+   SECTION
 ========================================================= */
 
-.tools-section {
-    background: #f6f8fb;
+.guides-section {
+    padding: 75px 20px 80px;
 
-    padding: 70px 20px 80px;
+    background: #f6f8fb;
 }
 
 .section-heading {
-    max-width: 850px;
+    max-width: 800px;
 
-    margin: 0 auto 38px;
+    margin: 0 auto 40px;
 
     text-align: center;
 }
 
+.section-label {
+    display: inline-block;
+
+    margin-bottom: 10px;
+
+    font-size: 11px;
+    font-weight: 800;
+
+    letter-spacing: 1.2px;
+
+    color: #2563eb;
+}
+
 .section-heading h2 {
-    margin-bottom: 8px;
+    margin-bottom: 9px;
 
     font-size: 32px;
 
     line-height: 1.2;
 
-    letter-spacing: -0.8px;
+    letter-spacing: -.8px;
 
     color: #172033;
 }
@@ -303,11 +335,12 @@ button {
 
 
 /* =========================================================
-   BLOG GRID
+   GUIDE GRID
 ========================================================= */
 
-.tools-container.blog-container {
+.guides-container {
     width: 100%;
+
     max-width: 1120px;
 
     margin: 0 auto;
@@ -322,19 +355,24 @@ button {
 
 
 /* =========================================================
-   BLOG CARD
+   GUIDE CARD
 ========================================================= */
 
-.tool-card.blog-card {
+.guide-card {
     min-width: 0;
+
+    display: flex;
+    align-items: flex-start;
+
+    gap: 20px;
+
+    padding: 28px;
 
     background: #ffffff;
 
     border: 1px solid #e2e7ef;
 
     border-radius: 16px;
-
-    padding: 28px;
 
     box-shadow:
         0 8px 25px rgba(23, 32, 51, .05);
@@ -345,7 +383,7 @@ button {
         border-color .2s ease;
 }
 
-.tool-card.blog-card:hover {
+.guide-card:hover {
     transform: translateY(-4px);
 
     border-color: #cbd9f4;
@@ -356,18 +394,18 @@ button {
 
 
 /* =========================================================
-   CARD ICON
+   GUIDE ICON
 ========================================================= */
 
-.tool-icon.compressor-icon {
-    width: 58px;
-    height: 58px;
+.guide-icon {
+    width: 60px;
+    height: 60px;
+
+    flex: 0 0 60px;
 
     display: flex;
     align-items: center;
     justify-content: center;
-
-    margin-bottom: 20px;
 
     border-radius: 13px;
 
@@ -378,23 +416,61 @@ button {
     color: #2563eb;
 
     font-size: 13px;
+
     font-weight: 800;
 
     letter-spacing: .5px;
 }
 
-.tool-card h3 {
-    margin-bottom: 10px;
+.resume-icon {
+    background: #f3f0ff;
+
+    border-color: #e4ddff;
+
+    color: #6941c6;
+}
+
+
+/* =========================================================
+   GUIDE CONTENT
+========================================================= */
+
+.guide-content {
+    min-width: 0;
+}
+
+.guide-category {
+    display: block;
+
+    margin-bottom: 6px;
+
+    color: #2563eb;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: .5px;
+}
+
+.resume-card .guide-category {
+    color: #6941c6;
+}
+
+.guide-card h3 {
+    margin-bottom: 9px;
 
     font-size: 19px;
 
-    line-height: 1.3;
+    line-height: 1.35;
 
     color: #172033;
 }
 
-.tool-card p {
-    margin-bottom: 22px;
+.guide-card p {
+    margin-bottom: 17px;
 
     font-size: 13px;
 
@@ -405,10 +481,89 @@ button {
 
 
 /* =========================================================
-   BUTTON
+   READ LINK
 ========================================================= */
 
-.tool-button {
+.read-link {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    color: #2563eb;
+
+    font-size: 12px;
+
+    font-weight: 700;
+}
+
+.read-link span {
+    font-size: 16px;
+
+    transition: transform .2s ease;
+}
+
+.read-link:hover span {
+    transform: translateX(3px);
+}
+
+
+/* =========================================================
+   PRODUCT CTA
+========================================================= */
+
+.product-cta {
+    padding: 75px 20px;
+
+    background: #ffffff;
+
+    border-top: 1px solid #edf0f5;
+
+    border-bottom: 1px solid #edf0f5;
+
+    text-align: center;
+}
+
+.product-cta-content {
+    max-width: 700px;
+
+    margin: 0 auto;
+}
+
+.cta-label {
+    display: inline-block;
+
+    margin-bottom: 10px;
+
+    color: #2563eb;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+.product-cta h2 {
+    margin-bottom: 9px;
+
+    color: #172033;
+
+    font-size: 31px;
+
+    line-height: 1.25;
+}
+
+.product-cta p {
+    margin-bottom: 22px;
+
+    color: #68758a;
+
+    font-size: 14px;
+}
+
+.primary-button {
     display: inline-flex;
 
     align-items: center;
@@ -416,51 +571,78 @@ button {
 
     gap: 9px;
 
-    min-height: 40px;
+    min-height: 42px;
 
-    padding: 0 15px;
+    padding: 0 18px;
 
     border-radius: 8px;
 
-    font-size: 12px;
-    font-weight: 700;
-
-    transition:
-        transform .2s ease,
-        background .2s ease;
-}
-
-.compressor-button {
     background: #2563eb;
+
     color: #ffffff;
 
+    font-size: 12px;
+
+    font-weight: 700;
+
     box-shadow:
-        0 6px 14px rgba(37, 99, 235, .16);
+        0 7px 16px rgba(37, 99, 235, .18);
+
+    transition:
+        background .2s ease,
+        transform .2s ease;
 }
 
-.compressor-button:hover {
+.primary-button:hover {
     background: #1d4ed8;
 
-    transform: translateY(-1px);
+    transform: translateY(-2px);
 }
 
-.tool-button span {
+.primary-button span {
     font-size: 16px;
 }
 
 
 /* =========================================================
-   CTA
+   RESUME SECTION
 ========================================================= */
 
-.benefits-section {
-    padding: 70px 20px;
-
+.resume-guides {
     background: #ffffff;
 }
 
-.benefits-section .section-heading {
-    margin-bottom: 0;
+.resume-guides .guide-card {
+    background: #fafbff;
+}
+
+
+/* =========================================================
+   RESUME CTA
+========================================================= */
+
+.resume-cta {
+    background:
+        linear-gradient(
+            180deg,
+            #f8f7ff,
+            #ffffff
+        );
+}
+
+.resume-cta .cta-label {
+    color: #6941c6;
+}
+
+.resume-cta .primary-button {
+    background: #6941c6;
+
+    box-shadow:
+        0 7px 16px rgba(105, 65, 198, .18);
+}
+
+.resume-cta .primary-button:hover {
+    background: #5935aa;
 }
 
 
@@ -488,8 +670,8 @@ button {
     grid-template-columns:
         1.5fr
         1fr
-        1fr
-        1.2fr;
+        1.2fr
+        1fr;
 
     gap: 45px;
 }
@@ -620,220 +802,12 @@ button {
 
 
 /* =========================================================
-   ARTICLE PAGE
-========================================================= */
-
-.article-page {
-    background: #f6f8fb;
-
-    padding: 60px 20px 80px;
-}
-
-.article-container {
-    width: 100%;
-    max-width: 880px;
-
-    margin: 0 auto;
-}
-
-.article-card {
-    background: #ffffff;
-
-    border: 1px solid #e2e7ef;
-
-    border-radius: 18px;
-
-    padding: 48px 55px;
-
-    box-shadow:
-        0 12px 35px rgba(23, 32, 51, .06);
-}
-
-.article-badge {
-    display: inline-flex;
-    align-items: center;
-
-    padding: 7px 13px;
-
-    border-radius: 20px;
-
-    background: #eff6ff;
-
-    border: 1px solid #dbeafe;
-
-    color: #2563eb;
-
-    font-size: 12px;
-    font-weight: 700;
-
-    margin-bottom: 18px;
-}
-
-.article-card h1 {
-    margin-bottom: 18px;
-
-    color: #172033;
-
-    font-size: 43px;
-
-    line-height: 1.15;
-
-    letter-spacing: -1.3px;
-}
-
-.article-intro {
-    color: #59677c;
-
-    font-size: 17px;
-
-    line-height: 1.8;
-
-    margin-bottom: 28px;
-}
-
-.article-card hr {
-    border: 0;
-
-    border-top: 1px solid #e6eaf0;
-
-    margin: 32px 0;
-}
-
-.article-card h2 {
-    margin-bottom: 13px;
-
-    color: #172033;
-
-    font-size: 27px;
-
-    line-height: 1.3;
-}
-
-.article-card h3 {
-    margin-top: 24px;
-    margin-bottom: 8px;
-
-    color: #26344a;
-
-    font-size: 19px;
-}
-
-.article-card p {
-    margin-bottom: 16px;
-
-    color: #59677c;
-
-    font-size: 15px;
-
-    line-height: 1.8;
-}
-
-.article-card ul,
-.article-card ol {
-    margin: 15px 0 20px 25px;
-
-    color: #59677c;
-}
-
-.article-card li {
-    margin-bottom: 9px;
-
-    line-height: 1.7;
-
-    font-size: 15px;
-}
-
-.article-card strong {
-    color: #172033;
-}
-
-
-/* =========================================================
-   ARTICLE CTA
-========================================================= */
-
-.article-cta {
-    margin-top: 35px;
-
-    padding: 28px;
-
-    border: 1px solid #d5e4ff;
-
-    border-radius: 13px;
-
-    background: #f4f8ff;
-
-    text-align: center;
-}
-
-.article-cta h3 {
-    margin-top: 0;
-
-    color: #172033;
-
-    font-size: 21px;
-}
-
-.article-cta p {
-    margin-bottom: 18px;
-}
-
-
-/* =========================================================
-   ARTICLE BACK LINKS
-========================================================= */
-
-.article-back {
-    display: flex;
-
-    flex-wrap: wrap;
-
-    gap: 12px;
-
-    margin-top: 30px;
-}
-
-.article-back a {
-    display: inline-flex;
-
-    align-items: center;
-    justify-content: center;
-
-    min-height: 40px;
-
-    padding: 0 16px;
-
-    border-radius: 8px;
-
-    font-size: 12px;
-
-    font-weight: 700;
-}
-
-.back-blog {
-    background: #eff6ff;
-
-    border: 1px solid #dbeafe;
-
-    color: #2563eb;
-}
-
-.back-compressor {
-    background: #2563eb;
-
-    color: #ffffff;
-
-    box-shadow:
-        0 6px 14px rgba(37, 99, 235, .16);
-}
-
-
-/* =========================================================
    DARK MODE
 ========================================================= */
 
 body.dark {
     background: #0f172a;
+
     color: #e5e7eb;
 }
 
@@ -854,54 +828,100 @@ body.dark .nav-links a:hover {
     background: #1e293b;
 }
 
+body.dark .nav-links a.active {
+    background: #172b4d;
+
+    color: #70a3ff;
+}
+
 body.dark .blog-hero {
     background: #0f172a;
-}
 
-body.dark .blog-hero h1,
-body.dark .section-heading h2,
-body.dark .tool-card h3 {
-    color: #f8fafc;
-}
-
-body.dark .hero-description,
-body.dark .section-heading p,
-body.dark .tool-card p {
-    color: #aab5c5;
-}
-
-body.dark .tools-section {
-    background: #0b1220;
-}
-
-body.dark .tool-card.blog-card {
-    background: #111827;
     border-color: #263143;
 }
 
-body.dark .benefits-section {
+body.dark .blog-hero h1 {
+    color: #f8fafc;
+}
+
+body.dark .hero-description {
+    color: #aab5c5;
+}
+
+body.dark .hero-badge {
+    background: #111827;
+
+    border-color: #263143;
+
+    color: #70a3ff;
+}
+
+body.dark .guides-section {
+    background: #0b1220;
+}
+
+body.dark .resume-guides {
     background: #0f172a;
 }
 
-body.dark .article-page {
-    background: #0b1220;
-}
-
-body.dark .article-card {
-    background: #111827;
-    border-color: #263143;
-}
-
-body.dark .article-card h1,
-body.dark .article-card h2,
-body.dark .article-card h3,
-body.dark .article-card strong {
+body.dark .section-heading h2 {
     color: #f8fafc;
 }
 
-body.dark .article-card p,
-body.dark .article-card li {
+body.dark .section-heading p {
     color: #aab5c5;
+}
+
+body.dark .guide-card {
+    background: #111827;
+
+    border-color: #263143;
+}
+
+body.dark .resume-card {
+    background: #111827;
+}
+
+body.dark .guide-card h3 {
+    color: #f8fafc;
+}
+
+body.dark .guide-card p {
+    color: #aab5c5;
+}
+
+body.dark .guide-icon {
+    background: #172b4d;
+
+    border-color: #2b4d7d;
+}
+
+body.dark .resume-icon {
+    background: #241d3d;
+
+    border-color: #40356b;
+}
+
+body.dark .product-cta {
+    background: #0f172a;
+
+    border-color: #263143;
+}
+
+body.dark .resume-cta {
+    background: #101426;
+}
+
+body.dark .product-cta h2 {
+    color: #f8fafc;
+}
+
+body.dark .product-cta p {
+    color: #aab5c5;
+}
+
+body.dark .footer {
+    background: #080d17;
 }
 
 
@@ -921,6 +941,7 @@ body.dark .article-card li {
 
     .nav-links a {
         padding: 7px 7px;
+
         font-size: 11px;
     }
 
@@ -928,6 +949,7 @@ body.dark .article-card li {
         grid-template-columns:
             repeat(2, 1fr);
     }
+
 }
 
 
@@ -945,6 +967,7 @@ body.dark .article-card li {
         position: absolute;
 
         top: 60px;
+
         left: 0;
         right: 0;
 
@@ -977,6 +1000,9 @@ body.dark .article-card li {
         margin-left: auto;
     }
 
+
+    /* HERO */
+
     .blog-hero-container {
         min-height: 390px;
 
@@ -993,23 +1019,45 @@ body.dark .article-card li {
         font-size: 14px;
     }
 
-    .tools-section {
-        padding: 50px 15px 60px;
+
+    /* SECTIONS */
+
+    .guides-section {
+        padding: 55px 15px 60px;
     }
 
     .section-heading h2 {
         font-size: 27px;
     }
 
-    .tools-container.blog-container {
+
+    /* CARDS */
+
+    .guides-container {
         grid-template-columns: 1fr;
 
         gap: 16px;
     }
 
-    .tool-card.blog-card {
+    .guide-card {
         padding: 23px;
+
+        gap: 16px;
     }
+
+
+    /* CTA */
+
+    .product-cta {
+        padding: 55px 20px;
+    }
+
+    .product-cta h2 {
+        font-size: 27px;
+    }
+
+
+    /* FOOTER */
 
     .footer-container {
         grid-template-columns: 1fr;
@@ -1017,38 +1065,21 @@ body.dark .article-card li {
         gap: 30px;
     }
 
-    .article-page {
-        padding: 35px 14px 55px;
+}
+
+
+@media (max-width: 480px) {
+
+    .guide-card {
+        display: block;
     }
 
-    .article-card {
-        padding: 28px 21px;
-
-        border-radius: 14px;
+    .guide-icon {
+        margin-bottom: 17px;
     }
 
-    .article-card h1 {
-        font-size: 32px;
+    .blog-hero h1 {
+        font-size: 34px;
     }
 
-    .article-card h2 {
-        font-size: 23px;
-    }
-
-    .article-intro {
-        font-size: 15px;
-    }
-
-    .article-card p,
-    .article-card li {
-        font-size: 14px;
-    }
-
-    .article-back {
-        flex-direction: column;
-    }
-
-    .article-back a {
-        width: 100%;
-    }
 }
