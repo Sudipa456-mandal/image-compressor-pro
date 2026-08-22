@@ -1,12 +1,12 @@
 /* =========================================================
-   IMAGE COMPRESSOR PRO - BLOG JAVASCRIPT
+   Image Compressor Pro - Blog JavaScript
    File: blog/script.js
-========================================================= */
+   ========================================================= */
 
 document.addEventListener("DOMContentLoaded", function () {
 
     /* =====================================================
-       MOBILE NAVIGATION
+       MOBILE MENU
     ===================================================== */
 
     const mobileMenuBtn = document.getElementById("mobileMenuBtn");
@@ -18,8 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             navLinks.classList.toggle("mobile-open");
 
-            const isOpen =
-                navLinks.classList.contains("mobile-open");
+            const isOpen = navLinks.classList.contains("mobile-open");
 
             mobileMenuBtn.setAttribute(
                 "aria-expanded",
@@ -33,15 +32,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
         });
 
-        /* Close menu after clicking a navigation link */
+        /* Close mobile menu after clicking a link */
 
-        const navigationLinks =
-            navLinks.querySelectorAll("a");
+        const menuItems = navLinks.querySelectorAll("a");
 
-        navigationLinks.forEach(function (link) {
+        menuItems.forEach(function (link) {
 
             link.addEventListener("click", function () {
-
                 navLinks.classList.remove("mobile-open");
 
                 mobileMenuBtn.setAttribute(
@@ -53,7 +50,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     "aria-label",
                     "Open menu"
                 );
-
             });
 
         });
@@ -65,18 +61,13 @@ document.addEventListener("DOMContentLoaded", function () {
        DARK MODE
     ===================================================== */
 
-    const themeToggle =
-        document.getElementById("themeToggle");
+    const themeToggle = document.getElementById("themeToggle");
 
-    const savedTheme =
-        localStorage.getItem("blogTheme");
+    const savedTheme = localStorage.getItem("blogTheme");
 
     if (savedTheme === "dark") {
-
         document.body.classList.add("dark-mode");
-
     }
-
 
     if (themeToggle) {
 
@@ -84,12 +75,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
             document.body.classList.toggle("dark-mode");
 
-            const isDark =
+            const darkMode =
                 document.body.classList.contains("dark-mode");
 
             localStorage.setItem(
                 "blogTheme",
-                isDark ? "dark" : "light"
+                darkMode ? "dark" : "light"
             );
 
         });
@@ -101,31 +92,27 @@ document.addEventListener("DOMContentLoaded", function () {
        BACK TO TOP BUTTON
     ===================================================== */
 
-    const topBtn =
-        document.getElementById("topBtn");
+    const topBtn = document.getElementById("topBtn");
 
     if (topBtn) {
 
         function updateTopButton() {
 
             if (window.scrollY > 400) {
-
                 topBtn.classList.add("show");
-
             } else {
-
                 topBtn.classList.remove("show");
-
             }
 
         }
-
 
         window.addEventListener(
             "scroll",
             updateTopButton,
             { passive: true }
         );
+
+        updateTopButton();
 
 
         topBtn.addEventListener("click", function () {
@@ -136,9 +123,6 @@ document.addEventListener("DOMContentLoaded", function () {
             });
 
         });
-
-
-        updateTopButton();
 
     }
 
@@ -155,12 +139,9 @@ document.addEventListener("DOMContentLoaded", function () {
         link.addEventListener("click", function (event) {
 
             const targetId =
-                this.getAttribute("href");
+                link.getAttribute("href");
 
-            if (
-                !targetId ||
-                targetId === "#"
-            ) {
+            if (!targetId || targetId === "#") {
                 return;
             }
 
@@ -184,87 +165,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =====================================================
-       CURRENT YEAR
-       Automatically updates footer year if an element
-       with id="currentYear" exists.
-    ===================================================== */
-
-    const currentYear =
-        document.getElementById("currentYear");
-
-    if (currentYear) {
-
-        currentYear.textContent =
-            new Date().getFullYear();
-
-    }
-
-
-    /* =====================================================
-       EXTERNAL LINKS
-       Open external links safely in a new tab.
-    ===================================================== */
-
-    const allLinks =
-        document.querySelectorAll("a[href]");
-
-    allLinks.forEach(function (link) {
-
-        const href =
-            link.getAttribute("href");
-
-        if (!href) {
-            return;
-        }
-
-        if (
-            href.startsWith("http://") ||
-            href.startsWith("https://")
-        ) {
-
-            try {
-
-                const linkUrl =
-                    new URL(href, window.location.href);
-
-                if (
-                    linkUrl.origin !==
-                    window.location.origin
-                ) {
-
-                    link.setAttribute(
-                        "target",
-                        "_blank"
-                    );
-
-                    link.setAttribute(
-                        "rel",
-                        "noopener noreferrer"
-                    );
-
-                }
-
-            } catch (error) {
-
-                /* Ignore invalid URLs */
-
-            }
-
-        }
-
-    });
-
-
-    /* =====================================================
        FAQ ACCORDION
        
-       Works automatically if your HTML uses:
-
-       <button class="faq-question">
-       <div class="faq-answer">
-
-       It is optional and will not affect pages that
-       do not contain FAQ elements.
+       Works only when FAQ elements exist.
+       It does not affect pages without FAQ.
     ===================================================== */
 
     const faqQuestions =
@@ -274,45 +178,116 @@ document.addEventListener("DOMContentLoaded", function () {
 
         question.addEventListener("click", function () {
 
-            const item =
-                this.closest(".faq-item");
+            const faqItem =
+                question.closest(".faq-item");
 
-            if (!item) {
+            if (!faqItem) {
                 return;
             }
 
-            const answer =
-                item.querySelector(".faq-answer");
+            faqItem.classList.toggle("active");
 
-            if (!answer) {
+        });
+
+    });
+
+
+    /* =====================================================
+       CURRENT YEAR
+       
+       Automatically updates elements using:
+       data-current-year
+    ===================================================== */
+
+    const yearElements =
+        document.querySelectorAll("[data-current-year]");
+
+    yearElements.forEach(function (element) {
+
+        element.textContent =
+            new Date().getFullYear();
+
+    });
+
+
+    /* =====================================================
+       EXTERNAL LINKS
+       
+       Adds safe attributes to external links.
+       ===================================================== */
+
+    const currentHost =
+        window.location.hostname;
+
+    const allLinks =
+        document.querySelectorAll("a[href]");
+
+    allLinks.forEach(function (link) {
+
+        try {
+
+            const url =
+                new URL(link.href, window.location.href);
+
+            if (
+                url.hostname &&
+                url.hostname !== currentHost &&
+                url.protocol === "https:"
+            ) {
+
+                link.setAttribute(
+                    "target",
+                    "_blank"
+                );
+
+                link.setAttribute(
+                    "rel",
+                    "noopener noreferrer"
+                );
+
+            }
+
+        } catch (error) {
+
+            /* Ignore invalid or non-standard links */
+
+        }
+
+    });
+
+
+    /* =====================================================
+       PREVENT DOUBLE SUBMISSION
+       
+       Only applies to forms that explicitly use:
+       data-prevent-double-submit
+    ===================================================== */
+
+    const protectedForms =
+        document.querySelectorAll(
+            "form[data-prevent-double-submit]"
+        );
+
+    protectedForms.forEach(function (form) {
+
+        form.addEventListener("submit", function () {
+
+            const submitButton =
+                form.querySelector(
+                    'button[type="submit"], input[type="submit"]'
+                );
+
+            if (!submitButton) {
                 return;
             }
 
-            const isOpen =
-                item.classList.contains("open");
+            submitButton.disabled = true;
 
+            setTimeout(function () {
 
-            /* Close other FAQ items */
+                submitButton.disabled = false;
 
-            document
-                .querySelectorAll(".faq-item.open")
-                .forEach(function (openItem) {
-
-                    if (openItem !== item) {
-
-                        openItem.classList.remove("open");
-
-                    }
-
-                });
-
-
-            /* Toggle selected item */
-
-            item.classList.toggle(
-                "open",
-                !isOpen
-            );
+            }, 5000);
 
         });
 
@@ -322,98 +297,100 @@ document.addEventListener("DOMContentLoaded", function () {
     /* =====================================================
        IMAGE LAZY LOADING
        
-       Adds lazy loading to normal article images that
-       do not already have a loading attribute.
+       Applies lazy loading to normal content images.
+       Does not modify logos or critical images.
     ===================================================== */
 
-    const articleImages =
+    const contentImages =
         document.querySelectorAll(
             ".blog-content img, .article-content img"
         );
 
-    articleImages.forEach(function (image) {
+    contentImages.forEach(function (image) {
 
         if (!image.hasAttribute("loading")) {
-
-            image.setAttribute(
-                "loading",
-                "lazy"
-            );
-
+            image.setAttribute("loading", "lazy");
         }
 
         if (!image.hasAttribute("decoding")) {
-
-            image.setAttribute(
-                "decoding",
-                "async"
-            );
-
+            image.setAttribute("decoding", "async");
         }
 
     });
 
 
     /* =====================================================
-       PREVENT EMPTY HASH JUMP
+       EXTERNAL IMAGE ERROR HANDLING
+       
+       Prevents broken images from creating large empty areas.
     ===================================================== */
 
-    document
-        .querySelectorAll('a[href="#"]')
-        .forEach(function (link) {
+    contentImages.forEach(function (image) {
 
-            link.addEventListener(
-                "click",
-                function (event) {
+        image.addEventListener("error", function () {
 
-                    event.preventDefault();
-
-                }
-            );
+            image.classList.add("image-error");
 
         });
 
+    });
+
 
     /* =====================================================
-       KEYBOARD ACCESSIBILITY
+       COPY CURRENT PAGE URL
        
-       Escape closes the mobile navigation.
+       Optional buttons can use:
+       class="copy-page-url"
     ===================================================== */
 
-    document.addEventListener(
-        "keydown",
-        function (event) {
+    const copyButtons =
+        document.querySelectorAll(".copy-page-url");
 
-            if (event.key !== "Escape") {
-                return;
-            }
+    copyButtons.forEach(function (button) {
 
-            if (
-                navLinks &&
-                navLinks.classList.contains("mobile-open")
-            ) {
+        button.addEventListener("click", async function () {
 
-                navLinks.classList.remove(
-                    "mobile-open"
+            try {
+
+                await navigator.clipboard.writeText(
+                    window.location.href
                 );
 
-                if (mobileMenuBtn) {
+                const originalText =
+                    button.textContent;
 
-                    mobileMenuBtn.setAttribute(
-                        "aria-expanded",
-                        "false"
-                    );
+                button.textContent =
+                    "Copied!";
 
-                    mobileMenuBtn.setAttribute(
-                        "aria-label",
-                        "Open menu"
-                    );
+                setTimeout(function () {
 
-                }
+                    button.textContent =
+                        originalText;
+
+                }, 1500);
+
+            } catch (error) {
+
+                console.error(
+                    "Unable to copy page URL.",
+                    error
+                );
 
             }
 
-        }
+        });
+
+    });
+
+
+    /* =====================================================
+       CONSOLE MESSAGE
+       
+       Simple development message.
+    ===================================================== */
+
+    console.log(
+        "Image Compressor Pro Blog loaded successfully."
     );
 
 });
