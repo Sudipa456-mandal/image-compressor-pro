@@ -2,37 +2,42 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>ResumeCraft Blog - Resume & Image Compression Guides</title>
+    <title>ResumeCraft Blog | Resume & Image Compression Guides</title>
 
     <meta name="description"
-        content="Learn how to create professional resumes, make ATS-friendly resumes, and compress images to 50KB, 100KB and more with simple step-by-step guides.">
-
-    <meta name="keywords"
-        content="resume guide, professional resume, ATS friendly resume, resume for freshers, image compression, compress image to 50KB, compress image to 100KB, reduce PNG size">
-
-    <meta name="author" content="ResumeCraft">
+        content="Practical guides for creating professional resumes, ATS-friendly resumes, resume formats, and compressing JPG and PNG images online.">
 
     <meta name="robots" content="index, follow">
 
-    <link rel="canonical" href="https://yourdomain.com/blog/">
-
-    <meta property="og:title"
-        content="ResumeCraft Blog - Resume & Image Compression Guides">
-
-    <meta property="og:description"
-        content="Practical guides for creating professional resumes and reducing image file sizes.">
-
-    <meta property="og:type" content="website">
-
-    <meta property="og:url" content="https://yourdomain.com/blog/">
+    <meta name="author" content="ResumeCraft">
 
     <meta name="theme-color" content="#4F46E5">
 
+    <!-- Open Graph -->
+
+    <meta property="og:title"
+        content="ResumeCraft Blog | Resume & Image Compression Guides">
+
+    <meta property="og:description"
+        content="Practical guides for resumes, job applications and image compression.">
+
+    <meta property="og:type" content="website">
+
+    <meta property="og:url"
+        content="https://yourdomain.com/blog/">
+
+    <link rel="canonical"
+        href="https://yourdomain.com/blog/">
+
+    <!-- CSS -->
+
     <link rel="stylesheet" href="style.css">
+
 </head>
 
 
@@ -41,28 +46,30 @@
 
     <!-- ================= HEADER ================= -->
 
-    <header class="site-header">
+    <header class="blog-header">
 
-        <div class="container nav">
+        <div class="blog-container header-inner">
 
-            <a href="index.html" class="logo">
-                ResumeCraft
+
+            <!-- LOGO -->
+
+            <a href="index.html" class="blog-logo">
+
+                <span class="logo-icon">R</span>
+
+                <span>
+                    Resume<span>Craft</span>
+                </span>
+
             </a>
 
 
-            <button class="menu-btn"
-                id="menuBtn"
-                aria-label="Open navigation menu">
+            <!-- DESKTOP NAVIGATION -->
 
-                ☰
+            <nav class="blog-navigation">
 
-            </button>
-
-
-            <nav class="nav-links">
-
-                <a href="index.html">
-                    Blog
+                <a href="../index.html">
+                    Home
                 </a>
 
                 <a href="../resume/index.html">
@@ -73,9 +80,52 @@
                     Image Compressor
                 </a>
 
+                <a href="index.html" class="active">
+                    Blog
+                </a>
+
             </nav>
 
+
+            <!-- MOBILE BUTTON -->
+
+            <button
+                class="mobile-menu-button"
+                id="mobileMenuButton"
+                type="button"
+                aria-label="Open menu">
+
+                <span></span>
+                <span></span>
+                <span></span>
+
+            </button>
+
+
         </div>
+
+
+        <!-- MOBILE NAVIGATION -->
+
+        <nav class="mobile-navigation" id="mobileNavigation">
+
+            <a href="../index.html">
+                Home
+            </a>
+
+            <a href="../resume/index.html">
+                Resume Builder
+            </a>
+
+            <a href="../compressor/index.html">
+                Image Compressor
+            </a>
+
+            <a href="index.html">
+                Blog
+            </a>
+
+        </nav>
 
     </header>
 
@@ -83,166 +133,163 @@
 
     <!-- ================= HERO ================= -->
 
-    <section class="hero">
-
-        <div class="container">
-
-            <span class="tag">
-                ResumeCraft Guides
-            </span>
-
-            <h1>
-                Helpful Guides for Resumes & Image Compression
-            </h1>
-
-            <p>
-                Learn how to create professional resumes,
-                build ATS-friendly CVs and reduce image file
-                sizes with simple, practical guides.
-            </p>
-
-        </div>
-
-    </section>
-
-
-
-    <!-- ================= BLOG CONTENT ================= -->
-
     <main>
 
 
-        <!-- IMAGE COMPRESSION -->
+        <section class="blog-hero">
 
-        <section class="section">
+            <div class="blog-container">
 
-            <div class="container">
+                <div class="hero-content">
+
+
+                    <span class="hero-label">
+                        RESUMECRAFT BLOG
+                    </span>
+
+
+                    <h1>
+                        Practical Guides to
+                        <span>Build Better</span>
+                        Resumes & Manage Images
+                    </h1>
+
+
+                    <p>
+                        Simple, useful and easy-to-follow guides
+                        for creating professional resumes,
+                        improving ATS compatibility and reducing
+                        image file sizes.
+                    </p>
+
+
+                    <div class="hero-buttons">
+
+                        <a
+                            href="../resume/index.html"
+                            class="primary-button">
+
+                            Create Resume
+
+                        </a>
+
+
+                        <a
+                            href="../compressor/index.html"
+                            class="secondary-button">
+
+                            Compress Image
+
+                        </a>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= FEATURED ================= -->
+
+        <section class="featured-section">
+
+            <div class="blog-container">
+
 
                 <div class="section-heading">
 
-                    <span class="tag">
-                        Image Compression
-                    </span>
+                    <div>
 
-                    <h2>
-                        Image Compression Guides
-                    </h2>
+                        <span class="section-label">
+                            EXPLORE OUR GUIDES
+                        </span>
+
+                        <h2>
+                            Latest & Helpful Guides
+                        </h2>
+
+                    </div>
 
                     <p>
-                        Learn how to reduce image file sizes
-                        while keeping your images useful and readable.
+                        Useful information to help you
+                        create better documents and manage
+                        digital files.
                     </p>
 
                 </div>
 
 
-                <div class="grid">
+
+                <div class="featured-grid">
 
 
-                    <!-- ARTICLE 1 -->
+                    <!-- FEATURED CARD -->
 
-                    <article class="card">
+                    <article class="featured-card featured-main">
 
-                        <span class="tag">
-                            Image Compression
-                        </span>
+                        <div class="article-category resume-category">
+                            RESUME
+                        </div>
 
-                        <h2>
-                            <a href="image-compression/compress-image-to-50kb.html">
-                                How to Compress an Image to 50KB
-                            </a>
-                        </h2>
+
+                        <h3>
+                            How to Make a Professional Resume
+                        </h3>
+
 
                         <p>
-                            Learn practical ways to reduce an image
-                            to around 50KB while maintaining reasonable
-                            image quality.
+                            Learn how to structure your resume,
+                            present your experience clearly and
+                            create a professional document that
+                            recruiters can easily understand.
                         </p>
 
-                        <a href="image-compression/compress-image-to-50kb.html">
-                            Read Guide →
+
+                        <a
+                            href="resume/how-to-make-a-professional-resume.html"
+                            class="read-link">
+
+                            Read Guide
+                            <span>→</span>
+
                         </a>
 
                     </article>
 
 
 
-                    <!-- ARTICLE 2 -->
+                    <!-- SECOND FEATURED -->
 
-                    <article class="card">
+                    <article class="featured-card">
 
-                        <span class="tag">
-                            Image Compression
-                        </span>
+                        <div class="article-category image-category">
+                            IMAGE COMPRESSION
+                        </div>
 
-                        <h2>
-                            <a href="image-compression/compress-image-to-100kb.html">
-                                How to Compress an Image to 100KB
-                            </a>
-                        </h2>
+
+                        <h3>
+                            How to Compress an Image to 50KB
+                        </h3>
+
 
                         <p>
-                            Find out how to reduce JPG, PNG and other
-                            image files below a 100KB upload limit.
+                            Learn practical ways to reduce an
+                            image to around 50KB while keeping
+                            the image useful and readable.
                         </p>
 
-                        <a href="image-compression/compress-image-to-100kb.html">
-                            Read Guide →
-                        </a>
 
-                    </article>
+                        <a
+                            href="image-compression/compress-image-to-50kb.html"
+                            class="read-link">
 
+                            Read Guide
+                            <span>→</span>
 
-
-                    <!-- ARTICLE 3 -->
-
-                    <article class="card">
-
-                        <span class="tag">
-                            JPG Guide
-                        </span>
-
-                        <h2>
-                            <a href="image-compression/how-to-compress-jpg-images.html">
-                                How to Compress JPG Images
-                            </a>
-                        </h2>
-
-                        <p>
-                            Understand JPG compression and learn how
-                            to reduce file size without unnecessary
-                            quality loss.
-                        </p>
-
-                        <a href="image-compression/how-to-compress-jpg-images.html">
-                            Read Guide →
-                        </a>
-
-                    </article>
-
-
-
-                    <!-- ARTICLE 4 -->
-
-                    <article class="card">
-
-                        <span class="tag">
-                            PNG Guide
-                        </span>
-
-                        <h2>
-                            <a href="image-compression/reduce-png-size-online.html">
-                                How to Reduce PNG Size Online
-                            </a>
-                        </h2>
-
-                        <p>
-                            Learn why PNG files can become large and
-                            how to reduce their size efficiently.
-                        </p>
-
-                        <a href="image-compression/reduce-png-size-online.html">
-                            Read Guide →
                         </a>
 
                     </article>
@@ -256,139 +303,416 @@
 
 
 
-        <!-- ================= RESUME ================= -->
+        <!-- ================= RESUME GUIDES ================= -->
 
-        <section class="section">
+        <section class="articles-section">
 
-            <div class="container">
+            <div class="blog-container">
+
 
                 <div class="section-heading">
 
-                    <span class="tag">
-                        Resume Guides
-                    </span>
+                    <div>
 
-                    <h2>
-                        Resume & Career Guides
-                    </h2>
+                        <span class="section-label">
+                            RESUME GUIDES
+                        </span>
 
-                    <p>
-                        Practical resume guides for students,
-                        freshers and job seekers.
-                    </p>
+                        <h2>
+                            Resume & Career
+                        </h2>
+
+                    </div>
+
+
+                    <a
+                        href="../resume/index.html"
+                        class="view-tool-link">
+
+                        Build a Resume →
+
+                    </a>
 
                 </div>
 
 
-                <div class="grid">
+
+                <div class="article-grid">
 
 
-                    <!-- ARTICLE 5 -->
+                    <!-- ARTICLE -->
 
-                    <article class="card">
+                    <article class="article-card">
 
-                        <span class="tag">
-                            Resume
-                        </span>
+                        <div class="article-top">
 
-                        <h2>
-                            <a href="resume/how-to-make-a-professional-resume.html">
-                                How to Make a Professional Resume
-                            </a>
-                        </h2>
+                            <span class="article-category resume-category">
+                                RESUME
+                            </span>
+
+                            <span class="article-number">
+                                01
+                            </span>
+
+                        </div>
+
+
+                        <h3>
+                            How to Make a Professional Resume
+                        </h3>
+
 
                         <p>
-                            Learn how to structure and write a clean,
-                            professional resume that highlights your
-                            skills and experience.
+                            Learn the essential sections,
+                            formatting principles and content
+                            tips for creating a professional resume.
                         </p>
 
-                        <a href="resume/how-to-make-a-professional-resume.html">
-                            Read Guide →
+
+                        <a
+                            href="resume/how-to-make-a-professional-resume.html"
+                            class="article-link">
+
+                            Read Article
+                            <span>→</span>
+
                         </a>
 
                     </article>
 
 
 
-                    <!-- ARTICLE 6 -->
+                    <!-- ARTICLE -->
 
-                    <article class="card">
+                    <article class="article-card">
 
-                        <span class="tag">
-                            Freshers
-                        </span>
+                        <div class="article-top">
 
-                        <h2>
-                            <a href="resume/resume-for-freshers.html">
-                                Resume for Freshers
-                            </a>
-                        </h2>
+                            <span class="article-category resume-category">
+                                FRESHERS
+                            </span>
+
+                            <span class="article-number">
+                                02
+                            </span>
+
+                        </div>
+
+
+                        <h3>
+                            Resume for Freshers
+                        </h3>
+
 
                         <p>
-                            Find out what freshers should include in
-                            a resume when they have little or no
-                            professional experience.
+                            Find out what freshers should include
+                            in a resume when they have little or
+                            no professional experience.
                         </p>
 
-                        <a href="resume/resume-for-freshers.html">
-                            Read Guide →
+
+                        <a
+                            href="resume/resume-for-freshers.html"
+                            class="article-link">
+
+                            Read Article
+                            <span>→</span>
+
                         </a>
 
                     </article>
 
 
 
-                    <!-- ARTICLE 7 -->
+                    <!-- ARTICLE -->
 
-                    <article class="card">
+                    <article class="article-card">
 
-                        <span class="tag">
-                            ATS Resume
-                        </span>
+                        <div class="article-top">
 
-                        <h2>
-                            <a href="resume/ats-friendly-resume.html">
-                                How to Create an ATS-Friendly Resume
-                            </a>
-                        </h2>
+                            <span class="article-category resume-category">
+                                ATS
+                            </span>
+
+                            <span class="article-number">
+                                03
+                            </span>
+
+                        </div>
+
+
+                        <h3>
+                            How to Create an ATS-Friendly Resume
+                        </h3>
+
 
                         <p>
-                            Learn how to structure your resume so that
-                            applicant tracking systems can read your
-                            information correctly.
+                            Learn how to structure your resume
+                            so applicant tracking systems can
+                            read your information correctly.
                         </p>
 
-                        <a href="resume/ats-friendly-resume.html">
-                            Read Guide →
+
+                        <a
+                            href="resume/ats-friendly-resume.html"
+                            class="article-link">
+
+                            Read Article
+                            <span>→</span>
+
                         </a>
 
                     </article>
 
 
 
-                    <!-- ARTICLE 8 -->
+                    <!-- ARTICLE -->
 
-                    <article class="card">
+                    <article class="article-card">
 
-                        <span class="tag">
-                            Resume Format
+                        <div class="article-top">
+
+                            <span class="article-category resume-category">
+                                FORMAT
+                            </span>
+
+                            <span class="article-number">
+                                04
+                            </span>
+
+                        </div>
+
+
+                        <h3>
+                            Resume Format Guide
+                        </h3>
+
+
+                        <p>
+                            Understand different resume formats
+                            and choose the structure that best
+                            fits your experience.
+                        </p>
+
+
+                        <a
+                            href="resume/resume-format-guide.html"
+                            class="article-link">
+
+                            Read Article
+                            <span>→</span>
+
+                        </a>
+
+                    </article>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= IMAGE GUIDES ================= -->
+
+        <section class="articles-section image-section">
+
+            <div class="blog-container">
+
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <span class="section-label">
+                            IMAGE COMPRESSION
                         </span>
 
                         <h2>
-                            <a href="resume/resume-format-guide.html">
-                                Resume Format Guide
-                            </a>
+                            Image Compression Guides
                         </h2>
 
+                    </div>
+
+
+                    <a
+                        href="../compressor/index.html"
+                        class="view-tool-link">
+
+                        Compress an Image →
+
+                    </a>
+
+                </div>
+
+
+
+                <div class="article-grid">
+
+
+                    <!-- ARTICLE -->
+
+                    <article class="article-card">
+
+                        <div class="article-top">
+
+                            <span class="article-category image-category">
+                                50KB
+                            </span>
+
+                            <span class="article-number">
+                                01
+                            </span>
+
+                        </div>
+
+
+                        <h3>
+                            How to Compress an Image to 50KB
+                        </h3>
+
+
                         <p>
-                            Understand different resume formats and
-                            choose the structure that best fits your
-                            experience and career goals.
+                            Learn how to reduce an image to a
+                            small file size while maintaining
+                            reasonable visual quality.
                         </p>
 
-                        <a href="resume/resume-format-guide.html">
-                            Read Guide →
+
+                        <a
+                            href="image-compression/compress-image-to-50kb.html"
+                            class="article-link">
+
+                            Read Article
+                            <span>→</span>
+
+                        </a>
+
+                    </article>
+
+
+
+                    <!-- ARTICLE -->
+
+                    <article class="article-card">
+
+                        <div class="article-top">
+
+                            <span class="article-category image-category">
+                                100KB
+                            </span>
+
+                            <span class="article-number">
+                                02
+                            </span>
+
+                        </div>
+
+
+                        <h3>
+                            How to Compress an Image to 100KB
+                        </h3>
+
+
+                        <p>
+                            A practical guide for reducing JPG,
+                            PNG and other image files below a
+                            100KB upload limit.
+                        </p>
+
+
+                        <a
+                            href="image-compression/compress-image-to-100kb.html"
+                            class="article-link">
+
+                            Read Article
+                            <span>→</span>
+
+                        </a>
+
+                    </article>
+
+
+
+                    <!-- ARTICLE -->
+
+                    <article class="article-card">
+
+                        <div class="article-top">
+
+                            <span class="article-category image-category">
+                                JPG
+                            </span>
+
+                            <span class="article-number">
+                                03
+                            </span>
+
+                        </div>
+
+
+                        <h3>
+                            How to Compress JPG Images
+                        </h3>
+
+
+                        <p>
+                            Understand JPG compression and learn
+                            how to reduce file size without
+                            unnecessary quality loss.
+                        </p>
+
+
+                        <a
+                            href="image-compression/how-to-compress-jpg-images.html"
+                            class="article-link">
+
+                            Read Article
+                            <span>→</span>
+
+                        </a>
+
+                    </article>
+
+
+
+                    <!-- ARTICLE -->
+
+                    <article class="article-card">
+
+                        <div class="article-top">
+
+                            <span class="article-category image-category">
+                                PNG
+                            </span>
+
+                            <span class="article-number">
+                                04
+                            </span>
+
+                        </div>
+
+
+                        <h3>
+                            How to Reduce PNG Size Online
+                        </h3>
+
+
+                        <p>
+                            Learn why PNG files can become large
+                            and how to reduce their size efficiently.
+                        </p>
+
+
+                        <a
+                            href="image-compression/reduce-png-size-online.html"
+                            class="article-link">
+
+                            Read Article
+                            <span>→</span>
+
                         </a>
 
                     </article>
@@ -404,25 +728,43 @@
 
         <!-- ================= CTA ================= -->
 
-        <section class="section">
+        <section class="blog-cta-section">
 
-            <div class="container">
+            <div class="blog-container">
 
-                <div class="cta">
+                <div class="blog-cta">
 
-                    <h2>
-                        Create Your Resume
-                    </h2>
 
-                    <p>
-                        Ready to build your resume?
-                        Use ResumeCraft to create a professional
-                        resume with different template designs.
-                    </p>
+                    <div>
 
-                    <a href="../resume/index.html">
-                        Build Your Resume →
+                        <span class="section-label">
+                            RESUMECRAFT TOOLS
+                        </span>
+
+
+                        <h2>
+                            Create Your Resume
+                            in Minutes
+                        </h2>
+
+
+                        <p>
+                            Choose a professional template,
+                            add your information and create a
+                            polished resume.
+                        </p>
+
+                    </div>
+
+
+                    <a
+                        href="../resume/index.html"
+                        class="cta-button">
+
+                        Start Building
+
                     </a>
+
 
                 </div>
 
@@ -437,33 +779,108 @@
 
     <!-- ================= FOOTER ================= -->
 
-    <footer class="footer">
+    <footer class="blog-footer">
 
-        <div class="container">
+        <div class="blog-container footer-grid">
 
-            <p>
-                © 2026 ResumeCraft. All rights reserved.
-            </p>
 
-            <p>
+            <div class="footer-brand">
+
+                <a href="index.html" class="blog-logo">
+
+                    <span class="logo-icon">
+                        R
+                    </span>
+
+                    <span>
+                        Resume<span>Craft</span>
+                    </span>
+
+                </a>
+
+
+                <p>
+                    Practical tools and helpful guides
+                    for resumes and digital files.
+                </p>
+
+            </div>
+
+
+
+            <div class="footer-column">
+
+                <h3>
+                    Tools
+                </h3>
+
+                <a href="../resume/index.html">
+                    Resume Builder
+                </a>
+
+                <a href="../compressor/index.html">
+                    Image Compressor
+                </a>
+
+            </div>
+
+
+
+            <div class="footer-column">
+
+                <h3>
+                    Blog
+                </h3>
+
+                <a href="index.html">
+                    All Guides
+                </a>
+
+                <a href="resume/resume-for-freshers.html">
+                    Resume for Freshers
+                </a>
+
+                <a href="resume/ats-friendly-resume.html">
+                    ATS-Friendly Resume
+                </a>
+
+            </div>
+
+
+
+            <div class="footer-column">
+
+                <h3>
+                    Legal
+                </h3>
 
                 <a href="../privacy.html">
                     Privacy Policy
                 </a>
 
-                &nbsp; | &nbsp;
-
                 <a href="../terms.html">
                     Terms & Conditions
                 </a>
-
-                &nbsp; | &nbsp;
 
                 <a href="../disclaimer.html">
                     Disclaimer
                 </a>
 
-            </p>
+            </div>
+
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <div class="blog-container">
+
+                <p>
+                    © 2026 ResumeCraft. All rights reserved.
+                </p>
+
+            </div>
 
         </div>
 
@@ -474,6 +891,7 @@
     <!-- ================= JAVASCRIPT ================= -->
 
     <script src="script.js"></script>
+
 
 </body>
 
