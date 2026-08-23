@@ -2,7 +2,15 @@
 <html lang="en">
 
 <head>
-
+<script>
+    if (window.location.pathname.endsWith("/compressor/index.html")) {
+        window.history.replaceState(
+            {},
+            "",
+            "/compressor/"
+        );
+    }
+</script>
     <meta charset="UTF-8">
 
     <meta
