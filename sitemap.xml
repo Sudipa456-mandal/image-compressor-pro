@@ -2,7 +2,10 @@
 
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-    <!-- Homepage -->
+    <!-- =========================
+         MAIN WEBSITE
+    ========================== -->
+
     <url>
         <loc>https://imagecompressorpro.in/</loc>
         <lastmod>2026-08-24</lastmod>
@@ -10,7 +13,11 @@
         <priority>1.0</priority>
     </url>
 
-    <!-- Image Compressor -->
+
+    <!-- =========================
+         IMAGE COMPRESSOR
+    ========================== -->
+
     <url>
         <loc>https://imagecompressorpro.in/compressor/</loc>
         <lastmod>2026-08-24</lastmod>
@@ -18,7 +25,11 @@
         <priority>0.9</priority>
     </url>
 
-    <!-- Resume -->
+
+    <!-- =========================
+         RESUME
+    ========================== -->
+
     <url>
         <loc>https://imagecompressorpro.in/resume/</loc>
         <lastmod>2026-08-24</lastmod>
@@ -27,82 +38,135 @@
     </url>
 
     <url>
-        <loc>https://imagecompressorpro.in/resume/builder.html</loc>
+        <loc>https://imagecompressorpro.in/resume/builder</loc>
+        <lastmod>2026-08-24</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://imagecompressorpro.in/resume/templates</loc>
+        <lastmod>2026-08-24</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+
+    <!-- =========================
+         RESUME BLOG ARTICLES
+    ========================== -->
+
+    <url>
+        <loc>https://imagecompressorpro.in/blog/resume/ats-friendly-resume</loc>
         <lastmod>2026-08-24</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
 
     <url>
-        <loc>https://imagecompressorpro.in/resume/templates.html</loc>
+        <loc>https://imagecompressorpro.in/blog/resume/how-to-make-a-professional-resume</loc>
         <lastmod>2026-08-24</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
 
-    <!-- About / Contact / Legal -->
     <url>
-        <loc>https://imagecompressorpro.in/about.html</loc>
+        <loc>https://imagecompressorpro.in/blog/resume/resume-for-freshers</loc>
+        <lastmod>2026-08-24</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://imagecompressorpro.in/blog/resume/resume-format-guide</loc>
+        <lastmod>2026-08-24</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+
+    <!-- =========================
+         IMAGE COMPRESSION ARTICLES
+    ========================== -->
+
+    <url>
+        <loc>https://imagecompressorpro.in/blog/image-compression/compress-image-to-100kb</loc>
+        <lastmod>2026-08-24</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://imagecompressorpro.in/blog/image-compression/compress-image-to-50kb</loc>
+        <lastmod>2026-08-24</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://imagecompressorpro.in/blog/image-compression/how-to-compress-jpg-images</loc>
+        <lastmod>2026-08-24</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://imagecompressorpro.in/blog/image-compression/reduce-png-size-online</loc>
+        <lastmod>2026-08-24</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+
+    <!-- =========================
+         BLOG HOME
+    ========================== -->
+
+    <url>
+        <loc>https://imagecompressorpro.in/blog/</loc>
+        <lastmod>2026-08-24</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+
+    <!-- =========================
+         INFORMATION / LEGAL
+    ========================== -->
+
+    <url>
+        <loc>https://imagecompressorpro.in/about</loc>
         <lastmod>2026-08-24</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
     </url>
 
     <url>
-        <loc>https://imagecompressorpro.in/contact.html</loc>
+        <loc>https://imagecompressorpro.in/contact</loc>
         <lastmod>2026-08-24</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
     </url>
 
     <url>
-        <loc>https://imagecompressorpro.in/privacy.html</loc>
+        <loc>https://imagecompressorpro.in/privacy</loc>
         <lastmod>2026-08-24</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.4</priority>
     </url>
 
     <url>
-        <loc>https://imagecompressorpro.in/terms.html</loc>
+        <loc>https://imagecompressorpro.in/terms</loc>
         <lastmod>2026-08-24</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.4</priority>
     </url>
 
     <url>
-        <loc>https://imagecompressorpro.in/disclaimer.html</loc>
+        <loc>https://imagecompressorpro.in/disclaimer</loc>
         <lastmod>2026-08-24</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.4</priority>
-    </url>
-
-    <!-- SEO Articles -->
-    <url>
-        <loc>https://imagecompressorpro.in/how-to-compress-jpg-images.html</loc>
-        <lastmod>2026-08-24</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-
-    <url>
-        <loc>https://imagecompressorpro.in/compress-image-to-50kb.html</loc>
-        <lastmod>2026-08-24</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-
-    <url>
-        <loc>https://imagecompressorpro.in/compress-image-to-100kb.html</loc>
-        <lastmod>2026-08-24</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-
-    <url>
-        <loc>https://imagecompressorpro.in/reduce-png-size-online.html</loc>
-        <lastmod>2026-08-24</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
     </url>
 
 </urlset>
